@@ -1,0 +1,81 @@
+[
+  {
+    "program_number": "480",
+    "title": "Popcasting480",
+    "published": "Sat, 01 Mar 2025 10:46:26 +0100",
+    "ivoox_download_url": "https://www.ivoox.com/popcasting480_mf_152795387_feed_1.mp3",
+    "ivoox_web_url": "https://www.ivoox.com/popcasting480-audios-mp3_rf_152795387_1.html",
+    "playlist": [
+      {
+        "position": 1,
+        "artist": "chris norman & suzi quatro",
+        "song": "stumblin' in"
+      },
+      {
+        "position": 2,
+        "artist": "the blue rondos",
+        "song": "don't want your loving no more (original speed)"
+      },
+      {
+        "position": 3,
+        "artist": "the buzz",
+        "song": "should a man cry?"
+      },
+      {
+        "position": 18,
+        "artist": "kate & anna mcgarrigle",
+        "song": "matapedia"
+      },
+      {
+        "position": 19,
+        "artist": "martha wainwright",
+        "song": "factory"
+      }
+    ],
+    "extra_links": [],
+    "episode_external_links": [
+      {
+        "description": "obituario brian wilson",
+        "url": "https://jenesaispop.com/2025/06/12/501210/brian-wilson-obituario",
+        "type": "external_link"
+      },
+      {
+        "description": "invita a Popcasting a café",
+        "url": "https://ko-fi.com/popcasting",
+        "type": "external_link"
+      }
+    ]
+  },
+  {
+    "program_number": "479",
+    "title": "Popcasting479",
+    "published": "Sat, 22 Feb 2025 10:46:26 +0100",
+    "ivoox_download_url": "https://www.ivoox.com/popcasting479_mf_152795387_feed_1.mp3",
+    "ivoox_web_url": "https://www.ivoox.com/popcasting479-audios-mp3_rf_152795387_1.html",
+    "playlist": [
+      {
+        "position": 1,
+        "artist": "robert forster",
+        "song": "tell it back to me"
+      },
+      {
+        "position": 2,
+        "artist": "la mesa junior high school vocal department",
+        "song": "summer breeze"
+      },
+      {
+        "position": 15,
+        "artist": "lee robinson machine",
+        "song": "summer love"
+      }
+    ],
+    "extra_links": [],
+    "episode_external_links": [
+      {
+        "description": "invita a Popcasting a un café",
+        "url": "https://ko-fi.com/popcasting",
+        "type": "external_link"
+      }
+    ]
+  }
+] 
