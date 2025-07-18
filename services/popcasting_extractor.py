@@ -68,6 +68,8 @@ class PopcastingExtractor:
                             ],  # Usamos la fecha normalizada
                             url=episode_data["ivoox_web_url"],
                             program_number=episode_data["program_number"],
+                            download_url=episode_data["ivoox_download_url"],
+                            file_size=episode_data["file_size"],
                         )
 
                         # Comprobar si es un podcast que ya teníamos
@@ -125,7 +127,9 @@ class PopcastingExtractor:
                 return None
 
             # Extraer enlaces de iVoox
-            ivoox_download_url, ivoox_web_url = self._extract_ivoox_links(entry)
+            ivoox_download_url, ivoox_web_url, file_size = self._extract_ivoox_links(
+                entry
+            )
 
             # Usar la nueva función para obtener enlaces y texto limpio de una vez
             cleaned_description, _ = self._extract_all_links_and_clean(description)
@@ -141,6 +145,7 @@ class PopcastingExtractor:
                 "published_date": published_date,
                 "ivoox_download_url": ivoox_download_url,
                 "ivoox_web_url": ivoox_web_url,
+                "file_size": file_size,
                 "playlist": playlist,
             }
         except Exception as e:
@@ -175,41 +180,64 @@ class PopcastingExtractor:
         return program_info.get("number")
 
     def _extract_ivoox_links(self, entry) -> tuple:
-        """Extrae URLs de descarga y web de iVoox"""
+        """Extrae URLs de descarga y web de iVoox, junto con información del archivo"""
         download_url = None
         web_url = None
+        file_size = None
 
-        # Buscar en los links del entry
+        # 1. Buscar en los links del entry (más confiable)
         if hasattr(entry, "links"):
             for link in entry.links:
                 href = link.get("href", "")
                 if "ivoox" in href.lower():
-                    if link.get("type") == "audio/mpeg" or "download" in href:
+                    if (
+                        link.get("type") == "audio/mpeg"
+                        or link.get("rel") == "enclosure"
+                    ):
                         download_url = href
+                        # Intentar extraer el tamaño del archivo si está disponible
+                        if hasattr(link, "length") and link.get("length"):
+                            try:
+                                file_size = int(link.get("length"))
+                            except (ValueError, TypeError):
+                                pass
                     else:
                         web_url = href
 
-        # Buscar en enclosures
-        if hasattr(entry, "enclosures"):
+        # 2. Buscar en enclosures (fallback)
+        if not download_url and hasattr(entry, "enclosures"):
             for enclosure in entry.enclosures:
                 if "ivoox" in enclosure.get("href", "").lower():
                     download_url = enclosure.get("href")
+                    # Intentar extraer el tamaño del archivo
+                    if enclosure.get("length"):
+                        try:
+                            file_size = int(enclosure.get("length"))
+                        except (ValueError, TypeError):
+                            pass
 
-        # Buscar en el contenido/descripción
-        content = entry.get("description", "") + entry.get("content", [{}])[0].get(
-            "value", ""
-        )
-        soup = BeautifulSoup(content, "html.parser")
+        # 3. Buscar en el contenido/descripción (último recurso)
+        if not web_url or not download_url:
+            content = entry.get("description", "") + entry.get("content", [{}])[0].get(
+                "value", ""
+            )
+            soup = BeautifulSoup(content, "html.parser")
 
-        for link in soup.find_all("a", href=True):
-            href = link["href"]
-            if "ivoox" in href.lower():
-                if not web_url:
-                    web_url = href
-                if "download" in href.lower() or ".mp3" in href.lower():
-                    download_url = href
+            for link in soup.find_all("a", href=True):
+                href = link["href"]
+                if "ivoox" in href.lower():
+                    if not web_url and "audios-mp3" in href:
+                        web_url = href
+                    if not download_url and (
+                        ".mp3" in href or "download" in href.lower()
+                    ):
+                        download_url = href
 
-        return download_url, web_url
+        # 4. Si no tenemos web_url, usar el link principal del entry
+        if not web_url:
+            web_url = entry.get("link")
+
+        return download_url, web_url, file_size
 
     def _extract_all_links_and_clean(self, description: str) -> (str, list[dict]):
         """

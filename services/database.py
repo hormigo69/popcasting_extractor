@@ -27,6 +27,8 @@ def initialize_database():
         title TEXT NOT NULL,
         date TEXT NOT NULL UNIQUE,
         url TEXT,
+        download_url TEXT,
+        file_size INTEGER,
         program_number TEXT
     );
     """)
@@ -46,12 +48,41 @@ def initialize_database():
     # Crear un índice para buscar podcasts por fecha más rápidamente
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_podcasts_date ON podcasts(date);")
 
+    # Migrar base de datos existente si es necesario
+    migrate_database_if_needed(cursor)
+
     conn.commit()
     conn.close()
 
 
+def migrate_database_if_needed(cursor):
+    """Migra la base de datos si es necesario añadir nuevas columnas"""
+    try:
+        # Verificar si existe la columna download_url
+        cursor.execute("PRAGMA table_info(podcasts)")
+        columns = [column[1] for column in cursor.fetchall()]
+
+        # Añadir download_url si no existe
+        if "download_url" not in columns:
+            cursor.execute("ALTER TABLE podcasts ADD COLUMN download_url TEXT")
+            print("✅ Añadida columna download_url a la tabla podcasts")
+
+        # Añadir file_size si no existe
+        if "file_size" not in columns:
+            cursor.execute("ALTER TABLE podcasts ADD COLUMN file_size INTEGER")
+            print("✅ Añadida columna file_size a la tabla podcasts")
+
+    except Exception as e:
+        print(f"⚠️  Error durante la migración de la base de datos: {e}")
+
+
 def add_podcast_if_not_exists(
-    title: str, date: str, url: str, program_number: str
+    title: str,
+    date: str,
+    url: str,
+    program_number: str,
+    download_url: str = None,
+    file_size: int = None,
 ) -> int:
     """
     Añade un nuevo podcast a la base de datos si no existe uno con la misma fecha.
@@ -66,11 +97,29 @@ def add_podcast_if_not_exists(
 
     if result:
         podcast_id = result["id"]
+        # Actualizar información de links si no estaba disponible antes
+        if download_url or file_size:
+            update_fields = []
+            update_values = []
+            if download_url:
+                update_fields.append("download_url = ?")
+                update_values.append(download_url)
+            if file_size:
+                update_fields.append("file_size = ?")
+                update_values.append(file_size)
+
+            if update_fields:
+                update_values.append(podcast_id)
+                cursor.execute(
+                    f"UPDATE podcasts SET {', '.join(update_fields)} WHERE id = ?",
+                    update_values,
+                )
+                conn.commit()
     else:
         # Si no existe, lo insertamos
         cursor.execute(
-            "INSERT INTO podcasts (title, date, url, program_number) VALUES (?, ?, ?, ?)",
-            (title, date, url, program_number),
+            "INSERT INTO podcasts (title, date, url, program_number, download_url, file_size) VALUES (?, ?, ?, ?, ?, ?)",
+            (title, date, url, program_number, download_url, file_size),
         )
         conn.commit()
         podcast_id = cursor.lastrowid
@@ -188,7 +237,7 @@ def get_all_podcasts() -> list:
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT id, title, date, url, program_number
+        SELECT id, title, date, url, download_url, file_size, program_number
         FROM podcasts
         ORDER BY date DESC
     """)
