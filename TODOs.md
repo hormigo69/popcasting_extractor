@@ -11,6 +11,8 @@
     ✅ Extrae links extras con texto descriptivo
     ✅ Almacena en nueva tabla extra_links
     ✅ 333 links extras extraídos de 144 episodios (36.5%)
+    ✅ Detecta y limpia datos contaminados cuando las descripciones se mezclan con canciones
+    ✅ Corrige asignaciones incorrectas de enlaces extras
 
 
 
@@ -28,3 +30,5 @@
 - extraer información extra de las canciones de las api de spotify, Discogs, etc.
 - Transcribir los episodios de popcasting
 - Añadir el comentario de cada canción de la transcripción a la tabla de canciones
+para ordenar el código, metamos todos los sercios que has desarrollado en services y los archivos de pueba que sólo hayan sido de debug los borramos.
+- crear un cms que añada los campos y cree el RSS desde ahí en lugar de al reves.
