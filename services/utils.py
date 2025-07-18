@@ -205,11 +205,23 @@ def extract_extra_links(description: str) -> list[dict]:
 
     extra_links = []
 
+    # URLs de monetización que no queremos guardar
+    monetization_urls = [
+        "ko-fi.com/popcasting",
+        "buymeacoffee.com/popcasting",
+        "ko-fi.com",
+        "buymeacoffee.com",
+    ]
+
     # Buscar todas las URLs primero
     all_urls = set(re.findall(r"https?://[^\s]+", description))
 
     # Para cada URL, extraer el texto descriptivo que la precede
     for url in all_urls:
+        # Filtrar URLs de monetización
+        if any(monetization_url in url for monetization_url in monetization_urls):
+            continue
+
         # Encontrar la posición de la URL en el texto
         url_start = description.find(url)
 
