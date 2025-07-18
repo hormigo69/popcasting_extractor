@@ -205,34 +205,54 @@ def extract_extra_links(description: str) -> list[dict]:
 
     extra_links = []
 
-    # Buscar patrones de texto + URL usando regex
-    # Patrón 1: texto seguido de URL (con o sin separador)
-    pattern1 = r"([^:\s]+(?:\s+[^:\s]+)*)\s*:?\s*(https?://[^\s]+)"
-
-    # Patrón 2: URL seguida de texto (con o sin separador)
-    pattern2 = r"(https?://[^\s]+)\s*:?\s*([^:\s]+(?:\s+[^:\s]+)*)"
-
-    # Buscar todas las URLs primero para evitar duplicados
+    # Buscar todas las URLs primero
     all_urls = set(re.findall(r"https?://[^\s]+", description))
 
-    # Buscar coincidencias con el primer patrón
-    matches1 = re.findall(pattern1, description)
-    for text, url in matches1:
-        text = text.strip()
-        if text and not text.startswith("http") and url in all_urls:
-            extra_links.append({"text": text, "url": url})
+    # Para cada URL, extraer el texto descriptivo que la precede
+    for url in all_urls:
+        # Encontrar la posición de la URL en el texto
+        url_start = description.find(url)
 
-    # Buscar coincidencias con el segundo patrón
-    matches2 = re.findall(pattern2, description)
-    for url, text in matches2:
-        text = text.strip()
-        if text and not text.startswith("http") and url in all_urls:
-            extra_links.append({"text": text, "url": url})
+        # Buscar el texto descriptivo que precede a la URL
+        # Buscar hacia atrás desde la URL hasta encontrar un separador real
+        text_start = 0
 
-    # Si no encontramos coincidencias con patrones, buscar URLs sueltas
-    if not extra_links:
-        for url in all_urls:
-            extra_links.append({"text": url, "url": url})
+        for i in range(url_start - 1, -1, -1):
+            char = description[i]
+
+            # Si encontramos un separador claro, paramos
+            if char in ["/", "|"] or description[i : i + 2] == "::":
+                text_start = i + 1
+                break
+
+            # Si encontramos ':' seguido de espacios, paramos (pero no emoticonos)
+            elif char == ":" and i + 1 < len(description):
+                next_char = description[i + 1]
+                # Si el siguiente carácter es parte de un emoticono, continuar
+                if next_char in [")", "-", "D", "P", "O", "o"]:
+                    continue
+                # Si hay espacios después del ':', paramos
+                elif next_char.isspace():
+                    text_start = i + 1
+                    break
+
+            # Si llegamos al inicio, paramos
+            if i == 0:
+                text_start = 0
+                break
+
+        # Extraer el texto descriptivo
+        text = description[text_start:url_start].strip()
+
+        # Limpiar el texto de separadores y caracteres extra
+        text = re.sub(r"^[:\s/|]+", "", text)  # Remover separadores al inicio
+        text = re.sub(r"[:\s/|]+$", "", text)  # Remover separadores al final
+
+        # Si no hay texto descriptivo, usar la URL como texto
+        if not text:
+            text = url
+
+        extra_links.append({"text": text, "url": url})
 
     return extra_links
 
