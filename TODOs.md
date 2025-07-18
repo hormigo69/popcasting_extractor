@@ -1,6 +1,9 @@
 
-[ ] leer los links de los episodios del feed de popcasting
-    probar si el extractor de test lo hace bien
+[x] leer los links de los episodios del feed de popcasting
+    ✅ Implementado en rama feature/episode-links
+    ✅ Extrae URLs web y de descarga de iVoox
+    ✅ Almacena tamaños de archivo
+    ✅ 100% de episodios con links completos
 
 
 
