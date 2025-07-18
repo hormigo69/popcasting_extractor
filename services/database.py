@@ -4,12 +4,14 @@ from pathlib import Path
 # La base de datos estará en el directorio raíz del proyecto
 DB_PATH = Path(__file__).parent.parent / "popcasting.db"
 
+
 def get_db_connection():
     """Crea y devuelve una conexión a la base de datos."""
     conn = sqlite3.connect(DB_PATH)
     # Usar el modo Row para poder acceder a las columnas por nombre
     conn.row_factory = sqlite3.Row
     return conn
+
 
 def initialize_database():
     """
@@ -40,14 +42,17 @@ def initialize_database():
         FOREIGN KEY (podcast_id) REFERENCES podcasts (id)
     );
     """)
-    
+
     # Crear un índice para buscar podcasts por fecha más rápidamente
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_podcasts_date ON podcasts(date);")
 
     conn.commit()
     conn.close()
 
-def add_podcast_if_not_exists(title: str, date: str, url: str, program_number: str) -> int:
+
+def add_podcast_if_not_exists(
+    title: str, date: str, url: str, program_number: str
+) -> int:
     """
     Añade un nuevo podcast a la base de datos si no existe uno con la misma fecha.
     Devuelve el ID del podcast (ya sea nuevo o existente).
@@ -65,13 +70,14 @@ def add_podcast_if_not_exists(title: str, date: str, url: str, program_number: s
         # Si no existe, lo insertamos
         cursor.execute(
             "INSERT INTO podcasts (title, date, url, program_number) VALUES (?, ?, ?, ?)",
-            (title, date, url, program_number)
+            (title, date, url, program_number),
         )
         conn.commit()
         podcast_id = cursor.lastrowid
-    
+
     conn.close()
     return podcast_id
+
 
 def add_song(podcast_id: int, title: str, artist: str, position: int):
     """Añade una canción asociada a un podcast."""
@@ -80,10 +86,11 @@ def add_song(podcast_id: int, title: str, artist: str, position: int):
 
     cursor.execute(
         "INSERT INTO songs (podcast_id, title, artist, position) VALUES (?, ?, ?, ?)",
-        (podcast_id, title, artist, position)
+        (podcast_id, title, artist, position),
     )
     conn.commit()
     conn.close()
+
 
 def delete_songs_by_podcast_id(podcast_id: int):
     """Borra todas las canciones asociadas a un ID de podcast."""
@@ -91,9 +98,10 @@ def delete_songs_by_podcast_id(podcast_id: int):
     cursor = conn.cursor()
 
     cursor.execute("DELETE FROM songs WHERE podcast_id = ?", (podcast_id,))
-    
+
     conn.commit()
     conn.close()
+
 
 def search_songs(query: str) -> list:
     """
@@ -107,28 +115,32 @@ def search_songs(query: str) -> list:
     # El término de búsqueda se formatea con '%' para usar con LIKE
     search_term = f"%{query}%"
 
-    cursor.execute("""
-        SELECT 
-            s.title as song_title, 
+    cursor.execute(
+        """
+        SELECT
+            s.title as song_title,
             s.artist,
             s.position,
             p.title as podcast_title,
             p.date as podcast_date,
             p.program_number
-        FROM 
+        FROM
             songs s
-        JOIN 
+        JOIN
             podcasts p ON s.podcast_id = p.id
-        WHERE 
+        WHERE
             s.title LIKE ? OR s.artist LIKE ?
         ORDER BY
             p.date DESC
-    """, (search_term, search_term))
+    """,
+        (search_term, search_term),
+    )
 
     results = [dict(row) for row in cursor.fetchall()]
-    
+
     conn.close()
     return results
+
 
 def search_by_artist(artist_query: str) -> list:
     """
@@ -140,28 +152,32 @@ def search_by_artist(artist_query: str) -> list:
 
     search_term = f"%{artist_query}%"
 
-    cursor.execute("""
-        SELECT 
-            s.title as song_title, 
+    cursor.execute(
+        """
+        SELECT
+            s.title as song_title,
             s.artist,
             s.position,
             p.title as podcast_title,
             p.date as podcast_date,
             p.program_number
-        FROM 
+        FROM
             songs s
-        JOIN 
+        JOIN
             podcasts p ON s.podcast_id = p.id
-        WHERE 
+        WHERE
             s.artist LIKE ? COLLATE NOCASE
         ORDER BY
             p.date DESC
-    """, (search_term,))
+    """,
+        (search_term,),
+    )
 
     results = [dict(row) for row in cursor.fetchall()]
-    
+
     conn.close()
     return results
+
 
 def get_all_podcasts() -> list:
     """
@@ -178,9 +194,10 @@ def get_all_podcasts() -> list:
     """)
 
     results = cursor.fetchall()
-    
+
     conn.close()
     return results
+
 
 def get_songs_by_podcast_id(podcast_id: int) -> list:
     """
@@ -190,17 +207,21 @@ def get_songs_by_podcast_id(podcast_id: int) -> list:
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT id, podcast_id, artist, title, position
         FROM songs
         WHERE podcast_id = ?
         ORDER BY position
-    """, (podcast_id,))
+    """,
+        (podcast_id,),
+    )
 
     results = cursor.fetchall()
-    
+
     conn.close()
     return results
+
 
 def get_podcast_by_id(podcast_id: int) -> dict:
     """
@@ -210,13 +231,16 @@ def get_podcast_by_id(podcast_id: int) -> dict:
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT id, title, date, url, program_number
         FROM podcasts
         WHERE id = ?
-    """, (podcast_id,))
+    """,
+        (podcast_id,),
+    )
 
     result = cursor.fetchone()
-    
+
     conn.close()
-    return dict(result) if result else None 
+    return dict(result) if result else None
