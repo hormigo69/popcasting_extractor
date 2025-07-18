@@ -1,22 +1,19 @@
 import feedparser
 import requests
-import json
-import re
 from datetime import datetime
 from typing import List, Dict, Optional
 from bs4 import BeautifulSoup
-import pytz
-from utils import (
-    clean_text, 
-    normalize_separators, 
+from .utils import (
     extract_program_info, 
-    validate_song_entry, 
-    clean_song_info,
-    detect_playlist_section,
-    detect_external_links,
-    clean_text_from_external_links,
-    detect_special_mentions
+    parse_playlist_simple
 )
+# Importamos nuestro nuevo módulo de base de datos
+from . import database as db
+from .logger_setup import setup_parser_logger, setup_stats_logger
+
+# Configurar los loggers
+parser_logger = setup_parser_logger()
+stats_logger = setup_stats_logger()
 
 
 class PopcastingExtractor:
@@ -27,52 +24,81 @@ class PopcastingExtractor:
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
         })
     
-    def extract_episodes(self) -> List[Dict]:
-        """Extrae todos los episodios del RSS de Popcasting"""
-        try:
-            # Intentar obtener más episodios usando diferentes URLs
-            urls_to_try = [
-                self.rss_url,
-                "https://www.ivoox.com/podcast-popcasting_fg_f1604_feedRSS_o.xml",
-                "https://feeds.feedburner.com/Popcasting?format=xml"
-            ]
-            
-            all_episodes = []
-            
-            for url in urls_to_try:
-                try:
-                    print(f"Intentando obtener episodios de: {url}")
-                    feed = feedparser.parse(url)
-                    
-                    if feed.entries:
-                        print(f"Encontrados {len(feed.entries)} episodios en {url}")
-                        
-                        for entry in feed.entries:
-                            episode_data = self._extract_episode_data(entry)
-                            if episode_data:
-                                # Evitar duplicados basándose en el título
-                                if not any(ep['title'] == episode_data['title'] for ep in all_episodes):
-                                    all_episodes.append(episode_data)
-                        
-                        # Si encontramos episodios, continuar con la siguiente URL
-                        if all_episodes:
-                            continue
-                    else:
-                        print(f"No se encontraron episodios en {url}")
-                        
-                except Exception as e:
-                    print(f"Error al procesar {url}: {e}")
+    def extract_and_save_episodes(self):
+        """
+        Extrae todos los episodios del RSS y los guarda en la base de datos.
+        Procesa los episodios uno a uno para ser más eficiente.
+        """
+        processed_urls = set()
+        
+        urls_to_try = [
+            self.rss_url,
+            "https://www.ivoox.com/podcast-popcasting_fg_f1604_feedRSS_o.xml",
+            "https://feeds.feedburner.com/Popcasting?format=xml"
+        ]
+        
+        total_new_songs = 0
+
+        for url in urls_to_try:
+            try:
+                print(f"Intentando obtener episodios de: {url}")
+                feed = feedparser.parse(url)
+                
+                if not feed.entries:
+                    print(f"No se encontraron episodios en {url}")
                     continue
-            
-            # Ordenar por número de programa si está disponible
-            all_episodes.sort(key=lambda x: int(x.get('program_number', 0) or 0), reverse=True)
-            
-            return all_episodes
-            
-        except Exception as e:
-            print(f"Error al extraer episodios: {e}")
-            return []
-    
+
+                print(f"Encontrados {len(feed.entries)} episodios en {url}. Procesando...")
+                for entry in feed.entries:
+                    # Usamos la URL del episodio como identificador único para no procesarlo dos veces
+                    entry_url = entry.get('link')
+                    if not entry_url or entry_url in processed_urls:
+                        continue
+                    
+                    episode_data = self._extract_episode_data(entry)
+                    if episode_data:
+                        # Añadir podcast a la BBDD. La función se encarga de no duplicar.
+                        # Devuelve el ID del podcast, sea nuevo o existente.
+                        podcast_id = db.add_podcast_if_not_exists(
+                            title=episode_data['title'],
+                            date=episode_data['published_date'], # Usamos la fecha normalizada
+                            url=episode_data['ivoox_web_url'],
+                            program_number=episode_data['program_number']
+                        )
+                        
+                        # Comprobar si es un podcast que ya teníamos
+                        # Si lastrowid es 0, es que ya existía.
+                        # Esta lógica se puede mejorar en el futuro.
+                        
+                        # Añadir canciones (borrando las viejas primero por si hay cambios)
+                        if episode_data['playlist']:
+                            db.delete_songs_by_podcast_id(podcast_id)
+                            for song in episode_data['playlist']:
+                                db.add_song(
+                                    podcast_id=podcast_id,
+                                    title=song['song'],
+                                    artist=song['artist'],
+                                    position=song['position']
+                                )
+                            total_new_songs += len(episode_data['playlist'])
+
+                        processed_urls.add(entry_url)
+
+            except Exception as e:
+                error_msg = f"Error al procesar {url}: {e}"
+                print(error_msg)
+                stats_logger.error(error_msg)
+                continue
+
+        # Registrar estadísticas finales
+        stats_logger.info("Proceso de extracción finalizado")
+        stats_logger.info(f"Total de episodios procesados: {len(processed_urls)}")
+        stats_logger.info(f"Total de canciones añadidas/actualizadas: {total_new_songs}")
+        
+        print("Proceso de extracción finalizado.")
+        print("📊 Estadísticas guardadas en logs/extraction_stats.log")
+        print("⚠️  Errores guardados en logs/parsing_errors.log")
+
     def _extract_episode_data(self, entry) -> Optional[Dict]:
         """Extrae datos de un episodio individual"""
         try:
@@ -84,54 +110,54 @@ class PopcastingExtractor:
             # Extraer número del programa del título
             program_number = self._extract_program_number(title)
             
-            # Normalizar fecha a zona horaria de Madrid
-            published_madrid = self._normalize_to_madrid_timezone(published)
+            # Normalizar fecha a un formato estándar YYYY-MM-DD
+            published_date = self._normalize_date(published)
+            if not published_date:
+                print(f"AVISO: No se pudo extraer la fecha para el episodio '{title}'. Saltando.")
+                return None
             
             # Extraer enlaces de iVoox
             ivoox_download_url, ivoox_web_url = self._extract_ivoox_links(entry)
             
-            # Extraer enlaces externos específicos del episodio
-            episode_external_links = self._extract_episode_external_links(description)
-            
-            # Extraer playlist de canciones (ya limpia de enlaces externos)
-            playlist = self._extract_playlist(description)
-            
-            # Extraer enlaces extra (HTML links)
-            extra_links = self._extract_extra_links(description)
+            # Usar la nueva función para obtener enlaces y texto limpio de una vez
+            cleaned_description, _ = self._extract_all_links_and_clean(description)
+
+            # La playlist se extrae del texto ya limpio
+            playlist = self._extract_playlist(cleaned_description, program_info=self._get_program_identifier(entry))
             
             return {
                 'program_number': program_number,
                 'title': title,
-                'published': published_madrid,
+                'published_date': published_date,
                 'ivoox_download_url': ivoox_download_url,
                 'ivoox_web_url': ivoox_web_url,
-                'playlist': playlist,
-                'extra_links': extra_links,
-                'episode_external_links': episode_external_links
+                'playlist': playlist
             }
         except Exception as e:
             print(f"Error al procesar episodio: {e}")
             return None
     
-    def _normalize_to_madrid_timezone(self, published_str: str) -> str:
-        """Normaliza la fecha a zona horaria de Madrid"""
+    def _normalize_date(self, published_str: str) -> Optional[str]:
+        """
+        Parsea la fecha de publicación y la devuelve en formato YYYY-MM-DD.
+        Esto nos sirve como clave única para cada programa diario.
+        """
         if not published_str:
-            return published_str
+            return None
         
         try:
-            # Parsear la fecha original
+            # feedparser ya debería haber parseado la fecha a un formato estándar
             dt = datetime.strptime(published_str, '%a, %d %b %Y %H:%M:%S %z')
-            
-            # Convertir a zona horaria de Madrid
-            madrid_tz = pytz.timezone('Europe/Madrid')
-            dt_madrid = dt.astimezone(madrid_tz)
-            
-            # Formatear de vuelta al formato RSS
-            return dt_madrid.strftime('%a, %d %b %Y %H:%M:%S %z')
-            
-        except Exception as e:
-            print(f"Error al normalizar fecha {published_str}: {e}")
-            return published_str
+            return dt.strftime('%Y-%m-%d')
+        except (ValueError, TypeError):
+            # Intentar otros formatos si falla
+            try:
+                # Formato sin zona horaria
+                dt = datetime.strptime(published_str, '%a, %d %b %Y %H:%M:%S')
+                return dt.strftime('%Y-%m-%d')
+            except Exception as e:
+                print(f"Error al normalizar fecha '{published_str}': {e}")
+                return None
     
     def _extract_program_number(self, title: str) -> Optional[str]:
         """Extrae el número del programa del título"""
@@ -173,146 +199,32 @@ class PopcastingExtractor:
         
         return download_url, web_url
     
-    def _extract_episode_external_links(self, description: str) -> List[Dict]:
-        """Extrae enlaces externos específicos del episodio (obituarios, menciones especiales, etc.)"""
-        external_links = []
-        
-        # Limpiar HTML
+    def _extract_all_links_and_clean(self, description: str) -> (str, List[Dict]):
+        """
+        Limpia el texto de la descripción eliminando HTML.
+        El parser simplificado se encarga de la limpieza de enlaces.
+        """
         soup = BeautifulSoup(description, 'html.parser')
         text = soup.get_text()
-        
-        # Detectar enlaces externos marcados con múltiples ::
-        episode_links = detect_external_links(text)
-        
-        # Recopilar URLs ya detectadas
-        detected_urls = {link['url'] for link in episode_links}
-        
-        # Detectar menciones especiales (ko-fi, patreon, etc.) evitando duplicados
-        special_mentions = detect_special_mentions(text, detected_urls)
-        
-        # Combinar todos los enlaces (ya sin duplicados)
-        external_links = episode_links + special_mentions
-        
-        return external_links
+        return text, []
 
-    def _extract_playlist(self, description: str) -> List[Dict]:
-        """Extrae la playlist de canciones de la descripción"""
-        playlist = []
-        
-        # Limpiar HTML
-        soup = BeautifulSoup(description, 'html.parser')
-        text = soup.get_text()
-        
-        # Limpiar enlaces externos antes de procesar canciones
-        text = clean_text_from_external_links(text)
-        
-        # Limpiar y normalizar texto
-        text = clean_text(text)
-        text = normalize_separators(text)
-        
-        # Buscar sección específica de playlist
-        playlist_text = detect_playlist_section(text)
-        if not playlist_text:
-            # Si no encuentra sección específica, buscar en todo el texto
-            playlist_text = text
-        
-        # Extraer canciones individuales
-        # Dividir por :: primero
-        songs = re.split(r'\s*::\s*', playlist_text)
-        
-        position = 1
-        for song in songs:
-            song = song.strip()
-            if not song:
-                continue
-                
-            # Buscar patrón artista · canción
-            match = re.search(r'(.+?)\s*·\s*(.+)', song)
-            if match:
-                artist = match.group(1).strip()
-                song_title = match.group(2).strip()
-                
-                # Limpiar información de artista y canción
-                artist, song_title = clean_song_info(artist, song_title)
-                
-                # Validar entrada
-                if validate_song_entry(artist, song_title):
-                    playlist.append({
-                        'position': position,
-                        'artist': artist,
-                        'song': song_title
-                    })
-                    position += 1
-        
-        return playlist
+    def _extract_playlist(self, description: str, program_info: str = "N/A") -> List[Dict]:
+        """Extrae la playlist de canciones usando el parser simplificado."""
+        return parse_playlist_simple(description, program_info, parser_logger)
     
-    def _extract_extra_links(self, description: str) -> List[Dict]:
-        """Extrae enlaces extra de la descripción (solo enlaces HTML, no los de múltiples ::)"""
-        extra_links = []
-        seen_urls = set()
-        
-        soup = BeautifulSoup(description, 'html.parser')
-        
-        # Buscar todos los enlaces HTML que no sean de iVoox ni de los enlaces externos ya procesados
-        for link in soup.find_all('a', href=True):
-            href = link['href']
-            text = link.get_text(strip=True)
-            
-            # Filtrar enlaces de iVoox (ya procesados) y enlaces que ya están en external_links
-            if ('ivoox' not in href.lower() and 
-                'ko-fi' not in href.lower() and 
-                'jenesaispop' not in href.lower() and
-                href not in seen_urls):
-                
-                seen_urls.add(href)
-                extra_links.append({
-                    'url': href,
-                    'text': text
-                })
-        
-        return extra_links
+
     
-    def save_to_json(self, episodes: List[Dict], filename: str = None):
-        """Guarda los episodios en formato JSON"""
-        if filename is None:
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f"outputs/popcasting_episodes_{timestamp}.json"
-        
-        # Si el filename ya incluye la ruta, no agregar outputs/
-        if not filename.startswith('outputs/') and '/' not in filename:
-            filepath = f"outputs/{filename}"
-        else:
-            filepath = filename
-        
-        try:
-            # Asegurar que el directorio existe
-            import os
-            os.makedirs(os.path.dirname(filepath), exist_ok=True)
-            
-            with open(filepath, 'w', encoding='utf-8') as f:
-                json.dump(episodes, f, ensure_ascii=False, indent=2)
-            
-            print(f"Datos guardados en: {filepath}")
-            print(f"Total de episodios procesados: {len(episodes)}")
-            
-        except Exception as e:
-            print(f"Error al guardar archivo: {e}")
+    def _get_program_identifier(self, entry) -> str:
+        """Devuelve un identificador único para un episodio para usar en logs."""
+        title = entry.get('title', 'Sin Título')
+        date = self._normalize_date(entry.get('published', ''))
+        return f"'{title}' ({date or 'Sin Fecha'})"
     
     def run(self):
-        """Ejecuta el proceso completo de extracción"""
-        print("Iniciando extracción de datos de Popcasting...")
-        episodes = self.extract_episodes()
+        """Ejecuta el proceso completo de extracción y guardado en BBDD."""
+        print("Iniciando la base de datos...")
+        db.initialize_database()
         
-        if episodes:
-            self.save_to_json(episodes)
-            
-            # Mostrar estadísticas
-            total_songs = sum(len(ep.get('playlist', [])) for ep in episodes)
-            print(f"Total de canciones extraídas: {total_songs}")
-        else:
-            print("No se pudieron extraer episodios")
-
-
-if __name__ == "__main__":
-    extractor = PopcastingExtractor()
-    extractor.run() 
+        print("Iniciando extracción de datos de Popcasting...")
+        self.extract_and_save_episodes()
+        print("Proceso completado.") 

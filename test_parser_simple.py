@@ -1,10 +1,10 @@
+#!/usr/bin/env python3
 """
-Utilidades para el procesamiento de datos de Popcasting
+Script de prueba simple para el parser de playlists
 """
 
 import re
-from typing import List, Dict, Optional
-
+from typing import List, Dict
 
 def clean_text(text: str) -> str:
     """Limpia texto eliminando espacios extra y caracteres especiales"""
@@ -19,7 +19,6 @@ def clean_text(text: str) -> str:
     
     return text.strip()
 
-
 def normalize_separators(text: str) -> str:
     """Normaliza separadores de playlist para manejar errores comunes"""
     # Normalizar :: con espacios variables
@@ -28,69 +27,11 @@ def normalize_separators(text: str) -> str:
     # Normalizar · con espacios variables
     text = re.sub(r'\s*·\s*', ' · ', text)
     
-    # Normalizar • con espacios variables
-    text = re.sub(r'\s*•\s*', ' • ', text)
-    
     # Manejar casos donde faltan espacios
     text = re.sub(r'::(?!\s)', ':: ', text)
     text = re.sub(r'(?<!\s)::', ' ::', text)
     
     return text
-
-
-def extract_program_info(title: str) -> Dict[str, Optional[str]]:
-    """Extrae información del programa desde el título"""
-    info = {
-        'number': None,
-        'season': None,
-        'special': None
-    }
-    
-    # Patrones para número de programa
-    number_patterns = [
-        r'Popcasting(\d+)',  # Patrón específico para Popcasting483
-        r'Programa\s+(\d+)',
-        r'#(\d+)',
-        r'Ep\.?\s*(\d+)',
-        r'Episodio\s+(\d+)',
-        r'(\d+)º?\s*programa'
-    ]
-    
-    for pattern in number_patterns:
-        match = re.search(pattern, title, re.IGNORECASE)
-        if match:
-            info['number'] = match.group(1)
-            break
-    
-    # Patrones para temporada
-    season_patterns = [
-        r'Temporada\s+(\d+)',
-        r'T(\d+)',
-        r'Season\s+(\d+)'
-    ]
-    
-    for pattern in season_patterns:
-        match = re.search(pattern, title, re.IGNORECASE)
-        if match:
-            info['season'] = match.group(1)
-            break
-    
-    # Detectar episodios especiales
-    special_patterns = [
-        r'especial',
-        r'navidad',
-        r'año\s+nuevo',
-        r'verano',
-        r'extra'
-    ]
-    
-    for pattern in special_patterns:
-        if re.search(pattern, title, re.IGNORECASE):
-            info['special'] = True
-            break
-    
-    return info
-
 
 def validate_song_entry(artist: str, song: str) -> bool:
     """Valida que una entrada de canción sea válida"""
@@ -118,7 +59,6 @@ def validate_song_entry(artist: str, song: str) -> bool:
     
     return True
 
-
 def clean_song_info(artist: str, song: str) -> tuple:
     """Limpia información de artista y canción"""
     # Limpiar artista
@@ -132,96 +72,10 @@ def clean_song_info(artist: str, song: str) -> tuple:
     
     return artist.strip(), song.strip()
 
-
-def extract_links_and_clean_text(text: str) -> (str, List[Dict]):
-    """
-    Limpia el texto eliminando enlaces y frases basura.
-    Ya no procesa enlaces externos como acordamos.
-    """
-    if not text:
-        return "", []
-
-    # Limpieza agresiva de frases conocidas que no son canciones
-    text = re.sub(r'invita a popcasting a un? café\s*[:;·-]?\s*\)?', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'invita a popcasting a café\s*[:;·-]?\s*\)?', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'obituario.*', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'libro.*?:', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'café\s*[:;·-]?\s*\)?', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'\)\s*$', '', text)  # Eliminar paréntesis sueltos al final
-    
-    # Eliminar enlaces HTTP/HTTPS completamente
-    text = re.sub(r'https?://[^\s<]+', '', text, flags=re.IGNORECASE)
-    
-    # Limpiar separadores de enlaces que quedan sueltos
-    text = re.sub(r'\s*::\s*', ' ', text)
-    text = re.sub(r'\s*\|\s*', ' ', text)
-    
-    # Limpieza final de espacios extra
-    text = re.sub(r'\s{2,}', ' ', text).strip()
-
-    return text, []
-
-
-def detect_playlist_section(text: str) -> Optional[str]:
-    """Detecta y extrae la sección de playlist del texto"""
-    # Patrones para identificar secciones de playlist
-    section_patterns = [
-        r'playlist[:\s]*(.*?)(?:\n\n|\Z)',
-        r'canciones[:\s]*(.*?)(?:\n\n|\Z)',
-        r'música[:\s]*(.*?)(?:\n\n|\Z)',
-        r'tracklist[:\s]*(.*?)(?:\n\n|\Z)',
-        r'temas[:\s]*(.*?)(?:\n\n|\Z)',
-        r'sonamos[:\s]*(.*?)(?:\n\n|\Z)'
-    ]
-    
-    for pattern in section_patterns:
-        match = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
-        if match:
-            return match.group(1).strip()
-    
-    return None
-
-
-def extract_timestamps(text: str) -> List[Dict]:
-    """Extrae timestamps de las canciones si están disponibles"""
-    timestamps = []
-    
-    # Patrones para timestamps
-    timestamp_patterns = [
-        r'(\d{1,2}:\d{2})\s*[-–]\s*(.+)',
-        r'(\d{1,2}:\d{2}:\d{2})\s*[-–]\s*(.+)',
-        r'\[(\d{1,2}:\d{2})\]\s*(.+)',
-        r'\((\d{1,2}:\d{2})\)\s*(.+)'
-    ]
-    
-    lines = text.split('\n')
-    for line in lines:
-        for pattern in timestamp_patterns:
-            match = re.search(pattern, line.strip())
-            if match:
-                timestamp = match.group(1)
-                content = match.group(2).strip()
-                
-                timestamps.append({
-                    'timestamp': timestamp,
-                    'content': content
-                })
-    
-    return timestamps 
-
-
-def parse_playlist_simple(description: str, program_info: str = "N/A", logger=None) -> List[Dict]:
+def parse_playlist_simple(description: str, program_info: str = "N/A") -> List[Dict]:
     """
     Parser simplificado y efectivo para playlists de Popcasting.
     Basado en el enfoque de test pero integrado en la arquitectura actual.
-    
-    Args:
-        description: Texto de la descripción del episodio
-        program_info: Identificador del programa para logging
-        logger: Logger opcional para registrar errores
-    
-    Returns:
-        Lista de canciones con posición, artista y título
     """
     if not description:
         return []
@@ -267,14 +121,11 @@ def parse_playlist_simple(description: str, program_info: str = "N/A", logger=No
         if not part or len(part) < 3:
             continue
             
-        # Verificar si la parte contiene el separador artista-canción (· o •)
-        if ' · ' in part or ' • ' in part:
+        # Verificar si la parte contiene el separador artista-canción
+        if ' · ' in part:
             try:
-                # Dividir en artista y canción (solo en el primer separador)
-                if ' · ' in part:
-                    artist, song = part.split(' · ', 1)
-                else:
-                    artist, song = part.split(' • ', 1)
+                # Dividir en artista y canción (solo en el primer ·)
+                artist, song = part.split(' · ', 1)
                 artist = clean_text(artist)
                 song = clean_text(song)
                 
@@ -294,25 +145,14 @@ def parse_playlist_simple(description: str, program_info: str = "N/A", logger=No
                                 position += 1
                             else:
                                 # Log de entrada inválida
-                                error_msg = f"Entrada inválida descartada: '{artist} · {song}'"
-                                if logger:
-                                    logger.warning(f"{program_info} - {error_msg}")
-                                else:
-                                    print(f"AVISO {program_info}: {error_msg}")
+                                print(f"AVISO {program_info}: Entrada inválida descartada: '{artist} · {song}'")
                                 
             except ValueError:
-                # Si hay múltiples separadores en la parte, tomar solo la primera división
-                if ' · ' in part:
-                    parts_split = part.split(' · ')
-                else:
-                    parts_split = part.split(' • ')
+                # Si hay múltiples ' · ' en la parte, tomar solo la primera división
+                parts_split = part.split(' · ')
                 if len(parts_split) >= 2:
                     artist = clean_text(parts_split[0])
-                    # Reconstruir la canción con el separador original
-                    if ' · ' in part:
-                        song = clean_text(' · '.join(parts_split[1:]))
-                    else:
-                        song = clean_text(' • '.join(parts_split[1:]))
+                    song = clean_text(' · '.join(parts_split[1:]))
                     
                     if artist and song:
                         if not any(x in artist.lower() for x in ['http', 'www', '.com', '::::']):
@@ -326,11 +166,7 @@ def parse_playlist_simple(description: str, program_info: str = "N/A", logger=No
                                     })
                                     position += 1
                                 else:
-                                    error_msg = f"Entrada inválida descartada: '{artist} · {song}'"
-                                    if logger:
-                                        logger.warning(f"{program_info} - {error_msg}")
-                                    else:
-                                        print(f"AVISO {program_info}: {error_msg}")
+                                    print(f"AVISO {program_info}: Entrada inválida descartada: '{artist} · {song}'")
         else:
             # Si no tiene separador artista-canción, podría ser texto extra
             # Solo incluir si parece ser una canción válida (no enlaces ni texto extraño)
@@ -353,10 +189,69 @@ def parse_playlist_simple(description: str, program_info: str = "N/A", logger=No
                             })
                             position += 1
                         else:
-                            error_msg = f"Entrada sin separador descartada: '{part}'"
-                            if logger:
-                                logger.warning(f"{program_info} - {error_msg}")
-                            else:
-                                print(f"AVISO {program_info}: {error_msg}")
+                            print(f"AVISO {program_info}: Entrada sin separador descartada: '{part}'")
     
-    return playlist 
+    return playlist
+
+def test_parser():
+    """Prueba el parser con ejemplos conocidos"""
+    
+    # Ejemplo del episodio 317 que tenía problemas
+    test_description_317 = """
+    yyxy · love4eva  :: en attendant ana · the violence inside  :: young scum · freak out :: bob dylan · simple twist of fate  :: pi ja ma · ponytail :: let's eat grandma · falling into me ::  evie sands · one fine summer morning :: the sadies · a good flying day  :: bruno mars · magic :: jean-françois coen · vive l'amour :: bobbie gentry · thunder in the afternoon  :: véronique jannot & laurent voulzy · désir désir :: kelley stoltz · where you will :: chic · i want your love  :: mcguinn clark & hillman · surrender to me :: melenas · gira :: the goon sax · time 4 love :: las felindras · françoise implose  :: dusk · leaf :: elvis presley · are you lonesome tonight? (live) :: chin up · the rhythm method :: tristen · glass jar :: maki asakawa · konna fu ni sugite iku  ::  sugar and tiger · perruque rose :: alger patcho · rocky patcho :: módulos · nada me importa :: betty troupe · ms 20 :: bmx bandits · I can't stand mad at you  :: bombón · i wanna surf like anette :: daddy issues · all my girls :: scott mannion · the substance that i can't live without
+    """
+    
+    # Ejemplo con enlaces al final
+    test_description_with_links = """
+    boyd bennett · seventeen :: don julian & the meadowlarks · boogie woogie :: invita a Popcasting a café https://ko-fi.com/popcasting
+    """
+    
+    # Ejemplo con caracteres especiales
+    test_description_special_chars = """
+    artistÂ·song :: anotherÂ·artistÂ·anotherÂ·song :: normal artist · normal song
+    """
+    
+    print("🧪 Probando el nuevo parser simplificado...\n")
+    
+    # Prueba 1: Episodio 317
+    print("📻 Prueba 1: Episodio 317 (caso problemático)")
+    playlist_317 = parse_playlist_simple(test_description_317, "Episodio 317")
+    print(f"   Canciones encontradas: {len(playlist_317)}")
+    for i, song in enumerate(playlist_317[:5]):
+        print(f"   {i+1}. {song['artist']} · {song['song']}")
+    if len(playlist_317) > 5:
+        print(f"   ... y {len(playlist_317) - 5} más")
+    print()
+    
+    # Prueba 2: Con enlaces
+    print("🔗 Prueba 2: Con enlaces al final")
+    playlist_links = parse_playlist_simple(test_description_with_links, "Episodio con enlaces")
+    print(f"   Canciones encontradas: {len(playlist_links)}")
+    for song in playlist_links:
+        print(f"   - {song['artist']} · {song['song']}")
+    print()
+    
+    # Prueba 3: Caracteres especiales
+    print("🔤 Prueba 3: Caracteres especiales")
+    playlist_special = parse_playlist_simple(test_description_special_chars, "Episodio con caracteres especiales")
+    print(f"   Canciones encontradas: {len(playlist_special)}")
+    for song in playlist_special:
+        print(f"   - {song['artist']} · {song['song']}")
+    print()
+    
+    # Prueba 4: Caso vacío
+    print("❌ Prueba 4: Descripción vacía")
+    playlist_empty = parse_playlist_simple("", "Episodio vacío")
+    print(f"   Canciones encontradas: {len(playlist_empty)}")
+    print()
+    
+    # Prueba 5: Solo enlaces
+    print("🔗 Prueba 5: Solo enlaces")
+    playlist_only_links = parse_playlist_simple("https://ko-fi.com/popcasting :: https://youtu.be/example", "Solo enlaces")
+    print(f"   Canciones encontradas: {len(playlist_only_links)}")
+    print()
+    
+    print("✅ Pruebas completadas!")
+
+if __name__ == "__main__":
+    test_parser() 

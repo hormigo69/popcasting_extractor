@@ -11,3 +11,6 @@ dependencies = [
     "pytz>=2025.2",
     "requests>=2.32.4",
 ]
+
+[tool.setuptools]
+packages = ["services"]
