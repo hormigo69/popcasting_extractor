@@ -216,56 +216,28 @@ def extract_extra_links(description: str) -> list[dict]:
     # Buscar todas las URLs primero
     all_urls = set(re.findall(r"https?://[^\s]+", description))
 
-    # Para cada URL, extraer el texto descriptivo que la precede
     for url in all_urls:
-        # Filtrar URLs de monetización
         if any(monetization_url in url for monetization_url in monetization_urls):
             continue
-
-        # Encontrar la posición de la URL en el texto
         url_start = description.find(url)
-
         # Buscar el texto descriptivo que precede a la URL
-        # Buscar hacia atrás desde la URL hasta encontrar un separador real
+        text_end = url_start
+        # Ignorar ':' y espacios justo antes de la URL
+        while text_end > 0 and description[text_end - 1] in ": ":
+            text_end -= 1
+        # Buscar el inicio del texto descriptivo
         text_start = 0
-
-        for i in range(url_start - 1, -1, -1):
+        for i in range(text_end - 1, -1, -1):
             char = description[i]
-
-            # Si encontramos un separador claro, paramos
-            if char in ["/", "|"] or description[i : i + 2] == "::":
+            if char in ["/", "|", "\n"] or description[i : i + 2] == "::":
                 text_start = i + 1
                 break
-
-            # Si encontramos ':' seguido de espacios, paramos (pero no emoticonos)
-            elif char == ":" and i + 1 < len(description):
-                next_char = description[i + 1]
-                # Si el siguiente carácter es parte de un emoticono, continuar
-                if next_char in [")", "-", "D", "P", "O", "o"]:
-                    continue
-                # Si hay espacios después del ':', paramos
-                elif next_char.isspace():
-                    text_start = i + 1
-                    break
-
-            # Si llegamos al inicio, paramos
-            if i == 0:
-                text_start = 0
-                break
-
-        # Extraer el texto descriptivo
-        text = description[text_start:url_start].strip()
-
-        # Limpiar el texto de separadores y caracteres extra
-        text = re.sub(r"^[:\s/|]+", "", text)  # Remover separadores al inicio
-        text = re.sub(r"[:\s/|]+$", "", text)  # Remover separadores al final
-
-        # Si no hay texto descriptivo, usar la URL como texto
+        text = description[text_start:text_end].strip()
+        text = re.sub(r"^[:\s/|]+", "", text)
+        text = re.sub(r"[:\s/|]+$", "", text)
         if not text:
             text = url
-
         extra_links.append({"text": text, "url": url})
-
     return extra_links
 
 
@@ -564,3 +536,189 @@ def parse_playlist_simple(
                                     print(f"AVISO {program_info}: {error_msg}")
 
     return playlist
+
+
+def detect_and_clean_mixed_song_data(
+    song_title: str, song_artist: str, extra_links: list
+) -> tuple:
+    """
+    Detecta y limpia cuando las descripciones de enlaces extras se han mezclado
+    con la información de la canción.
+
+    Args:
+        song_title: Título de la canción (posiblemente contaminado)
+        song_artist: Artista de la canción (posiblemente contaminado)
+        extra_links: Lista de enlaces extras extraídos del episodio
+
+    Returns:
+        tuple: (clean_title, clean_artist, link_descriptions)
+    """
+    # Combinar título y artista para análisis
+    combined_text = f"{song_title} | {song_artist}"
+
+    # Extraer las URLs de los enlaces extras
+    [link["url"] for link in extra_links]
+
+    # Patrones comunes de descripciones de enlaces extras
+    link_patterns = [
+        r"bongo joe records",
+        r"ceints de bakélite",
+        r"loud women",
+        r"colour me wednesday",
+        r"weird herald",
+        r"miqui puig",
+        r"invita a popcasting",
+        r"ko-fi\.com",
+        r"buymeacoffee\.com",
+    ]
+
+    # Buscar patrones de enlaces extras en el texto combinado
+    found_descriptions = []
+    clean_text = combined_text
+
+    for pattern in link_patterns:
+        if re.search(pattern, clean_text, re.IGNORECASE):
+            # Extraer el texto alrededor del patrón
+            match = re.search(pattern, clean_text, re.IGNORECASE)
+            if match:
+                # Buscar el contexto completo (desde el separador anterior hasta el siguiente)
+                start_pos = match.start()
+                end_pos = match.end()
+
+                # Buscar separadores antes y después
+                before_sep = clean_text.rfind("|", 0, start_pos)
+                after_sep = clean_text.find("|", end_pos)
+
+                if before_sep != -1:
+                    start_pos = before_sep + 1
+                if after_sep != -1:
+                    end_pos = after_sep
+
+                description = clean_text[start_pos:end_pos].strip()
+                found_descriptions.append(description)
+
+                # Remover esta descripción del texto limpio
+                clean_text = clean_text[:start_pos] + clean_text[end_pos:].lstrip("| ")
+
+    # Limpiar separadores múltiples y espacios
+    clean_text = re.sub(r"\|\s*\|", "|", clean_text)
+    clean_text = re.sub(r"\|\s*$", "", clean_text)
+    clean_text = re.sub(r"^\|\s*", "", clean_text)
+    clean_text = clean_text.strip()
+
+    # Separar título y artista del texto limpio
+    parts = clean_text.split("|")
+    if len(parts) >= 2:
+        clean_title = parts[0].strip()
+        clean_artist = parts[1].strip()
+    else:
+        # Si no hay separador, intentar separar por el patrón "título · artista"
+        if " · " in clean_text:
+            title_parts = clean_text.split(" · ")
+            clean_title = title_parts[0].strip()
+            clean_artist = title_parts[1].strip()
+        else:
+            # Si no hay separador, intentar extraer el artista del texto original
+            # Buscar patrones como "título artista" donde artista es conocido
+            if song_artist and song_artist in clean_text:
+                # Remover el artista del título
+                clean_title = clean_text.replace(song_artist, "").strip()
+                clean_artist = song_artist
+            else:
+                # Si no hay separador, asumir que todo es título
+                clean_title = clean_text
+                clean_artist = ""
+
+    # Si el título limpio está vacío, usar el artista original
+    if not clean_title and song_artist:
+        clean_title = song_artist
+        clean_artist = ""
+
+    return clean_title, clean_artist, found_descriptions
+
+
+def update_song_with_clean_data(song_id: int, clean_title: str, clean_artist: str):
+    """Actualiza una canción con datos limpios."""
+    from services.database import get_db_connection
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "UPDATE songs SET title = ?, artist = ? WHERE id = ?",
+        (clean_title, clean_artist, song_id),
+    )
+
+    conn.commit()
+    conn.close()
+
+
+def update_extra_link_with_description(link_id: int, description: str):
+    """Actualiza un enlace extra con su descripción correcta."""
+    from services.database import get_db_connection
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "UPDATE extra_links SET text = ? WHERE id = ?", (description, link_id)
+    )
+
+    conn.commit()
+    conn.close()
+
+
+def match_descriptions_to_links(descriptions: list, extra_links: list) -> dict:
+    """
+    Asigna descripciones a enlaces basándose en coincidencias de contenido.
+
+    Args:
+        descriptions: Lista de descripciones encontradas
+        extra_links: Lista de enlaces extras con sus URLs
+
+    Returns:
+        dict: Mapeo de link_id -> description
+    """
+    matches = {}
+
+    # Mapeos conocidos de descripciones a dominios/patrones
+    description_patterns = {
+        "bongo joe records": ["bongojoe", "bongo"],
+        "ceints de bakélite": ["ceintsdebakelite", "ceints"],
+        "loud women": ["loudwomen", "loud"],
+        "colour me wednesday": ["colourmewednesday", "colour"],
+        "weird herald": ["weirdherald", "weird"],
+        "miqui puig": ["miquipuig", "miqui"],
+        "invita a popcasting": ["ko-fi", "buymeacoffee", "popcasting"],
+    }
+
+    # Para cada descripción, buscar el enlace que mejor coincida
+    for description in descriptions:
+        best_match = None
+        best_score = 0
+
+        for link in extra_links:
+            url = link["url"].lower()
+            score = 0
+
+            # Buscar patrones específicos para esta descripción
+            if description in description_patterns:
+                for pattern in description_patterns[description]:
+                    if pattern in url:
+                        score += 10  # Coincidencia fuerte
+                        break
+
+            # Coincidencia directa de palabras clave
+            words = description.lower().split()
+            for word in words:
+                if word in url:
+                    score += 1
+
+            if score > best_score:
+                best_score = score
+                best_match = link["id"]
+
+        if best_match and best_match not in matches.values():
+            matches[best_match] = description
+
+    return matches
