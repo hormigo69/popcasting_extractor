@@ -22,3 +22,6 @@ wheels/
 
 # ficheros de salida
 outputs/
+
+# directorio de test
+test/

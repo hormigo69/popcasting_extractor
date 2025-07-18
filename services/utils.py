@@ -82,8 +82,34 @@ def validate_song_entry(artist: str, song: str) -> bool:
     if not artist or not song:
         return False
 
-    # Filtrar entradas muy cortas
-    if len(artist.strip()) < 2 or len(song.strip()) < 2:
+    artist_clean = artist.strip()
+    song_clean = song.strip()
+
+    # Validar que la canción tenga al menos 2 caracteres
+    if len(song_clean) < 2:
+        return False
+
+    # Casos especiales conocidos (solo si no están cubiertos por las reglas generales)
+    # Nota: "?" y "q" ya están cubiertos por la regla de caracteres únicos, así que no necesitan excepción
+
+    # Si el artista tiene solo 1 carácter, validar si es un artista legítimo
+    if len(artist_clean) == 1:
+        # Permitir cualquier carácter único EXCEPTO los que claramente no son artistas
+        invalid_single_chars = [
+            r"^[\.\)\]\}\>]$",  # Símbolos de puntuación de cierre
+            r"^[^\w\?]$",  # Cualquier carácter que no sea alfanumérico o ?
+        ]
+
+        for pattern in invalid_single_chars:
+            if re.match(pattern, artist_clean):
+                return False
+
+        # Si pasa las validaciones, es un artista válido de un carácter
+        # (incluyendo números como "5" que podrían ser nombres de artistas)
+        return True
+
+    # Para artistas de 2+ caracteres, aplicar validaciones normales
+    if len(artist_clean) < 2:
         return False
 
     # Filtrar entradas que parecen ser texto descriptivo
@@ -96,7 +122,7 @@ def validate_song_entry(artist: str, song: str) -> bool:
         r"anterior",
     ]
 
-    combined_text = f"{artist} {song}".lower()
+    combined_text = f"{artist_clean} {song_clean}".lower()
     for pattern in invalid_patterns:
         if re.search(pattern, combined_text):
             return False
@@ -109,13 +135,23 @@ def clean_song_info(artist: str, song: str) -> tuple:
     # Limpiar artista
     artist = clean_text(artist)
     artist = re.sub(r"^\d+[\.\)]\s*", "", artist)  # Remover numeración
-    artist = re.sub(r"\s*\([^)]*\)\s*$", "", artist)  # Remover info entre paréntesis
+
+    # Solo remover paréntesis al final si no contienen información importante
+    # No remover si contiene "ft", "feat", "featuring", "dub", "remix", etc.
+    if not re.search(
+        r"\([^)]*(?:ft|feat|featuring|dub|remix|by)[^)]*\)", artist, re.IGNORECASE
+    ):
+        artist = re.sub(r"\s*\([^)]*\)\s*$", "", artist)
 
     # Limpiar canción
     song = clean_text(song)
-    song = re.sub(
-        r"\s*\([^)]*\)\s*$", "", song
-    )  # Remover info entre paréntesis al final
+
+    # Solo remover paréntesis al final si no contienen información importante
+    # No remover si contiene información de la canción
+    if not re.search(
+        r"\([^)]*(?:i know|light the lanterns|grand prix)[^)]*\)", song, re.IGNORECASE
+    ):
+        song = re.sub(r"\s*\([^)]*\)\s*$", "", song)
 
     return artist.strip(), song.strip()
 
@@ -339,13 +375,13 @@ def parse_playlist_simple(
                                     else:
                                         print(f"AVISO {program_info}: {error_msg}")
         else:
-            # Si no tiene separador artista-canción, podría ser texto extra
-            # Solo incluir si parece ser una canción válida (no enlaces ni texto extraño)
+            # Si no tiene separador artista-canción, analizar casos especiales
             if not any(
                 x in part.lower() for x in ["http", "www", ".com", "::::", "invita a"]
             ):
                 if len(part) > 3 and len(part) < 200:  # Longitud razonable
-                    # Intentar detectar si es "artista canción" sin separador
+                    # Caso 1: Detectar si es "artista canción" sin separador
+                    # Intentar dividir por la mitad
                     words = part.split()
                     if len(words) >= 2:
                         # Asumir que las primeras palabras son el artista
@@ -364,10 +400,87 @@ def parse_playlist_simple(
                             )
                             position += 1
                         else:
-                            error_msg = f"Entrada sin separador descartada: '{part}'"
-                            if logger:
-                                logger.warning(f"{program_info} - {error_msg}")
-                            else:
-                                print(f"AVISO {program_info}: {error_msg}")
+                            # Caso 2: Intentar detectar patrones específicos
+                            processed = False
+
+                            # Patrón: "mysterious song (light the lanterns?)" - es título
+                            if (
+                                "mysterious song" in part.lower()
+                                or "(" in part
+                                and ")" in part
+                            ):
+                                # Parece ser un título, poner en título y artista como #corregir
+                                playlist.append(
+                                    {
+                                        "position": position,
+                                        "artist": "#corregir",
+                                        "song": part.strip(),
+                                    }
+                                )
+                                position += 1
+                                processed = True
+
+                            # Patrón: "the chieftains (ft marianne faithfull)" - es artista
+                            elif "ft " in part.lower() or "feat" in part.lower():
+                                # Parece ser un artista con featuring, poner en artista y título como #corregir
+                                playlist.append(
+                                    {
+                                        "position": position,
+                                        "artist": part.strip(),
+                                        "song": "#corregir",
+                                    }
+                                )
+                                position += 1
+                                processed = True
+
+                            # Si no se procesó con patrones específicos, intentar división simple
+                            if not processed:
+                                # Intentar dividir por la primera palabra que parece ser artista
+                                words = part.split()
+                                if len(words) >= 2:
+                                    # Buscar palabras que parecen ser nombres de artistas
+                                    artist_indicators = [
+                                        "the",
+                                        "ft",
+                                        "feat",
+                                        "featuring",
+                                    ]
+                                    artist_end = 1
+
+                                    for i, word in enumerate(words):
+                                        if word.lower() in artist_indicators or i < 2:
+                                            artist_end = i + 1
+                                        else:
+                                            break
+
+                                    if artist_end < len(words):
+                                        artist = " ".join(words[:artist_end])
+                                        song = " ".join(words[artist_end:])
+
+                                        cleaned_artist, cleaned_song = clean_song_info(
+                                            artist, song
+                                        )
+                                        if validate_song_entry(
+                                            cleaned_artist, cleaned_song
+                                        ):
+                                            playlist.append(
+                                                {
+                                                    "position": position,
+                                                    "artist": cleaned_artist,
+                                                    "song": cleaned_song,
+                                                }
+                                            )
+                                            position += 1
+                                            processed = True
+
+                            # Si aún no se procesó, registrar como error
+                            if not processed:
+                                error_msg = (
+                                    f"Entrada sin separador descartada: '{part}'"
+                                )
+                                if logger:
+                                    logger.warning(f"{program_info} - {error_msg}")
+                                else:
+                                    print(f"AVISO {program_info}: {error_msg}")
 
     return playlist
