@@ -45,6 +45,17 @@ def initialize_database():
     );
     """)
 
+    # Crear tabla de links extras
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS extra_links (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        text TEXT NOT NULL,
+        url TEXT NOT NULL,
+        podcast_id INTEGER,
+        FOREIGN KEY (podcast_id) REFERENCES podcasts (id)
+    );
+    """)
+
     # Crear un índice para buscar podcasts por fecha más rápidamente
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_podcasts_date ON podcasts(date);")
 
@@ -150,6 +161,45 @@ def delete_songs_by_podcast_id(podcast_id: int):
 
     conn.commit()
     conn.close()
+
+
+def add_extra_link(podcast_id: int, text: str, url: str):
+    """Añade un link extra asociado a un podcast."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "INSERT INTO extra_links (podcast_id, text, url) VALUES (?, ?, ?)",
+        (podcast_id, text, url),
+    )
+    conn.commit()
+    conn.close()
+
+
+def delete_extra_links_by_podcast_id(podcast_id: int):
+    """Borra todos los links extras asociados a un ID de podcast."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("DELETE FROM extra_links WHERE podcast_id = ?", (podcast_id,))
+
+    conn.commit()
+    conn.close()
+
+
+def get_extra_links_by_podcast_id(podcast_id: int) -> list:
+    """Obtiene todos los links extras de un podcast específico."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT text, url FROM extra_links WHERE podcast_id = ? ORDER BY id",
+        (podcast_id,),
+    )
+
+    results = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return results
 
 
 def search_songs(query: str) -> list:

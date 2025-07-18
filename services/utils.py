@@ -189,6 +189,58 @@ def extract_links_and_clean_text(text: str) -> (str, list[dict]):
     return text, []
 
 
+def extract_extra_links(description: str) -> list[dict]:
+    """
+    Extrae los links extras de la descripción del episodio.
+    Los links están al final del campo description, separados por :::: o variaciones.
+
+    Args:
+        description: Texto de la descripción del episodio
+
+    Returns:
+        Lista de diccionarios con 'text' y 'url' de cada link extra
+    """
+    if not description:
+        return []
+
+    extra_links = []
+
+    # Buscar todas las URLs en el texto completo
+    url_pattern = r"https?://[^\s]+"
+    urls = re.findall(url_pattern, description)
+
+    # Para cada URL, extraer el texto descriptivo que la precede
+    for url in urls:
+        # Encontrar la posición de la URL en el texto
+        url_start = description.find(url)
+
+        # Buscar el texto descriptivo que precede a la URL
+        # Buscar hacia atrás desde la URL hasta encontrar un separador o el inicio
+        text_start = 0
+        for i in range(url_start - 1, -1, -1):
+            if description[i] in [":", "/", "|"] or description[i : i + 2] == "::":
+                text_start = i + 1
+                break
+            if i == 0:
+                text_start = 0
+                break
+
+        # Extraer el texto descriptivo
+        text = description[text_start:url_start].strip()
+
+        # Limpiar el texto de separadores y caracteres extra
+        text = re.sub(r"^[:\s/|]+", "", text)  # Remover separadores al inicio
+        text = re.sub(r"[:\s/|]+$", "", text)  # Remover separadores al final
+
+        # Si no hay texto descriptivo, usar la URL como texto
+        if not text:
+            text = url
+
+        extra_links.append({"text": text, "url": url})
+
+    return extra_links
+
+
 def detect_playlist_section(text: str) -> str | None:
     """Detecta y extrae la sección de playlist del texto"""
     # Patrones para identificar secciones de playlist

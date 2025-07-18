@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 # Importamos nuestro nuevo módulo de base de datos
 from . import database as db
 from .logger_setup import setup_parser_logger, setup_stats_logger
-from .utils import extract_program_info, parse_playlist_simple
+from .utils import extract_extra_links, extract_program_info, parse_playlist_simple
 
 # Configurar los loggers
 parser_logger = setup_parser_logger()
@@ -88,6 +88,16 @@ class PopcastingExtractor:
                                 )
                             total_new_songs += len(episode_data["playlist"])
 
+                        # Añadir links extras (borrando los viejos primero por si hay cambios)
+                        if episode_data["extra_links"]:
+                            db.delete_extra_links_by_podcast_id(podcast_id)
+                            for link in episode_data["extra_links"]:
+                                db.add_extra_link(
+                                    podcast_id=podcast_id,
+                                    text=link["text"],
+                                    url=link["url"],
+                                )
+
                         processed_urls.add(entry_url)
 
             except Exception as e:
@@ -131,6 +141,9 @@ class PopcastingExtractor:
                 entry
             )
 
+            # Extraer links extras de la descripción original
+            extra_links = extract_extra_links(description)
+
             # Usar la nueva función para obtener enlaces y texto limpio de una vez
             cleaned_description, _ = self._extract_all_links_and_clean(description)
 
@@ -147,6 +160,7 @@ class PopcastingExtractor:
                 "ivoox_web_url": ivoox_web_url,
                 "file_size": file_size,
                 "playlist": playlist,
+                "extra_links": extra_links,
             }
         except Exception as e:
             print(f"Error al procesar episodio: {e}")
