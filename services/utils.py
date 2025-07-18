@@ -205,38 +205,34 @@ def extract_extra_links(description: str) -> list[dict]:
 
     extra_links = []
 
-    # Buscar todas las URLs en el texto completo
-    url_pattern = r"https?://[^\s]+"
-    urls = re.findall(url_pattern, description)
+    # Buscar patrones de texto + URL usando regex
+    # Patrón 1: texto seguido de URL (con o sin separador)
+    pattern1 = r"([^:\s]+(?:\s+[^:\s]+)*)\s*:?\s*(https?://[^\s]+)"
 
-    # Para cada URL, extraer el texto descriptivo que la precede
-    for url in urls:
-        # Encontrar la posición de la URL en el texto
-        url_start = description.find(url)
+    # Patrón 2: URL seguida de texto (con o sin separador)
+    pattern2 = r"(https?://[^\s]+)\s*:?\s*([^:\s]+(?:\s+[^:\s]+)*)"
 
-        # Buscar el texto descriptivo que precede a la URL
-        # Buscar hacia atrás desde la URL hasta encontrar un separador o el inicio
-        text_start = 0
-        for i in range(url_start - 1, -1, -1):
-            if description[i] in [":", "/", "|"] or description[i : i + 2] == "::":
-                text_start = i + 1
-                break
-            if i == 0:
-                text_start = 0
-                break
+    # Buscar todas las URLs primero para evitar duplicados
+    all_urls = set(re.findall(r"https?://[^\s]+", description))
 
-        # Extraer el texto descriptivo
-        text = description[text_start:url_start].strip()
+    # Buscar coincidencias con el primer patrón
+    matches1 = re.findall(pattern1, description)
+    for text, url in matches1:
+        text = text.strip()
+        if text and not text.startswith("http") and url in all_urls:
+            extra_links.append({"text": text, "url": url})
 
-        # Limpiar el texto de separadores y caracteres extra
-        text = re.sub(r"^[:\s/|]+", "", text)  # Remover separadores al inicio
-        text = re.sub(r"[:\s/|]+$", "", text)  # Remover separadores al final
+    # Buscar coincidencias con el segundo patrón
+    matches2 = re.findall(pattern2, description)
+    for url, text in matches2:
+        text = text.strip()
+        if text and not text.startswith("http") and url in all_urls:
+            extra_links.append({"text": text, "url": url})
 
-        # Si no hay texto descriptivo, usar la URL como texto
-        if not text:
-            text = url
-
-        extra_links.append({"text": text, "url": url})
+    # Si no encontramos coincidencias con patrones, buscar URLs sueltas
+    if not extra_links:
+        for url in all_urls:
+            extra_links.append({"text": url, "url": url})
 
     return extra_links
 
