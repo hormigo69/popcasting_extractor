@@ -343,3 +343,96 @@ def get_podcast_by_id(podcast_id: int) -> dict:
 
     conn.close()
     return dict(result) if result else None
+
+
+def songs_have_changed(podcast_id: int, new_songs: list) -> bool:
+    """
+    Compara las canciones existentes con las nuevas para detectar cambios.
+    Devuelve True si hay cambios, False si son idénticas.
+    """
+    existing_songs = get_songs_by_podcast_id(podcast_id)
+
+    # Si el número de canciones es diferente, hay cambios
+    if len(existing_songs) != len(new_songs):
+        return True
+
+    # Comparar cada canción
+    for i, existing_song in enumerate(existing_songs):
+        new_song = new_songs[i]
+
+        # Comparar artista, título y posición
+        if (
+            existing_song["artist"].lower() != new_song["artist"].lower()
+            or existing_song["title"].lower() != new_song["song"].lower()
+            or existing_song["position"] != new_song["position"]
+        ):
+            return True
+
+    return False
+
+
+def extra_links_have_changed(podcast_id: int, new_links: list) -> bool:
+    """
+    Compara los links extras existentes con los nuevos para detectar cambios.
+    Devuelve True si hay cambios, False si son idénticos.
+    El orden no importa, solo el contenido.
+    """
+    existing_links = get_extra_links_by_podcast_id(podcast_id)
+
+    # Si el número de links es diferente, hay cambios
+    if len(existing_links) != len(new_links):
+        return True
+
+    # Crear sets para comparación independiente del orden
+    existing_set = set()
+    new_set = set()
+
+    # Añadir links existentes al set
+    for link in existing_links:
+        existing_set.add((link["text"].lower(), link["url"].lower()))
+
+    # Añadir links nuevos al set
+    for link in new_links:
+        new_set.add((link["text"].lower(), link["url"].lower()))
+
+    # Si los sets son diferentes, hay cambios
+    return existing_set != new_set
+
+
+def update_songs_if_changed(podcast_id: int, new_songs: list) -> bool:
+    """
+    Actualiza las canciones solo si han cambiado.
+    Devuelve True si se actualizaron, False si no había cambios.
+    """
+    if not songs_have_changed(podcast_id, new_songs):
+        return False
+
+    # Si hay cambios, borrar las existentes y añadir las nuevas
+    delete_songs_by_podcast_id(podcast_id)
+    for song in new_songs:
+        add_song(
+            podcast_id=podcast_id,
+            title=song["song"],
+            artist=song["artist"],
+            position=song["position"],
+        )
+    return True
+
+
+def update_extra_links_if_changed(podcast_id: int, new_links: list) -> bool:
+    """
+    Actualiza los links extras solo si han cambiado.
+    Devuelve True si se actualizaron, False si no había cambios.
+    """
+    if not extra_links_have_changed(podcast_id, new_links):
+        return False
+
+    # Si hay cambios, borrar los existentes y añadir los nuevos
+    delete_extra_links_by_podcast_id(podcast_id)
+    for link in new_links:
+        add_extra_link(
+            podcast_id=podcast_id,
+            text=link["text"],
+            url=link["url"],
+        )
+    return True

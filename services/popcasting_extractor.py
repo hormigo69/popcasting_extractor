@@ -72,30 +72,35 @@ class PopcastingExtractor:
                             file_size=episode_data["file_size"],
                         )
 
-                        # Comprobar si es un podcast que ya teníamos
-                        # Si lastrowid es 0, es que ya existía.
-                        # Esta lógica se puede mejorar en el futuro.
-
-                        # Añadir canciones (borrando las viejas primero por si hay cambios)
+                        # Actualizar canciones solo si han cambiado
+                        songs_updated = False
                         if episode_data["playlist"]:
-                            db.delete_songs_by_podcast_id(podcast_id)
-                            for song in episode_data["playlist"]:
-                                db.add_song(
-                                    podcast_id=podcast_id,
-                                    title=song["song"],
-                                    artist=song["artist"],
-                                    position=song["position"],
+                            songs_updated = db.update_songs_if_changed(
+                                podcast_id, episode_data["playlist"]
+                            )
+                            if songs_updated:
+                                total_new_songs += len(episode_data["playlist"])
+                                print(
+                                    f"✅ Canciones actualizadas para episodio {episode_data['program_number']}"
                                 )
-                            total_new_songs += len(episode_data["playlist"])
+                            else:
+                                print(
+                                    f"⏭️  Canciones sin cambios para episodio {episode_data['program_number']}"
+                                )
 
-                        # Añadir links extras (borrando los viejos primero por si hay cambios)
+                        # Actualizar links extras solo si han cambiado
+                        links_updated = False
                         if episode_data["extra_links"]:
-                            db.delete_extra_links_by_podcast_id(podcast_id)
-                            for link in episode_data["extra_links"]:
-                                db.add_extra_link(
-                                    podcast_id=podcast_id,
-                                    text=link["text"],
-                                    url=link["url"],
+                            links_updated = db.update_extra_links_if_changed(
+                                podcast_id, episode_data["extra_links"]
+                            )
+                            if links_updated:
+                                print(
+                                    f"✅ Links extras actualizados para episodio {episode_data['program_number']}"
+                                )
+                            else:
+                                print(
+                                    f"⏭️  Links extras sin cambios para episodio {episode_data['program_number']}"
                                 )
 
                         processed_urls.add(entry_url)
@@ -111,6 +116,9 @@ class PopcastingExtractor:
         stats_logger.info(f"Total de episodios procesados: {len(processed_urls)}")
         stats_logger.info(
             f"Total de canciones añadidas/actualizadas: {total_new_songs}"
+        )
+        stats_logger.info(
+            "✅ Sistema de control de cambios activado - solo se actualiza contenido modificado"
         )
 
         print("Proceso de extracción finalizado.")
