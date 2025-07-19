@@ -64,6 +64,10 @@ Este script:
 El script de migración incluye una verificación automática, pero puedes ejecutarla manualmente:
 
 ```bash
+# Forma recomendada (como módulo)
+python -m migration.test_supabase_connection
+
+# O desde el directorio raíz
 python migration/test_supabase_connection.py
 ```
 

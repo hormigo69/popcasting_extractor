@@ -22,11 +22,13 @@ def get_database_module():
     Retorna el módulo de base de datos apropiado según la configuración.
     """
     if DATABASE_TYPE == "supabase":
-        from . import supabase_database
+        # Importación absoluta para evitar problemas con importaciones relativas
+        import services.supabase_database as supabase_database
 
         return supabase_database
     else:
-        from . import database
+        # Importación absoluta para evitar problemas con importaciones relativas
+        import services.database as database
 
         return database
 

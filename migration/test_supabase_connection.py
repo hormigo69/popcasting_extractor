@@ -107,7 +107,11 @@ def test_configuration():
     print("⚙️  Probando configuración...")
 
     try:
-        from config import get_database_module, is_sqlite_enabled, is_supabase_enabled
+        from services.config import (
+            get_database_module,
+            is_sqlite_enabled,
+            is_supabase_enabled,
+        )
 
         # Verificar configuración
         db_type = os.getenv("DATABASE_TYPE", "sqlite")

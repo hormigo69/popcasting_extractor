@@ -93,7 +93,10 @@ python migration/migrate_to_supabase.py
 ### 4. Verificar Configuración
 
 ```bash
-# Probar conexión
+# Probar conexión (forma recomendada)
+python -m migration.test_supabase_connection
+
+# O desde el directorio raíz
 python migration/test_supabase_connection.py
 ```
 
