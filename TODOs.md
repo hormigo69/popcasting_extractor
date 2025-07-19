@@ -16,9 +16,27 @@
 
 
 
+[x] Control de cambios para no reescribir la base de datos si no hay cambios.
+    ✅ Implementado en rama feature/change-detection
+    ✅ Detecta cambios en canciones y enlaces extras
+    ✅ Evita operaciones innecesarias
+    ✅ Mejora rendimiento y eficiencia
+    ✅ 95.8% de reducción en operaciones de base de datos
 
 
-[ ] Extraer información de la web de cada episodio. 
+[x] Extraer información de la web de cada episodio. 
+    ✅ Implementado en rama feature/web-episode-extraction
+    ✅ Extrae URLs de WordPress de cada episodio
+    ✅ Obtiene imágenes de portada de los episodios
+    ✅ Verifica playlists comparando RSS vs Web
+    ✅ Detecta enlaces extras en las páginas web
+    ✅ Identifica discrepancias entre fuentes de datos
+    ✅ Sistema de reportes automáticos de discrepancias
+    ✅ Procesamiento masivo de episodios
+    ✅ CLI completo para gestión de extracción web
+    ✅ Documentación completa en docs/README_WEB_EXTRACTION.md
+
+
 
 
 

@@ -83,6 +83,27 @@ def migrate_database_if_needed(cursor):
             cursor.execute("ALTER TABLE podcasts ADD COLUMN file_size INTEGER")
             print("✅ Añadida columna file_size a la tabla podcasts")
 
+        # Añadir campos para información de la web
+        if "wordpress_url" not in columns:
+            cursor.execute("ALTER TABLE podcasts ADD COLUMN wordpress_url TEXT")
+            print("✅ Añadida columna wordpress_url a la tabla podcasts")
+
+        if "cover_image_url" not in columns:
+            cursor.execute("ALTER TABLE podcasts ADD COLUMN cover_image_url TEXT")
+            print("✅ Añadida columna cover_image_url a la tabla podcasts")
+
+        if "web_extra_links" not in columns:
+            cursor.execute("ALTER TABLE podcasts ADD COLUMN web_extra_links TEXT")
+            print("✅ Añadida columna web_extra_links a la tabla podcasts")
+
+        if "web_playlist" not in columns:
+            cursor.execute("ALTER TABLE podcasts ADD COLUMN web_playlist TEXT")
+            print("✅ Añadida columna web_playlist a la tabla podcasts")
+
+        if "last_web_check" not in columns:
+            cursor.execute("ALTER TABLE podcasts ADD COLUMN last_web_check TEXT")
+            print("✅ Añadida columna last_web_check a la tabla podcasts")
+
     except Exception as e:
         print(f"⚠️  Error durante la migración de la base de datos: {e}")
 
@@ -436,3 +457,95 @@ def update_extra_links_if_changed(podcast_id: int, new_links: list) -> bool:
             url=link["url"],
         )
     return True
+
+
+def update_web_info(
+    podcast_id: int,
+    wordpress_url: str = None,
+    cover_image_url: str = None,
+    web_extra_links: str = None,
+    web_playlist: str = None,
+):
+    """
+    Actualiza la información extraída de la web para un podcast.
+    """
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    update_fields = []
+    update_values = []
+
+    if wordpress_url is not None:
+        update_fields.append("wordpress_url = ?")
+        update_values.append(wordpress_url)
+
+    if cover_image_url is not None:
+        update_fields.append("cover_image_url = ?")
+        update_values.append(cover_image_url)
+
+    if web_extra_links is not None:
+        update_fields.append("web_extra_links = ?")
+        update_values.append(web_extra_links)
+
+    if web_playlist is not None:
+        update_fields.append("web_playlist = ?")
+        update_values.append(web_playlist)
+
+    # Siempre actualizar la fecha del último check
+    from datetime import datetime
+
+    update_fields.append("last_web_check = ?")
+    update_values.append(datetime.now().isoformat())
+
+    if update_fields:
+        update_values.append(podcast_id)
+        cursor.execute(
+            f"UPDATE podcasts SET {', '.join(update_fields)} WHERE id = ?",
+            update_values,
+        )
+        conn.commit()
+
+    conn.close()
+
+
+def get_podcasts_without_web_info() -> list:
+    """
+    Obtiene todos los podcasts que no tienen información de la web o no han sido verificados recientemente.
+    """
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT id, title, date, program_number, wordpress_url, last_web_check
+        FROM podcasts
+        WHERE wordpress_url IS NULL OR last_web_check IS NULL
+        ORDER BY date DESC
+    """)
+
+    results = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return results
+
+
+def get_podcast_web_info(podcast_id: int) -> dict:
+    """
+    Obtiene la información de la web para un podcast específico.
+    """
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        SELECT wordpress_url, cover_image_url, web_extra_links, web_playlist, last_web_check
+        FROM podcasts
+        WHERE id = ?
+    """,
+        (podcast_id,),
+    )
+
+    result = cursor.fetchone()
+    conn.close()
+
+    if result:
+        return dict(result)
+    return None
