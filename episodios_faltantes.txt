@@ -1,0 +1,98 @@
+# EPISODIOS FALTANTES - INFORMACIÓN WEB
+# ======================================
+# 
+# Este archivo contiene los 33 episodios que no se pudieron extraer automáticamente.
+# Para cada episodio, busca manualmente la URL en https://popcastingpop.com
+# y añade la URL encontrada en la columna "URL_MANUAL".
+# 
+# Formato esperado: https://popcastingpop.com/YYYY/MM/DD/popcasting-XXX/
+# 
+# Después de completar este archivo, ejecuta: python completar_episodios_faltantes.py
+# 
+# ======================================
+
+# EPISODIOS RECIENTES (2024-2025)
+# ================================
+ID: 15 | Número: 470 | Fecha: 2025-01-14 | Título: Popcasting470 | URL_MANUAL: https://popcastingpop.com/2025/01/15/popcasting-469/
+ID: 16 | Número: 469 | Fecha: 2024-12-31 | Título: Popcasting469 | URL_MANUAL: https://popcastingpop.com/2025/01/01/popcasting/
+ID: 396 | Número: TEST001 | Fecha: 2024-01-15 | Título: Test Episode for Change Detection | URL_MANUAL: 
+
+# EPISODIOS 2017
+# ==============
+ID: 199 | Número: 286 | Fecha: 2017-05-14 | Título: Popcasting 286 | URL_MANUAL: https://popcastingpop.com/2017/05/15/p286/
+ID: 200 | Número: 285 | Fecha: 2017-05-01 | Título: Popcasting 285 | URL_MANUAL: https://popcastingpop.com/2017/05/01/p285/
+ID: 207 | Número: 278 | Fecha: 2017-01-14 | Título: Popcasting 278 | URL_MANUAL: https://popcastingpop.com/2017/01/15/2299/
+
+# EPISODIOS 2016
+# ==============
+ID: 214 | Número: 271 | Fecha: 2016-10-04 | Título: Popcasting271 (ok) | URL_MANUAL: https://popcastingpop.com/2016/10/03/2236/
+ID: 222 | Número: 263 | Fecha: 2016-06-01 | Título: Popcasting263 | URL_MANUAL: https://popcastingpop.com/2016/06/01/pop263/
+ID: 230 | Número: 255 | Fecha: 2016-02-01 | Título: Popcasting255 | URL_MANUAL: https://popcastingpop.com/2016/02/01/p255/
+
+# EPISODIOS 2015
+# ==============
+ID: 232 | Número: 253 | Fecha: 2015-12-31 | Título: Popcasting253 | URL_MANUAL: https://popcastingpop.com/2016/01/01/2059/
+
+# EPISODIOS 2014
+# ==============
+ID: 261 | Número: 062 | Fecha: 2014-10-29 | Título: Popcasting062 | URL_MANUAL: 
+
+# EPISODIOS 2012
+# ==============
+ID: 307 | Número: 180 | Fecha: 2012-12-14 | Título: Popcasting180 :: Especial Navidad 2012 | URL_MANUAL: https://popcastingpop.com/2012/12/15/1395/
+
+# EPISODIOS 2011
+# ==============
+ID: 331 | Número: 156 | Fecha: 2011-12-01 | Título: Popcasting156 | URL_MANUAL: https://popcastingpop.com/2011/12/01/1059/
+ID: 333 | Número: 154 | Fecha: 2011-10-31 | Título: Popcasting154 | URL_MANUAL: https://popcastingpop.com/2011/11/01/popcasting154/
+ID: 339 | Número: 147 | Fecha: 2011-07-15 | Título: Popcasting147 | URL_MANUAL: https://popcastingpop.com/2011/07/15/929/
+ID: 343 | Número: 143 | Fecha: 2011-05-19 | Título: Popcasting143 | URL_MANUAL: https://popcastingpop.com/2011/05/15/popcasting143/
+ID: 351 | Número: 135 | Fecha: 2011-01-15 | Título: Popcasting135 | URL_MANUAL: https://popcastingpop.com/2011/01/15/765/
+
+# EPISODIOS 2010
+# ==============
+ID: 352 | Número: 134 | Fecha: 2010-12-31 | Título: Popcasting134 | URL_MANUAL: https://popcastingpop.com/2011/01/01/752/
+ID: 362 | Número: 124 | Fecha: 2010-07-26 | Título: Popcasting124 | URL_MANUAL: https://popcastingpop.com/2010/08/01/624/
+ID: 374 | Número: 112 | Fecha: 2010-01-31 | Título: Popcasting112 | URL_MANUAL: https://popcastingpop.com/2010/02/01/451/
+ID: 375 | Número: 111 | Fecha: 2010-01-15 | Título: Popcasting111 | URL_MANUAL: https://popcastingpop.com/2010/01/15/413/
+
+# EPISODIOS 2009
+# ==============
+ID: 381 | Número: 98 | Fecha: 2009-07-01 | Título: Popcasting98 | URL_MANUAL: https://popcastingpop.com/2009/07/01/112/
+ID: 382 | Número: 96 | Fecha: 2009-06-01 | Título: Popcasting 96 | URL_MANUAL: https://popcastingpop.com/2009/06/01/90/
+
+# EPISODIOS 2008
+# ==============
+ID: 385 | Número: 84 | Fecha: 2008-12-01 | Título: Popcasting84 | URL_MANUAL: 
+ID: 386 | Número: 70 | Fecha: 2008-04-30 | Título: Popcasting70 | URL_MANUAL: 
+ID: 387 | Número: 68 | Fecha: 2008-04-01 | Título: Popcasting67 | URL_MANUAL: 
+ID: 388 | Número: 67 | Fecha: 2008-03-15 | Título: Popcasting67 | URL_MANUAL: 
+ID: 389 | Número: 66 | Fecha: 2008-03-01 | Título: Popcasting66 | URL_MANUAL: 
+ID: 390 | Número: 65 | Fecha: 2008-02-15 | Título: Popcasting65 | URL_MANUAL: 
+ID: 392 | Número: 63 | Fecha: 2008-01-14 | Título: Popcasting63 | URL_MANUAL: 
+
+# EPISODIOS 2007
+# ==============
+ID: 393 | Número: 62 | Fecha: 2007-12-31 | Título: Popcasting62 | URL_MANUAL: 
+ID: 394 | Número: 61 | Fecha: 2007-12-15 | Título: Popcasting61 | URL_MANUAL: 
+ID: 395 | Número: 60 | Fecha: 2007-12-01 | Título: Popcasting60 | URL_MANUAL: 
+
+# ======================================
+# INSTRUCCIONES PARA BÚSQUEDA MANUAL:
+# ======================================
+# 
+# 1. Ve a https://popcastingpop.com
+# 2. Busca cada episodio usando:
+#    - Número del episodio (ej: "popcasting 470")
+#    - Fecha del episodio
+#    - Título del episodio
+# 3. Copia la URL completa de la página del episodio
+# 4. Pégala en la columna URL_MANUAL
+# 5. Si no encuentras el episodio, deja la URL_MANUAL vacía
+# 
+# PATRONES DE URL COMUNES:
+# - https://popcastingpop.com/YYYY/MM/DD/popcasting-XXX/
+# - https://popcastingpop.com/popcasting-XXX/
+# - https://popcastingpop.com/programas-anteriores-XXX-YY/
+# 
+# ====================================== 

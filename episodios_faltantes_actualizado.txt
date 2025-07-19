@@ -1,0 +1,32 @@
+# EPISODIOS FALTANTES - ACTUALIZADO
+# ======================================
+# Generado automáticamente - 11 episodios faltantes
+# ======================================
+
+# EPISODIOS 2014
+# ====================
+ID: 261 | Número: 062 | Fecha: 2014-10-29 | Título: Popcasting062 | URL_MANUAL: 
+
+# EPISODIOS 2008
+# ====================
+ID: 385 | Número: 84 | Fecha: 2008-12-01 | Título: Popcasting84 | URL_MANUAL: 
+ID: 386 | Número: 70 | Fecha: 2008-04-30 | Título: Popcasting70 | URL_MANUAL: 
+ID: 387 | Número: 68 | Fecha: 2008-04-01 | Título: Popcasting68 | URL_MANUAL: 
+ID: 388 | Número: 67 | Fecha: 2008-03-15 | Título: Popcasting67 | URL_MANUAL: 
+ID: 389 | Número: 66 | Fecha: 2008-03-01 | Título: Popcasting66 | URL_MANUAL: 
+ID: 390 | Número: 65 | Fecha: 2008-02-15 | Título: Popcasting65 | URL_MANUAL: 
+ID: 392 | Número: 63 | Fecha: 2008-01-14 | Título: Popcasting63 | URL_MANUAL: 
+
+# EPISODIOS 2007
+# ====================
+ID: 393 | Número: 62 | Fecha: 2007-12-31 | Título: Popcasting62 | URL_MANUAL: 
+ID: 394 | Número: 61 | Fecha: 2007-12-15 | Título: Popcasting61 | URL_MANUAL: 
+ID: 395 | Número: 60 | Fecha: 2007-12-01 | Título: Popcasting60 | URL_MANUAL: 
+
+# ======================================
+# INSTRUCCIONES:
+# 1. Busca cada episodio en https://popcastingpop.com
+# 2. Copia la URL de la página del episodio
+# 3. Pégala en la columna URL_MANUAL
+# 4. Ejecuta: python completar_episodios_faltantes.py
+# ======================================

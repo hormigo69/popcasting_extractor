@@ -1,122 +1,122 @@
-# 🎵 Corrección de Episodios Problemáticos
+# Corrección del Sistema de Extracción Web de Episodios
 
-## 📋 Resumen del Problema
+## Problema Identificado
 
-Se identificaron **4 episodios** en los que el parser de canciones había fallado, guardando todas las canciones como una sola entrada con formato numerado:
+El sistema de extracción web de episodios de Popcasting no estaba funcionando correctamente. Solo se habían extraído 5 episodios de 396 totales (1.3% de éxito), cuando debería haber extraído la mayoría de ellos.
 
-- **Episodio 208** (Popcasting 277): 1 canción → 20 canciones corregidas
-- **Episodio 209** (Popcasting 276): 1 canción → 32 canciones corregidas  
-- **Episodio 226** (Popcasting259): 1 canción → 15 canciones corregidas
-- **Episodio 247** (Popcasting238): 1 canción → 21 canciones corregidas
-
-## 🔍 Análisis del Problema
-
-### Formato Problemático
-Los episodios tenían un formato diferente al estándar:
-
-**Formato estándar:**
-```
-artista • canción :: artista • canción :: artista • canción
-```
-
-**Formato problemático:**
-```
-00 artista • canción 01 artista • canción 02 artista • canción
-```
+## Análisis del Problema
 
 ### Causa Raíz
-El parser `parse_playlist_simple` estaba diseñado para el formato estándar con separador `::`, pero estos episodios usaban un formato numerado sin separadores principales.
+El problema estaba en el método `_find_wordpress_url` del `WebExtractor`. El algoritmo intentaba generar URLs basándose en patrones predefinidos, pero no tenía en cuenta que:
 
-## 🛠️ Solución Implementada
+1. **Discrepancias en numeración**: Algunos episodios tienen numeración diferente entre el RSS y la web (ej: episodio 480 del RSS es `popcasting-475-2` en la web)
+2. **Patrones de URL variables**: No todos los episodios siguen el mismo patrón de URL
+3. **Episodios especiales**: Algunos episodios tienen formatos especiales o no están disponibles en la web
 
-### 1. Nuevo Parser para Formato Numerado
-Se agregó la función `parse_numbered_playlist_format` en `services/utils.py`:
+### URLs que Falla el Algoritmo Original
+- `https://popcastingpop.com/2025/06/20/popcasting-480/` → 404 (no existe)
+- `https://popcastingpop.com/2025/06/20/popcasting-475-2/` → 200 (existe)
+
+## Solución Implementada
+
+### 1. Mejora del Algoritmo de Búsqueda
+
+Se implementó un nuevo método `_find_episode_url_from_main_page()` que:
+
+- **Búsqueda en página principal**: Obtiene la página principal del sitio y busca enlaces a episodios
+- **Búsqueda flexible**: Busca por número de episodio, fecha y variaciones
+- **Verificación de contenido**: Verifica que la página encontrada es realmente del episodio correcto
+- **Manejo de discrepancias**: Busca episodios por fecha cuando la numeración no coincide
+
+### 2. Nuevos Métodos Añadidos
 
 ```python
-def parse_numbered_playlist_format(text: str, program_info: str = "N/A", logger=None) -> list[dict]:
+def _find_episode_url_from_main_page(self, program_number: str, date: str) -> str | None:
     """
-    Parser específico para el formato de canciones numeradas (00, 01, 02, etc.)
+    Busca la URL del episodio en la página principal del sitio.
     """
-    # Patrón para encontrar canciones numeradas
-    numbered_pattern = r'(\d{2})\s+([^•\n]+?)\s*[•-]\s*([^0-9]+?)(?=\s+\d{2}\s+|$)'
-    # ... resto de la implementación
+
+def _is_episode_page_by_date(self, soup: BeautifulSoup, date: str) -> bool:
+    """
+    Verifica si la página es de un episodio de la fecha especificada.
+    """
 ```
 
-### 2. Detección Automática de Formato
-Se modificó `parse_playlist_simple` para detectar automáticamente el formato numerado:
+### 3. Script de Extracción Masiva
 
-```python
-# Detectar si es formato numerado (00, 01, 02, etc.)
-if re.search(r'\b\d{2}\s+[^•]+?\s*•\s*[^0-9]+?(?=\s+\d{2}\s+|$)', description):
-    return parse_numbered_playlist_format(description, program_info, logger)
-```
+Se creó `batch_web_extraction.py` que:
 
-### 3. Corrección Manual de Episodios Específicos
-Para los episodios que tenían formatos más complejos, se realizó una corrección manual con las canciones exactas extraídas del texto original.
+- **Procesamiento automático**: Procesa todos los episodios sin información web
+- **Estadísticas en tiempo real**: Muestra progreso, tiempo estimado y tasa de éxito
+- **Manejo de errores**: Continúa procesando aunque algunos episodios fallen
+- **Interrupción segura**: Permite interrumpir el proceso con Ctrl+C
 
-## 📊 Resultados
+## Resultados
 
 ### Antes de la Corrección
-- **4 episodios** con formato incorrecto
-- **4 canciones** totales (1 por episodio)
-- **0 canciones** con formato correcto
+- **Episodios con información web**: 5 de 396 (1.3%)
+- **Tasa de éxito**: Muy baja
+- **Funcionalidad**: Limitada
 
 ### Después de la Corrección
-- **4 episodios** corregidos completamente
-- **88 canciones** extraídas correctamente
-- **0 episodios** con formato problemático
+- **Episodios con información web**: 363 de 396 (91.7%)
+- **Tasa de éxito**: 90.1% en extracción masiva
+- **Funcionalidad**: Completa y robusta
 
-### Estadísticas por Episodio
-| Episodio | Título | Canciones Antes | Canciones Después | Mejora |
-|----------|--------|-----------------|-------------------|---------|
-| 208 | Popcasting 277 | 1 | 20 | +1900% |
-| 209 | Popcasting 276 | 1 | 32 | +3100% |
-| 226 | Popcasting259 | 1 | 15 | +1400% |
-| 247 | Popcasting238 | 1 | 21 | +2000% |
+### Estadísticas Detalladas
+```
+📊 Estadísticas finales:
+   Total episodios: 333
+   ✅ Éxitos: 300
+   ❌ Errores: 33
+   📈 Tasa de éxito: 90.1%
+   ⏱️  Tiempo total: 11.7 minutos
+   🚀 Promedio: 2.1 segundos por episodio
 
-## ✅ Verificación
-
-### Verificación de Corrección
-```sql
--- Verificar que no hay artistas que empiecen por "00"
-SELECT COUNT(*) FROM songs WHERE artist LIKE "00%";
--- Resultado: 0 ✅
+💾 Estado de la base de datos:
+   Total episodios en BD: 396
+   Con información web: 363
+   Porcentaje total: 91.7%
 ```
 
-### Verificación de Contenido
-- Todas las canciones tienen artista y título separados correctamente
-- Las posiciones están numeradas correctamente (0, 1, 2, etc.)
-- No hay duplicados o entradas vacías
+## Episodios que Fallaron
 
-## 🎯 Beneficios
+Los 33 episodios que no se pudieron extraer incluyen:
 
-1. **Datos Completos**: Se recuperaron 84 canciones que estaban perdidas
-2. **Formato Consistente**: Todos los episodios ahora tienen el mismo formato
-3. **Parser Mejorado**: El sistema puede manejar formatos numerados automáticamente
-4. **Base de Datos Limpia**: No hay más entradas con formato incorrecto
+1. **Episodios muy antiguos** (2007-2009): Algunos episodios de los primeros años no están disponibles en la web
+2. **Episodios especiales**: Algunos episodios tienen formatos especiales o están en ubicaciones diferentes
+3. **Episodios de prueba**: Como "TEST001" que es un episodio de prueba
+4. **Discrepancias de fecha**: Algunos episodios tienen fechas que no coinciden con la estructura web
 
-## 🔮 Prevención Futura
+## Uso del Sistema Corregido
 
-El parser mejorado ahora puede detectar y manejar automáticamente:
-- Formato estándar con separador `::`
-- Formato numerado con números de dos dígitos
-- Casos especiales con diferentes separadores
+### Extracción Individual
+```bash
+python -m services.web_cli extract --episode-id 5
+```
 
-Esto previene que episodios futuros con formato numerado causen el mismo problema.
+### Extracción Masiva
+```bash
+python batch_web_extraction.py
+```
 
----
+### Verificación de Información
+```bash
+python -m services.web_cli info 5
+```
 
-**Fecha de corrección**: Diciembre 2024  
-**Episodios corregidos**: 4  
-**Canciones recuperadas**: 88  
-**Estado**: ✅ Completado
+### Listado de Episodios sin Información
+```bash
+python -m services.web_cli list --limit 10
+```
 
-## 🔄 Corrección Adicional
+## Mejoras Futuras
 
-Se identificó y corrigió una canción adicional (ID: 6722) que tenía el mismo problema de formato numerado. La corrección se aplicó exitosamente a todos los episodios problemáticos.
+1. **Análisis de episodios fallidos**: Investigar por qué fallaron los 33 episodios restantes
+2. **Optimización de velocidad**: Reducir el delay entre requests si es posible
+3. **Cache de URLs**: Implementar un sistema de cache para evitar búsquedas repetidas
+4. **Monitoreo automático**: Sistema para detectar nuevos episodios y extraerlos automáticamente
 
-### Verificación Final
-- ✅ **0 canciones** con artista que empiece por "00"
-- ✅ **4 episodios** completamente corregidos
-- ✅ **88 canciones** extraídas correctamente
-- ✅ **Formato consistente** en toda la base de datos 
+## Conclusión
+
+El sistema de extracción web ahora funciona correctamente con una tasa de éxito del 91.7%, lo que representa una mejora significativa del 1.3% original. La solución es robusta, maneja discrepancias entre fuentes de datos y proporciona herramientas completas para la gestión de la información web de los episodios de Popcasting. 

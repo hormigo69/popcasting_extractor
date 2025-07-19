@@ -35,6 +35,9 @@
     ✅ Procesamiento masivo de episodios
     ✅ CLI completo para gestión de extracción web
     ✅ Documentación completa en docs/README_WEB_EXTRACTION.md
+    ✅ **CORREGIDO**: Mejorado algoritmo de búsqueda de URLs para manejar discrepancias entre numeración RSS y web
+    ✅ **CORREGIDO**: Extracción masiva exitosa con 91.7% de tasa de éxito (363/396 episodios)
+    ✅ **CORREGIDO**: Script batch_web_extraction.py para procesamiento automático completo
 
 
 [x] Montar la base de datos en supabase. La idea es usar supabase como base de datos en lugar de sqlite.
@@ -52,7 +55,30 @@
     ✅ Integración completa con el programa principal
 
 
+[ ] cargar la informaicón de los episodios antiguos. 
+    Estos siguen una lógica diferente. No están en el RSS y en la web están varios en una página.
+    Las páginas son:
+        archivos del 00 al 20: https://popcastingpop.com/archivo-popcasting/
+        archivos del 21 al 41: https://popcastingpop.com/archivo-popcasting-21-40/
+        archivos del 42 al 63: https://popcastingpop.com/archivo-popcasting-42-62/
+        archivos del 64 al 91: https://popcastingpop.com/programas-anteriores-64-91/
+
+    La estructura del la informacióna  extraer es:
+    - url de la web
+    - url de la imagen de la portada - https://popcastingpop.com/wp-content/uploads/2009/09/patrick.jpg y https://popcastingpop.com/wp-content/uploads/2009/09/tyrone.jpg
+    - lista de reproducción - <p style="text-align:center">the go-betweens · here comes a city :: ernest ranglin · surfin :: patrick wolf · the libertine :: vashti bunyan · i’d like to walk around in your mind :: husky rescue · new light of tomorrow :: mink deville · can’t do without it :: tyrone davies · can i change my mind :: madonna · gambler :: annie · my heartbeat</p>
+    - enlaces extras - 
+    - fecha - <span style="font-family:Trebuchet MS"><span style="font-size:12px">[15.5.2005]</span></span>
+    - número de episodio - <span style="font-family:Trebuchet MS;color:#ccecff"><span style="font-size:14px">programa #0</span></span>
+    - título
+    - download_url - <audio class="wp-audio-shortcode" id="audio-151-1_html5" preload="none" style="width: 100%; height: 100%;" src="http://www.ivoox.com/popcasting000_md_1079313_1.mp3?_=1"><source type="audio/mpeg" src="http://www.ivoox.com/popcasting000_md_1079313_1.mp3?_=1"><a href="http://www.ivoox.com/popcasting000_md_1079313_1.mp3">http://www.ivoox.com/popcasting000_md_1079313_1.mp3</a></audio>
+    
+     
+
+
 ## Próximos pasos:
+
+[ ] añadir tag a los especiales
 
 [ ] Crear el front del buscador de canciones
     - Interfaz web para buscar canciones por artista, título, episodio

@@ -95,7 +95,7 @@ class WebExtractor:
         program_number = podcast["program_number"]
         date = podcast["date"]
 
-        # Intentar diferentes patrones de URL
+        # Primero intentar con el patrón estándar
         possible_urls = [
             f"{self.base_url}/{date.replace('-', '/')}/popcasting-{program_number}/",
             f"{self.base_url}/{date[:4]}/{date[5:7]}/{date[8:10]}/popcasting-{program_number}/",
@@ -114,7 +114,110 @@ class WebExtractor:
                 parser_logger.warning(f"Error accediendo a {url}: {e}")
                 continue
 
+        # Si no se encuentra con el patrón estándar, buscar en la página principal
+        return self._find_episode_url_from_main_page(program_number, date)
+
+    def _find_episode_url_from_main_page(
+        self, program_number: str, date: str
+    ) -> str | None:
+        """
+        Busca la URL del episodio en la página principal del sitio.
+        """
+        try:
+            # Obtener la página principal
+            response = self.session.get(self.base_url, timeout=10)
+            if response.status_code != 200:
+                return None
+
+            soup = BeautifulSoup(response.content, "html.parser")
+
+            # Buscar enlaces que contengan "popcasting" y el número del programa
+            links = soup.find_all("a", href=True)
+
+            for link in links:
+                href = link.get("href", "")
+                link_text = link.get_text(strip=True)
+
+                # Buscar enlaces que contengan el número del programa
+                if (
+                    f"popcasting-{program_number}" in href
+                    or f"#{program_number}" in link_text
+                    or f"popcasting {program_number}" in link_text.lower()
+                ):
+                    # Verificar que la URL es válida
+                    if href.startswith("/"):
+                        full_url = f"{self.base_url}{href}"
+                    elif href.startswith("http"):
+                        full_url = href
+                    else:
+                        continue
+
+                    # Verificar que la página existe y es del episodio correcto
+                    try:
+                        episode_response = self.session.get(full_url, timeout=10)
+                        if episode_response.status_code == 200:
+                            episode_soup = BeautifulSoup(
+                                episode_response.content, "html.parser"
+                            )
+                            if self._is_episode_page(episode_soup, program_number):
+                                return full_url
+                    except Exception as e:
+                        parser_logger.warning(f"Error verificando {full_url}: {e}")
+                        continue
+
+            # Si no se encuentra con el número exacto, buscar variaciones
+            # (como 475-2 en lugar de 480)
+            for link in links:
+                href = link.get("href", "")
+                if "popcasting-" in href and date.replace("-", "/") in href:
+                    # Verificar que la página existe
+                    if href.startswith("/"):
+                        full_url = f"{self.base_url}{href}"
+                    elif href.startswith("http"):
+                        full_url = href
+                    else:
+                        continue
+
+                    try:
+                        episode_response = self.session.get(full_url, timeout=10)
+                        if episode_response.status_code == 200:
+                            episode_soup = BeautifulSoup(
+                                episode_response.content, "html.parser"
+                            )
+                            # Verificar que es un episodio de la fecha correcta
+                            if self._is_episode_page_by_date(episode_soup, date):
+                                return full_url
+                    except Exception as e:
+                        parser_logger.warning(f"Error verificando {full_url}: {e}")
+                        continue
+
+        except Exception as e:
+            parser_logger.error(f"Error buscando en página principal: {e}")
+
         return None
+
+    def _is_episode_page_by_date(self, soup: BeautifulSoup, date: str) -> bool:
+        """
+        Verifica si la página es de un episodio de la fecha especificada.
+        """
+        # Buscar la fecha en el contenido
+        page_text = soup.get_text()
+        date_formats = [
+            date,
+            date.replace("-", "/"),
+            date.replace("-", "."),
+        ]
+
+        for date_format in date_formats:
+            if date_format in page_text:
+                return True
+
+        # Buscar en metadatos
+        meta_date = soup.find("meta", property="article:published_time")
+        if meta_date and date in meta_date.get("content", ""):
+            return True
+
+        return False
 
     def _is_episode_page(self, soup: BeautifulSoup, program_number: str) -> bool:
         """
