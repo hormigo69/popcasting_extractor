@@ -5,9 +5,11 @@ import requests
 from bs4 import BeautifulSoup
 
 # Importamos nuestro nuevo módulo de base de datos
-from . import database as db
+from .config import get_database_module
 from .logger_setup import setup_parser_logger, setup_stats_logger
 from .utils import extract_extra_links, extract_program_info, parse_playlist_simple
+
+db = get_database_module()
 
 # Configurar los loggers
 parser_logger = setup_parser_logger()

@@ -19,7 +19,7 @@ from supabase_database import SupabaseDatabase
 
 def get_sqlite_data():
     """Obtiene todos los datos de la base de datos SQLite."""
-    db_path = Path(__file__).parent / "popcasting.db"
+    db_path = Path(__file__).parent.parent / "popcasting.db"
 
     if not db_path.exists():
         print("❌ No se encontró la base de datos SQLite (popcasting.db)")

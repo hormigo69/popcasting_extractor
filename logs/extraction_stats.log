@@ -69,3 +69,13 @@
 2025-07-19 11:23:28,708 - INFO - Proceso de extracción web finalizado
 2025-07-19 11:23:28,709 - INFO - Episodios procesados: 3
 2025-07-19 11:23:28,710 - INFO - Errores: 0
+2025-07-19 18:02:21,090 - INFO - Proceso de extracción finalizado
+2025-07-19 18:02:21,091 - INFO - Total de episodios procesados: 396
+2025-07-19 18:02:21,091 - INFO - Total de canciones añadidas/actualizadas: 24
+2025-07-19 18:02:21,091 - INFO - ✅ Sistema de control de cambios activado - solo se actualiza contenido modificado
+2025-07-19 18:02:50,123 - ERROR - Error al procesar https://feeds.feedburner.com/Popcasting: 'title'
+2025-07-19 18:02:51,993 - ERROR - Error al procesar https://feeds.feedburner.com/Popcasting?format=xml: 'title'
+2025-07-19 18:02:51,993 - INFO - Proceso de extracción finalizado
+2025-07-19 18:02:51,993 - INFO - Total de episodios procesados: 0
+2025-07-19 18:02:51,993 - INFO - Total de canciones añadidas/actualizadas: 0
+2025-07-19 18:02:51,993 - INFO - ✅ Sistema de control de cambios activado - solo se actualiza contenido modificado
