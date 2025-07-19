@@ -25,3 +25,8 @@ outputs/
 
 # directorio de test
 test/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
