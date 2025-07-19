@@ -10,7 +10,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Añadir el directorio services al path
-sys.path.append(str(Path(__file__).parent / "services"))
+sys.path.append(str(Path(__file__).parent.parent / "services"))
 
 
 def test_supabase_connection():
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     print("=" * 60)
 
     # Verificar que existe el archivo .env
-    env_file = Path(__file__).parent / ".env"
+    env_file = Path(__file__).parent.parent / ".env"
     if not env_file.exists():
         print("⚠️  No se encontró el archivo .env")
         print("Crea el archivo .env con las credenciales de Supabase")

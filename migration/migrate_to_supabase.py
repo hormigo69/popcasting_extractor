@@ -12,7 +12,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Añadir el directorio services al path
-sys.path.append(str(Path(__file__).parent / "services"))
+sys.path.append(str(Path(__file__).parent.parent / "services"))
 
 from supabase_database import SupabaseDatabase
 
@@ -218,7 +218,7 @@ if __name__ == "__main__":
     print("=" * 60)
 
     # Verificar que existe la base de datos SQLite
-    db_path = Path(__file__).parent / "popcasting.db"
+    db_path = Path(__file__).parent.parent / "popcasting.db"
     if not db_path.exists():
         print("❌ No se encontró la base de datos SQLite (popcasting.db)")
         print("Asegúrate de que el archivo existe en el directorio raíz del proyecto")

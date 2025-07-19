@@ -17,26 +17,22 @@ Se ha implementado exitosamente la migración del proyecto de SQLite a Supabase,
    - Permite alternar entre SQLite y Supabase
    - Configuración automática basada en variables de entorno
 
-3. **`migrate_to_supabase.py`** - Script de migración
+3. **`migration/migrate_to_supabase.py`** - Script de migración
    - Migra todos los datos de SQLite a Supabase
    - Mantiene las relaciones entre tablas
    - Incluye verificación de migración
 
-4. **`supabase_schema.sql`** - Esquema de base de datos
+4. **`migration/supabase_schema.sql`** - Esquema de base de datos
    - Script SQL para crear tablas en Supabase
    - Incluye índices y triggers
    - Configuración de RLS opcional
 
-5. **`test_supabase_connection.py`** - Script de pruebas
+5. **`migration/test_supabase_connection.py`** - Script de pruebas
    - Verifica la conexión con Supabase
    - Prueba todas las operaciones básicas
    - Valida la configuración
 
-6. **`env.example`** - Plantilla de variables de entorno
-   - Incluye todas las variables necesarias
-   - Documentación de configuración
-
-7. **`docs/MIGRATION_TO_SUPABASE.md`** - Documentación completa
+6. **`migration/README.md`** - Documentación completa
    - Guía paso a paso de migración
    - Solución de problemas
    - Comparación de características
@@ -74,9 +70,7 @@ Se ha implementado exitosamente la migración del proyecto de SQLite a Supabase,
 ### 1. Configuración Inicial
 
 ```bash
-# Copiar plantilla de variables de entorno
-cp env.example .env
-
+# Crear archivo .env en el directorio raíz
 # Editar .env con tus credenciales de Supabase
 DATABASE_TYPE=supabase
 supabase_project_url=tu_url_de_supabase
@@ -93,14 +87,14 @@ supabase_api_key=tu_api_key_de_supabase
 
 ```bash
 # Ejecutar migración
-python migrate_to_supabase.py
+python migration/migrate_to_supabase.py
 ```
 
 ### 4. Verificar Configuración
 
 ```bash
 # Probar conexión
-python test_supabase_connection.py
+python migration/test_supabase_connection.py
 ```
 
 ### 5. Usar en el Código
