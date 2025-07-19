@@ -18,12 +18,12 @@
 
 
 
+[ ] Extraer información de la web de cada episodio. 
 
 
 
 
-
-- Extraer información de la web de cada episodio
+- 
 - leer el feed periodicamente y añadir sólo los episodios nuevos
 - probar la BD en supabase
 - crear el front del buscador de canciones

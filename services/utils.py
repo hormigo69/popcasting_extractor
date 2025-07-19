@@ -334,6 +334,14 @@ def parse_playlist_simple(
     # Normalizar separadores
     description = normalize_separators(description)
 
+    # Detectar si es formato numerado (00, 01, 02, etc.)
+    if re.search(r"\b\d{2}\s+[^•]+?\s*•\s*[^0-9]+?(?=\s+\d{2}\s+|$)", description):
+        if logger:
+            logger.info(
+                f"{program_info} - Detectado formato numerado, usando parser específico"
+            )
+        return parse_numbered_playlist_format(description, program_info, logger)
+
     # Dividir por el separador principal ::
     parts = description.split(" :: ")
 
@@ -534,6 +542,60 @@ def parse_playlist_simple(
                                     logger.warning(f"{program_info} - {error_msg}")
                                 else:
                                     print(f"AVISO {program_info}: {error_msg}")
+
+    return playlist
+
+
+def parse_numbered_playlist_format(
+    text: str, program_info: str = "N/A", logger=None
+) -> list[dict]:
+    """
+    Parser específico para el formato de canciones numeradas (00, 01, 02, etc.)
+    que aparece en algunos episodios problemáticos.
+
+    Args:
+        text: Texto de la descripción del episodio
+        program_info: Identificador del programa para logging
+        logger: Logger opcional para registrar errores
+
+    Returns:
+        Lista de canciones con posición, artista y título
+    """
+    if not text:
+        return []
+
+    playlist = []
+
+    # Patrón para encontrar canciones numeradas: 00 artista • canción 01 artista • canción
+    # Buscar patrones como "00 charles cave • this fucking time of the year 01 suzie • sweet surprise"
+    # También maneja casos donde el artista está separado: "00 phil collins" + "the roof is leaking (demo) 01 phil collins - i missed again"
+    numbered_pattern = r"(\d{2})\s+([^•\n]+?)\s*[•-]\s*([^0-9]+?)(?=\s+\d{2}\s+|$)"
+
+    matches = re.findall(numbered_pattern, text, re.DOTALL)
+
+    for match in matches:
+        number = match[0]
+        artist = clean_text(match[1].strip())
+        song = clean_text(match[2].strip())
+
+        # Validar que tanto artista como canción no estén vacíos
+        if artist and song and len(song) > 2:
+            # Limpiar y validar la entrada
+            cleaned_artist, cleaned_song = clean_song_info(artist, song)
+            if validate_song_entry(cleaned_artist, cleaned_song):
+                playlist.append(
+                    {
+                        "position": int(number),
+                        "artist": cleaned_artist,
+                        "song": cleaned_song,
+                    }
+                )
+            else:
+                error_msg = f"Entrada numerada inválida descartada: '{number} {artist} • {song}'"
+                if logger:
+                    logger.warning(f"{program_info} - {error_msg}")
+                else:
+                    print(f"AVISO {program_info}: {error_msg}")
 
     return playlist
 
