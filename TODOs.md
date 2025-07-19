@@ -37,16 +37,52 @@
     ✅ Documentación completa en docs/README_WEB_EXTRACTION.md
 
 
+[x] Montar la base de datos en supabase. La idea es usar supabase como base de datos en lugar de sqlite.
+    ✅ Implementado en rama feature/supabase-migration
+    ✅ Migración completa de SQLite a Supabase (PostgreSQL)
+    ✅ Sistema híbrido que puede alternar entre SQLite y Supabase
+    ✅ 396 podcasts, 6,353 canciones y 240 links extras migrados
+    ✅ Configuración automática mediante variable DATABASE_TYPE
+    ✅ Scripts de migración y pruebas completos
+    ✅ Documentación completa en migration/README.md
+    ✅ Resumen de migración en SUPABASE_MIGRATION_SUMMARY.md
+    ✅ Sistema de configuración dinámico en services/config.py
+    ✅ Servicio completo de Supabase en services/supabase_database.py
+    ✅ Pruebas de conexión y CRUD exitosas
+    ✅ Integración completa con el programa principal
 
 
+## Próximos pasos:
 
+[ ] Crear el front del buscador de canciones
+    - Interfaz web para buscar canciones por artista, título, episodio
+    - Filtros avanzados por fecha, género, etc.
+    - Integración con Supabase para consultas en tiempo real
 
-- 
-- leer el feed periodicamente y añadir sólo los episodios nuevos
-- probar la BD en supabase
-- crear el front del buscador de canciones
-- extraer información extra de las canciones de las api de spotify, Discogs, etc.
-- Transcribir los episodios de popcasting
-- Añadir el comentario de cada canción de la transcripción a la tabla de canciones
-para ordenar el código, metamos todos los sercios que has desarrollado en services y los archivos de pueba que sólo hayan sido de debug los borramos.
-- crear un cms que añada los campos y cree el RSS desde ahí en lugar de al reves.
+[ ] Extraer información extra de las canciones de las api de spotify, Discogs, etc.
+    - Integración con APIs de música para enriquecer datos
+    - Información de álbumes, géneros, años de lanzamiento
+    - Imágenes de portada de álbumes
+    - Datos de popularidad y reviews
+
+[ ] Transcribir los episodios de popcasting
+    - Sistema de transcripción automática de audio
+    - Almacenamiento de transcripciones en base de datos
+    - Búsqueda de texto en transcripciones
+
+[ ] Añadir el comentario de cada canción de la transcripción a la tabla de canciones
+    - Extraer comentarios específicos de cada canción
+    - Vincular comentarios con canciones en la base de datos
+    - Sistema de búsqueda por comentarios
+
+[ ] Crear un cms que añada los campos y cree el RSS desde ahí en lugar de al revés
+    - Interfaz de administración para gestionar episodios
+    - Editor de playlists y metadatos
+    - Generación automática de RSS feeds
+    - Sistema de usuarios y permisos
+
+[ ] Optimizaciones y mejoras técnicas
+    - Cache de consultas frecuentes
+    - Optimización de índices en Supabase
+    - Sistema de backup automático
+    - Monitoreo y alertas de rendimiento
