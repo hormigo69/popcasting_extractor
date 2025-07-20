@@ -380,7 +380,7 @@ def parse_playlist_simple(
                                     {
                                         "position": position,
                                         "artist": cleaned_artist,
-                                        "song": cleaned_song,
+                                        "title": cleaned_song,
                                     }
                                 )
                                 position += 1
@@ -424,7 +424,7 @@ def parse_playlist_simple(
                                         {
                                             "position": position,
                                             "artist": cleaned_artist,
-                                            "song": cleaned_song,
+                                            "title": cleaned_song,
                                         }
                                     )
                                     position += 1
@@ -455,7 +455,7 @@ def parse_playlist_simple(
                                 {
                                     "position": position,
                                     "artist": cleaned_artist,
-                                    "song": cleaned_song,
+                                    "title": cleaned_song,
                                 }
                             )
                             position += 1
@@ -474,7 +474,7 @@ def parse_playlist_simple(
                                     {
                                         "position": position,
                                         "artist": "#corregir",
-                                        "song": part.strip(),
+                                        "title": part.strip(),
                                     }
                                 )
                                 position += 1
@@ -487,7 +487,7 @@ def parse_playlist_simple(
                                     {
                                         "position": position,
                                         "artist": part.strip(),
-                                        "song": "#corregir",
+                                        "title": "#corregir",
                                     }
                                 )
                                 position += 1
@@ -527,11 +527,11 @@ def parse_playlist_simple(
                                                 {
                                                     "position": position,
                                                     "artist": cleaned_artist,
-                                                    "song": cleaned_song,
+                                                    "title": cleaned_song,
                                                 }
                                             )
-                                            position += 1
-                                            processed = True
+                            position += 1
+                            processed = True
 
                             # Si aún no se procesó, registrar como error
                             if not processed:
@@ -587,7 +587,7 @@ def parse_numbered_playlist_format(
                     {
                         "position": int(number),
                         "artist": cleaned_artist,
-                        "song": cleaned_song,
+                        "title": cleaned_song,
                     }
                 )
             else:
