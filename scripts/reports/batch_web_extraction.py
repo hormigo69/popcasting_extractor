@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para extraer información web de todos los episodios de Popcasting de forma masiva.
 """
 

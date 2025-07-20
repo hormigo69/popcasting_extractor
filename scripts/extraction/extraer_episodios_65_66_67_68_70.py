@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para extraer los episodios 65, 66, 67, 68 y 70 de la página programas-anteriores-64-91.
 """
 

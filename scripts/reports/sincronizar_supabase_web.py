@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para sincronizar la información web de SQLite a Supabase.
 Actualiza todos los episodios en Supabase con la información web extraída.
 """

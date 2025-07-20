@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Extractor especializado para episodios antiguos (0-91) de Popcasting.
 Estos episodios están en páginas de archivo con estructura HTML diferente.
 """

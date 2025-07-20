@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para completar la información web de episodios faltantes.
 Lee el archivo episodios_faltantes.txt y extrae información de las URLs encontradas manualmente.
 """

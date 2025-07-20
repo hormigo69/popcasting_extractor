@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para generar un informe detallado de episodios faltantes.
 Analiza el estado actual de la base de datos y reporta lo que falta.
 """

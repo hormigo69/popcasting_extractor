@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para procesar URLs manuales de episodios faltantes finales.
 Lee el archivo episodios_faltantes_actualizado.txt y actualiza la base de datos.
 """

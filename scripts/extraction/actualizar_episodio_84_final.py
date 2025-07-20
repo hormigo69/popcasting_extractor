@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para actualizar el episodio #84 con toda la información y alcanzar el 100% de cobertura.
 """
 

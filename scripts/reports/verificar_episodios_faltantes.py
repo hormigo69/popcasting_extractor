@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para verificar el estado actual de los episodios faltantes.
 Muestra estadísticas detalladas y lista los episodios que aún necesitan información web.
 """
