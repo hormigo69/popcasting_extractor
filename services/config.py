@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 # Cargar variables de entorno
 load_dotenv()
 
-# Configuración de la base de datos
-DATABASE_TYPE = os.getenv("DATABASE_TYPE", "sqlite").lower()
+# Configuración de la base de datos - USANDO SUPABASE COMO PRINCIPAL
+DATABASE_TYPE = os.getenv("DATABASE_TYPE", "supabase").lower()
 
 # Validar tipo de base de datos
 if DATABASE_TYPE not in ["sqlite", "supabase"]:
@@ -20,6 +20,7 @@ if DATABASE_TYPE not in ["sqlite", "supabase"]:
 def get_database_module():
     """
     Retorna el módulo de base de datos apropiado según la configuración.
+    Por defecto usa Supabase como base de datos principal.
     """
     if DATABASE_TYPE == "supabase":
         # Importación absoluta para evitar problemas con importaciones relativas
