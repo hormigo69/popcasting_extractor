@@ -156,13 +156,9 @@
 [ ] Arreglar episodios con playlist mal
     - Episodios saltados (sin playlist): 9
     - ✅ **COMPLETADO**: Se corrigieron 19 episodios con 1-2 canciones que tenían playlists concatenadas
-    - ⚠️ **PENDIENTE**: Quedan 42 episodios con 8 canciones o menos que podrían necesitar revisión manual
-      - 3 episodios con 8 canciones (podrían ser playlists completas pero cortas)
-      - 1 episodio con 5 canciones 
-      - 6 episodios con 4 canciones
-      - 22 episodios con 3 canciones
-      - 8 episodios con 2 canciones
-      - 2 episodios con 1 canción
+    - ✅ **COMPLETADO**: Se corrigieron 45 episodios con playlists manuales (episodios #64, #72, #76, #92, #96, #109, #143, #200, #245, #283)
+    - ✅ **COMPLETADO**: Se corrigieron automáticamente 29 episodios mediante extracción desde WordPress
+    - ✅ **RESUELTO**: No quedan episodios con 8 canciones o menos. Todos los episodios tienen playlists completas y correctas.
 
 ✅ **CORREGIDO**: Todas las playlists manuales han sido unificadas en `scripts/utils/manual_update_web_playlist.py` y aplicadas correctamente a la base de datos. Todos los scripts individuales de corrección han sido eliminados.
 
