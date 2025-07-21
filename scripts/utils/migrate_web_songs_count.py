@@ -8,7 +8,6 @@ Este script:
 3. Verifica que la migración se haya completado correctamente
 """
 
-import os
 import sys
 from pathlib import Path
 
@@ -23,9 +22,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
 
 # Importar directamente los módulos
 from config import DATABASE_TYPE
-from database import initialize_database
-from supabase_database import get_supabase_connection
 from logger_setup import setup_parser_logger
+from supabase_database import get_supabase_connection
 
 # Configurar logger
 logger = setup_parser_logger()

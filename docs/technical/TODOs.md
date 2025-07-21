@@ -139,7 +139,6 @@
 
 
 
-## Próximos pasos:
 
 
 
@@ -152,13 +151,36 @@
     ✅ Scripts de migración y actualización: scripts/utils/migrate_web_songs_count.py y update_web_songs_count.py
     ✅ CLI web actualizado para mostrar el nuevo campo
     ✅ Compatible con ambas bases de datos (SQLite y Supabase)
-      
+
+
+[ ] Arreglar episodios con playlist mal
+    - Episodios saltados (sin playlist): 9
+    - ✅ **COMPLETADO**: Se corrigieron 19 episodios con 1-2 canciones que tenían playlists concatenadas
+    - ⚠️ **PENDIENTE**: Quedan 42 episodios con 8 canciones o menos que podrían necesitar revisión manual
+      - 3 episodios con 8 canciones (podrían ser playlists completas pero cortas)
+      - 1 episodio con 5 canciones 
+      - 6 episodios con 4 canciones
+      - 22 episodios con 3 canciones
+      - 8 episodios con 2 canciones
+      - 2 episodios con 1 canción
+
+corregir el #64:
+<p style="text-align: center">sandra · secret land&nbsp; ::&nbsp; flairs · better than prince&nbsp; ::&nbsp; supergrass · diamond hoo ha man&nbsp; ::&nbsp; lykke li · i’m good i’m gone&nbsp; :: tennessee ernie ford · 16 tons&nbsp; ::&nbsp; benjamin biolay · les cerfs volants&nbsp; ::&nbsp; the fut · have you heard the word&nbsp; ::&nbsp; hercules and love affair (ft antony) · blind&nbsp; ::&nbsp; the paris sisters · love how you love me&nbsp; ::&nbsp; julee cruise · rockin’ back inside my heart&nbsp; ::&nbsp; james, donna, maddie · just you</p>
+
+<span style="color: #99cc00"><a style="color: #99cc00" href="http://www.myspace.com/mightyflairs"><span style="font-family: 'Trebuchet MS'">flairs</span></a><span style="font-family: 'Trebuchet MS'">&nbsp;::&nbsp;&nbsp;</span><a style="color: #99cc00" href="http://www.dailymotion.com/video/xyheq_les-cerfsvolants_music"><span style="font-family: 'Trebuchet MS'">benjamin biolay · les cerfs-volants</span></a><span style="font-family: 'Trebuchet MS'">&nbsp;::&nbsp;&nbsp;</span><a style="color: #99cc00" href="http://www.boingboing.net/2008/01/17/bee-gees-were-excell.html"><span style="font-family: 'Trebuchet MS'">the fut</span></a><span style="font-family: 'Trebuchet MS'">&nbsp;::&nbsp;&nbsp;</span><a style="color: #99cc00" href="http://www.boingboing.net/"><span style="font-family: 'Trebuchet MS'">boing boing</span></a><span style="font-family: 'Trebuchet MS'">&nbsp;::&nbsp;&nbsp;</span><a style="color: #99cc00" href="http://www.myspace.com/herculesandloveaffair"><span style="font-family: 'Trebuchet MS'">hercules &amp; love affair</span></a><span style="font-family: 'Trebuchet MS'">&nbsp;::&nbsp;&nbsp;</span><a style="color: #99cc00" href="http://www.youtube.com/watch?v=m0t2er3qhMo&amp;feature=related"><span style="font-family: 'Trebuchet MS'">twin peks · just you</span></a></span>
+
+
+
+
+## Próximos pasos:
+
 [ ] Verificar la integridad de la Tabla songs en la BD
 
     - comprobamos que están todos los números de capítulo (veo que faltan algunos)
     - comprobamos que no hay números de canciones faltantes entre el primero y el último
         - si hemos extraido el número de canciones del podcast, comprobamos que coinciden
-        - buscamos campos vacíos para revisar por qué no se han llenado.
+    - buscamos campos vacíos para revisar por qué no se han llenado.
+    
 
 
 
