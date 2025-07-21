@@ -73,13 +73,20 @@ Se creó el script `scripts/utils/fix_single_song_episodes.py` que:
 | #207 | 1 | 17 | +16 |
 | #209 | 1 | 11 | +10 |
 
-**Total de canciones recuperadas: 247**
+**Total de canciones recuperadas: 269**
+
+### ✅ **Correcciones Adicionales**
+
+Después de la corrección inicial, se identificaron y corrigieron **2 episodios adicionales**:
+
+- **#92**: Corregido con playlist completa de 11 canciones
+- **#96**: Corregido con playlist completa de 11 canciones (eliminado contenido HTML)
 
 ### ⚠️ **Episodios Restantes**
 
-Quedan **42 episodios** con 8 canciones o menos que podrían necesitar revisión manual:
+Quedan **40 episodios** con 8 canciones o menos que podrían necesitar revisión manual:
 
-- **3 episodios con 8 canciones**: Podrían ser playlists completas pero cortas
+- **1 episodio con 8 canciones**: #72 (podría ser playlist completa pero corta)
 - **1 episodio con 5 canciones**: #226
 - **6 episodios con 4 canciones**: #303, #289, #286, #208, #191, #284
 - **22 episodios con 3 canciones**: Varios episodios con playlists cortas
@@ -119,6 +126,6 @@ python scripts/utils/fix_single_song_episodes.py
 ---
 
 **Fecha de corrección**: Diciembre 2024  
-**Episodios procesados**: 19 de 61  
-**Canciones recuperadas**: 247  
+**Episodios procesados**: 21 de 61  
+**Canciones recuperadas**: 269  
 **Estado**: ✅ Completado para episodios críticos 
