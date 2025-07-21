@@ -164,12 +164,7 @@
       - 8 episodios con 2 canciones
       - 2 episodios con 1 canción
 
-corregir el #64:
-<p style="text-align: center">sandra · secret land&nbsp; ::&nbsp; flairs · better than prince&nbsp; ::&nbsp; supergrass · diamond hoo ha man&nbsp; ::&nbsp; lykke li · i’m good i’m gone&nbsp; :: tennessee ernie ford · 16 tons&nbsp; ::&nbsp; benjamin biolay · les cerfs volants&nbsp; ::&nbsp; the fut · have you heard the word&nbsp; ::&nbsp; hercules and love affair (ft antony) · blind&nbsp; ::&nbsp; the paris sisters · love how you love me&nbsp; ::&nbsp; julee cruise · rockin’ back inside my heart&nbsp; ::&nbsp; james, donna, maddie · just you</p>
-
-<span style="color: #99cc00"><a style="color: #99cc00" href="http://www.myspace.com/mightyflairs"><span style="font-family: 'Trebuchet MS'">flairs</span></a><span style="font-family: 'Trebuchet MS'">&nbsp;::&nbsp;&nbsp;</span><a style="color: #99cc00" href="http://www.dailymotion.com/video/xyheq_les-cerfsvolants_music"><span style="font-family: 'Trebuchet MS'">benjamin biolay · les cerfs-volants</span></a><span style="font-family: 'Trebuchet MS'">&nbsp;::&nbsp;&nbsp;</span><a style="color: #99cc00" href="http://www.boingboing.net/2008/01/17/bee-gees-were-excell.html"><span style="font-family: 'Trebuchet MS'">the fut</span></a><span style="font-family: 'Trebuchet MS'">&nbsp;::&nbsp;&nbsp;</span><a style="color: #99cc00" href="http://www.boingboing.net/"><span style="font-family: 'Trebuchet MS'">boing boing</span></a><span style="font-family: 'Trebuchet MS'">&nbsp;::&nbsp;&nbsp;</span><a style="color: #99cc00" href="http://www.myspace.com/herculesandloveaffair"><span style="font-family: 'Trebuchet MS'">hercules &amp; love affair</span></a><span style="font-family: 'Trebuchet MS'">&nbsp;::&nbsp;&nbsp;</span><a style="color: #99cc00" href="http://www.youtube.com/watch?v=m0t2er3qhMo&amp;feature=related"><span style="font-family: 'Trebuchet MS'">twin peks · just you</span></a></span>
-
-
+✅ **CORREGIDO**: Todas las playlists manuales han sido unificadas en `scripts/utils/manual_update_web_playlist.py` y aplicadas correctamente a la base de datos. Todos los scripts individuales de corrección han sido eliminados.
 
 
 ## Próximos pasos:
