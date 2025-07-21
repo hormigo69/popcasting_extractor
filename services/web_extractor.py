@@ -1,3 +1,4 @@
+import json
 import re
 import time
 from urllib.parse import urljoin
@@ -51,13 +52,26 @@ class WebExtractor:
                     # Extraer información de la página del episodio
                     web_info = self._extract_episode_page_info(wordpress_url)
 
+                    # Calcular número de canciones
+                    playlist_json = web_info.get("playlist_json")
+                    web_songs_count = None
+                    if playlist_json:
+                        try:
+                            playlist = json.loads(playlist_json)
+                            web_songs_count = (
+                                len(playlist) if isinstance(playlist, list) else 0
+                            )
+                        except json.JSONDecodeError:
+                            web_songs_count = 0
+
                     # Actualizar base de datos
                     db.update_web_info(
                         podcast_id=podcast["id"],
                         wordpress_url=wordpress_url,
                         cover_image_url=web_info.get("cover_image_url"),
                         web_extra_links=web_info.get("extra_links_json"),
-                        web_playlist=web_info.get("playlist_json"),
+                        web_playlist=playlist_json,
+                        web_songs_count=web_songs_count,
                     )
 
                     print(

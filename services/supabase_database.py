@@ -377,6 +377,7 @@ class SupabaseDatabase:
         cover_image_url: str = None,
         web_extra_links: str = None,
         web_playlist: str = None,
+        web_songs_count: int = None,
     ):
         """Actualiza la información web de un podcast."""
         try:
@@ -389,6 +390,8 @@ class SupabaseDatabase:
                 update_data["web_extra_links"] = web_extra_links
             if web_playlist is not None:
                 update_data["web_playlist"] = web_playlist
+            if web_songs_count is not None:
+                update_data["web_songs_count"] = web_songs_count
 
             if update_data:
                 update_data["last_web_check"] = "now()"
@@ -422,7 +425,7 @@ class SupabaseDatabase:
             response = (
                 self.client.table("podcasts")
                 .select(
-                    "wordpress_url, cover_image_url, web_extra_links, web_playlist, last_web_check"
+                    "wordpress_url, cover_image_url, web_extra_links, web_playlist, web_songs_count, last_web_check"
                 )
                 .eq("id", podcast_id)
                 .execute()

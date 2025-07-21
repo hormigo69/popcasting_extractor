@@ -97,9 +97,75 @@
     ✅ Resumen de backup en resumen.txt
     ✅ Pruebas de conexión y backup exitosas
 
+[x] Verificar la integridad de la Tabla podcasts en la BD
+
+    ✅ Verificar que no faltan números de capítulos entre el 0 y el 484
+    ✅ si ordenamos por número de capítulo, las fechas deberían de ser correlativas. Es decir, no hay fechas que no estén en orden
+    ✅ marcamos qué campos faltan en qué filas. Habrá algunos que sea correcto que falten (links por ejemplo) pero otros no
+    ✅ Script de verificación implementado en scripts/utils/verify_podcasts_integrity.py
+    ✅ Compatible solo con Supabase
+    ✅ Genera reportes detallados en pantalla y archivo
+    ✅ Detecta 12 números de capítulo faltantes (#83, #92, #93, #97, #99, #100, #102, #103, #104, #105, #106, #148)
+    ✅ Detecta problemas de secuencia de fechas (episodios duplicados con fechas diferentes)
+    ✅ Detecta campos obligatorios faltantes
+    ✅ Reporte completo con recomendaciones y estadísticas
+    ✅ **CORREGIDO**: Eliminados 6 episodios duplicados automáticamente
+    ✅ **CORREGIDO**: Arreglado program_number faltante en episodio #0
+    ✅ **CORREGIDO**: Corregida fecha incorrecta del episodio #62 (2014 → 2008-01-01)
+    ✅ **CORREGIDO**: Secuencia de fechas ahora perfecta (0 problemas)
+           ✅ **CORREGIDO**: Todos los campos obligatorios presentes (0 faltantes)
+       ✅ **COMPLETADO**: Colección de episodios completa (485/485 episodios)
+       ✅ **CONSOLIDADO**: Script consolidate_manual_episodes.py para regeneración de BDD
+       ✅ **ARCHIVO**: manual_episodes.json con todos los episodios manuales
+       ✅ **LIMPIEZA**: Scripts auxiliares eliminados, solo quedan los esenciales
+    ✅ verificar que las url de los capítulos y de los mp3 son coherentes. Esto es, que tienen una pinta similar, para asegurarnos de que no hemos cometido errores en el scrapping. Los formatos son:
+        url - (enlace al episodio en ivoox) https://www.ivoox.com/popcasting482-audios-mp3_rf_151858068_1.html
+        download_url - (enlace de descarga del mp3) https://www.ivoox.com/popcasting482_mf_151858068_feed_1.mp3
+        wordpress_url - (el enlace al wordpress de popcasting) https://popcastingpop.com/2025/07/18/popcasting-484/
+        cover_image_url (enlace a la imagen de cabecera del programa) https://popcastingpop.com/wp-content/uploads/2025/07/484.png
+     ✅ Script verify_links_integrity.py implementado
+           ✅ **HALLAZGOS**: 
+        - ✅ **CORREGIDO**: 0 discrepancias de números (antes eran 3: #71, #77, #86)
+        - ✅ **CORREGIDO**: 0 enlaces de descarga faltantes (antes eran 21)
+        - 393 inconsistencias de dominio (normal: WordPress + iVoox)
+        - Episodios 0-91: 82 con URL iVoox, 10 con URL WordPress
+        - Episodios 92+: Mayoría con URL WordPress + descarga iVoox
+        - Episodios 100-106: Usan blip.tv para descargas (normal)
+      ✅ **CONCLUSIÓN**: Los enlaces son coherentes, las inconsistencias son esperadas por la evolución del podcast
+      ✅ **CORREGIDO**: Todos los enlaces de descarga faltantes añadidos desde archivos HTML
+      ✅ **CORREGIDO**: Todas las discrepancias de números corregidas con URLs correctas
+
+
+
+
+
 ## Próximos pasos:
 
-[ ] añadir tag a los especiales
+
+
+[x] Extra ¿sacamos de web_playlist el número de canciones a un campo e introducimos esto en la BDD? Esto habria que hacerlo en el importador de podcasts.
+    ✅ Implementado en rama feature/web-songs-count
+    ✅ Nuevo campo web_songs_count añadido a la tabla podcasts
+    ✅ Script SQL para migración en Supabase: migration/add_web_songs_count_field.sql
+    ✅ Funciones update_web_info actualizadas en SQLite y Supabase
+    ✅ WebExtractor actualizado para calcular automáticamente el número de canciones
+    ✅ Scripts de migración y actualización: scripts/utils/migrate_web_songs_count.py y update_web_songs_count.py
+    ✅ CLI web actualizado para mostrar el nuevo campo
+    ✅ Compatible con ambas bases de datos (SQLite y Supabase)
+      
+[ ] Verificar la integridad de la Tabla songs en la BD
+
+    - comprobamos que están todos los números de capítulo (veo que faltan algunos)
+    - comprobamos que no hay números de canciones faltantes entre el primero y el último
+        - si hemos extraido el número de canciones del podcast, comprobamos que coinciden
+        - buscamos campos vacíos para revisar por qué no se han llenado.
+
+
+
+
+
+
+[ ] Extraer los comentarios del nombre a un campo extra
 
 [ ] Crear el front del buscador de canciones
     - Interfaz web para buscar canciones por artista, título, episodio
@@ -133,3 +199,11 @@
     - Optimización de índices en Supabase
     - Sistema de backup automático
     - Monitoreo y alertas de rendimiento
+
+
+
+
+# llamada a los scripts:
+
+# backup de la BDD
+clear && uv run python 

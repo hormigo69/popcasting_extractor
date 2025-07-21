@@ -90,12 +90,23 @@ def extract_web_info(args):
         wordpress_url = extractor._find_wordpress_url(podcast_dict)
         if wordpress_url:
             web_info = extractor._extract_episode_page_info(wordpress_url)
+            # Calcular número de canciones
+            playlist_json = web_info.get("playlist_json")
+            web_songs_count = None
+            if playlist_json:
+                try:
+                    playlist = json.loads(playlist_json)
+                    web_songs_count = len(playlist) if isinstance(playlist, list) else 0
+                except json.JSONDecodeError:
+                    web_songs_count = 0
+
             db.update_web_info(
                 podcast_id=podcast["id"],
                 wordpress_url=wordpress_url,
                 cover_image_url=web_info.get("cover_image_url"),
                 web_extra_links=web_info.get("extra_links_json"),
-                web_playlist=web_info.get("playlist_json"),
+                web_playlist=playlist_json,
+                web_songs_count=web_songs_count,
             )
             print(f"✅ Episodio {podcast['program_number']} procesado correctamente")
         else:
@@ -194,6 +205,13 @@ def show_episode_info(args):
                 print(f"   Canciones web: {len(songs)} encontradas")
             except json.JSONDecodeError:
                 print("   Canciones web: Error parseando")
+
+        if web_info.get("web_songs_count") is not None:
+            print(
+                f"   Número de canciones (web_songs_count): {web_info['web_songs_count']}"
+            )
+        else:
+            print("   Número de canciones (web_songs_count): No disponible")
     else:
         print("\n🌐 Información de la web: No disponible")
 

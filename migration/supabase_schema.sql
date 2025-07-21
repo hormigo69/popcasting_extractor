@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS podcasts (
     cover_image_url TEXT,
     web_extra_links TEXT,
     web_playlist TEXT,
+    web_songs_count INTEGER,
     last_web_check TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
