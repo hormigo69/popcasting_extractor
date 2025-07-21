@@ -26,6 +26,9 @@ outputs/
 # directorio de test
 test/
 
+# directorio de backups
+backups/
+
 # Environment variables
 .env
 .env.local

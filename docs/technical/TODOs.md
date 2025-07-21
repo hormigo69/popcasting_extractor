@@ -55,7 +55,7 @@
     ✅ Integración completa con el programa principal
 
 
-[ ] cargar la informaicón de los episodios antiguos. 
+[x] cargar la informaicón de los episodios antiguos. 
     Estos siguen una lógica diferente. No están en el RSS y en la web están varios en una página.
     Las páginas son:
         archivos del 00 al 20: https://popcastingpop.com/archivo-popcasting/
@@ -73,8 +73,29 @@
     - título
     - download_url - <audio class="wp-audio-shortcode" id="audio-151-1_html5" preload="none" style="width: 100%; height: 100%;" src="http://www.ivoox.com/popcasting000_md_1079313_1.mp3?_=1"><source type="audio/mpeg" src="http://www.ivoox.com/popcasting000_md_1079313_1.mp3?_=1"><a href="http://www.ivoox.com/popcasting000_md_1079313_1.mp3">http://www.ivoox.com/popcasting000_md_1079313_1.mp3</a></audio>
     
-     
 
+[x] optimizar los tipos de campo de la base de datos y asegurarnos de que el importador los guarda con el tipo de dato correcto.
+    ✅ Implementado en scripts/utils/optimize_database_types.py
+    ✅ Script SQL para Supabase en migration/optimize_supabase_schema.sql
+    ✅ Esquemas actualizados en services/database.py y migration/supabase_schema.sql
+    ✅ Funciones add_podcast_if_not_exists actualizadas con validación de tipos
+    ✅ Campos optimizados en la tabla podcasts:
+        - program_number: TEXT -> INTEGER
+        - date: TEXT -> DATE
+        - title: TEXT (mantener)
+        - url: TEXT (mantener)
+        - download_url: TEXT (mantener)
+        - cover_image_url: TEXT (mantener)
+    ✅ 91 fechas y 1 program_number optimizados en Supabase
+    ✅ Validación automática de tipos en tiempo de inserción
+
+[x] hacer script que haga  un backup de la base de datos supabase. scripts/backup_supabase_simple.py
+    ✅ Implementado en scripts/backup_supabase_simple.py
+    ✅ Script de backup simple para Supabase
+    ✅ Exporta tablas a JSON y CSV con timestamp
+    ✅ Directorio de backup en backups/
+    ✅ Resumen de backup en resumen.txt
+    ✅ Pruebas de conexión y backup exitosas
 
 ## Próximos pasos:
 

@@ -5,11 +5,11 @@
 CREATE TABLE IF NOT EXISTS podcasts (
     id BIGSERIAL PRIMARY KEY,
     title TEXT NOT NULL,
-    date TEXT NOT NULL UNIQUE,
+    date DATE NOT NULL UNIQUE,
     url TEXT,
     download_url TEXT,
     file_size INTEGER,
-    program_number TEXT,
+    program_number INTEGER,
     wordpress_url TEXT,
     cover_image_url TEXT,
     web_extra_links TEXT,

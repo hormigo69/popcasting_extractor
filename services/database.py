@@ -25,11 +25,11 @@ def initialize_database():
     CREATE TABLE IF NOT EXISTS podcasts (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
-        date TEXT NOT NULL UNIQUE,
+        date DATE NOT NULL UNIQUE,
         url TEXT,
         download_url TEXT,
         file_size INTEGER,
-        program_number TEXT
+        program_number INTEGER
     );
     """)
 
@@ -120,6 +120,39 @@ def add_podcast_if_not_exists(
     Añade un nuevo podcast a la base de datos si no existe uno con la misma fecha.
     Devuelve el ID del podcast (ya sea nuevo o existente).
     """
+    # Validar y convertir tipos
+    import re
+    from datetime import datetime
+
+    # Validar program_number
+    if program_number:
+        # Limpiar caracteres no numéricos
+        cleaned_number = re.sub(r"[^\d]", "", str(program_number))
+        if cleaned_number:
+            program_number = int(cleaned_number)
+        else:
+            program_number = None
+
+    # Validar date
+    if date:
+        try:
+            # Intentar parsear la fecha
+            dt = datetime.strptime(date, "%Y-%m-%d")
+            date = dt.strftime("%Y-%m-%d")
+        except ValueError:
+            # Si no es formato YYYY-MM-DD, intentar otros formatos
+            date_formats = ["%d/%m/%Y", "%d.%m.%Y", "%Y/%m/%d", "%d-%m-%Y"]
+            for fmt in date_formats:
+                try:
+                    dt = datetime.strptime(date, fmt)
+                    date = dt.strftime("%Y-%m-%d")
+                    break
+                except ValueError:
+                    continue
+            else:
+                # Si no se puede parsear, usar fecha por defecto
+                date = "2005-01-01"
+
     conn = get_db_connection()
     cursor = conn.cursor()
 
