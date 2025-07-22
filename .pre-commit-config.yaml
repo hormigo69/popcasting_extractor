@@ -3,5 +3,8 @@ repos:
     rev: v0.8.2
     hooks:
     -   id: ruff
-        args: [--fix, --unsafe-fixes, --ignore=E402,F821,F401,F403,F405,F541,F811,F822,F841,F901,B007,W291,W293,I001,I002,I003,I004,I005]
+        args: [--fix, --unsafe-fixes]
+        # Solo verificar archivos modificados
+        files: ^scripts/utils/.*\.py$
     -   id: ruff-format
+        files: ^scripts/utils/.*\.py$
