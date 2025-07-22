@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
 """
+import re
+import sys
+from services.supabase_database import SupabaseDatabase
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para eliminar episodios con fechas en formato DD.MM.YYYY.
 Estos episodios ya tienen versiones correctas con fechas normalizadas.
 """
 
-import os
-import re
-import sys
-from datetime import datetime
 
 # Agregar el directorio raíz al path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
-from services.supabase_database import SupabaseDatabase
 
 
 def parse_date_dd_mm_yyyy(date_str):

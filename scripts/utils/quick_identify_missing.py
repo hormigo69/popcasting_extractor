@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 """
-Script rápido para identificar episodios sin web_songs_count.
-"""
-
 import sys
 from pathlib import Path
-
 from dotenv import load_dotenv
+from config import DATABASE_TYPE
+from database import get_db_connection, initialize_database
+from supabase_database import get_supabase_connection
+
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
+
+Script rápido para identificar episodios sin web_songs_count.
+"""
 
 # Cargar variables de entorno
 load_dotenv()
 
 # Añadir el directorio raíz al path para importar los módulos
 sys.path.append(str(Path(__file__).parent.parent.parent))
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
 
 # Importar directamente los módulos
-from config import DATABASE_TYPE
-from database import get_db_connection, initialize_database
-from supabase_database import get_supabase_connection
 
 
 def quick_identify_missing():

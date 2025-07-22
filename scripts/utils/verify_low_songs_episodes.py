@@ -1,24 +1,23 @@
 #!/usr/bin/env python3
 """
-Script para revisar episodios con menos de 9 canciones y verificar si tienen playlists completas.
-"""
-
 import json
 import sys
 from pathlib import Path
-
 from dotenv import load_dotenv
+from config import DATABASE_TYPE
+from database import get_db_connection, initialize_database
+from supabase_database import get_supabase_connection
+
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
+
+Script para revisar episodios con menos de 9 canciones y verificar si tienen playlists completas.
+"""
 
 # Cargar variables de entorno
 load_dotenv()
 
 # Añadir el directorio raíz al path para importar los módulos
 sys.path.append(str(Path(__file__).parent.parent.parent))
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
-
-from config import DATABASE_TYPE
-from database import get_db_connection, initialize_database
-from supabase_database import get_supabase_connection
 
 
 def get_database_wrapper():
@@ -157,7 +156,7 @@ def analyze_low_songs_episodes():
                                 "url": ep.get("wordpress_url"),
                             }
                         )
-                except:
+                except Exception:
                     pass
 
         if problematic_episodes:

@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
 """
-Script para restaurar datos desde un backup de Supabase.
-Permite restaurar tablas específicas o todo el backup.
-"""
+import re
 
 import argparse
 import json
 import sys
 from pathlib import Path
 from typing import Any
+from services.logger_setup import setup_logger
+from services.supabase_database import SupabaseDatabase
+
+Script para restaurar datos desde un backup de Supabase.
+Permite restaurar tablas específicas o todo el backup.
+"""
 
 # Agregar el directorio raíz al path para importar los servicios
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from services.logger_setup import setup_logger
-from services.supabase_database import SupabaseDatabase
 
 # Configurar logger
 logger = setup_logger(__name__)

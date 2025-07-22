@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
+from datetime import datetime
+
+import sys
+from services.supabase_database import SupabaseDatabase
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para diagnosticar el estado actual de los datos en Supabase.
 Esto nos ayudará a verificar si es seguro cambiar los tipos de columna.
 """
 
-import os
-import sys
 
 # Agregar el directorio raíz al path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
-from services.supabase_database import SupabaseDatabase
 
 
 def diagnose_supabase_data():
@@ -82,7 +84,6 @@ def diagnose_supabase_data():
                 if len(str(date)) == 10 and str(date)[4] == "-" and str(date)[7] == "-":
                     try:
                         # Intentar parsear como fecha
-                        from datetime import datetime
 
                         datetime.strptime(str(date), "%Y-%m-%d")
                         format_key = "YYYY-MM-DD"

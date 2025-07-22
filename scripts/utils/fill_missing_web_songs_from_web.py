@@ -1,24 +1,26 @@
-#!/usr/bin/env python3
-"""
-Script para buscar y actualizar los episodios faltantes en Supabase usando el extractor web.
-"""
-
 import json
 import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
+from supabase_database import get_supabase_connection
+
+from services.web_extractor import WebExtractor
+
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
+
+
+#!/usr/bin/env python3
+"""
+Script para buscar y actualizar los episodios faltantes en Supabase usando el extractor web.
+"""
+
 
 # Cargar variables de entorno
 load_dotenv()
 
 # Añadir el directorio raíz al path para importar los módulos
 sys.path.append(str(Path(__file__).parent.parent.parent))
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
-
-from supabase_database import get_supabase_connection
-
-from services.web_extractor import WebExtractor
 
 
 def get_missing_episodes():

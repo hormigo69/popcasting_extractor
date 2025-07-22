@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
+from pathlib import Path
+
 Script rápido para encontrar el episodio #62 en el HTML.
 """
-
-from pathlib import Path
 
 
 def find_episode_62_quick():

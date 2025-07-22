@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
+import sys
+from services.supabase_database import SupabaseDatabase
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para investigar las fechas duplicadas en Supabase.
 """
 
-import os
-import sys
 
 # Agregar el directorio raíz al path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
-from services.supabase_database import SupabaseDatabase
 
 
 def investigate_duplicate_dates():

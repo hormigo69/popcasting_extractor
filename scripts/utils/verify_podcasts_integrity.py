@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 """
+import sys
+from datetime import datetime
+from pathlib import Path
+from services.supabase_database import SupabaseDatabase
+                from datetime import datetime
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para verificar la integridad de la tabla podcasts en Supabase.
 Realiza las siguientes verificaciones:
 1. Verifica que no faltan números de capítulos entre el 0 y el 484
@@ -7,15 +15,8 @@ Realiza las siguientes verificaciones:
 3. Marca qué campos faltan en qué filas
 """
 
-import os
-import sys
-from datetime import datetime
-from pathlib import Path
 
 # Agregar el directorio raíz al path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
-from services.supabase_database import SupabaseDatabase
 
 
 def verify_missing_episode_numbers(podcasts):
@@ -96,7 +97,6 @@ def verify_date_sequence(podcasts):
         if current_date and previous_date:
             try:
                 # Convertir fechas a datetime para comparación
-                from datetime import datetime
 
                 current_dt = datetime.strptime(str(current_date), "%Y-%m-%d")
                 previous_dt = datetime.strptime(str(previous_date), "%Y-%m-%d")

@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """
+from datetime import datetime
+
+import json
+import sys
+from pathlib import Path
+from services.supabase_database import SupabaseDatabase
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para insertar episodios manuales desde el archivo JSON.
 """
 
-import json
-import os
-import sys
-from datetime import datetime
-from pathlib import Path
 
 # Agregar el directorio raíz al path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
-from services.supabase_database import SupabaseDatabase
 
 
 def load_manual_episodes(json_file):

@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 """
-Script para hacer backup de la base de datos Supabase.
-Exporta todas las tablas a archivos JSON y CSV con timestamp.
-"""
+from datetime import datetime
 
 import csv
 import json
 import sys
-from datetime import datetime
 from pathlib import Path
 from typing import Any
+from services.logger_setup import setup_logger
+from services.supabase_database import SupabaseDatabase
+    import argparse
+
+Script para hacer backup de la base de datos Supabase.
+Exporta todas las tablas a archivos JSON y CSV con timestamp.
+"""
 
 # Agregar el directorio raíz al path para importar los servicios
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from services.logger_setup import setup_logger
-from services.supabase_database import SupabaseDatabase
 
 # Configurar logger
 logger = setup_logger(__name__)
@@ -269,7 +271,6 @@ class SupabaseBackup:
 
 def main():
     """Función principal del script."""
-    import argparse
 
     parser = argparse.ArgumentParser(description="Backup de base de datos Supabase")
     parser.add_argument(

@@ -1,25 +1,26 @@
+import json
+import re
+import sys
+from pathlib import Path
+
+import requests
+from dotenv import load_dotenv
+from supabase_database import get_supabase_connection
+
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
+
+
 #!/usr/bin/env python3
 """
 Script para completar automáticamente los episodios pendientes extrayendo la playlist de los posts de WordPress.
 """
 
-import json
-import re
-import sys
-import time
-from pathlib import Path
-
-import requests
-from dotenv import load_dotenv
 
 # Cargar variables de entorno
 load_dotenv()
 
 # Añadir el directorio raíz al path para importar los módulos
 sys.path.append(str(Path(__file__).parent.parent.parent))
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
-
-from supabase_database import get_supabase_connection
 
 
 def get_missing_episodes():

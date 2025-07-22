@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 """
+import re
+import sys
+from services.supabase_database import SupabaseDatabase
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para analizar la secuencia de fechas y determinar el formato correcto.
 """
 
-import os
-import re
-import sys
-from datetime import datetime
 
 # Agregar el directorio raíz al path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
-from services.supabase_database import SupabaseDatabase
 
 
 def parse_date_ambiguous(date_str):

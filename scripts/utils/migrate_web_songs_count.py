@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 """
+import sys
+from pathlib import Path
+from dotenv import load_dotenv
+from config import DATABASE_TYPE
+from logger_setup import setup_parser_logger
+from supabase_database import get_supabase_connection
+            from scripts.utils.update_web_songs_count import main as update_main
+
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
+
 Script para migrar y actualizar el campo web_songs_count en la base de datos.
 
 Este script:
@@ -8,22 +18,13 @@ Este script:
 3. Verifica que la migración se haya completado correctamente
 """
 
-import sys
-from pathlib import Path
-
-from dotenv import load_dotenv
-
 # Cargar variables de entorno
 load_dotenv()
 
 # Añadir el directorio raíz al path para importar los módulos
 sys.path.append(str(Path(__file__).parent.parent.parent))
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
 
 # Importar directamente los módulos
-from config import DATABASE_TYPE
-from logger_setup import setup_parser_logger
-from supabase_database import get_supabase_connection
 
 # Configurar logger
 logger = setup_parser_logger()
@@ -80,8 +81,6 @@ def main():
 
         # Importar y ejecutar el script de actualización
         try:
-            from scripts.utils.update_web_songs_count import main as update_main
-
             update_main()
         except ImportError as e:
             print(f"❌ Error importando script de actualización: {e}")

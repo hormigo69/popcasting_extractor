@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 """
-Script para extraer la playlist del episodio #62 del archivo HTML.
-"""
-
 import json
 import re
 from pathlib import Path
+        import sys
+        from pathlib import Path
+        from dotenv import load_dotenv
+        from config import DATABASE_TYPE
+        from database import get_db_connection, initialize_database
+        from supabase_database import get_supabase_connection
+
+        sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
+
+Script para extraer la playlist del episodio #62 del archivo HTML.
+"""
 
 
 def extract_episode_62_playlist():
@@ -72,22 +80,13 @@ def update_episode_62_in_database(songs):
     Actualiza el episodio #62 en la base de datos con la playlist extraída.
     """
     try:
-        import sys
-        from pathlib import Path
-
-        from dotenv import load_dotenv
-
         # Cargar variables de entorno
         load_dotenv()
 
         # Añadir el directorio raíz al path para importar los módulos
         sys.path.append(str(Path(__file__).parent.parent.parent))
-        sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
 
         # Importar directamente los módulos
-        from config import DATABASE_TYPE
-        from database import get_db_connection, initialize_database
-        from supabase_database import get_supabase_connection
 
         if DATABASE_TYPE == "supabase":
             db = get_supabase_connection()

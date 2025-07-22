@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
 """
+import json
+import sys
+from pathlib import Path
+from dotenv import load_dotenv
+from config import DATABASE_TYPE
+from database import get_db_connection, initialize_database
+from logger_setup import setup_parser_logger
+from supabase_database import get_supabase_connection
+
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
+
 Script para extraer el número de canciones de web_playlist y actualizar el campo web_songs_count.
 
 Este script:
@@ -8,24 +19,13 @@ Este script:
 3. Actualiza el campo web_songs_count en la base de datos
 """
 
-import json
-import sys
-from pathlib import Path
-
-from dotenv import load_dotenv
-
 # Cargar variables de entorno
 load_dotenv()
 
 # Añadir el directorio raíz al path para importar los módulos
 sys.path.append(str(Path(__file__).parent.parent.parent))
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
 
 # Importar directamente los módulos
-from config import DATABASE_TYPE
-from database import get_db_connection, initialize_database
-from logger_setup import setup_parser_logger
-from supabase_database import get_supabase_connection
 
 # Configurar logger
 logger = setup_parser_logger()

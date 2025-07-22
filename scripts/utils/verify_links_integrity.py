@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
 """
+from datetime import datetime
+
+import re
+import sys
+from pathlib import Path
+from urllib.parse import urlparse
+from services.supabase_database import SupabaseDatabase
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para verificar la integridad de los enlaces en la tabla podcasts.
 Verifica que las URLs de episodios y MP3s sean coherentes y no haya errores en el scraping.
 """
 
-import os
-import re
-import sys
-from datetime import datetime
-from pathlib import Path
-from urllib.parse import urlparse
 
 # Agregar el directorio raíz al path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
-from services.supabase_database import SupabaseDatabase
 
 
 def analyze_url_patterns(podcasts):

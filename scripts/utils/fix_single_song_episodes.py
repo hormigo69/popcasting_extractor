@@ -1,23 +1,25 @@
-#!/usr/bin/env python3
-"""
-Script específico para corregir episodios con 1-2 canciones que tienen toda la playlist concatenada.
-"""
-
 import json
 import re
 import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
+from supabase_database import get_supabase_connection
+
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
+
+
+#!/usr/bin/env python3
+"""
+Script específico para corregir episodios con 1-2 canciones que tienen toda la playlist concatenada.
+"""
+
 
 # Cargar variables de entorno
 load_dotenv()
 
 # Añadir el directorio raíz al path para importar los módulos
 sys.path.append(str(Path(__file__).parent.parent.parent))
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
-
-from supabase_database import get_supabase_connection
 
 
 def get_single_song_episodes():

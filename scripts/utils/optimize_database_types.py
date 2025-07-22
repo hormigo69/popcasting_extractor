@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 """
+from datetime import datetime
+
+import re
+import sys
+from services.config import DATABASE_TYPE
+from services.database import get_db_connection
+from services.supabase_database import SupabaseDatabase
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para optimizar los tipos de campo de la base de datos.
 Convierte los campos de TEXT a tipos más específicos según las especificaciones.
 
@@ -12,17 +22,8 @@ Campos a optimizar en la tabla podcasts:
 - cover_image_url: TEXT (mantener)
 """
 
-import os
-import re
-import sys
-from datetime import datetime
 
 # Agregar el directorio raíz al path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
-from services.config import DATABASE_TYPE
-from services.database import get_db_connection
-from services.supabase_database import SupabaseDatabase
 
 
 def validate_program_number(program_number: str) -> int | None:

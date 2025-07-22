@@ -1,3 +1,13 @@
+import json
+import sys
+from pathlib import Path
+
+from dotenv import load_dotenv
+from supabase_database import get_supabase_connection  # noqa: E402
+
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
+
+
 #!/usr/bin/env python3
 """
 Script para actualizar manualmente la playlist y el número de canciones de episodios concretos en Supabase.
@@ -8,19 +18,12 @@ Incluye todas las correcciones manuales realizadas:
 Uso: Ejecuta este script para aplicar todas las correcciones manuales de playlists.
 """
 
-import json
-import sys
-from pathlib import Path
-
-from dotenv import load_dotenv
 
 # Cargar variables de entorno
 load_dotenv()
 
 # Añadir el directorio raíz al path para importar los módulos
 sys.path.append(str(Path(__file__).parent.parent.parent))
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
-from supabase_database import get_supabase_connection  # noqa: E402
 
 
 def update_playlist(program_number, playlist):

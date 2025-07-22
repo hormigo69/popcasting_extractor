@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
+import sys
+from services.supabase_database import SupabaseDatabase
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 Script para ejecutar la optimización SQL directamente en Supabase.
 Este script ejecuta el SQL para cambiar los tipos de columna.
 """
 
-import os
-import sys
 
 # Agregar el directorio raíz al path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
-from services.supabase_database import SupabaseDatabase
 
 
 def execute_supabase_optimization():
