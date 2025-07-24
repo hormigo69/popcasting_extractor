@@ -240,12 +240,38 @@
     ✅ **VERIFICADO**: Todos los episodios tienen el número correcto de canciones según web_playlist
 
 
+[x] Crear cliente para Synology NAS
+    ✅ Implementado en synology_client.py
+    ✅ Clase SynologyClient con métodos login, upload, download, list, create_folder
+    ✅ Soporte para context manager (with SynologyClient() as client:)
+    ✅ Autenticación automática con SID
+    ✅ Subida de archivos a carpetas específicas
+    ✅ Listado de archivos con detalles
+    ✅ Creación de carpetas automática
+    ✅ Descarga de archivos del NAS
+    ✅ Manejo de errores robusto
+    ✅ Script de pruebas en test_synology_client.py
+    ✅ Ejemplos de uso en example_usage.py
+    ✅ Documentación completa en README_SYNOLOGY_CLIENT.md
+    ✅ Integrado en rama master
+    ✅ **FUNCIONALIDAD PROBADA**: Subida exitosa de archivos a /popcasting_marilyn/mp3
+
+
 
 
 
 ________________________________________________________
 
+## Tareas completadas recientemente (Julio 2024):
 
+✅ **Cliente Synology NAS**: Clase completa para operaciones con NAS
+✅ **Verificación de integridad**: Todas las tablas verificadas y corregidas
+✅ **Migración a Supabase**: Sistema híbrido funcionando
+✅ **Extracción web**: Sistema completo de extracción desde WordPress
+✅ **Corrección de playlists**: 100% de episodios con playlists correctas
+✅ **Enlaces extras**: Formato unificado y sin duplicados
+✅ **Comentarios**: Extracción automática de comentarios y especiales
+✅ **Optimización de tipos**: Campos de base de datos optimizados
 
 ## Próximos pasos:
 
@@ -298,6 +324,22 @@ ________________________________________________________
     - Generación automática de RSS feeds
     - Sistema de usuarios y permisos
 
+[ ] Integrar cliente Synology con el proyecto principal
+    - Backup automático de base de datos a NAS
+    - Subida automática de archivos generados
+    - Sincronización de logs y reportes
+    - Configuración centralizada en services/config.py
+    - Integración con el sistema de logging existente
+
+[ ] Mejorar cliente Synology NAS
+    - Soporte para subida de múltiples archivos
+    - Barra de progreso durante subidas
+    - Verificación de integridad de archivos (checksum)
+    - Soporte para autenticación de dos factores
+    - Configuración de carpetas por defecto personalizable
+    - Logs detallados de operaciones
+    - Retry automático en caso de fallos de red
+
 [ ] Optimizaciones y mejoras técnicas
     - Cache de consultas frecuentes
     - Optimización de índices en Supabase
@@ -310,4 +352,13 @@ ________________________________________________________
 # llamada a los scripts:
 
 # backup de la BDD
-clear && uv run python 
+clear && uv run python scripts/backup_supabase_simple.py
+
+# cliente Synology NAS
+clear && uv run python example_usage.py
+clear && uv run python test_synology_client.py
+
+# verificar integridad de datos
+clear && uv run python scripts/utils/verify_podcasts_integrity.py
+clear && uv run python scripts/utils/verify_songs_integrity.py
+clear && uv run python scripts/utils/verify_links_integrity.py 
