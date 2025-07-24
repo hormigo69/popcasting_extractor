@@ -147,15 +147,13 @@ from services.supabase_database import (
 | podcast_id | BIGINT | ID del podcast (FK) |
 | created_at | TIMESTAMP | Fecha de creación |
 
-### Tabla `extra_links`
+### Campo `web_extra_links` en tabla `podcasts`
 
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
-| id | BIGSERIAL | ID único del link |
-| text | TEXT | Texto del link |
-| url | TEXT | URL del link |
-| podcast_id | BIGINT | ID del podcast (FK) |
-| created_at | TIMESTAMP | Fecha de creación |
+| web_extra_links | TEXT | Enlaces extras en formato JSON: `[{"text": "...", "url": "..."}]` |
+
+**Nota**: La tabla `extra_links` ha sido eliminada. Todos los enlaces extras se almacenan en el campo `web_extra_links` de la tabla `podcasts`.
 
 ## 🔍 Diferencias con SQLite
 

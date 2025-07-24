@@ -37,9 +37,8 @@ def get_sqlite_data():
     cursor.execute("SELECT * FROM songs ORDER BY id")
     songs = [dict(row) for row in cursor.fetchall()]
 
-    # Obtener links extras
-    cursor.execute("SELECT * FROM extra_links ORDER BY id")
-    extra_links = [dict(row) for row in cursor.fetchall()]
+    # Nota: La tabla extra_links ha sido eliminada. Los enlaces extras se almacenan en web_extra_links
+    extra_links = []
 
     conn.close()
 
@@ -123,22 +122,8 @@ def migrate_data():
             except Exception as e:
                 print(f"  ❌ Error migrando canción {song['id']}: {e}")
 
-        # Migrar links extras
-        print("🔄 Migrando links extras...")
-        for link in extra_links:
-            try:
-                new_podcast_id = podcast_id_mapping.get(link["podcast_id"])
-                if new_podcast_id:
-                    supabase_db.add_extra_link(
-                        podcast_id=new_podcast_id, text=link["text"], url=link["url"]
-                    )
-                    print(f"  ✅ Link extra '{link['text']}' migrado")
-                else:
-                    print(
-                        f"  ⚠️  No se encontró el podcast_id {link['podcast_id']} para el link {link['id']}"
-                    )
-            except Exception as e:
-                print(f"  ❌ Error migrando link extra {link['id']}: {e}")
+        # Nota: Los links extras ya están en el campo web_extra_links de la tabla podcasts
+        print("🔄 Los links extras ya están en el campo web_extra_links")
 
         # Actualizar información web si existe
         print("🔄 Actualizando información web...")
@@ -174,7 +159,7 @@ def migrate_data():
         print("📊 Resumen:")
         print(f"  - Podcasts migrados: {len(podcast_id_mapping)}")
         print(f"  - Canciones migradas: {len(songs)}")
-        print(f"  - Links extras migrados: {len(extra_links)}")
+        print(f"  - Links extras: ya están en web_extra_links")
 
         return True
 

@@ -45,16 +45,7 @@ def initialize_database():
     );
     """)
 
-    # Crear tabla de links extras
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS extra_links (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        text TEXT NOT NULL,
-        url TEXT NOT NULL,
-        podcast_id INTEGER,
-        FOREIGN KEY (podcast_id) REFERENCES podcasts (id)
-    );
-    """)
+    # Nota: La tabla extra_links ha sido eliminada. Los enlaces extras se almacenan en el campo web_extra_links de la tabla podcasts
 
     # Crear un índice para buscar podcasts por fecha más rápidamente
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_podcasts_date ON podcasts(date);")
@@ -225,15 +216,26 @@ def delete_songs_by_podcast_id(podcast_id: int):
     conn.close()
 
 
+import json
+
 def add_extra_link(podcast_id: int, text: str, url: str):
-    """Añade un link extra asociado a un podcast."""
+    """Añade un link extra asociado a un podcast al campo web_extra_links."""
     conn = get_db_connection()
     cursor = conn.cursor()
 
+    # Obtener enlaces actuales
+    current_links = get_extra_links_by_podcast_id(podcast_id)
+    
+    # Añadir nuevo enlace
+    new_link = {"text": text, "url": url}
+    current_links.append(new_link)
+    
+    # Actualizar campo web_extra_links
     cursor.execute(
-        "INSERT INTO extra_links (podcast_id, text, url) VALUES (?, ?, ?)",
-        (podcast_id, text, url),
+        "UPDATE podcasts SET web_extra_links = ? WHERE id = ?",
+        (json.dumps(current_links), podcast_id),
     )
+    
     conn.commit()
     conn.close()
 
@@ -243,25 +245,31 @@ def delete_extra_links_by_podcast_id(podcast_id: int):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("DELETE FROM extra_links WHERE podcast_id = ?", (podcast_id,))
+    cursor.execute("UPDATE podcasts SET web_extra_links = NULL WHERE id = ?", (podcast_id,))
 
     conn.commit()
     conn.close()
 
 
 def get_extra_links_by_podcast_id(podcast_id: int) -> list:
-    """Obtiene todos los links extras de un podcast específico."""
+    """Obtiene todos los links extras de un podcast específico desde web_extra_links."""
     conn = get_db_connection()
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT text, url FROM extra_links WHERE podcast_id = ? ORDER BY id",
+        "SELECT web_extra_links FROM podcasts WHERE id = ?",
         (podcast_id,),
     )
 
-    results = [dict(row) for row in cursor.fetchall()]
+    result = cursor.fetchone()
     conn.close()
-    return results
+    
+    if result and result[0]:
+        try:
+            return json.loads(result[0])
+        except json.JSONDecodeError:
+            return []
+    return []
 
 
 def search_songs(query: str) -> list:
@@ -489,14 +497,17 @@ def update_extra_links_if_changed(podcast_id: int, new_links: list) -> bool:
     if not extra_links_have_changed(podcast_id, new_links):
         return False
 
-    # Si hay cambios, borrar los existentes y añadir los nuevos
-    delete_extra_links_by_podcast_id(podcast_id)
-    for link in new_links:
-        add_extra_link(
-            podcast_id=podcast_id,
-            text=link["text"],
-            url=link["url"],
-        )
+    # Si hay cambios, actualizar directamente el campo web_extra_links
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute(
+        "UPDATE podcasts SET web_extra_links = ? WHERE id = ?",
+        (json.dumps(new_links), podcast_id),
+    )
+    
+    conn.commit()
+    conn.close()
     return True
 
 

@@ -213,7 +213,23 @@
     ✅ Verificación completa de comentarios añadidos
 
 
+[x] Estudiar la necesidad de la tabla extra_links.
+    ✅ Análisis completo realizado: tabla extra_links vs campo web_extra_links
+    ✅ Migrados enlaces únicos de tabla a campo (episodios 419, 322, 321, 319)
+    ✅ Eliminados 277 registros de tabla extra_links
+    ✅ Refactorizado código para usar solo campo web_extra_links
+    ✅ Actualizados servicios de Supabase y SQLite
+    ✅ Actualizada documentación y esquemas
+    ✅ Tabla extra_links eliminada (pendiente eliminación manual en Supabase)
 
+
+
+
+
+
+
+
+________________________________________________________
 
 
 

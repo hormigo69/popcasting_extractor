@@ -30,14 +30,7 @@ CREATE TABLE IF NOT EXISTS songs (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Crear tabla de links extras
-CREATE TABLE IF NOT EXISTS extra_links (
-    id BIGSERIAL PRIMARY KEY,
-    text TEXT NOT NULL,
-    url TEXT NOT NULL,
-    podcast_id BIGINT REFERENCES podcasts(id) ON DELETE CASCADE,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
+-- Nota: La tabla extra_links ha sido eliminada. Los enlaces extras se almacenan en el campo web_extra_links de la tabla podcasts
 
 -- Crear índices para mejorar el rendimiento
 CREATE INDEX IF NOT EXISTS idx_podcasts_date ON podcasts(date);
@@ -45,7 +38,7 @@ CREATE INDEX IF NOT EXISTS idx_podcasts_program_number ON podcasts(program_numbe
 CREATE INDEX IF NOT EXISTS idx_songs_podcast_id ON songs(podcast_id);
 CREATE INDEX IF NOT EXISTS idx_songs_artist ON songs(artist);
 CREATE INDEX IF NOT EXISTS idx_songs_title ON songs(title);
-CREATE INDEX IF NOT EXISTS idx_extra_links_podcast_id ON extra_links(podcast_id);
+-- Nota: El índice de extra_links ya no es necesario
 
 -- Crear función para actualizar updated_at automáticamente
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -65,9 +58,9 @@ CREATE TRIGGER update_podcasts_updated_at
 -- Habilitar Row Level Security (RLS) - opcional
 -- ALTER TABLE podcasts ENABLE ROW LEVEL SECURITY;
 -- ALTER TABLE songs ENABLE ROW LEVEL SECURITY;
--- ALTER TABLE extra_links ENABLE ROW LEVEL SECURITY;
+-- Nota: La tabla extra_links ya no existe
 
 -- Crear políticas RLS básicas (descomentar si se habilita RLS)
 -- CREATE POLICY "Allow all operations for authenticated users" ON podcasts FOR ALL USING (auth.role() = 'authenticated');
 -- CREATE POLICY "Allow all operations for authenticated users" ON songs FOR ALL USING (auth.role() = 'authenticated');
--- CREATE POLICY "Allow all operations for authenticated users" ON extra_links FOR ALL USING (auth.role() = 'authenticated'); 
+-- Nota: La tabla extra_links ya no existe 

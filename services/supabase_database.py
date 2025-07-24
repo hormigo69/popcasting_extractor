@@ -1,3 +1,4 @@
+import json
 import os
 
 from dotenv import load_dotenv
@@ -34,12 +35,11 @@ class SupabaseDatabase:
             # Verificar que las tablas existen haciendo una consulta simple
             self.client.table("podcasts").select("id").limit(1).execute()
             self.client.table("songs").select("id").limit(1).execute()
-            self.client.table("extra_links").select("id").limit(1).execute()
             print("✅ Base de datos Supabase inicializada correctamente")
         except Exception as e:
             print(f"❌ Error al inicializar la base de datos: {e}")
             print(
-                "Asegúrate de que las tablas 'podcasts', 'songs' y 'extra_links' existan en Supabase"
+                "Asegúrate de que las tablas 'podcasts' y 'songs' existan en Supabase"
             )
             raise
 
@@ -150,10 +150,18 @@ class SupabaseDatabase:
             raise
 
     def add_extra_link(self, podcast_id: int, text: str, url: str):
-        """Añade un link extra asociado a un podcast."""
+        """Añade un link extra asociado a un podcast al campo web_extra_links."""
         try:
-            link_data = {"podcast_id": podcast_id, "text": text, "url": url}
-            self.client.table("extra_links").insert(link_data).execute()
+            # Obtener enlaces actuales
+            current_links = self.get_extra_links_by_podcast_id(podcast_id)
+            
+            # Añadir nuevo enlace
+            new_link = {"text": text, "url": url}
+            current_links.append(new_link)
+            
+            # Actualizar campo web_extra_links
+            self.update_web_info(podcast_id, web_extra_links=json.dumps(current_links))
+            
         except Exception as e:
             print(f"❌ Error al añadir link extra: {e}")
             raise
@@ -161,24 +169,26 @@ class SupabaseDatabase:
     def delete_extra_links_by_podcast_id(self, podcast_id: int):
         """Borra todos los links extras asociados a un ID de podcast."""
         try:
-            self.client.table("extra_links").delete().eq(
-                "podcast_id", podcast_id
-            ).execute()
+            # Limpiar campo web_extra_links
+            self.update_web_info(podcast_id, web_extra_links=None)
         except Exception as e:
             print(f"❌ Error al borrar links extras: {e}")
             raise
 
     def get_extra_links_by_podcast_id(self, podcast_id: int) -> list[dict]:
-        """Obtiene todos los links extras de un podcast específico."""
+        """Obtiene todos los links extras de un podcast específico desde web_extra_links."""
         try:
             response = (
-                self.client.table("extra_links")
-                .select("text, url")
-                .eq("podcast_id", podcast_id)
-                .order("id")
+                self.client.table("podcasts")
+                .select("web_extra_links")
+                .eq("id", podcast_id)
                 .execute()
             )
-            return response.data
+            
+            if response.data and response.data[0].get("web_extra_links"):
+                return json.loads(response.data[0]["web_extra_links"])
+            return []
+            
         except Exception as e:
             print(f"❌ Error al obtener links extras: {e}")
             raise
