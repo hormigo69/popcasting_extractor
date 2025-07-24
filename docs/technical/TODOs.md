@@ -148,12 +148,17 @@
     ✅ Compatible con ambas bases de datos (SQLite y Supabase)
 
 
-[ ] Arreglar episodios con playlist mal
+[x] Arreglar episodios con playlist mal
     - Episodios saltados (sin playlist): 9
     - ✅ **COMPLETADO**: Se corrigieron 19 episodios con 1-2 canciones que tenían playlists concatenadas
     - ✅ **COMPLETADO**: Se corrigieron 45 episodios con playlists manuales (episodios #64, #72, #76, #92, #96, #109, #143, #200, #245, #283)
     - ✅ **COMPLETADO**: Se corrigieron automáticamente 29 episodios mediante extracción desde WordPress
     - ✅ **RESUELTO**: No quedan episodios con 8 canciones o menos. Todos los episodios tienen playlists completas y correctas.
+    - ✅ **COMPLETADO**: Se corrigieron 9 episodios con formato incorrecto de web_playlist (episodios #276, #84, #68, #67, #66, #65, #63, #61, #60)
+    - ✅ **CORREGIDO**: Episodio #276: Agregada intro faltante "Intro: neural story singing christmas"
+    - ✅ **CORREGIDO**: Episodios #84, #68, #67, #66, #65, #63, #61, #60: Convertidos de array de strings a formato JSON estándar
+    - ✅ **VERIFICADO**: 100% de episodios con patrón correcto `[{"position": 1, "artist": `
+    - ✅ **VERIFICADO**: 100% de episodios con web_songs_count coincidente con web_playlist
 
 ✅ **CORREGIDO**: Todas las playlists manuales han sido unificadas en `scripts/utils/manual_update_web_playlist.py` y aplicadas correctamente a la base de datos. Todos los scripts individuales de corrección han sido eliminados.
 
@@ -224,7 +229,9 @@
     ✅ **LIMPIEZA**: Archivos auxiliares de migración eliminados
 
 
-
+[ ] Verificar la integridad de la Tabla songs en la BD
+    - comprobar que están todos los números de capítulo (veo que faltan algunos):
+     Buscamos cuántas canciones hay en la tabla songs por cada episodio y comparamos con el número de canciones por episodio de la tabla podcasts. Hacemos un informe en md con los resultados para tomar decisiones
 
 
 
@@ -244,12 +251,12 @@ ________________________________________________________
     - buscamos campos vacíos para revisar por qué no se han llenado.
     
 
+[ ] Hacer un extractor sencillo para incorporar la información de nuevos episodios desde el RSS a la BDD. Miramos cual es el último episodio en Supabase para no repetir episodios.
 
 
 
 
 
-[ ] Extraer los comentarios del nombre a un campo extra
 
 [ ] Crear el front del buscador de canciones
     - Interfaz web para buscar canciones por artista, título, episodio
