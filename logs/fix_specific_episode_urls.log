@@ -1,9 +1,0 @@
-2025-07-24 10:40:33,384 - INFO - Iniciando corrección de URLs específicas de episodios...
-2025-07-24 10:40:33,592 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Ccover_image_url%2Cwordpress_url&program_number=eq.245 "HTTP/2 200 OK"
-2025-07-24 10:40:33,595 - INFO - Encontrados 1 episodios específicos
-2025-07-24 10:40:33,595 - INFO - Procesando episodio #245: Popcasting245
-2025-07-24 10:40:33,595 - INFO - URL actual: https://secure.gravatar.com/blavatar/04775f8aa0fdb29e3b8bc70ba3d3e0210c77fbd00d62fc2cd08a25b4edfe12bb?s=200&ts=1753343285
-2025-07-24 10:40:33,595 - INFO - URL correcta: https://popcastingpop.com/wp-content/uploads/2015/09/img_2868.jpg
-2025-07-24 10:40:33,709 - INFO - HTTP Request: PATCH https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?id=eq.241 "HTTP/2 200 OK"
-2025-07-24 10:40:33,710 - INFO - Actualizado episodio 241 con nueva URL: https://popcastingpop.com/wp-content/uploads/2015/09/img_2868.jpg
-2025-07-24 10:40:33,711 - INFO - Corrección completada. Reporte guardado en logs/specific_episode_urls_report.txt

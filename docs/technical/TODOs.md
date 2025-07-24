@@ -172,12 +172,33 @@
     ✅ **COMPLETADO**: 99.6% de URLs correctas (483/485 episodios)
     ✅ **FINALIZADO**: Solo 2 episodios con URLs de servicios externos (por decisión del usuario)
 
-[ ] revisar los links del campo web_extra_links. 
-    Idealmente deberían de ser algo como [{"text": "pete drake \u00b7 forever (video)", "url": "http://www.boingboing.net/2008/11/17/old-video-of-talking.html"}, {"text": "john and jehn myspace", "url": "http://www.myspace.com/johnjehn"}, {"text": "mojo november 1993", "url": "http://cover.mojo4music.com/Item.aspx?pageNo=1568&year=1993"}, {"text": "fran\u00e7oise breut \u00b7 el pais", "url": "http://www.elpais.com/articulo/cultura/Francoiz/Breut/estrena/disco/ELPAIScom/elpepucul/20081128elpepucul_2/Tes"}, {"text": "green ufos", "url": "http://www.greenufos.com"}]
-    pero hay algunos que no están con el texto y el link separados.
-    Hay espisodios sin links extras.
-    Hay un link que vamos a ignorar que es el de "Invita a Popcasting a café"
-    Los links en la BDD  que empiecen con [{"text":  consideramos que están correctos. Hay que revisar los vacíos o los que no están con el formato correcto y scrappear la página a ver si podemos mejorarlos. Ojo porque las páginas hasta el 91 tienen un formato diferente. los HTMLs están en la carpeta data con los nombres del bloque de episodios: data/00-20.html, etc.
+[x] revisar los links del campo web_extra_links. 
+    ✅ Implementado en scripts/utils/analyze_web_extra_links.py
+    ✅ Implementado en scripts/utils/fix_web_extra_links.py
+    ✅ Implementado en scripts/utils/verify_web_extra_links_final.py
+    ✅ Corregidos 39 episodios con formato incorrecto (URLs simples → formato JSON)
+    ✅ Scrapeados 12 episodios sin enlaces extras desde WordPress
+    ✅ Filtrados enlaces ignorados ("Invita a Popcasting a café")
+    ✅ Alcanzado 100% de episodios con formato correcto (485/485)
+    ✅ Total de enlaces: 1,538 (promedio 3.17 por episodio)
+    ✅ Tipos de enlaces más comunes: iVoox (303), YouTube (113), MySpace (68)
+    ✅ Reportes detallados generados en logs/
+    ✅ **CORREGIDO**: Filtrados enlaces problemáticos (iVoox audio, copycommaright, audio downloads)
+    ✅ **CORREGIDO**: Eliminados duplicados exactos y secuencias de alta duplicación
+    ✅ **CORREGIDO**: Limpiados episodios #0-#20 (390 enlaces duplicados eliminados)
+    ✅ **RESTAURADO**: Enlaces extras originales de episodios específicos (217 enlaces legítimos restaurados)
+    ✅ **FINALIZADO**: 100% de episodios con enlaces extras correctos y sin duplicados
+    ✅ **LIMPIEZA**: Archivos auxiliares de comprobación eliminados, solo quedan los esenciales para replicar la BDD
+
+
+[ ] Cerar un campo comments y añadir el texto extra que haya en el título de los episodios.
+    (ok), (corregido) o (B) no son comentarios a añadir.
+    Los comentarios actuales viene precedidos de  ::  , - ,o van entre ()
+
+
+
+
+
 
 
 ## Próximos pasos:

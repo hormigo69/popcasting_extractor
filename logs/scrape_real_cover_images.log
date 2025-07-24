@@ -1,5 +1,0 @@
-2025-07-24 10:38:01,961 - INFO - Iniciando scraping real de imágenes de portada...
-2025-07-24 10:38:02,569 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Ccover_image_url%2Cwordpress_url&cover_image_url=not.is.null&cover_image_url=neq.&order=program_number.asc "HTTP/2 200 OK"
-2025-07-24 10:38:02,572 - INFO - Encontrados 0 episodios problemáticos
-2025-07-24 10:38:02,572 - INFO - Correcciones no aplicadas automáticamente. Revisa logs/real_cover_image_corrections.txt
-2025-07-24 10:38:02,572 - INFO - URLs reales encontradas: 0/0

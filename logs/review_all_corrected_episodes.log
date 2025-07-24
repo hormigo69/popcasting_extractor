@@ -1,6 +1,0 @@
-2025-07-24 10:41:48,777 - INFO - Iniciando revisión de todos los episodios corregidos...
-2025-07-24 10:41:49,326 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Ccover_image_url%2Cwordpress_url&cover_image_url=not.is.null&cover_image_url=neq.&order=program_number.asc "HTTP/2 200 OK"
-2025-07-24 10:41:49,332 - INFO - Revisión completada. Reporte guardado en logs/review_all_corrected_episodes_report.txt
-2025-07-24 10:46:40,538 - INFO - Iniciando revisión de todos los episodios corregidos...
-2025-07-24 10:46:40,931 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Ccover_image_url%2Cwordpress_url&cover_image_url=not.is.null&cover_image_url=neq.&order=program_number.asc "HTTP/2 200 OK"
-2025-07-24 10:46:40,937 - INFO - Revisión completada. Reporte guardado en logs/review_all_corrected_episodes_report.txt
