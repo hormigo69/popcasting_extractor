@@ -200,126 +200,17 @@
     ✅ 8 episodios con comentarios extraídos (1.6% del total)
     ✅ Comentarios extraídos: "Especial Navidad 2012", "especial Smash Hits 1984", etc.
     ✅ Verificación completa en scripts/utils/verify_comments_extraction.py
-    Añadir Especial verano YYYY y el título del especial sacandolo de la lista de más abajo. Ojo porque hay que buscar el episodio por fecha
-2006
-
-Especial singles de vinilo (15/7)
-Prehistoria Popcasting: hits del año 2004 (1/8)
-Canciones comerciales (15/8)
-Especial instrumentales (1/9)
-
-2007
-
-Especial nombres propios en títulos (15/7)
-Prehistoria Popcasting: hits del año 2003 (1/8)
-Especial notas manuscritas en vinilos de 2ª mano (15/8)
-Especial versiones (1/9)
-
-2008
-
-Canciones veraniegas (15/7)
-Especial cintas de cassette recopilatorias I (1/8)
-Prehistoria Popcasting: hits del año 2002 (15/8)
-Especial cuñas de Popcasting (1/9)
-
-2009
-
-Prehistoria Popcasting: hits 2001 (1/7)
-Especial número 100 (15/7)
-Especial Willy DeVille (r.i.p.) (1/8)
-Canciones de menos de 2 minutos (15/8)
-
-2010
-
-Discos comprados por correo (15/7)
-Especial Paul Griffin (1/8)
-Cintas recopilatorias II (15/8)
-Especial ‘El Ambigú’ (r.i.p.) (1/9)
-
-2011
-
-Especial errores en canciones (15/7)
-Especial CDs de regalo en revistas (1/8)
-Especial duetos (15/8)
-
-2012
-
-Especial paquete de singles (1/8)
-Discos de homenaje (15/8)
-Canciones sobre septiembre (1/9)
-
-2013
-
-Especial singles cantados por niñas (15/7)
-Especial revista Smash Hits 1984 (2/8)
-Especial pistas aisladas y ‘a capellas’ (15/8)
-
-2014
-
-‘Disco Not Disco’ (15/7)
-Especial discos de 10 pulgadas (31/7)
-Canciones de dos acordes (14/8)
-
-2015
-
-‘Baggy Not Baggy’ (15/7)
-Canciones con el mismo título (1/8)
-Especial canciones de programas infantiles (15/8)
-
-2016
-
-Especial Roberto C. Meyer (18/7)
-Canciones del Brill Building post-60s I (1/8)
-Canciones del Brill Building post-60s II (22/8)
-
-2017
-
-Especial Roberto C. Meyer II (15/7)
-Canciones con ‘girl’ en el título (31/7)
-Especial revista Smash Hits 1986 (15/8)
-
-2018
-
-Anachronistic d’amour (17/7)
-Especial fake 80s remixes y versiones (1/8)
-Especial nombres de artistas con juego de palabras (15/8)
-
-2019
-
-Versiones inusuales (14/7)
-1970: Los discos del crepúsculo americano (1/8)
-Especial James Wilsey (r.i.p.) (17/8)
-
-2020
-
-Especial modulaciones (18/7)
-Especial reverbs y ecos (31/7)
-‘Artsy Fartsy’ (14/8)
-
-2021
-
-Especial revista NME 1990 (15/7)
-Especial autoharp (31/7)
-Especial singles electrodisco/italo/hi-NRG 1981-84 (18/8)
-
-2022
-
-One Chord Wonders (15/7)
-Bad Girl, Bad Boy (31/7)
-Gainsbourg for Sale (15/8)
 
 
-2023
-
-Telstar (15/7)
-Marcato Strings (31/7)
-Happy Accidents (15/8)
-
-2024
-
-Acorde de RE de ‘Needles and Pins’ (15/7)
-‘This is not Rock and Roll, it’s masochism’ (1/8)
-Mojo ‘Home Taping’: Power Pop (15/8)
+[x] Añadir en 'comments' el título del especial sacandolo de la lista del JSON adjunto. Ojo porque hay que buscar el episodio por fecha. sobreescribir si ya hay un comentario.
+    ✅ Implementado en scripts/utils/add_summer_specials_from_json.py
+    ✅ Archivo JSON creado en data/Especiales.json con 62 especiales (2006-2024)
+    ✅ Búsqueda de episodios por fecha exacta
+    ✅ Formato de comentarios: "Especial verano YYYY - [título]"
+    ✅ 49 episodios actualizados exitosamente
+    ✅ 13 episodios no encontrados (fechas sin episodios correspondientes)
+    ✅ Sobrescritura de comentarios existentes como solicitado
+    ✅ Verificación completa de comentarios añadidos
 
 
 
