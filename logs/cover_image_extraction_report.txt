@@ -1,0 +1,31 @@
+
+=== REPORTE DE EXTRACCIÓN DE IMÁGENES DE PORTADA ===
+
+RESUMEN:
+- Episodios procesados: 6
+- Actualizaciones exitosas: 1
+- Errores: 5
+- Tasa de éxito: 16.7%
+
+ESTADÍSTICAS ACTUALES:
+
+- Total episodios en BD: 485
+- Episodios con imagen de portada: 480 (99.0%)
+- Episodios sin imagen de portada: 5 (1.0%)
+
+ERRORES DETALLADOS:
+- Episodio #65: Popcasting65
+  Error: No se encontró imagen de portada
+
+- Episodio #66: Popcasting66
+  Error: No se encontró imagen de portada
+
+- Episodio #67: Popcasting67
+  Error: No se encontró imagen de portada
+
+- Episodio #68: Popcasting68
+  Error: No se encontró imagen de portada
+
+- Episodio #82: Popcasting #082
+  Error: No se encontró imagen de portada
+

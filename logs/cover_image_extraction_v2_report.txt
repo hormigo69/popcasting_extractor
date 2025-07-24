@@ -1,0 +1,14 @@
+
+=== REPORTE DE EXTRACCIÓN DE IMÁGENES DE PORTADA V2 ===
+
+RESUMEN:
+- Episodios procesados: 5
+- Actualizaciones exitosas: 5
+- Errores: 0
+- Tasa de éxito: 100.0%
+
+ESTADÍSTICAS ACTUALES:
+
+- Total episodios en BD: 485
+- Episodios con imagen de portada: 485 (100.0%)
+- Episodios sin imagen de portada: 0 (0.0%)

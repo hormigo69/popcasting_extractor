@@ -1,0 +1,5 @@
+2025-07-24 10:40:56,496 - INFO - Generando lista de URLs actuales de episodios específicos...
+2025-07-24 10:40:56,856 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Ccover_image_url%2Cwordpress_url&program_number=eq.192 "HTTP/2 200 OK"
+2025-07-24 10:40:57,153 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Ccover_image_url%2Cwordpress_url&program_number=eq.215 "HTTP/2 200 OK"
+2025-07-24 10:40:57,271 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Ccover_image_url%2Cwordpress_url&program_number=eq.245 "HTTP/2 200 OK"
+2025-07-24 10:40:57,272 - INFO - Lista generada. Revisa logs/current_cover_urls_list.txt

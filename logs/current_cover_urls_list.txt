@@ -1,0 +1,23 @@
+=== LISTA DE URLs ACTUALES DE IMÁGENES DE PORTADA ===
+
+Episodio #192: Popcasting192
+URL actual: https://popcastingpop.com/wp-content/uploads/2009/05/rsssmall.jpg?w=16&h=16
+URL WordPress: https://popcastingpop.com/2013/06/15/popcasting-192/
+Problemas detectados: Imagen RSS pequeña
+
+--------------------------------------------------------------------------------
+
+Episodio #215: Popcasting215
+URL actual: https://popcastingpop.com/wp-content/uploads/2009/05/rsssmall.jpg?w=16&h=16
+URL WordPress: https://popcastingpop.com/2014/05/31/popcasting-215/
+Problemas detectados: Imagen RSS pequeña
+
+--------------------------------------------------------------------------------
+
+Episodio #245: Popcasting245
+URL actual: https://popcastingpop.com/wp-content/uploads/2015/09/img_2868.jpg
+URL WordPress: https://popcastingpop.com/2015/09/01/popcasting-245/
+Problemas detectados: Ninguno
+
+--------------------------------------------------------------------------------
+

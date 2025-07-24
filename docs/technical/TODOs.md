@@ -137,11 +137,6 @@
 
 
 
-
-
-
-
-
 [x] Extra ¿sacamos de web_playlist el número de canciones a un campo e introducimos esto en la BDD? Esto habria que hacerlo en el importador de podcasts.
     ✅ Implementado en rama feature/web-songs-count
     ✅ Nuevo campo web_songs_count añadido a la tabla podcasts
@@ -161,6 +156,28 @@
     - ✅ **RESUELTO**: No quedan episodios con 8 canciones o menos. Todos los episodios tienen playlists completas y correctas.
 
 ✅ **CORREGIDO**: Todas las playlists manuales han sido unificadas en `scripts/utils/manual_update_web_playlist.py` y aplicadas correctamente a la base de datos. Todos los scripts individuales de corrección han sido eliminados.
+
+
+[x] Revisar los campos de cover_image faltantes y extraerlos scrappeando la url del campo wordpress_url
+    ✅ Implementado en scripts/utils/extract_missing_cover_images.py
+    ✅ Versión mejorada en scripts/utils/extract_missing_cover_images_v2.py
+    ✅ Extrae imágenes de portada de URLs de WordPress
+    ✅ Maneja casos especiales y URLs alternativas
+    ✅ 100% de episodios con imágenes de portada (485/485)
+    ✅ Tasa de éxito del 100% en la extracción
+    ✅ Reportes detallados en logs/
+    ✅ **CORREGIDO**: Limpieza de parámetros de query en URLs
+    ✅ **CORREGIDO**: Corrección de URLs problemáticas (Gravatar, Google Images, Pinterest)
+    ✅ **CORREGIDO**: Episodios específicos #245, #192, #215 actualizados con URLs proporcionadas
+    ✅ **COMPLETADO**: 99.6% de URLs correctas (483/485 episodios)
+    ✅ **FINALIZADO**: Solo 2 episodios con URLs de servicios externos (por decisión del usuario)
+
+[ ] revisar los links del campo web_extra_links. 
+    Idealmente deberían de ser algo como [{"text": "pete drake \u00b7 forever (video)", "url": "http://www.boingboing.net/2008/11/17/old-video-of-talking.html"}, {"text": "john and jehn myspace", "url": "http://www.myspace.com/johnjehn"}, {"text": "mojo november 1993", "url": "http://cover.mojo4music.com/Item.aspx?pageNo=1568&year=1993"}, {"text": "fran\u00e7oise breut \u00b7 el pais", "url": "http://www.elpais.com/articulo/cultura/Francoiz/Breut/estrena/disco/ELPAIScom/elpepucul/20081128elpepucul_2/Tes"}, {"text": "green ufos", "url": "http://www.greenufos.com"}]
+    pero hay algunos que no están con el texto y el link separados.
+    Hay espisodios sin links extras.
+    Hay un link que vamos a ignorar que es el de "Invita a Popcasting a café"
+    Los links en la BDD  que empiecen con [{"text":  consideramos que están correctos. Hay que revisar los vacíos o los que no están con el formato correcto y scrappear la página a ver si podemos mejorarlos. Ojo porque las páginas hasta el 91 tienen un formato diferente. los HTMLs están en la carpeta data con los nombres del bloque de episodios: data/00-20.html, etc.
 
 
 ## Próximos pasos:

@@ -1,0 +1,25 @@
+2025-07-24 10:39:50,708 - INFO - Iniciando scraping mejorado de episodios específicos...
+2025-07-24 10:39:51,082 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Ccover_image_url%2Cwordpress_url&program_number=eq.245 "HTTP/2 200 OK"
+2025-07-24 10:39:51,228 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Ccover_image_url%2Cwordpress_url&program_number=eq.192 "HTTP/2 200 OK"
+2025-07-24 10:39:51,350 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Ccover_image_url%2Cwordpress_url&program_number=eq.215 "HTTP/2 200 OK"
+2025-07-24 10:39:51,351 - INFO - Encontrados 3 episodios específicos
+2025-07-24 10:39:51,351 - INFO - Procesando episodio #245: Popcasting245
+2025-07-24 10:39:51,351 - INFO - URL actual: https://secure.gravatar.com/blavatar/04775f8aa0fdb29e3b8bc70ba3d3e0210c77fbd00d62fc2cd08a25b4edfe12bb?s=200&ts=1753343285
+2025-07-24 10:39:51,351 - INFO - Scraping episodio #245: https://popcastingpop.com/2015/09/01/popcasting-245/
+2025-07-24 10:39:51,701 - WARNING - Episodio #245: No se encontró imagen de portada válida
+2025-07-24 10:39:53,703 - INFO - Procesando episodio #192: Popcasting192
+2025-07-24 10:39:53,703 - INFO - URL actual: https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ53QE-23L2GkEzZNbu-ktaikx5yDBWK5tg8-6SdBltUNiIrbnjmQ
+2025-07-24 10:39:53,703 - INFO - Scraping episodio #192: https://popcastingpop.com/2013/06/15/popcasting-192/
+2025-07-24 10:39:53,738 - INFO - Episodio #192: Encontrada imagen de Popcasting
+2025-07-24 10:39:53,738 - INFO - Episodio #192: URL encontrada: https://popcastingpop.com/wp-content/uploads/2009/05/rsssmall.jpg?w=16&h=16
+2025-07-24 10:39:55,740 - INFO - Procesando episodio #215: Popcasting215
+2025-07-24 10:39:55,740 - INFO - URL actual: http://media-cache-ak0.pinimg.com/236x/ae/5d/f9/ae5df9ac5d9df49c48309516be0b6e07.jpg
+2025-07-24 10:39:55,740 - INFO - Scraping episodio #215: https://popcastingpop.com/2014/05/31/popcasting-215/
+2025-07-24 10:39:56,012 - INFO - Episodio #215: Encontrada imagen de Popcasting
+2025-07-24 10:39:56,012 - INFO - Episodio #215: URL encontrada: https://popcastingpop.com/wp-content/uploads/2009/05/rsssmall.jpg?w=16&h=16
+2025-07-24 10:39:58,014 - INFO - URLs reales encontradas: 2/3
+2025-07-24 10:39:58,014 - INFO - URLs diferentes: 2/3
+2025-07-24 10:39:58,336 - INFO - HTTP Request: PATCH https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?id=eq.296 "HTTP/2 200 OK"
+2025-07-24 10:39:58,337 - INFO - Actualizado episodio 296 con nueva URL: https://popcastingpop.com/wp-content/uploads/2009/05/rsssmall.jpg?w=16&h=16
+2025-07-24 10:39:58,470 - INFO - HTTP Request: PATCH https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?id=eq.272 "HTTP/2 200 OK"
+2025-07-24 10:39:58,471 - INFO - Actualizado episodio 272 con nueva URL: https://popcastingpop.com/wp-content/uploads/2009/05/rsssmall.jpg?w=16&h=16

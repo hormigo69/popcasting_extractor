@@ -1,0 +1,40 @@
+2025-07-24 09:49:24,440 - INFO - Iniciando extracción de imágenes de portada faltantes (V2)...
+2025-07-24 09:49:24,705 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Cwordpress_url%2Ccover_image_url&cover_image_url=is.null&wordpress_url=not.is.null&wordpress_url=neq.&order=program_number.asc "HTTP/2 200 OK"
+2025-07-24 09:49:24,872 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Cwordpress_url%2Ccover_image_url&cover_image_url=not.is.null&cover_image_url=neq.&order=program_number.asc "HTTP/2 200 OK"
+2025-07-24 09:49:24,876 - INFO - Episodios sin imagen de portada: 5
+2025-07-24 09:49:24,876 - INFO - Episodios con imagen de portada: 480
+2025-07-24 09:49:24,876 - INFO - Total episodios: 485
+2025-07-24 09:49:24,876 - INFO - Procesando episodio #65: Popcasting65
+2025-07-24 09:49:24,876 - INFO - Intentando URL: https://popcastingpop.com/archivo-popcasting-42-62/
+2025-07-24 09:49:25,301 - WARNING - Error HTTP 404 para https://popcastingpop.com/archivo-popcasting-42-62/
+2025-07-24 09:49:25,301 - INFO - Intentando URL: https://popcastingpop.com/archivo-popcasting/
+2025-07-24 09:49:25,380 - INFO - Imagen encontrada en https://popcastingpop.com/archivo-popcasting/: https://popcasting.wordpress.com/files/2009/09/patrick.jpg
+2025-07-24 09:49:25,716 - INFO - HTTP Request: PATCH https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?id=eq.391 "HTTP/2 200 OK"
+2025-07-24 09:49:25,724 - INFO - Actualizado episodio 391 con cover: https://popcasting.wordpress.com/files/2009/09/patrick.jpg
+2025-07-24 09:49:27,726 - INFO - Procesando episodio #66: Popcasting66
+2025-07-24 09:49:27,726 - INFO - Intentando URL: https://popcastingpop.com/archivo-popcasting-21-40/
+2025-07-24 09:49:27,784 - INFO - Imagen encontrada en https://popcastingpop.com/archivo-popcasting-21-40/: https://popcasting.wordpress.com/files/2009/12/mylene.jpg?w=105
+2025-07-24 09:49:27,911 - INFO - HTTP Request: PATCH https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?id=eq.390 "HTTP/2 200 OK"
+2025-07-24 09:49:27,916 - INFO - Actualizado episodio 390 con cover: https://popcasting.wordpress.com/files/2009/12/mylene.jpg?w=105
+2025-07-24 09:49:29,917 - INFO - Procesando episodio #67: Popcasting67
+2025-07-24 09:49:29,917 - INFO - Intentando URL: https://popcastingpop.com/episodio-67/
+2025-07-24 09:49:30,363 - WARNING - Error HTTP 404 para https://popcastingpop.com/episodio-67/
+2025-07-24 09:49:30,364 - INFO - Intentando URL: https://popcastingpop.com/archivo-popcasting/
+2025-07-24 09:49:30,440 - INFO - Imagen encontrada en https://popcastingpop.com/archivo-popcasting/: https://popcasting.wordpress.com/files/2009/09/patrick.jpg
+2025-07-24 09:49:30,567 - INFO - HTTP Request: PATCH https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?id=eq.389 "HTTP/2 200 OK"
+2025-07-24 09:49:30,571 - INFO - Actualizado episodio 389 con cover: https://popcasting.wordpress.com/files/2009/09/patrick.jpg
+2025-07-24 09:49:32,573 - INFO - Procesando episodio #68: Popcasting68
+2025-07-24 09:49:32,574 - INFO - Intentando URL: https://popcastingpop.com/episodio-68/
+2025-07-24 09:49:33,086 - WARNING - Error HTTP 404 para https://popcastingpop.com/episodio-68/
+2025-07-24 09:49:33,087 - INFO - Intentando URL: https://popcastingpop.com/archivo-popcasting/
+2025-07-24 09:49:33,133 - INFO - Imagen encontrada en https://popcastingpop.com/archivo-popcasting/: https://popcasting.wordpress.com/files/2009/09/patrick.jpg
+2025-07-24 09:49:33,256 - INFO - HTTP Request: PATCH https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?id=eq.388 "HTTP/2 200 OK"
+2025-07-24 09:49:33,261 - INFO - Actualizado episodio 388 con cover: https://popcasting.wordpress.com/files/2009/09/patrick.jpg
+2025-07-24 09:49:35,262 - INFO - Procesando episodio #82: Popcasting #082
+2025-07-24 09:49:35,263 - INFO - Intentando URL: https://popcastingpop.com/archivo-popcasting/
+2025-07-24 09:49:35,306 - INFO - Imagen encontrada en https://popcastingpop.com/archivo-popcasting/: https://popcasting.wordpress.com/files/2009/09/patrick.jpg
+2025-07-24 09:49:35,429 - INFO - HTTP Request: PATCH https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?id=eq.501 "HTTP/2 200 OK"
+2025-07-24 09:49:35,433 - INFO - Actualizado episodio 501 con cover: https://popcasting.wordpress.com/files/2009/09/patrick.jpg
+2025-07-24 09:49:37,562 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Cwordpress_url%2Ccover_image_url&cover_image_url=is.null&wordpress_url=not.is.null&wordpress_url=neq.&order=program_number.asc "HTTP/2 200 OK"
+2025-07-24 09:49:37,745 - INFO - HTTP Request: GET https://ndhmlymnbrewflharfmr.supabase.co/rest/v1/podcasts?select=id%2Cprogram_number%2Ctitle%2Cwordpress_url%2Ccover_image_url&cover_image_url=not.is.null&cover_image_url=neq.&order=program_number.asc "HTTP/2 200 OK"
+2025-07-24 09:49:37,749 - INFO - Extracción completada. Reporte guardado en logs/cover_image_extraction_v2_report.txt
