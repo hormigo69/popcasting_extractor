@@ -229,9 +229,15 @@
     ✅ **LIMPIEZA**: Archivos auxiliares de migración eliminados
 
 
-[ ] Verificar la integridad de la Tabla songs en la BD
-    - comprobar que están todos los números de capítulo (veo que faltan algunos):
-     Buscamos cuántas canciones hay en la tabla songs por cada episodio y comparamos con el número de canciones por episodio de la tabla podcasts. Hacemos un informe en md con los resultados para tomar decisiones
+[x] Verificar la integridad de la Tabla songs en la BD
+    ✅ Implementado en scripts/utils/verify_songs_integrity.py
+    ✅ Implementado en scripts/utils/compare_songs_count.py
+    ✅ Implementado en scripts/utils/fix_songs_from_web_playlist.py
+    ✅ **HALLAZGOS INICIALES**: 485 total podcasts, 6,569 songs, 400 con canciones, 85 sin canciones, 414 discrepancias
+    ✅ **PROBLEMAS IDENTIFICADOS**: Episodios 0-91 y 153-156 sin canciones, múltiples discrepancias menores de conteo
+    ✅ **CORRECCIÓN APLICADA**: Script fix_songs_from_web_playlist.py corrigió todas las discrepancias usando web_playlist como fuente de verdad
+    ✅ **RESULTADO FINAL**: 100% de coincidencia entre songs y web_songs_count (0 discrepancias)
+    ✅ **VERIFICADO**: Todos los episodios tienen el número correcto de canciones según web_playlist
 
 
 
@@ -243,13 +249,20 @@ ________________________________________________________
 
 ## Próximos pasos:
 
-[ ] Verificar la integridad de la Tabla songs en la BD
-
-    - comprobamos que están todos los números de capítulo (veo que faltan algunos)
-    - comprobamos que no hay números de canciones faltantes entre el primero y el último
-        - si hemos extraido el número de canciones del podcast, comprobamos que coinciden
-    - buscamos campos vacíos para revisar por qué no se han llenado.
     
+
+
+[ ] no son coherentes las url de la tabla podcasts. Tenemo varios campos:
+    url - enlaze a ivoox.com. no debería de haber enlaces a popcastingpop.com
+    wordpress_url - esta debería de ser del dominio de popcastingpop.com en la mayor parte de los casos, asl menos desde el episodio 92.
+    download_url - deberían de ser enlaces a ivoox.com. Hay algunos a blip.tv que no funcionan. Hay que listar los que no funcionan y ver si se pueden arreglar.
+            hay otros que son a ivoox pero habría que limpiar el parámetro después de .m3
+    
+
+
+
+
+
 
 [ ] Hacer un extractor sencillo para incorporar la información de nuevos episodios desde el RSS a la BDD. Miramos cual es el último episodio en Supabase para no repetir episodios.
 

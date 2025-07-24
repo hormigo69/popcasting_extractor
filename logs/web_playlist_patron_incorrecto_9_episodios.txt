@@ -1,0 +1,69 @@
+EPISODIOS CON WEB_PLAYLIST PATRÓN INCORRECTO
+============================================================
+
+Patrón esperado: [{"position": 1, "artist": 
+Total encontrados: 9
+
+Episodio #276 - Popcasting 276
+ID: 210
+Fecha: 2025-07-19T15:47:15.029514+00:00
+Longitud: 1855 caracteres
+Inicio: [{"position": 2, "artist": "kevin junior & los tupper", "title": "coming home for christmas"}, {"pos...
+------------------------------------------------------------
+
+Episodio #84 - Popcasting84
+ID: 386
+Fecha: 2025-07-19T15:47:56.599749+00:00
+Longitud: 431 caracteres
+Inicio: ["pete drake \u00b7 forever", "george harrison \u00b7 i live for you", "frank zappa \u00b7 hungry fr...
+------------------------------------------------------------
+
+Episodio #68 - Popcasting68
+ID: 388
+Fecha: 2025-07-19T15:47:57.048319+00:00
+Longitud: 420 caracteres
+Inicio: ["kool and the gang \u00b7 fresh", "mink deville \u00b7 venus of avenue d", "blondie \u00b7 out in t...
+------------------------------------------------------------
+
+Episodio #67 - Popcasting67
+ID: 389
+Fecha: 2025-07-19T15:47:57.278671+00:00
+Longitud: 459 caracteres
+Inicio: ["pale fountains \u00b7 just a girl", "irene \u00b7 by your side", "girlfrendo \u00b7 make up", "the...
+------------------------------------------------------------
+
+Episodio #66 - Popcasting66
+ID: 390
+Fecha: 2025-07-19T15:47:57.511459+00:00
+Longitud: 401 caracteres
+Inicio: ["vashti bunyan \u00b7 wishwanderer", "the mamas and the papas \u00b7 honeymoon (no dough)", "the ho...
+------------------------------------------------------------
+
+Episodio #65 - Popcasting65
+ID: 391
+Fecha: 2025-07-19T15:47:57.735097+00:00
+Longitud: 431 caracteres
+Inicio: ["adele \u00b7 chasing pavements", "the duke spirit \u00b7 the step and the walk", "furniture \u00b7...
+------------------------------------------------------------
+
+Episodio #63 - Popcasting63
+ID: 393
+Fecha: 2025-07-19T15:47:58.191791+00:00
+Longitud: 403 caracteres
+Inicio: ["sibylle baier \u00b7 tonight", "jim white \u00b7 jailbird", "edwyn collins \u00b7 one track mind",...
+------------------------------------------------------------
+
+Episodio #61 - Popcasting61
+ID: 395
+Fecha: 2025-07-19T15:47:58.70947+00:00
+Longitud: 555 caracteres
+Inicio: ["slade \u00b7 merry xmas everybody", "sally shapiro \u00b7 anorak christmas", "the coctails \u00b7 ...
+------------------------------------------------------------
+
+Episodio #60 - Popcasting60
+ID: 396
+Fecha: 2025-07-19T15:47:58.939031+00:00
+Longitud: 599 caracteres
+Inicio: ["nancy & lee \u00b7 you've lost that lovin' feeling", "ville valo & natalia avelon \u00b7 summer wi...
+------------------------------------------------------------
+
