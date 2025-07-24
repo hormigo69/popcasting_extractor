@@ -220,7 +220,8 @@
     ✅ Refactorizado código para usar solo campo web_extra_links
     ✅ Actualizados servicios de Supabase y SQLite
     ✅ Actualizada documentación y esquemas
-    ✅ Tabla extra_links eliminada (pendiente eliminación manual en Supabase)
+    ✅ Tabla extra_links eliminada completamente
+    ✅ **LIMPIEZA**: Archivos auxiliares de migración eliminados
 
 
 
