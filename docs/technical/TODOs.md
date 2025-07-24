@@ -257,7 +257,17 @@
     ✅ **FUNCIONALIDAD PROBADA**: Subida exitosa de archivos a /popcasting_marilyn/mp3
 
 
-
+[x] almacenar los mp3 en el NAS, haciendo un log detallado de los archivos que se han subido y los que no se han podido subir. 
+    ✅ Implementado en scripts/utils/download_and_upload_mp3.py
+    ✅ Conecta a Supabase y obtiene episodios con download_url
+    ✅ Crea DataFrame con program_number y download_url
+    ✅ Descarga MP3 temporalmente y los sube al NAS
+    ✅ Nombra archivos como popcasting_XXXX.mp3 (4 dígitos)
+    ✅ Genera log detallado en logs/mp3_upload_YYYYMMDD_HHMMSS.log
+    ✅ Limpia archivos temporales automáticamente
+    ✅ Scripts de prueba: test_mp3_script.py y test_mp3_download.py
+    ✅ Documentación en README_MP3_UPLOAD.md
+    ✅ 485 episodios disponibles para descarga
 
 
 ________________________________________________________
