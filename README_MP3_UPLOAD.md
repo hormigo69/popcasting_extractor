@@ -2,15 +2,26 @@
 
 Este script descarga todos los MP3 de los episodios de Popcasting desde Supabase y los sube al NAS Synology.
 
-## Requisitos
+## ✅ Estado Actual
 
-1. **Configuración de Supabase**: Las variables de entorno deben estar configuradas en `.env`:
-   ```
-   supabase_project_url=tu_url_de_supabase
-   supabase_api_key=tu_api_key_de_supabase
+- **Script principal**: `scripts/utils/download_and_upload_mp3.py` ✅
+- **Conexión a Supabase**: 485 episodios con URLs de descarga ✅
+- **Descarga de MP3**: Funcionando correctamente ✅
+- **Cliente Synology**: Implementado y probado ✅
+- **Scripts de prueba**: Creados y funcionando ✅
+
+## ⚠️ Configuración Pendiente
+
+**IMPORTANTE**: Las variables de entorno del NAS no están configuradas.
+
+### Para configurar el NAS:
+
+1. **Ejecutar el script de configuración**:
+   ```bash
+   uv run python setup_synology_env.py
    ```
 
-2. **Configuración del NAS Synology**: Crear archivo `.env` con las credenciales del NAS:
+2. **O crear manualmente el archivo `.env`** con:
    ```
    SYNOLOGY_IP=192.168.1.100
    SYNOLOGY_PORT=5000
@@ -20,17 +31,27 @@ Este script descarga todos los MP3 de los episodios de Popcasting desde Supabase
 
 ## Uso
 
-### Prueba de conexión a Supabase
+### 1. Configurar NAS (requerido)
+```bash
+uv run python setup_synology_env.py
+```
+
+### 2. Prueba de conexión a Supabase
 ```bash
 uv run python test_mp3_script.py
 ```
 
-### Prueba de descarga de MP3
+### 3. Prueba de descarga de MP3
 ```bash
 uv run python test_mp3_download.py
 ```
 
-### Descarga y subida completa al NAS
+### 4. Prueba con 3 archivos (recomendado)
+```bash
+uv run python test_mp3_3_files_v2.py
+```
+
+### 5. Descarga y subida completa al NAS
 ```bash
 uv run python scripts/utils/download_and_upload_mp3.py
 ```
@@ -50,9 +71,21 @@ uv run python scripts/utils/download_and_upload_mp3.py
 - **Log completo** con éxitos y errores
 - **Limpieza automática** de archivos temporales
 
+## Pruebas Realizadas
+
+### ✅ Exitosas:
+- Conexión a Supabase: 485 episodios encontrados
+- Descarga de MP3: 109MB de prueba descargado correctamente
+- Autenticación con NAS: Conexión establecida
+
+### ⚠️ Pendientes:
+- Subida al NAS: Requiere configuración de variables de entorno
+- Error 408: Problema de permisos/configuración del NAS
+
 ## Notas
 
 - El script procesa los episodios en orden por número
 - Si un archivo ya existe en el NAS, se sobrescribe
 - Los errores de descarga o subida se registran en el log
-- El proceso puede tardar varias horas dependiendo del tamaño de los archivos 
+- El proceso puede tardar varias horas dependiendo del tamaño de los archivos
+- **Recomendación**: Probar primero con 3 archivos antes de ejecutar el proceso completo 
