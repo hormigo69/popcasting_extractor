@@ -425,7 +425,7 @@ class SupabaseDatabase:
             response = (
                 self.client.table("podcasts")
                 .select(
-                    "wordpress_url, cover_image_url, web_extra_links, web_playlist, web_songs_count, last_web_check"
+                    "wordpress_url, cover_image_url, web_extra_links, web_playlist, web_songs_count, last_web_check, comments"
                 )
                 .eq("id", podcast_id)
                 .execute()

@@ -104,6 +104,10 @@ def migrate_database_if_needed(cursor):
             cursor.execute("ALTER TABLE podcasts ADD COLUMN web_songs_count INTEGER")
             print("✅ Añadida columna web_songs_count a la tabla podcasts")
 
+        if "comments" not in columns:
+            cursor.execute("ALTER TABLE podcasts ADD COLUMN comments TEXT")
+            print("✅ Añadida columna comments a la tabla podcasts")
+
         if "last_web_check" not in columns:
             cursor.execute("ALTER TABLE podcasts ADD COLUMN last_web_check TEXT")
             print("✅ Añadida columna last_web_check a la tabla podcasts")
@@ -533,6 +537,10 @@ def update_web_info(
         update_fields.append("web_songs_count = ?")
         update_values.append(web_songs_count)
 
+    if comments is not None:
+        update_fields.append("comments = ?")
+        update_values.append(comments)
+
     # Siempre actualizar la fecha del último check
     from datetime import datetime
 
@@ -578,7 +586,7 @@ def get_podcast_web_info(podcast_id: int) -> dict:
 
     cursor.execute(
         """
-        SELECT wordpress_url, cover_image_url, web_extra_links, web_playlist, web_songs_count, last_web_check
+        SELECT wordpress_url, cover_image_url, web_extra_links, web_playlist, web_songs_count, comments, last_web_check
         FROM podcasts
         WHERE id = ?
     """,
