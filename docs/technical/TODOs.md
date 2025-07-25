@@ -298,17 +298,19 @@ ________________________________________________________
 ✅ **Enlaces extras**: Formato unificado y sin duplicados
 ✅ **Comentarios**: Extracción automática de comentarios y especiales
 ✅ **Optimización de tipos**: Campos de base de datos optimizados
+✅ **Extracción automática de duración MP3**: Integrada en el script principal
 
 ## Próximos pasos:
 
     
 
 
-[ ] no son coherentes las url de la tabla podcasts. Tenemo varios campos:
-    url - enlaze a ivoox.com. no debería de haber enlaces a popcastingpop.com
-    wordpress_url - esta debería de ser del dominio de popcastingpop.com en la mayor parte de los casos, asl menos desde el episodio 92.
-    download_url - deberían de ser enlaces a ivoox.com. Hay algunos a blip.tv que no funcionan. Hay que listar los que no funcionan y ver si se pueden arreglar.
-            hay otros que son a ivoox pero habría que limpiar el parámetro después de .m3
+✅ **Coherencia de URLs en tabla podcasts**: Completada
+    - Campo 'url': Solo contiene enlaces a iVoox.com o está vacío
+    - Campo 'wordpress_url': Solo contiene popcastingpop.com desde episodio 92
+    - Campo 'download_url': Enlaces a iVoox.com (algunos a blip.tv pendientes de arreglar)
+    - Eliminadas todas las inconsistencias y duplicados
+    - Verificación automática implementada
     
 
 
