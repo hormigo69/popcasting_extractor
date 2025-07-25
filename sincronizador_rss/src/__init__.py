@@ -1,0 +1,1 @@
+# Sincronizador RSS - Paquete principal 

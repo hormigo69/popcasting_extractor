@@ -1,0 +1,1 @@
+# Gestor de configuración para el sincronizador RSS 

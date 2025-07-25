@@ -1,0 +1,1 @@
+# Cliente de WordPress para el sincronizador RSS 

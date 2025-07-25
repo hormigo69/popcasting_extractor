@@ -1,0 +1,1 @@
+# Configuración de logging para el sincronizador RSS 
