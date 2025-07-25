@@ -1,7 +1,15 @@
 from typing import Dict, Optional, List
-from ..utils.logger import logger
-from .rss_data_processor import RSSDataProcessor
-from .wordpress_data_processor import WordPressDataProcessor
+import sys
+import os
+from pathlib import Path
+
+# Agregar el directorio src al path para importaciones
+current_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(current_dir))
+
+from utils.logger import logger
+from components.rss_data_processor import RSSDataProcessor
+from components.wordpress_data_processor import WordPressDataProcessor
 
 
 class DataProcessor:
@@ -205,6 +213,32 @@ class DataProcessor:
             logger.error(f"Error al obtener episodios unificados: {e}")
             return []
     
+    def process_single_episode(self, rss_episode: Dict, wordpress_client) -> Dict:
+        """
+        Procesa un episodio específico del RSS y lo unifica con datos de WordPress.
+        
+        Args:
+            rss_episode: Datos del episodio del RSS
+            wordpress_client: Cliente de WordPress
+            
+        Returns:
+            Dict: Datos unificados del episodio
+        """
+        try:
+            logger.info(f"Procesando episodio individual: {rss_episode.get('title', 'Sin título')}")
+            unified_episode = self._unify_rss_with_wordpress(rss_episode, wordpress_client)
+            
+            if unified_episode:
+                logger.info(f"Episodio procesado exitosamente: {unified_episode.get('title', 'Sin título')}")
+                return unified_episode
+            else:
+                logger.warning(f"No se pudo procesar el episodio: {rss_episode.get('title', 'Sin título')}")
+                return {}
+                
+        except Exception as e:
+            logger.error(f"Error al procesar episodio individual: {e}")
+            return {}
+    
     def _unify_rss_with_wordpress(self, rss_entry: Dict, wordpress_client) -> Dict:
         """
         Unifica datos del RSS con WordPress usando el número de programa.
@@ -219,6 +253,10 @@ class DataProcessor:
         try:
             # Usar los datos del RSS como base
             unified_data = rss_entry.copy()
+            
+            # Asegurar que el campo guid esté presente
+            if 'guid' not in unified_data:
+                unified_data['guid'] = rss_entry.get('entry_id', '')
             
             # Intentar obtener datos de WordPress usando el número de programa
             program_number = rss_entry.get('program_number')

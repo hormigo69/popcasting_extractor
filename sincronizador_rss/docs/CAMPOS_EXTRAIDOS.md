@@ -252,10 +252,13 @@ Los datos unificados combinan información del RSS y WordPress en una estructura
 - [x] ✅ Unificación de datos RSS + WordPress funcionando
 - [x] ✅ Extracción de fechas reales del RSS para búsqueda en WordPress
 - [x] ✅ Sistema de logging integrado
+- [x] ✅ Integración con base de datos implementada (`DatabaseManager`)
+- [x] ✅ Sistema de sincronización automática implementado
+- [x] ✅ Detección inteligente de episodios nuevos por número de programa
+- [x] ✅ Procesamiento correcto de JSON de playlists
+- [x] ✅ Cálculo preciso de número de canciones
 - [ ] Implementar extracción de metadatos MP3
-- [ ] Implementar integración con base de datos
 - [ ] Añadir validación de datos unificados
-- [ ] Crear sistema de sincronización automática
 
 ## 🛠️ Componentes Implementados
 
@@ -307,10 +310,26 @@ Los datos unificados combinan información del RSS y WordPress en una estructura
 - **Métodos principales**:
   - `process_entry()`: Procesa entrada individual
   - `get_unified_episodes()`: Obtiene episodios unificados
+  - `process_single_episode()`: Procesa episodio individual con WordPress
   - `_unify_rss_with_wordpress()`: Unifica datos usando número de programa
 - **Características**:
   - Orquestador principal del sistema
   - Coordina procesadores específicos
   - Maneja casos donde WordPress no está disponible
   - Proporciona interfaz de alto nivel
-  - Extrae fechas reales del RSS para búsqueda en WordPress 
+  - Extrae fechas reales del RSS para búsqueda en WordPress
+
+### DatabaseManager
+- **Archivo**: `sincronizador_rss/src/components/database_manager.py`
+- **Función**: Gestiona conexión y operaciones con Supabase
+- **Métodos principales**:
+  - `get_latest_podcast()`: Obtiene el episodio más reciente por número de programa
+  - `insert_full_podcast()`: Inserta podcast completo con canciones
+  - `podcast_exists()`: Verifica existencia de episodio por GUID
+  - `get_table_info()`: Obtiene información de estructura de tablas
+- **Características**:
+  - Conexión segura a Supabase
+  - Inserción transaccional de datos
+  - Procesamiento automático de JSON de playlists
+  - Cálculo preciso de número de canciones
+  - Mapeo correcto de campos entre procesador y BD 

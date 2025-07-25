@@ -5,20 +5,13 @@ import json
 import re
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
+from pathlib import Path
 
-# Configurar el path para poder importar módulos del proyecto
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
+# Agregar el directorio src al path para importaciones
+current_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(current_dir))
 
-try:
-    from sincronizador_rss.src.utils.logger import logger
-except ImportError:
-    # Fallback para cuando se ejecuta directamente
-    import logging
-    logger = logging.getLogger(__name__)
-    logging.basicConfig(level=logging.INFO)
+from utils.logger import logger
 
 
 class WordPressClient:

@@ -2,6 +2,11 @@ import configparser
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+import sys
+
+# Agregar el directorio src al path para importaciones
+current_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(current_dir))
 
 class ConfigManager:
     """

@@ -1,6 +1,14 @@
 import urllib.parse
 from typing import Dict, Optional, List
-from ..utils.logger import logger
+import sys
+import os
+from pathlib import Path
+
+# Agregar el directorio src al path para importaciones
+current_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(current_dir))
+
+from utils.logger import logger
 
 
 class WordPressDataProcessor:

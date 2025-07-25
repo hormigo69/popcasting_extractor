@@ -101,12 +101,18 @@ def get_unified_episodes(wordpress_client, limit: Optional[int] = None) -> List[
 
 - Conexión a Supabase usando la API oficial
 - Operaciones CRUD en la base de datos
+- Detección del episodio más reciente por número de programa
+- Inserción transaccional de podcasts y canciones
+- Procesamiento y validación de datos JSON
 - Manejo de errores de conexión
 - Context manager para gestión de recursos
 
 **Interfaces principales:**
 ```python
 def __init__(self, supabase_url: str, supabase_key: str)
+def get_latest_podcast() -> dict | None
+def insert_full_podcast(podcast_data: dict)
+def podcast_exists(guid: str) -> bool
 def test_connection() -> bool
 def close()
 ```
@@ -145,7 +151,7 @@ WordPress → WordPressClient → WordPressDataProcessor → Datos WordPress pro
                                     ↓
                             Datos unificados completos
                                     ↓
-                            DatabaseManager → Supabase
+                            DatabaseManager → Supabase (con detección de episodios nuevos)
 ```
 
 ## 🏛️ Principios de Arquitectura

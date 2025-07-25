@@ -1,6 +1,13 @@
 # Gestor de base de datos para el sincronizador RSS
 from supabase import create_client, Client
 import logging
+import sys
+import os
+from pathlib import Path
+
+# Agregar el directorio src al path para importaciones
+current_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(current_dir))
 
 
 class DatabaseManager:
@@ -87,6 +94,178 @@ class DatabaseManager:
             self.logger.info(f"📋 Tabla '{table}': {len(structure)} columnas")
         
         return tables_info
+    
+    def get_latest_podcast(self) -> dict | None:
+        """
+        Obtiene el episodio más reciente de la base de datos.
+        
+        Returns:
+            dict: Datos del episodio más reciente o None si no hay episodios
+        """
+        try:
+            # Obtener el episodio con el número más alto (más reciente)
+            result = self.client.table('podcasts').select('*').order('program_number', desc=True).limit(1).execute()
+            
+            if result.data:
+                latest_podcast = result.data[0]
+                program_number = latest_podcast.get('program_number', 'Sin número')
+                title = latest_podcast.get('title', 'Sin título')
+                self.logger.info(f"Episodio más reciente en BD: {title} (Número: {program_number})")
+                return latest_podcast
+            else:
+                self.logger.info("No hay episodios en la base de datos")
+                return None
+                
+        except Exception as e:
+            self.logger.error(f"Error al obtener el episodio más reciente: {e}")
+            return None
+    
+    def podcast_exists(self, guid: str) -> bool:
+        """
+        Verifica si un podcast ya existe en la base de datos por su GUID.
+        
+        Args:
+            guid: GUID único del podcast
+            
+        Returns:
+            bool: True si el podcast existe, False en caso contrario
+        """
+        try:
+            result = self.client.table('podcasts').select('id', count='exact').eq('guid', guid).execute()
+            count = result.count if hasattr(result, 'count') else len(result.data)
+            exists = count > 0
+            self.logger.debug(f"Verificando podcast con GUID '{guid}': {'existe' if exists else 'no existe'}")
+            return exists
+        except Exception as e:
+            self.logger.error(f"Error al verificar existencia del podcast con GUID '{guid}': {e}")
+            return False
+    
+    def insert_full_podcast(self, podcast_data: dict):
+        """
+        Inserta un podcast completo con sus canciones en la base de datos.
+        Operación transaccional que inserta en las tablas 'podcasts' y 'songs'.
+        
+        Args:
+            podcast_data: Diccionario con los datos del podcast y sus canciones
+        """
+        try:
+            # Extraer la lista de canciones y eliminarla del diccionario principal
+            songs = podcast_data.pop('web_playlist', [])
+            self.logger.info(f"Insertando podcast: {podcast_data.get('title', 'Sin título')}")
+            
+            # Filtrar solo los campos válidos para la tabla podcasts
+            valid_podcast_fields = {
+                'title', 'date', 'url', 'download_url', 'file_size', 'program_number', 
+                'wordpress_url', 'cover_image_url', 'web_extra_links', 'web_playlist',
+                'web_songs_count', 'comments', 'duration', 'rss_playlist'
+            }
+            
+            # Crear diccionario con solo campos válidos y mapeo correcto
+            filtered_podcast_data = {}
+            
+            # Mapeo de campos del procesador a campos de la tabla
+            field_mapping = {
+                'title': 'title',
+                'date': 'date',
+                'url': 'url',
+                'download_url': 'download_url',
+                'file_size': 'file_size',
+                'program_number': 'program_number',
+                'wordpress_link': 'wordpress_url',
+                'featured_image_url': 'cover_image_url',
+                'web_extra_links': 'web_extra_links',
+                'wordpress_playlist_data': 'web_playlist',
+                'comments': 'comments',
+                'duration': 'duration',
+                'rss_playlist': 'rss_playlist'
+            }
+            
+            for key, value in podcast_data.items():
+                if key in field_mapping:
+                    db_field = field_mapping[key]
+                    filtered_podcast_data[db_field] = value
+                else:
+                    self.logger.debug(f"Campo '{key}' omitido (no existe en tabla podcasts)")
+            
+            # Procesar web_playlist y calcular web_songs_count
+            if 'web_playlist' in filtered_podcast_data:
+                web_playlist_data = filtered_podcast_data['web_playlist']
+                
+                # Si es un diccionario con estructura anidada, extraer solo las canciones
+                if isinstance(web_playlist_data, dict) and 'songs' in web_playlist_data:
+                    songs_list = web_playlist_data['songs']
+                    # Calcular el número de canciones
+                    filtered_podcast_data['web_songs_count'] = len(songs_list) if isinstance(songs_list, list) else 0
+                    # Guardar solo la lista de canciones como JSON
+                    import json
+                    filtered_podcast_data['web_playlist'] = json.dumps(songs_list)
+                    self.logger.info(f"Procesado web_playlist: {filtered_podcast_data['web_songs_count']} canciones")
+                
+                # Si es una lista directa
+                elif isinstance(web_playlist_data, list):
+                    filtered_podcast_data['web_songs_count'] = len(web_playlist_data)
+                    import json
+                    filtered_podcast_data['web_playlist'] = json.dumps(web_playlist_data)
+                    self.logger.info(f"Procesado web_playlist: {filtered_podcast_data['web_songs_count']} canciones")
+                
+                # Si es un string JSON, intentar parsearlo
+                elif isinstance(web_playlist_data, str):
+                    try:
+                        import json
+                        parsed_data = json.loads(web_playlist_data)
+                        if isinstance(parsed_data, dict) and 'songs' in parsed_data:
+                            songs_list = parsed_data['songs']
+                            filtered_podcast_data['web_songs_count'] = len(songs_list) if isinstance(songs_list, list) else 0
+                            filtered_podcast_data['web_playlist'] = json.dumps(songs_list)
+                        elif isinstance(parsed_data, list):
+                            filtered_podcast_data['web_songs_count'] = len(parsed_data)
+                        self.logger.info(f"Procesado web_playlist desde JSON: {filtered_podcast_data.get('web_songs_count', 0)} canciones")
+                    except json.JSONDecodeError:
+                        self.logger.warning("No se pudo parsear web_playlist como JSON")
+                        filtered_podcast_data['web_songs_count'] = 0
+                else:
+                    self.logger.warning(f"Formato de web_playlist no reconocido: {type(web_playlist_data)}")
+                    filtered_podcast_data['web_songs_count'] = 0
+            
+            # Convertir web_extra_links a JSON string si es una lista
+            if 'web_extra_links' in filtered_podcast_data and isinstance(filtered_podcast_data['web_extra_links'], list):
+                import json
+                filtered_podcast_data['web_extra_links'] = json.dumps(filtered_podcast_data['web_extra_links'])
+            
+            # Insertar el podcast en la tabla podcasts
+            podcast_result = self.client.table('podcasts').insert(filtered_podcast_data).execute()
+            
+            if not podcast_result.data:
+                raise Exception("No se pudo insertar el podcast en la base de datos")
+            
+            # Obtener el ID del podcast insertado
+            podcast_id = podcast_result.data[0]['id']
+            self.logger.info(f"Podcast insertado con ID: {podcast_id}")
+            
+            # Si hay canciones, insertarlas en la tabla songs
+            if songs:
+                # Añadir el podcast_id a cada canción
+                songs_with_podcast_id = []
+                for song in songs:
+                    song_copy = song.copy()
+                    song_copy['podcast_id'] = podcast_id
+                    songs_with_podcast_id.append(song_copy)
+                
+                # Insertar todas las canciones de una vez
+                songs_result = self.client.table('songs').insert(songs_with_podcast_id).execute()
+                self.logger.info(f"Insertadas {len(songs_with_podcast_id)} canciones para el podcast {podcast_id}")
+            else:
+                self.logger.info("No hay canciones para insertar")
+            
+            # Restaurar la lista de canciones en el diccionario original
+            podcast_data['web_playlist'] = songs
+            
+        except Exception as e:
+            self.logger.error(f"Error al insertar podcast completo: {e}")
+            # Restaurar la lista de canciones en caso de error
+            if 'web_playlist' not in podcast_data:
+                podcast_data['web_playlist'] = songs
+            raise
     
     def close(self):
         """Cierra la conexión a Supabase."""
