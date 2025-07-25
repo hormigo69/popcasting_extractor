@@ -270,6 +270,22 @@
     ✅ 485 episodios disponibles para descarga
 
 
+[x] añadir la duración de los mp3 a la tabla podcasts en supabase usando Mutagen. guardar en el campo duration. Implementar esto como una clase para poderla importar en el proyecto principal.
+    ✅ Implementado en services/audio_duration_extractor.py
+    ✅ Clase AudioDurationExtractor con métodos completos para extracción de duración
+    ✅ Integración con Supabase usando código existente
+    ✅ Integración con Synology NAS usando SynologyClient existente
+    ✅ Uso de Mutagen para extracción de metadatos de audio
+    ✅ Script principal en scripts/utils/extract_audio_duration.py
+    ✅ Scripts de prueba completos en tests/
+    ✅ Documentación completa en docs/README_AUDIO_DURATION.md
+    ✅ Ejemplos de uso en synology/example_audio_duration.py
+    ✅ Context manager para manejo automático de conexiones
+    ✅ Generación de reportes JSON y resúmenes en texto
+    ✅ Manejo robusto de errores y logging detallado
+
+
+
 ________________________________________________________
 
 ## Tareas completadas recientemente (Julio 2024):

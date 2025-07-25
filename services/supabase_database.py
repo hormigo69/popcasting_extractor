@@ -305,6 +305,20 @@ class SupabaseDatabase:
             print(f"❌ Error al obtener podcast por ID: {e}")
             raise
 
+    def get_podcast_by_program_number(self, program_number: str) -> dict | None:
+        """Obtiene un podcast por su número de programa."""
+        try:
+            response = (
+                self.client.table("podcasts")
+                .select("*")
+                .eq("program_number", int(program_number))
+                .execute()
+            )
+            return response.data[0] if response.data else None
+        except Exception as e:
+            print(f"❌ Error obteniendo podcast por número de programa: {e}")
+            return None
+
     def songs_have_changed(self, podcast_id: int, new_songs: list[dict]) -> bool:
         """Verifica si las canciones de un podcast han cambiado."""
         try:
@@ -532,6 +546,11 @@ def get_podcast_by_id(*args, **kwargs):
     """Wrapper para mantener compatibilidad con el código existente."""
     db = get_supabase_connection()
     return db.get_podcast_by_id(*args, **kwargs)
+
+def get_podcast_by_program_number(*args, **kwargs):
+    """Wrapper para mantener compatibilidad con el código existente."""
+    db = get_supabase_connection()
+    return db.get_podcast_by_program_number(*args, **kwargs)
 
 
 def songs_have_changed(*args, **kwargs):

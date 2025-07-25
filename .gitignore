@@ -33,3 +33,13 @@ backups/
 .env
 .env.local
 .env.*.local
+
+#directorio de logs
+logs/
+
+#directorio de outputs
+outputs/
+
+#directorio de test
+test/
+test_download/popcasting_0092.mp3

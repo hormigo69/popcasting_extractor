@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 from .config import get_database_module
 from .logger_setup import setup_parser_logger, setup_stats_logger
 from .utils import extract_extra_links, extract_program_info, parse_playlist_simple
+from .audio_duration_extractor import AudioDurationExtractor
 
 db = get_database_module()
 
@@ -104,6 +105,10 @@ class PopcastingExtractor:
                                 print(
                                     f"⏭️  Links extras sin cambios para episodio {episode_data['program_number']}"
                                 )
+
+                        # Extraer duración automáticamente si es un episodio nuevo
+                        if episode_data["program_number"]:
+                            self._extract_duration_for_episode(episode_data["program_number"])
 
                         processed_urls.add(entry_url)
 
@@ -283,6 +288,40 @@ class PopcastingExtractor:
         title = entry.get("title", "Sin Título")
         date = self._normalize_date(entry.get("published", ""))
         return f"'{title}' ({date or 'Sin Fecha'})"
+
+    def _extract_duration_for_episode(self, program_number: str):
+        """
+        Extrae automáticamente la duración de un episodio si no la tiene.
+        
+        Args:
+            program_number: Número del episodio
+        """
+        try:
+            # Verificar si el episodio ya tiene duración
+            podcast = db.get_podcast_by_program_number(program_number)
+            if not podcast:
+                print(f"⚠️  No se encontró el episodio #{program_number} en la base de datos")
+                return
+            
+            if podcast.get('duration') is not None and podcast.get('duration') > 0:
+                print(f"⏭️  Episodio #{program_number} ya tiene duración: {podcast['duration']} segundos")
+                return
+            
+            print(f"🎵 Extrayendo duración automáticamente para episodio #{program_number}...")
+            
+            # Usar AudioDurationExtractor para extraer la duración
+            with AudioDurationExtractor() as extractor:
+                result = extractor.process_single_episode(int(program_number))
+                
+                if result["success"]:
+                    duration_minutes = result["duration"] // 60
+                    duration_seconds = result["duration"] % 60
+                    print(f"✅ Duración extraída automáticamente: {duration_minutes}:{duration_seconds:02d} ({result['duration']} segundos)")
+                else:
+                    print(f"❌ No se pudo extraer duración automáticamente: {result['error']}")
+                    
+        except Exception as e:
+            print(f"❌ Error extrayendo duración automática para episodio #{program_number}: {e}")
 
     def run(self):
         """Ejecuta el proceso completo de extracción y guardado en BBDD."""
