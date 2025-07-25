@@ -69,9 +69,6 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         test_url = sys.argv[1]
     
-    print(f"Probando RSSReader con URL: {test_url}")
-    print("-" * 50)
-    
     try:
         # Crear instancia del lector RSS
         reader = RSSReader(test_url)
@@ -79,23 +76,10 @@ if __name__ == "__main__":
         # Obtener las entradas
         entries = reader.fetch_entries()
         
-        print(f"\n✅ Prueba exitosa!")
-        print(f"📊 Total de entradas: {len(entries)}")
-        
-        # Mostrar las primeras 3 entradas como ejemplo
-        if entries:
-            print(f"\n📝 Primeras {min(3, len(entries))} entradas:")
-            for i, entry in enumerate(entries[:3], 1):
-                title = entry.get('title', 'Sin título')
-                published = entry.get('published', 'Sin fecha')
-                link = entry.get('link', 'Sin enlace')
-                print(f"  {i}. {title}")
-                print(f"     📅 {published}")
-                print(f"     🔗 {link}")
-                print()
+        logger.info(f"Prueba RSSReader exitosa: {len(entries)} entradas obtenidas")
         
     except Exception as e:
-        print(f"\n❌ Error durante la prueba: {e}")
+        logger.error(f"Error durante la prueba RSSReader: {e}")
         sys.exit(1) 
 
 

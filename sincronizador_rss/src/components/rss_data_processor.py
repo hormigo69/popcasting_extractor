@@ -6,6 +6,7 @@ Procesador de datos RSS para el sincronizador.
 import feedparser
 from datetime import datetime
 import re
+import json
 from typing import Dict, List, Optional
 import sys
 import os
@@ -93,8 +94,9 @@ class RSSDataProcessor:
             # Extraer datos del archivo de audio
             download_url, file_size = self._extract_audio_data(entry)
             
-            # Extraer playlist del RSS
-            rss_playlist = entry.get('summary', '').strip()
+            # Extraer y procesar playlist del RSS
+            raw_rss_playlist = entry.get('summary', '').strip()
+            rss_playlist = self._process_rss_playlist(raw_rss_playlist)
             
             # Extraer duración
             duration = self._parse_duration(entry.get('itunes_duration', ''))
@@ -126,6 +128,119 @@ class RSSDataProcessor:
         except Exception as e:
             logger.error(f"Error al procesar entrada '{entry.get('title', 'Sin título')}': {str(e)}")
             return None
+    
+    def _process_rss_playlist(self, playlist_text: str) -> str:
+        """
+        Procesa la playlist del RSS y la convierte a formato JSON.
+        
+        Args:
+            playlist_text (str): Texto de la playlist del RSS
+            
+        Returns:
+            str: JSON string con la playlist procesada
+        """
+        try:
+            if not playlist_text:
+                return json.dumps([], ensure_ascii=False)
+            
+            # 1. Limpieza inicial: eliminar texto extra como Ko-fi
+            cleaned_text = self._clean_playlist_text(playlist_text)
+            
+            if not cleaned_text:
+                return json.dumps([], ensure_ascii=False)
+            
+            # 2. División por canciones usando ::
+            songs_raw = [song.strip() for song in cleaned_text.split('::') if song.strip()]
+            
+            # 3. Procesar cada canción
+            processed_songs = []
+            for i, song_raw in enumerate(songs_raw):
+                song_data = self._parse_song_text(song_raw)
+                if song_data:
+                    processed_songs.append({
+                        'position': i + 1,
+                        'artist': song_data['artist'],
+                        'title': song_data['title']
+                    })
+            
+            # 4. Convertir a JSON
+            return json.dumps(processed_songs, ensure_ascii=False)
+            
+        except Exception as e:
+            logger.error(f"Error al procesar playlist del RSS: {e}")
+            # En caso de error, devolver playlist vacía
+            return json.dumps([], ensure_ascii=False)
+    
+    def _clean_playlist_text(self, text: str) -> str:
+        """
+        Limpia el texto de la playlist eliminando contenido extra.
+        
+        Args:
+            text (str): Texto original de la playlist
+            
+        Returns:
+            str: Texto limpio
+        """
+        if not text:
+            return ""
+        
+        # Eliminar texto de Ko-fi y otros patrones comunes
+        patterns_to_remove = [
+            r'::::::\s*invita a Popcasting a café\s*https://ko-fi\.com/popcasting.*',
+            r'::::::\s*invita a Popcasting a café.*',
+            r'https://ko-fi\.com/popcasting.*',
+            r'@rss_data_processor\.py.*',
+            r'@.*\.py.*',
+        ]
+        
+        cleaned_text = text
+        for pattern in patterns_to_remove:
+            cleaned_text = re.sub(pattern, '', cleaned_text, flags=re.IGNORECASE | re.DOTALL)
+        
+        # Limpiar espacios extra y líneas vacías
+        cleaned_text = re.sub(r'\s+', ' ', cleaned_text).strip()
+        
+        return cleaned_text
+    
+    def _parse_song_text(self, text: str) -> Optional[Dict[str, str]]:
+        """
+        Parsea el texto de una canción para extraer artista y título.
+        
+        Args:
+            text (str): Texto de la canción (formato: "artista · título")
+            
+        Returns:
+            Dict: Diccionario con 'artist' y 'title' o None si no se puede parsear
+        """
+        if not text:
+            return None
+        
+        # Patrones para extraer artista y título
+        patterns = [
+            r'^(.+?)\s*·\s*(.+)$',  # Artista · Título (formato principal de Popcasting)
+            r'^(.+?)\s*[-–—]\s*(.+)$',  # Artista - Título
+            r'^(.+?)\s*:\s*(.+)$',  # Artista: Título
+            r'^(.+?)\s*"\s*(.+?)\s*"$',  # Artista "Título"
+        ]
+        
+        for pattern in patterns:
+            match = re.match(pattern, text.strip())
+            if match:
+                artist = match.group(1).strip()
+                title = match.group(2).strip()
+                
+                # Validar que tanto artista como título tengan contenido válido
+                if (len(artist) > 1 and len(title) > 1 and 
+                    not any(word in artist.lower() for word in [
+                        'comentarios', 'compartir', 'twitter', 'facebook', 
+                        'popcasting', 'ko-fi', 'invita'
+                    ])):
+                    return {
+                        'artist': artist,
+                        'title': title
+                    }
+        
+        return None
     
     def _parse_date(self, date_str: str) -> Optional[str]:
         """
@@ -306,32 +421,14 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         test_url = sys.argv[1]
     
-    print(f"Probando RSSDataProcessor con URL: {test_url}")
-    print("-" * 50)
-    
     try:
         processor = RSSDataProcessor(test_url)
         
         # Procesar todas las entradas
         episodes = processor.fetch_and_process_entries()
         
-        print(f"\n✅ Procesados {len(episodes)} episodios")
-        
-        # Mostrar los primeros 3 episodios
-        if episodes:
-            print(f"\n📝 Primeros {min(3, len(episodes))} episodios procesados:")
-            for i, episode in enumerate(episodes[:3], 1):
-                print(f"\n  {i}. {episode['title']}")
-                print(f"     📅 Fecha: {episode['date']}")
-                print(f"     🔗 URL: {episode['url']}")
-                print(f"     🎵 Audio: {episode['download_url']}")
-                print(f"     📏 Tamaño: {episode['file_size']} bytes")
-                print(f"     ⏱️ Duración: {episode['duration']} segundos")
-                print(f"     🎵 Playlist: {episode['rss_playlist'][:100]}...")
-                print(f"     🔢 Número: {episode['program_number']}")
-                if episode['comments']:
-                    print(f"     💬 Comentarios: {episode['comments']}")
+        logger.info(f"Prueba RSSDataProcessor exitosa: {len(episodes)} episodios procesados")
         
     except Exception as e:
-        print(f"\n❌ Error durante la prueba: {e}")
+        logger.error(f"Error durante la prueba RSSDataProcessor: {e}")
         sys.exit(1) 

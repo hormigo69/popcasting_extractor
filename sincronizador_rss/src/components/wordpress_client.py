@@ -3,6 +3,7 @@ import sys
 import os
 import json
 import re
+import html
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 from pathlib import Path
@@ -98,12 +99,16 @@ class WordPressClient:
             response = self.session.get(full_url, timeout=10)
             response.raise_for_status()
             
+            # Asegurar que la respuesta se decodifique correctamente
+            response.encoding = 'utf-8'
+            
             # Verificar que la página existe y contiene el contenido esperado
             if response.status_code == 200:
                 logger.info(f"Post encontrado en URL: {full_url}")
                 
                 # Extraer información detallada de la página
-                soup = BeautifulSoup(response.content, 'html.parser')
+                # Usar la codificación correcta para evitar problemas de caracteres
+                soup = BeautifulSoup(response.content, 'html.parser', from_encoding='utf-8')
                 
                 # Extraer campos según la estructura de la BD
                 extracted_data = {
@@ -135,7 +140,8 @@ class WordPressClient:
         """Extrae el título del post."""
         title_elem = soup.find('title')
         if title_elem:
-            return title_elem.get_text(strip=True)
+            title_text = title_elem.get_text(strip=True)
+            return self._clean_unicode_text(title_text)
         return "Sin título"
 
     def _extract_cover_image(self, soup: BeautifulSoup, base_url: str) -> str | None:
@@ -171,7 +177,7 @@ class WordPressClient:
         for span in colored_spans:
             links = span.find_all('a', href=True)
             for link in links:
-                text = link.get_text(strip=True)
+                text = self._clean_unicode_text(link.get_text(strip=True))
                 url = link.get('href')
                 
                 # Filtrar enlaces de Ko-fi
@@ -186,7 +192,7 @@ class WordPressClient:
         for p in centered_paragraphs:
             links = p.find_all('a', href=True)
             for link in links:
-                text = link.get_text(strip=True)
+                text = self._clean_unicode_text(link.get_text(strip=True))
                 url = link.get('href')
                 
                 # Filtrar enlaces de Ko-fi y duplicados
@@ -218,6 +224,8 @@ class WordPressClient:
             position = 1
             for p in centered_paragraphs:
                 text = p.get_text(strip=True)
+                # Limpiar caracteres Unicode del texto extraído
+                text = self._clean_unicode_text(text)
                 
                 # Buscar canciones en el texto del párrafo
                 songs = self._parse_popcasting_playlist_text(text)
@@ -240,6 +248,8 @@ class WordPressClient:
                     items = list_elem.find_all("li")
                     for i, item in enumerate(items):
                         text = item.get_text(strip=True)
+                        # Limpiar caracteres Unicode del texto extraído
+                        text = self._clean_unicode_text(text)
                         song_info = self._parse_song_text(text)
                         if song_info and self._is_valid_song(song_info):
                             playlist.append({
@@ -256,6 +266,8 @@ class WordPressClient:
                 
                 for p in paragraphs:
                     text = p.get_text(strip=True)
+                    # Limpiar caracteres Unicode del texto extraído
+                    text = self._clean_unicode_text(text)
                     songs = self._parse_popcasting_playlist_text(text)
                     if songs:
                         for song in songs:
@@ -295,8 +307,30 @@ class WordPressClient:
         
         return songs
 
+    def _clean_unicode_text(self, text: str) -> str:
+        """
+        Limpia caracteres Unicode escapados y entidades HTML, mostrando los caracteres especiales tal como aparecen en la web.
+        """
+        if not text:
+            return text
+        try:
+            # Si detectamos patrones típicos de mala codificación, intentamos decodificar
+            if 'Ã' in text or 'Â' in text:
+                try:
+                    text = text.encode('latin-1').decode('utf-8')
+                except Exception:
+                    pass
+            text = html.unescape(text)
+            return text.strip()
+        except Exception as e:
+            logger.warning(f'Error al limpiar texto Unicode: {e}')
+            return text.strip()
+
     def _parse_song_text(self, text: str) -> dict | None:
         """Parsea texto para extraer artista y título de una canción."""
+        # Limpiar caracteres Unicode antes de procesar
+        cleaned_text = self._clean_unicode_text(text)
+        
         patterns = [
             r"^(.+?)\s*[-–—]\s*(.+)$",  # Artista - Título
             r"^(.+?)\s*:\s*(.+)$",      # Artista: Título
@@ -305,10 +339,10 @@ class WordPressClient:
         ]
         
         for pattern in patterns:
-            match = re.match(pattern, text.strip())
+            match = re.match(pattern, cleaned_text.strip())
             if match:
-                artist = match.group(1).strip()
-                title = match.group(2).strip()
+                artist = self._clean_unicode_text(match.group(1).strip())
+                title = self._clean_unicode_text(match.group(2).strip())
                 
                 # Filtrar texto que no parece ser una canción
                 if (len(artist) > 1 and len(title) > 1 and
@@ -352,7 +386,7 @@ if __name__ == "__main__":
     Punto de entrada para pruebas directas del WordPressClient.
     """
     try:
-        from sincronizador_rss.src.components.config_manager import ConfigManager
+        from .config_manager import ConfigManager
         
         # Cargar configuración
         config_manager = ConfigManager()
@@ -371,10 +405,6 @@ if __name__ == "__main__":
         if len(sys.argv) > 2:
             date = sys.argv[2]
         
-        print(f"Probando WordPressClient con API URL: {api_url}")
-        print(f"Buscando capítulo: {chapter_number} con fecha: {date}")
-        print("-" * 50)
-        
         # Crear instancia del cliente WordPress
         client = WordPressClient(api_url)
         
@@ -382,44 +412,10 @@ if __name__ == "__main__":
         post_data = client.get_post_details_by_date_and_number(date, chapter_number)
         
         if post_data:
-            print(f"\n✅ Capítulo {chapter_number} encontrado!")
-            print(f"📝 Título: {post_data.get('title', 'Sin título')}")
-            print(f"📅 Fecha: {post_data.get('date', 'Sin fecha')}")
-            print(f"🔗 WordPress URL: {post_data.get('wordpress_url', 'Sin enlace')}")
-            print(f"🖼️  Imagen de portada: {post_data.get('cover_image_url', 'Sin imagen')}")
-            print(f"🔗 Enlaces adicionales: {len(post_data.get('web_extra_links', []))} encontrados")
-            print(f"🎵 Canciones en playlist: {len(post_data.get('web_playlist', []))} encontradas")
-            print(f"📊 Tamaño de contenido: {post_data.get('content_length', 0)} bytes")
-            
-            # Mostrar algunos enlaces adicionales como ejemplo
-            extra_links = post_data.get('web_extra_links', [])
-            if extra_links:
-                print(f"\n🔗 Enlaces adicionales (primeros 3):")
-                for i, link in enumerate(extra_links[:3]):
-                    print(f"  {i+1}. {link.get('text', 'Sin texto')} -> {link.get('url', 'Sin URL')}")
-            
-            # Mostrar algunas canciones como ejemplo
-            playlist = post_data.get('web_playlist', [])
-            if playlist:
-                print(f"\n🎵 Playlist (primeras 3 canciones):")
-                for i, song in enumerate(playlist[:3]):
-                    print(f"  {song.get('position', i+1)}. {song.get('artist', 'Sin artista')} - {song.get('title', 'Sin título')}")
+            logger.info(f"Prueba WordPressClient exitosa: capítulo {chapter_number} encontrado")
         else:
-            print(f"\n⚠️  No se encontró el capítulo {chapter_number} con fecha {date}")
+            logger.warning(f"No se encontró el capítulo {chapter_number} con fecha {date}")
         
     except Exception as e:
-        print(f"\n❌ Error durante la prueba: {e}")
+        logger.error(f"Error durante la prueba WordPressClient: {e}")
         sys.exit(1)
-
-#activar el entorno virtual
-#source .venv/bin/activate
-
-# Probar con capítulo 1 (por defecto)
-#python src/components/wordpress_client.py
-
-# Probar con capítulo específico (usa fecha por defecto)
-#python src/components/wordpress_client.py 484
-
-# Especificar número y fecha
-#python src/components/wordpress_client.py 484 2025-07-18
-#python src/components/wordpress_client.py 483 2025-07-12

@@ -328,9 +328,6 @@ if __name__ == "__main__":
         from .rss_reader import RSSReader
         from .wordpress_client import WordPressClient
         
-        print("🧪 Iniciando prueba del DataProcessor (orquestador)...")
-        print("-" * 60)
-        
         # Crear instancias de todos los componentes
         config_manager = ConfigManager()
         
@@ -345,46 +342,20 @@ if __name__ == "__main__":
         # Orquestador
         data_processor = DataProcessor(rss_processor, wordpress_processor)
         
-        print("✅ Todos los componentes inicializados correctamente")
+        logger.info("Prueba DataProcessor iniciada")
         
         # Procesar varios episodios para encontrar uno con datos de WordPress
-        print("\n📡 Procesando episodios con datos unificados...")
         unified_episodes = data_processor.get_unified_episodes(wordpress_client, limit=5)
         
         if unified_episodes:
-            print(f"\n📊 Episodios unificados procesados ({len(unified_episodes)}):")
-            print("-" * 50)
-            
-            for i, episode in enumerate(unified_episodes, 1):
-                print(f"\n{i}. {episode.get('title', 'Sin título')}")
-                print(f"   Programa: {episode.get('program_number', 'N/A')}")
-                
-                # Verificar si tiene datos de WordPress
-                wordpress_fields = [k for k in episode.keys() if k.startswith('wordpress_')]
-                if wordpress_fields:
-                    print(f"   ✅ Datos unificados (RSS + WordPress)")
-                    if episode.get('featured_image_url'):
-                        print(f"   🖼️  Imagen: {episode.get('featured_image_url')}")
-                    if episode.get('wordpress_playlist_data', {}).get('songs_count'):
-                        print(f"   🎵 Playlist: {episode.get('wordpress_playlist_data', {}).get('songs_count')} canciones")
-                else:
-                    print(f"   ⚠️  Solo RSS (WordPress no disponible para este programa)")
-            
-            # Mostrar estadísticas del primer episodio
-            if unified_episodes:
-                episode = unified_episodes[0]
-                print(f"\n📈 Estadísticas del primer episodio:")
-                print(f"  - Campos RSS: {len([k for k in episode.keys() if not k.startswith('wordpress_')])}")
-                print(f"  - Campos WordPress: {len([k for k in episode.keys() if k.startswith('wordpress_')])}")
-                print(f"  - Total campos: {len(episode)}")
-            
+            logger.info(f"Prueba DataProcessor exitosa: {len(unified_episodes)} episodios unificados procesados")
         else:
-            print("❌ No se pudieron procesar episodios unificados")
+            logger.warning("No se pudieron procesar episodios unificados")
         
-        print("\n✅ Prueba del orquestador completada exitosamente!")
+        logger.info("Prueba DataProcessor completada")
         
     except Exception as e:
-        print(f"\n❌ Error durante la prueba: {e}")
+        logger.error(f"Error durante la prueba DataProcessor: {e}")
         import traceback
         traceback.print_exc()
         exit(1) 

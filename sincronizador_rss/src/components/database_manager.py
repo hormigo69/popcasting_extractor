@@ -198,14 +198,14 @@ class DatabaseManager:
                     filtered_podcast_data['web_songs_count'] = len(songs_list) if isinstance(songs_list, list) else 0
                     # Guardar solo la lista de canciones como JSON
                     import json
-                    filtered_podcast_data['web_playlist'] = json.dumps(songs_list)
+                    filtered_podcast_data['web_playlist'] = json.dumps(songs_list, ensure_ascii=False)
                     self.logger.info(f"Procesado web_playlist: {filtered_podcast_data['web_songs_count']} canciones")
                 
                 # Si es una lista directa
                 elif isinstance(web_playlist_data, list):
                     filtered_podcast_data['web_songs_count'] = len(web_playlist_data)
                     import json
-                    filtered_podcast_data['web_playlist'] = json.dumps(web_playlist_data)
+                    filtered_podcast_data['web_playlist'] = json.dumps(web_playlist_data, ensure_ascii=False)
                     self.logger.info(f"Procesado web_playlist: {filtered_podcast_data['web_songs_count']} canciones")
                 
                 # Si es un string JSON, intentar parsearlo
@@ -216,7 +216,7 @@ class DatabaseManager:
                         if isinstance(parsed_data, dict) and 'songs' in parsed_data:
                             songs_list = parsed_data['songs']
                             filtered_podcast_data['web_songs_count'] = len(songs_list) if isinstance(songs_list, list) else 0
-                            filtered_podcast_data['web_playlist'] = json.dumps(songs_list)
+                            filtered_podcast_data['web_playlist'] = json.dumps(songs_list, ensure_ascii=False)
                         elif isinstance(parsed_data, list):
                             filtered_podcast_data['web_songs_count'] = len(parsed_data)
                         self.logger.info(f"Procesado web_playlist desde JSON: {filtered_podcast_data.get('web_songs_count', 0)} canciones")
@@ -230,7 +230,7 @@ class DatabaseManager:
             # Convertir web_extra_links a JSON string si es una lista
             if 'web_extra_links' in filtered_podcast_data and isinstance(filtered_podcast_data['web_extra_links'], list):
                 import json
-                filtered_podcast_data['web_extra_links'] = json.dumps(filtered_podcast_data['web_extra_links'])
+                filtered_podcast_data['web_extra_links'] = json.dumps(filtered_podcast_data['web_extra_links'], ensure_ascii=False)
             
             # Insertar el podcast en la tabla podcasts
             podcast_result = self.client.table('podcasts').insert(filtered_podcast_data).execute()
@@ -279,6 +279,84 @@ class DatabaseManager:
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Context manager exit."""
         self.close()
+
+    def get_all_podcasts(self) -> list:
+        """
+        Obtiene todos los podcasts de la base de datos.
+        
+        Returns:
+            list: Lista de todos los podcasts
+        """
+        try:
+            result = self.client.table('podcasts').select('*').execute()
+            podcasts = result.data
+            self.logger.info(f"Obtenidos {len(podcasts)} podcasts de la base de datos")
+            return podcasts
+        except Exception as e:
+            self.logger.error(f"Error al obtener todos los podcasts: {e}")
+            return []
+    
+    def get_podcasts_without_rss_playlist(self) -> list:
+        """
+        Obtiene todos los podcasts que no tienen rss_playlist o lo tienen vacío.
+        
+        Returns:
+            list: Lista de podcasts sin rss_playlist
+        """
+        try:
+            # Obtener podcasts donde rss_playlist es null, vacío o no existe
+            result = self.client.table('podcasts').select('*').or_('rss_playlist.is.null,rss_playlist.eq.,rss_playlist.eq.null').execute()
+            podcasts = result.data
+            self.logger.info(f"Encontrados {len(podcasts)} podcasts sin rss_playlist")
+            return podcasts
+        except Exception as e:
+            self.logger.error(f"Error al obtener podcasts sin rss_playlist: {e}")
+            return []
+    
+    def update_podcast_rss_playlist(self, podcast_id: int, rss_playlist: str) -> bool:
+        """
+        Actualiza el campo rss_playlist de un podcast específico.
+        
+        Args:
+            podcast_id: ID del podcast a actualizar
+            rss_playlist: JSON string con la playlist procesada
+            
+        Returns:
+            bool: True si se actualizó correctamente, False en caso contrario
+        """
+        try:
+            result = self.client.table('podcasts').update({'rss_playlist': rss_playlist}).eq('id', podcast_id).execute()
+            
+            if result.data:
+                self.logger.info(f"✅ Podcast {podcast_id} actualizado con rss_playlist")
+                return True
+            else:
+                self.logger.warning(f"⚠️ No se pudo actualizar podcast {podcast_id}")
+                return False
+                
+        except Exception as e:
+            self.logger.error(f"❌ Error al actualizar podcast {podcast_id}: {e}")
+            return False
+    
+    def get_podcasts_by_batch(self, batch_size: int = 50, offset: int = 0) -> list:
+        """
+        Obtiene podcasts en lotes para procesamiento eficiente.
+        
+        Args:
+            batch_size: Tamaño del lote
+            offset: Desplazamiento para paginación
+            
+        Returns:
+            list: Lista de podcasts del lote
+        """
+        try:
+            result = self.client.table('podcasts').select('*').range(offset, offset + batch_size - 1).execute()
+            podcasts = result.data
+            self.logger.info(f"Obtenidos {len(podcasts)} podcasts (lote {offset//batch_size + 1})")
+            return podcasts
+        except Exception as e:
+            self.logger.error(f"Error al obtener lote de podcasts: {e}")
+            return []
 
 
 def test_database_connection():

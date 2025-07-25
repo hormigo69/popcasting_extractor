@@ -233,74 +233,42 @@ if __name__ == "__main__":
         from .wordpress_client import WordPressClient
         from .config_manager import ConfigManager
         
-        print("🧪 Iniciando prueba del WordPressDataProcessor...")
-        print("-" * 50)
-        
         # Crear instancias
         config_manager = ConfigManager()
         wordpress_config = config_manager.get_wordpress_config()
         wordpress_client = WordPressClient(wordpress_config['api_url'])
         wordpress_processor = WordPressDataProcessor()
         
-        print("✅ Componentes inicializados correctamente")
+        logger.info("Prueba WordPressDataProcessor iniciada")
         
         # URL de ejemplo para extraer slug
         test_url = "https://popcastingpop.com/2025/05/31/popcasting-479/"
-        print(f"\n🔗 Probando extracción de slug de: {test_url}")
         slug = wordpress_processor.extract_slug_from_url(test_url)
-        print(f"🏷️  Slug extraído: {slug}")
         
         # Extraer fecha y número del programa del slug
-        print(f"\n🔍 Analizando slug: {slug}")
-        
-        # Intentar extraer fecha y número del programa del slug
-        # Formato esperado: popcasting-479
         import re
         match = re.search(r'popcasting-(\d+)', slug)
         if match:
             chapter_number = match.group(1)
-            # Usar fecha de ejemplo (podríamos extraerla de la URL completa)
             date = "2025-05-31"  # Fecha de ejemplo
             
-            print(f"📅 Fecha extraída: {date}")
-            print(f"🔢 Número de capítulo: {chapter_number}")
-            
             # Obtener datos de WordPress usando el método HTML
-            print(f"\n🌐 Obteniendo datos de WordPress para capítulo {chapter_number}...")
             wordpress_data = wordpress_client.get_post_details_by_date_and_number(date, chapter_number)
         else:
-            print(f"⚠️  No se pudo extraer número de capítulo del slug: {slug}")
+            logger.warning(f"No se pudo extraer número de capítulo del slug: {slug}")
             wordpress_data = None
         
         if wordpress_data:
-            print(f"✅ Datos de WordPress obtenidos (ID: {wordpress_data.get('id')})")
-            
             # Procesar los datos
-            print("\n🔄 Procesando datos de WordPress...")
             processed_data = wordpress_processor.process_post_data(wordpress_data)
-            
-            # Mostrar resultado
-            print("\n📊 Datos procesados:")
-            print("-" * 30)
-            for key, value in processed_data.items():
-                if key == 'content' and value:
-                    content_preview = value[:100] + "..." if len(value) > 100 else value
-                    print(f"{key}: {content_preview}")
-                elif isinstance(value, list) and len(value) > 0:
-                    print(f"{key}: {len(value)} elementos")
-                else:
-                    print(f"{key}: {value}")
-            
-            # Validar datos
-            print(f"\n✅ Validación: {wordpress_processor.validate_post_data(wordpress_data)}")
-            
+            logger.info(f"Prueba WordPressDataProcessor exitosa: datos procesados para capítulo {chapter_number}")
         else:
-            print("⚠️  No se encontraron datos de WordPress para este slug")
+            logger.warning("No se encontraron datos de WordPress para el slug")
         
-        print("\n✅ Prueba completada exitosamente!")
+        logger.info("Prueba WordPressDataProcessor completada")
         
     except Exception as e:
-        print(f"\n❌ Error durante la prueba: {e}")
+        logger.error(f"Error durante la prueba WordPressDataProcessor: {e}")
         import traceback
         traceback.print_exc()
         exit(1) 
