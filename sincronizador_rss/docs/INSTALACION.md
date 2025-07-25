@@ -59,9 +59,17 @@ url = https://popcastingpop.com
 
 ## 🧪 Verificar Instalación
 
-### Prueba de Conexión
+### Opción 1: Prueba desde DatabaseManager (Recomendado)
 
 ```bash
+# Desde el directorio raíz del proyecto
+python sincronizador_rss/src/components/database_manager.py
+```
+
+### Opción 2: Prueba desde script independiente
+
+```bash
+# Desde el directorio raíz del proyecto
 python test_connection.py
 ```
 
