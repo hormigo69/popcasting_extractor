@@ -1,1 +1,5 @@
-# Dependencias del sincronizador RSS 
+requests
+feedparser
+psycopg2-binary
+python-dotenv
+supabase 
