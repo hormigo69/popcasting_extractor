@@ -286,6 +286,17 @@
 
 
 
+✅ **Coherencia de URLs en tabla podcasts**: Completada
+    - Campo 'url': Solo contiene enlaces a iVoox.com o está vacío
+    - Campo 'wordpress_url': Solo contiene popcastingpop.com desde episodio 92
+    - Campo 'download_url': Enlaces a iVoox.com (algunos a blip.tv pendientes de arreglar)
+    - Eliminadas todas las inconsistencias y duplicados
+    - Verificación automática implementada
+    
+
+
+
+
 ________________________________________________________
 
 ## Tareas completadas recientemente (Julio 2024):
@@ -300,18 +311,19 @@ ________________________________________________________
 ✅ **Optimización de tipos**: Campos de base de datos optimizados
 ✅ **Extracción automática de duración MP3**: Integrada en el script principal
 
+
+
+
+________________________________________________________
+
+
 ## Próximos pasos:
 
-    
 
+## DATOS
 
-✅ **Coherencia de URLs en tabla podcasts**: Completada
-    - Campo 'url': Solo contiene enlaces a iVoox.com o está vacío
-    - Campo 'wordpress_url': Solo contiene popcastingpop.com desde episodio 92
-    - Campo 'download_url': Enlaces a iVoox.com (algunos a blip.tv pendientes de arreglar)
-    - Eliminadas todas las inconsistencias y duplicados
-    - Verificación automática implementada
-    
+- Supabase. https://supabase.com/dashboard/project/ndhmlymnbrewflharfmr/
+- Synology NAS. https://192.168.1.100:5000/
 
 
 

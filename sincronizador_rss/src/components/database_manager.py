@@ -105,3 +105,12 @@ if __name__ == "__main__":
     """
     success = test_database_connection()
     exit(0 if success else 1)
+
+#activar el entorno virtual
+#python src/components/database_manager.py
+
+#probar la conexión
+#python src/components/rss_reader.py
+
+#probar la conexión con una url específica
+#python src/components/rss_reader.py https://url_de_tu_feed.com/rss
