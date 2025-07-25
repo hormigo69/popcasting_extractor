@@ -30,6 +30,64 @@ class DatabaseManager:
             self.logger.error(f"❌ Error en prueba de conexión: {e}")
             raise
     
+    def get_table_structure_from_sample(self, table_name: str, limit: int = 1):
+        """Obtiene la estructura de una tabla analizando una muestra de datos."""
+        try:
+            # Obtener una muestra de datos
+            result = self.client.table(table_name).select("*").limit(limit).execute()
+            
+            if not result.data:
+                self.logger.warning(f"⚠️ Tabla '{table_name}' está vacía")
+                return []
+            
+            # Analizar la estructura del primer registro
+            sample_record = result.data[0]
+            structure = []
+            
+            for column_name, value in sample_record.items():
+                # Determinar el tipo de dato
+                if value is None:
+                    data_type = "unknown"
+                elif isinstance(value, bool):
+                    data_type = "boolean"
+                elif isinstance(value, int):
+                    data_type = "integer"
+                elif isinstance(value, float):
+                    data_type = "numeric"
+                elif isinstance(value, str):
+                    data_type = "text"
+                elif isinstance(value, list):
+                    data_type = "json"
+                elif isinstance(value, dict):
+                    data_type = "jsonb"
+                else:
+                    data_type = str(type(value).__name__)
+                
+                structure.append({
+                    'column_name': column_name,
+                    'data_type': data_type,
+                    'sample_value': str(value)[:50] + "..." if len(str(value)) > 50 else str(value)
+                })
+            
+            self.logger.info(f"✅ Estructura de tabla '{table_name}' obtenida de muestra")
+            return structure
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error al obtener estructura de tabla '{table_name}': {e}")
+            return []
+    
+    def get_table_info(self):
+        """Obtiene información completa de las tablas conocidas."""
+        tables_info = {}
+        known_tables = ["podcasts", "songs"]
+        
+        for table in known_tables:
+            structure = self.get_table_structure_from_sample(table)
+            tables_info[table] = structure
+            self.logger.info(f"📋 Tabla '{table}': {len(structure)} columnas")
+        
+        return tables_info
+    
     def close(self):
         """Cierra la conexión a Supabase."""
         # La librería de Supabase maneja automáticamente las conexiones
@@ -80,8 +138,19 @@ def test_database_connection():
         logger.info("Paso 3: Probando la conexión...")
         db_manager.test_connection()
         
-        # 4. Cerrar la conexión
-        logger.info("Paso 4: Cerrando la conexión...")
+        # 4. Obtener información de tablas
+        logger.info("Paso 4: Obteniendo información de tablas...")
+        tables_info = db_manager.get_table_info()
+        
+        # 5. Mostrar información
+        logger.info("📊 INFORMACIÓN DE TABLAS:")
+        for table_name, columns in tables_info.items():
+            logger.info(f"\n📋 Tabla: {table_name}")
+            for column in columns:
+                logger.info(f"  - {column['column_name']}: {column['data_type']} (ejemplo: {column['sample_value']})")
+        
+        # 6. Cerrar la conexión
+        logger.info("Paso 5: Cerrando la conexión...")
         db_manager.close()
         
         logger.info("✅ --- PRUEBA FINALIZADA CON ÉXITO --- ✅")
@@ -105,12 +174,3 @@ if __name__ == "__main__":
     """
     success = test_database_connection()
     exit(0 if success else 1)
-
-#activar el entorno virtual
-#python src/components/database_manager.py
-
-#probar la conexión
-#python src/components/rss_reader.py
-
-#probar la conexión con una url específica
-#python src/components/rss_reader.py https://url_de_tu_feed.com/rss
