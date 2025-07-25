@@ -54,14 +54,28 @@ Este documento describe todos los campos que extraemos de las diferentes fuentes
 
 ## 🌐 Fuente: WordPress (Implementado ✅)
 
-### Campos por Entrada
-- **Título**: Título del post ✅
-- **Contenido**: Contenido completo del post ✅
-- **Fecha de publicación**: Fecha de publicación ✅
-- **URL**: URL del post ✅
-- **Imagen destacada**: URL de la imagen destacada ✅
-- **Lista de canciones**: Playlist extraída del contenido ✅
-- **Enlaces adicionales**: Enlaces extras del post ✅
+### Campos por Entrada (API REST)
+- **id**: ID numérico del post ✅
+- **title.rendered**: Título del post ✅
+- **content.rendered**: Contenido completo del post ✅
+- **excerpt.rendered**: Extracto del post ✅
+- **slug**: Slug del post ✅
+- **date**: Fecha de publicación ✅
+- **modified**: Fecha de modificación ✅
+- **jetpack_featured_media_url**: URL de imagen destacada ✅
+- **author**: ID del autor ✅
+- **status**: Estado del post ✅
+- **link**: URL del post ✅
+- **_embedded.wp:term**: Categorías y etiquetas ✅
+
+### Campos por Entrada (Extracción HTML)
+- **title**: Título del post ✅
+- **wordpress_url**: URL del post ✅
+- **cover_image_url**: URL de la imagen de portada ✅
+- **web_extra_links**: Enlaces adicionales del post ✅
+- **web_playlist**: Playlist extraída del contenido ✅
+- **content_length**: Tamaño del contenido en bytes ✅
+- **date**: Fecha de publicación ✅
 
 ---
 
@@ -84,6 +98,52 @@ Este documento describe todos los campos que extraemos de las diferentes fuentes
 - **Composer**: Compositor
 - **Track Number**: Número de pista
 - **Disc Number**: Número de disco
+
+---
+
+## 🔄 Datos Unificados (DataProcessor - Orquestador)
+
+### Estructura de Datos Unificados
+
+Los datos unificados combinan información del RSS y WordPress en una estructura coherente:
+
+#### Campos Base (RSS)
+- **guid**: ID único del episodio
+- **title**: Título del episodio
+- **link**: URL del episodio
+- **published_date**: Fecha de publicación
+- **summary**: Resumen/playlist del RSS
+- **download_url**: URL de descarga del MP3
+- **file_size**: Tamaño del archivo
+- **duration**: Duración en segundos
+- **image_url**: URL de imagen del RSS
+- **program_number**: Número del programa
+- **comments**: Comentarios extraídos del título
+
+#### Campos WordPress (cuando están disponibles)
+- **wordpress_id**: ID numérico del post
+- **wordpress_title**: Título del post
+- **wordpress_content**: Contenido completo
+- **wordpress_excerpt**: Extracto del post
+- **wordpress_slug**: Slug del post
+- **wordpress_date**: Fecha del post
+- **wordpress_modified**: Fecha de modificación
+- **featured_image_url**: URL de imagen destacada
+- **wordpress_author**: ID del autor
+- **wordpress_status**: Estado del post
+- **wordpress_link**: URL del post
+- **wordpress_categories**: Lista de categorías
+- **wordpress_tags**: Lista de etiquetas
+- **wordpress_playlist_data**: Datos de playlist procesados
+- **web_extra_links**: Enlaces adicionales
+- **content_length**: Tamaño del contenido
+
+### Priorización de Datos
+
+1. **Imágenes**: WordPress tiene prioridad sobre RSS
+2. **Playlists**: Se combinan datos de ambas fuentes
+3. **Metadatos**: WordPress complementa datos del RSS
+4. **Fechas**: Se usa la fecha del RSS como principal
 
 ---
 
@@ -187,10 +247,15 @@ Este documento describe todos los campos que extraemos de las diferentes fuentes
 - [x] ✅ Mapeo de campos RSS confirmado
 - [x] ✅ Cliente WordPress implementado (`WordPressClient`)
 - [x] ✅ Mapeo de campos WordPress confirmado
+- [x] ✅ Procesador WordPress implementado (`WordPressDataProcessor`)
+- [x] ✅ Orquestador de datos implementado (`DataProcessor`)
+- [x] ✅ Unificación de datos RSS + WordPress funcionando
+- [x] ✅ Extracción de fechas reales del RSS para búsqueda en WordPress
+- [x] ✅ Sistema de logging integrado
 - [ ] Implementar extracción de metadatos MP3
 - [ ] Implementar integración con base de datos
-- [ ] Añadir validación de datos
-- [ ] Crear sistema de logging de extracción
+- [ ] Añadir validación de datos unificados
+- [ ] Crear sistema de sincronización automática
 
 ## 🛠️ Componentes Implementados
 
@@ -212,6 +277,7 @@ Este documento describe todos los campos que extraemos de las diferentes fuentes
 - **Función**: Extrae información de posts de WordPress
 - **Métodos principales**:
   - `get_post_details_by_date_and_number()`: Busca post por fecha y número
+  - `get_post_details_by_slug()`: Busca post por slug (API REST)
   - `_extract_cover_image()`: Extrae imagen de portada
   - `_extract_extra_links()`: Extrae enlaces adicionales (filtra Ko-fi)
   - `_extract_playlist()`: Extrae playlist de canciones
@@ -219,4 +285,32 @@ Este documento describe todos los campos que extraemos de las diferentes fuentes
   - Compatible con episodios antiguos y modernos
   - Filtrado inteligente de URLs y texto no musical
   - Búsqueda en cascada: párrafos centrados → listas → párrafos generales
-  - Formato JSON para playlist y enlaces 
+  - Formato JSON para playlist y enlaces
+  - Soporte para API REST y extracción HTML
+
+### WordPressDataProcessor
+- **Archivo**: `sincronizador_rss/src/components/wordpress_data_processor.py`
+- **Función**: Procesa datos de WordPress (API REST y HTML)
+- **Métodos principales**:
+  - `process_post_data()`: Procesa datos del post
+  - `extract_slug_from_url()`: Extrae slug de URLs
+  - `validate_post_data()`: Valida datos del post
+- **Características**:
+  - Detecta automáticamente formato de datos (API vs HTML)
+  - Extrae categorías y etiquetas
+  - Procesa datos de playlist
+  - Validación robusta de datos
+
+### DataProcessor (Orquestador)
+- **Archivo**: `sincronizador_rss/src/components/data_processor.py`
+- **Función**: Unifica datos del RSS y WordPress
+- **Métodos principales**:
+  - `process_entry()`: Procesa entrada individual
+  - `get_unified_episodes()`: Obtiene episodios unificados
+  - `_unify_rss_with_wordpress()`: Unifica datos usando número de programa
+- **Características**:
+  - Orquestador principal del sistema
+  - Coordina procesadores específicos
+  - Maneja casos donde WordPress no está disponible
+  - Proporciona interfaz de alto nivel
+  - Extrae fechas reales del RSS para búsqueda en WordPress 
