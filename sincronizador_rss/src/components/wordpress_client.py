@@ -289,6 +289,39 @@ class WordPressClient:
                             })
                             position += 1
                             logger.info(f"Canción encontrada (párrafo): {song_info['artist']} - {song_info['title']}")
+            
+            # Si aún no encontramos, buscar en spans (para episodios antiguos)
+            if not playlist:
+                spans = content_area.find_all("span")
+                position = 1
+                
+                for span in spans:
+                    text = span.get_text(strip=True)
+                    # Limpiar caracteres Unicode del texto extraído
+                    text = self._clean_unicode_text(text)
+                    songs = self._parse_popcasting_playlist_text(text)
+                    if songs:
+                        for song in songs:
+                            if self._is_valid_song(song):
+                                playlist.append({
+                                    "position": position,
+                                    "artist": song["artist"],
+                                    "title": song["title"]
+                                })
+                                position += 1
+                                logger.info(f"Canción encontrada (span): {song['artist']} - {song['title']}")
+                        break  # Si encontramos canciones en un span, no buscar más
+                    else:
+                        song_info = self._parse_song_text(text)
+                        if song_info and self._is_valid_song(song_info):
+                            playlist.append({
+                                "position": position,
+                                "artist": song_info["artist"],
+                                "title": song_info["title"]
+                            })
+                            position += 1
+                            logger.info(f"Canción encontrada (span): {song_info['artist']} - {song_info['title']}")
+                            break  # Si encontramos una canción en un span, no buscar más
         
         return playlist
 
@@ -320,6 +353,15 @@ class WordPressClient:
                     text = text.encode('latin-1').decode('utf-8')
                 except Exception:
                     pass
+            
+            # Limpiar caracteres Unicode problemáticos específicos
+            text = text.replace('┬Ę', '·')  # Punto medio Unicode
+            text = text.replace('┬Ā', ' ')  # Espacio no separador Unicode
+            text = text.replace('┬', '')    # Otros caracteres Unicode problemáticos
+            text = text.replace('•', '·')   # Punto medio Unicode alternativo
+            text = text.replace('–', '-')   # Guión medio Unicode
+            text = text.replace('—', '-')   # Guión largo Unicode
+            
             text = html.unescape(text)
             return text.strip()
         except Exception as e:

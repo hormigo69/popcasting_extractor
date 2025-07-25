@@ -279,7 +279,32 @@ class DataProcessor:
                     date = "2025-05-31"  # Fallback
                     logger.warning("No hay fecha disponible en el RSS")
                 
+                # Intentar con la fecha exacta del RSS
                 wordpress_data = wordpress_client.get_post_details_by_date_and_number(date, str(program_number))
+                
+                # Si no se encuentra, intentar con fechas cercanas (±1 día)
+                if not wordpress_data:
+                    logger.info(f"No encontrado en fecha exacta {date}, buscando en fechas cercanas...")
+                    from datetime import datetime, timedelta
+                    
+                    try:
+                        base_date = datetime.strptime(date, '%Y-%m-%d')
+                        
+                        # Probar fechas cercanas: -1 día, +1 día, +2 días
+                        nearby_dates = [
+                            (base_date - timedelta(days=1)).strftime('%Y-%m-%d'),
+                            (base_date + timedelta(days=1)).strftime('%Y-%m-%d'),
+                            (base_date + timedelta(days=2)).strftime('%Y-%m-%d')
+                        ]
+                        
+                        for nearby_date in nearby_dates:
+                            logger.info(f"Probando fecha: {nearby_date}")
+                            wordpress_data = wordpress_client.get_post_details_by_date_and_number(nearby_date, str(program_number))
+                            if wordpress_data:
+                                logger.info(f"¡Encontrado en fecha {nearby_date}!")
+                                break
+                    except Exception as e:
+                        logger.warning(f"Error al buscar fechas cercanas: {e}")
                 
                 if wordpress_data:
                     logger.info(f"Datos de WordPress encontrados para programa {program_number}")
