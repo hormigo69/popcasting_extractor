@@ -9,6 +9,9 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
+
 # Añadir el directorio raíz al path para importar los servicios
 sys.path.append(str(Path(__file__).parent.parent.parent))
 

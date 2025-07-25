@@ -13,10 +13,10 @@ from datetime import datetime
 from pathlib import Path
 
 # Añadir el directorio raíz al path para importar servicios
-sys.path.append(os.path.dirname(__file__))
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from services.config import get_database_module
-from synology_client import SynologyClient
+from synology.synology_client import SynologyClient
 
 
 def get_first_3_podcasts_with_download_urls():

@@ -9,7 +9,7 @@ import requests
 from pathlib import Path
 
 # Añadir el directorio raíz al path
-sys.path.append(os.path.dirname(__file__))
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from services.config import get_database_module
 

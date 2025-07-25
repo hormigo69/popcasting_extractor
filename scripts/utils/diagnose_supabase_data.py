@@ -3,6 +3,11 @@
 from datetime import datetime
 
 import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
+
+import sys
 from services.supabase_database import SupabaseDatabase
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))

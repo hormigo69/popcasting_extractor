@@ -3,8 +3,12 @@
 Script para arreglar automáticamente errores de linting comunes en los archivos de scripts/utils
 """
 
+import os
 import re
+import sys
 from pathlib import Path
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 
 def fix_import_order(file_path):

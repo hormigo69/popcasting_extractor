@@ -3,8 +3,12 @@
 Script temporal para eliminar comentarios que empiecen por "Especial verano".
 """
 
+import os
 import sys
 from pathlib import Path
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 
 # Añadir el directorio raíz al path para importar los módulos
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))

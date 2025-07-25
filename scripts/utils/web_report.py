@@ -2,6 +2,11 @@
 """
 import sys
 from pathlib import Path
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
     from services.web_report_generator import main
 
 sys.path.insert(0, str(project_root))

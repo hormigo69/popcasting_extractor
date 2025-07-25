@@ -17,7 +17,7 @@ import requests
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 from services.config import get_database_module
-from synology_client import SynologyClient
+from synology.synology_client import SynologyClient
 
 
 def get_podcasts_with_download_urls():

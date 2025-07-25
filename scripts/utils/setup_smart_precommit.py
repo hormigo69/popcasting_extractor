@@ -5,7 +5,10 @@ Script para configurar pre-commit de manera inteligente
 
 import os
 import subprocess
+import sys
 from pathlib import Path
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 
 def create_smart_precommit_config():

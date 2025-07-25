@@ -5,8 +5,12 @@ Compara las canciones actuales con el JSON de web_playlist y corrige discrepanci
 """
 
 import json
+import os
 import sys
 from pathlib import Path
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 
 # Añadir el directorio raíz al path para importar los servicios
 sys.path.append(str(Path(__file__).parent.parent.parent))

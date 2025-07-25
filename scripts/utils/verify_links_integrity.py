@@ -2,6 +2,11 @@
 """
 from datetime import datetime
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
+
 import re
 import sys
 from pathlib import Path

@@ -4,6 +4,11 @@ import sys
 from datetime import datetime
 from pathlib import Path
 from services.supabase_database import SupabaseDatabase
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
                 from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))

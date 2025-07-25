@@ -4,8 +4,12 @@ Script para comparar el número de canciones en la tabla songs vs web_songs_coun
 Muestra solo las discrepancias organizadas por capítulo.
 """
 
+import os
 import sys
 from pathlib import Path
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 
 # Añadir el directorio raíz al path para importar los servicios
 sys.path.append(str(Path(__file__).parent.parent.parent))

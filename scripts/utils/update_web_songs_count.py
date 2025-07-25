@@ -9,6 +9,11 @@ from database import get_db_connection, initialize_database
 from logger_setup import setup_parser_logger
 from supabase_database import get_supabase_connection
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
+
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
 
 Script para extraer el número de canciones de web_playlist y actualizar el campo web_songs_count.

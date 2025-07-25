@@ -1,6 +1,10 @@
+import os
 import sys
 from pathlib import Path
 from urllib.parse import urlparse
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 
 from dotenv import load_dotenv
 from supabase_database import get_supabase_connection

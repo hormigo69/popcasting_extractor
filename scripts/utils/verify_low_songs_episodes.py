@@ -8,6 +8,11 @@ from config import DATABASE_TYPE
 from database import get_db_connection, initialize_database
 from supabase_database import get_supabase_connection
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
+
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "services"))
 
 Script para revisar episodios con menos de 9 canciones y verificar si tienen playlists completas.
