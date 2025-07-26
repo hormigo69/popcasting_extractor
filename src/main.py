@@ -161,9 +161,18 @@ def main():
                 logger.info(f"🎵 Procesando canciones para: {episode_title}")
                 song_processor = SongProcessor(db_manager)
                 
+                # Extraer canciones de wordpress_playlist_data si existe
+                web_playlist = None
+                if episode_data.get('wordpress_playlist_data'):
+                    playlist_data = episode_data['wordpress_playlist_data']
+                    if isinstance(playlist_data, dict) and 'songs' in playlist_data:
+                        web_playlist = playlist_data['songs']
+                    elif isinstance(playlist_data, list):
+                        web_playlist = playlist_data
+                
                 stored_songs_count = song_processor.process_and_store_songs(
                     podcast_id=new_podcast_id,
-                    web_playlist=episode_data.get('web_playlist'),
+                    web_playlist=web_playlist,
                     rss_playlist=episode_data.get('rss_playlist')
                 )
                 
