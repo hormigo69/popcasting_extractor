@@ -180,3 +180,8 @@ if __name__ == "__main__":
     Punto de entrada principal del sincronizador RSS.
     """
     main() 
+
+
+# source .venv/bin/activate
+# python src/main.py
+

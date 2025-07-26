@@ -76,7 +76,7 @@ class WordPressDataProcessor:
                         'raw_content': '',
                         'has_playlist': len(wordpress_data.get('web_playlist', [])) > 0,
                         'songs_count': len(wordpress_data.get('web_playlist', [])),
-                        'songs': wordpress_data.get('web_playlist', [])
+                        'songs': self._clean_playlist_songs(wordpress_data.get('web_playlist', []))
                     },
                     'web_extra_links': wordpress_data.get('web_extra_links', []),
                     'content_length': wordpress_data.get('content_length', 0)
@@ -223,6 +223,35 @@ class WordPressDataProcessor:
                 return False
         
         return True
+    
+    def _clean_playlist_songs(self, songs: List[Dict]) -> List[Dict]:
+        """
+        Limpia las canciones de la playlist removiendo campos problemáticos.
+        
+        Args:
+            songs: Lista de canciones de la playlist
+            
+        Returns:
+            List[Dict]: Lista de canciones limpias
+        """
+        try:
+            cleaned_songs = []
+            problematic_fields = ['duration', 'duration_ms', 'duration_seconds']
+            
+            for song in songs:
+                if isinstance(song, dict):
+                    # Crear copia sin campos problemáticos
+                    cleaned_song = {k: v for k, v in song.items() if k not in problematic_fields}
+                    cleaned_songs.append(cleaned_song)
+                else:
+                    # Si no es un diccionario, mantener como está
+                    cleaned_songs.append(song)
+            
+            return cleaned_songs
+            
+        except Exception as e:
+            logger.warning(f"Error al limpiar canciones de playlist: {e}")
+            return songs
 
 
 if __name__ == "__main__":

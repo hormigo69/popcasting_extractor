@@ -101,3 +101,7 @@ def main():
 
 if __name__ == "__main__":
     exit(main())
+
+# source .venv/bin/activate
+# python scripts/backup_supabase.py
+

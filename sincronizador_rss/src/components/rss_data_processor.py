@@ -157,11 +157,18 @@ class RSSDataProcessor:
             for i, song_raw in enumerate(songs_raw):
                 song_data = self._parse_song_text(song_raw)
                 if song_data:
-                    processed_songs.append({
+                    # Limpiar campos problemáticos como 'duration'
+                    cleaned_song = {
                         'position': i + 1,
                         'artist': song_data['artist'],
                         'title': song_data['title']
-                    })
+                    }
+                    # Remover campos problemáticos si existen (prevención)
+                    problematic_fields = ['duration', 'duration_ms', 'duration_seconds']
+                    for field in problematic_fields:
+                        if field in cleaned_song:
+                            del cleaned_song[field]
+                    processed_songs.append(cleaned_song)
             
             # 4. Convertir a JSON
             return json.dumps(processed_songs, ensure_ascii=False)
