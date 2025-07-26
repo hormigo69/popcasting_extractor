@@ -48,3 +48,5 @@ test_download/
 docs/
 reports/
 
+# excluir el directorio de docs de sincronizador_rss
+!sincronizador_rss/docs/

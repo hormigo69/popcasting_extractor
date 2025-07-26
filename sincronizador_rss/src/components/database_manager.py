@@ -369,6 +369,31 @@ class DatabaseManager:
             self.logger.error(f"Error al buscar podcast #{program_number}: {e}")
             return None
     
+    def get_podcast_by_id(self, podcast_id: int) -> dict | None:
+        """
+        Obtiene un podcast específico por su ID.
+        
+        Args:
+            podcast_id: ID del podcast a buscar
+            
+        Returns:
+            dict: Datos del podcast o None si no se encuentra
+        """
+        try:
+            result = self.client.table('podcasts').select('*').eq('id', podcast_id).limit(1).execute()
+            
+            if result.data:
+                podcast = result.data[0]
+                self.logger.debug(f"Podcast encontrado: ID {podcast_id} - {podcast.get('title', 'Sin título')}")
+                return podcast
+            else:
+                self.logger.debug(f"Podcast no encontrado: ID {podcast_id}")
+                return None
+                
+        except Exception as e:
+            self.logger.error(f"Error al buscar podcast ID {podcast_id}: {e}")
+            return None
+    
     def get_podcasts_by_batch(self, batch_size: int = 50, offset: int = 0) -> list:
         """
         Obtiene podcasts en lotes para procesamiento eficiente.

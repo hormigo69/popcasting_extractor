@@ -9,6 +9,9 @@ from .config import get_database_module
 from .logger_setup import setup_parser_logger, setup_stats_logger
 from .utils import extract_extra_links, extract_program_info, parse_playlist_simple
 from .audio_duration_extractor import AudioDurationExtractor
+from .config_manager import ConfigManager
+from synology.synology_client import SynologyClient
+from src.components.audio_manager import AudioManager
 
 db = get_database_module()
 
@@ -26,6 +29,20 @@ class PopcastingExtractor:
                 "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
             }
         )
+        
+        # Inicializar componentes para el archivado de audio
+        try:
+            print("Inicializando cliente de Synology...")
+            config_manager = ConfigManager()
+            synology_credentials = config_manager.get_synology_credentials()
+            self.synology_client = SynologyClient(**synology_credentials)
+            print("Inicializando gestor de audio...")
+            self.audio_manager = AudioManager(db, self.synology_client)
+            print("✅ Componentes de audio inicializados correctamente")
+        except Exception as e:
+            print(f"⚠️  No se pudieron inicializar los componentes de audio: {e}")
+            print("El proceso continuará sin archivado de audio")
+            self.audio_manager = None
 
     def extract_and_save_episodes(self):
         """
@@ -110,6 +127,15 @@ class PopcastingExtractor:
                         if episode_data["program_number"]:
                             self._extract_duration_for_episode(episode_data["program_number"])
 
+                        # Iniciar el proceso de archivado de audio si está disponible
+                        if self.audio_manager:
+                            print(f"Iniciando el proceso de archivado de audio para el podcast ID: {podcast_id}")
+                            audio_success = self.audio_manager.archive_podcast_audio(podcast_id=podcast_id)
+                            if audio_success:
+                                print(f"✅ Audio archivado exitosamente para episodio {episode_data['program_number']}")
+                            else:
+                                print(f"⚠️  No se pudo archivar el audio para episodio {episode_data['program_number']}")
+
                         processed_urls.add(entry_url)
 
             except Exception as e:
@@ -127,6 +153,14 @@ class PopcastingExtractor:
         stats_logger.info(
             "✅ Sistema de control de cambios activado - solo se actualiza contenido modificado"
         )
+
+        # Limpiar archivos temporales del AudioManager si está disponible
+        if self.audio_manager:
+            try:
+                self.audio_manager.cleanup_temp_folder()
+                print("🗑️  Archivos temporales de audio limpiados")
+            except Exception as e:
+                print(f"⚠️  Error al limpiar archivos temporales: {e}")
 
         print("Proceso de extracción finalizado.")
         print("📊 Estadísticas guardadas en logs/extraction_stats.log")
@@ -330,4 +364,13 @@ class PopcastingExtractor:
 
         print("Iniciando extracción de datos de Popcasting...")
         self.extract_and_save_episodes()
+        
+        # Cerrar conexión con Synology si está disponible
+        if hasattr(self, 'synology_client') and self.synology_client:
+            try:
+                self.synology_client.logout()
+                print("✅ Conexión con Synology cerrada")
+            except Exception as e:
+                print(f"⚠️  Error al cerrar conexión con Synology: {e}")
+        
         print("Proceso completado.")

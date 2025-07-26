@@ -1,193 +1,113 @@
-# 🎵 Popcasting Extractor
+# Popcasting Extractor
 
-Extractor completo de episodios del podcast Popcasting con base de datos Supabase.
+Extractor de podcasts de Popcasting con funcionalidad de archivado automático de audio.
 
-## 📊 **Estado del Proyecto**
+## Características
 
-### ✅ **Base de Datos Supabase**
-- **Total episodios**: 486
-- **Cobertura**: 100% (486/486 episodios)
-- **Estado**: Completa y sincronizada
+- **Extracción de RSS**: Descarga automática de episodios desde feeds RSS
+- **Procesamiento de canciones**: Extracción y almacenamiento de playlists
+- **Base de datos**: Soporte para SQLite y Supabase
+- **Archivado de audio**: Descarga automática y subida al NAS Synology
+- **Extracción de duración**: Análisis automático de duración de episodios
+- **Control de cambios**: Solo actualiza contenido modificado
 
-### 🏆 **Logros Recientes**
-- ✅ **100% de cobertura** alcanzado en Supabase
-- ✅ **11 episodios faltantes** extraídos y actualizados
-- ✅ **Migración a Supabase** como única base de datos
-- ✅ **Proyecto reorganizado** y optimizado
-- ✅ **AudioManager implementado** para descarga y subida al NAS
-- ✅ **475 episodios descargados** en el NAS Synology (0-485)
+## Configuración
 
-## 🚀 **Uso Rápido**
+### Variables de Entorno
 
-### 📋 **Requisitos**
+Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+
 ```bash
-# Activar entorno virtual
-source .venv/bin/activate
+# Base de datos
+DATABASE_TYPE=supabase
+supabase_project_url=tu_url_de_supabase
+supabase_api_key=tu_api_key_de_supabase
 
-# Instalar dependencias
-pip install -r requirements.txt
+# Synology NAS (para archivado de audio)
+SYNOLOGY_IP=192.168.1.100
+SYNOLOGY_PORT=5000
+SYNOLOGY_USER=tu_usuario
+SYNOLOGY_PASS=tu_contraseña
 ```
 
-### 🎯 **Ejecutar Extractor Principal**
-```bash
-python main.py
-```
+### Instalación
 
-### 📊 **Generar Informe de Estado**
-```bash
-python generar_informe.py
-```
+1. Clona el repositorio
+2. Instala las dependencias:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Configura las variables de entorno
+4. Ejecuta el extractor:
+   ```bash
+   python main.py
+   ```
 
-## 📁 **Estructura del Proyecto**
+## Funcionalidades
+
+### Extracción de Episodios
+
+El sistema extrae automáticamente:
+- Información del episodio (título, fecha, URL)
+- Playlist de canciones
+- Enlaces de descarga
+- Duración del audio
+
+### Archivado de Audio
+
+Para cada episodio procesado:
+1. Descarga el archivo MP3 desde iVoox
+2. Lo renombra al formato estándar (`popcasting_XXXX.mp3`)
+3. Lo sube al NAS Synology en `/popcasting_marilyn/mp3/`
+4. Limpia los archivos temporales
+
+### Base de Datos
+
+Soporte para dos tipos de base de datos:
+- **Supabase** (recomendado): Base de datos en la nube
+- **SQLite**: Base de datos local
+
+## Estructura del Proyecto
 
 ```
 popcasting_extractor/
-├── README.md                 # Este archivo
-├── main.py                   # Script principal
-├── generar_informe.py        # Generador de informes
-├── pyproject.toml           # Configuración del proyecto
-├── services/                # Servicios principales
+├── main.py                 # Punto de entrada principal
+├── services/              # Servicios principales
 │   ├── popcasting_extractor.py
-│   ├── supabase_database.py
-│   └── config.py
-├── src/components/          # Componentes reutilizables
-│   ├── audio_manager.py     # Gestor de audio para NAS
-│   └── example_audio_manager.py
-├── scripts/                 # Scripts organizados
-│   ├── extraction/          # Scripts de extracción
-│   ├── reports/             # Generadores de informes
-│   └── utils/               # Utilidades
-├── docs/                    # Documentación
-│   ├── episodes/            # Documentación de episodios
-│   ├── migration/           # Documentación de migración
-│   └── technical/           # Documentación técnica
-├── data/                    # Archivos de datos
-├── logs/                    # Logs del sistema
-├── outputs/                 # Salidas del sistema
-├── migration/               # Scripts de migración
-└── test/                    # Tests
+│   ├── config.py
+│   ├── config_manager.py
+│   └── ...
+├── src/components/        # Componentes reutilizables
+│   ├── audio_manager.py   # Gestor de audio
+│   └── ...
+├── synology/             # Cliente para Synology NAS
+│   └── synology_client.py
+├── tests/                # Pruebas
+└── docs/                 # Documentación
 ```
 
-## 🔧 **Configuración**
+## Pruebas
 
-### 📊 **Base de Datos**
-- **Principal**: Supabase (PostgreSQL)
-- **Configuración**: `services/config.py`
-- **Estado**: Única fuente de verdad
+Ejecuta las pruebas de integración:
 
-### 🛠️ **Scripts Disponibles**
+```bash
+python tests/test_audio_integration.py
+```
 
-#### 📥 **Extracción**
-- `scripts/extraction/` - Scripts para extraer episodios específicos
-- `scripts/extraction/extractor_episodios_antiguos.py` - Extractor general
-- `scripts/extraction/actualizar_episodio_*.py` - Actualizaciones específicas
+## Logs
 
-#### 📊 **Reportes**
-- `generar_informe.py` - Informe de estado (script principal)
-- `scripts/reports/batch_web_extraction.py` - Extracción web en lote
-- `scripts/reports/verificar_episodios_faltantes.py` - Verificación
+El sistema genera logs detallados:
+- `logs/extraction_stats.log`: Estadísticas de extracción
+- `logs/parsing_errors.log`: Errores de parsing
 
-#### 🔧 **Utilidades**
-- `scripts/utils/web_extractor.py` - Extractor web
-- `scripts/utils/web_report.py` - Generador de reportes web
-
-#### 🎵 **Audio y NAS**
-- `src/components/audio_manager.py` - Gestor de audio para NAS
-- `synology/synology_client.py` - Cliente para NAS Synology
-
-## 📈 **Estadísticas**
-
-### 🎵 **Episodios por Año**
-- **2008**: Episodios #0-91 (episodios antiguos)
-- **2009-2024**: Episodios #92-485 (episodios regulares)
-- **2025**: Episodios #486+ (episodios actuales)
-
-### 📊 **Información Disponible**
-- ✅ **Datos básicos**: Título, fecha, número de programa
-- ✅ **URLs**: RSS feed, descarga, WordPress
-- ✅ **Playlists**: Canciones completas de cada episodio
-- ✅ **Enlaces extra**: Links adicionales y recursos
-- ✅ **Imágenes**: Portadas de episodios
-- ✅ **Metadatos**: Tamaño de archivo, duración, etc.
-
-## 🔄 **Proceso de Extracción**
-
-### 1. **Extracción RSS**
-- Obtiene episodios del feed RSS de Popcasting
-- Procesa metadatos básicos (título, fecha, URL)
-
-### 2. **Extracción Web**
-- Extrae información detallada de las páginas web
-- Obtiene playlists, enlaces extra, imágenes
-
-### 3. **Almacenamiento Supabase**
-- Guarda toda la información en Supabase
-- Mantiene consistencia y integridad de datos
-
-## 🎉 **Beneficios**
-
-### ✅ **Ventajas**
-- **Una sola fuente de verdad**: No hay inconsistencias
-- **Escalabilidad**: Supabase maneja grandes volúmenes
-- **Colaboración**: Múltiples desarrolladores pueden acceder
-- **Backup automático**: Supabase gestiona backups
-- **API REST**: Acceso programático a los datos
-- **Panel de administración**: Interfaz web para gestionar
-
-### 🚀 **Rendimiento**
-- **Consultas rápidas**: PostgreSQL optimizado
-- **Índices automáticos**: Búsquedas eficientes
-- **Conexiones pool**: Gestión eficiente
-
-## 📝 **Documentación**
-
-### 📚 **Documentos Disponibles**
-- `docs/episodes/` - Documentación de episodios y extracciones
-- `docs/migration/` - Documentación de migración a Supabase
-- `docs/technical/` - Documentación técnica y TODOs
-
-### 🔧 **Configuración**
-- El proyecto usa Supabase por defecto
-- Configuración en `services/config.py`
-- Variables de entorno para credenciales
-
-## 🗂️ **Organización del Proyecto**
-
-### ✅ **Archivos Principales**
-- `main.py` - Script principal del extractor
-- `generar_informe.py` - Generador de informes de estado
-- `services/` - Servicios principales del sistema
-
-### 📁 **Scripts Organizados**
-- `scripts/extraction/` - Scripts de extracción de episodios
-- `scripts/reports/` - Generadores de informes y reportes
-- `scripts/utils/` - Utilidades y herramientas
-
-### 📚 **Documentación Organizada**
-- `docs/episodes/` - Documentación específica de episodios
-- `docs/migration/` - Documentación de migración
-- `docs/technical/` - Documentación técnica
-
-### 📊 **Datos y Logs**
-- `data/` - Archivos de datos y listas
-- `logs/` - Logs del sistema
-- `outputs/` - Salidas generadas
-
-## 🤝 **Contribución**
+## Contribuir
 
 1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
+2. Crea una rama para tu feature
+3. Commit tus cambios
+4. Push a la rama
 5. Abre un Pull Request
 
-## 📄 **Licencia**
+## Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
----
-
-**🎯 Estado del Proyecto: COMPLETO Y FUNCIONAL**
-**📊 Cobertura: 100% (486/486 episodios)**
-**🏆 Base de Datos: Supabase (PostgreSQL)**
-**📁 Proyecto: Organizado y optimizado** 
+Este proyecto está bajo la Licencia MIT. 

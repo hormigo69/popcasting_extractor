@@ -20,6 +20,8 @@ from components.wordpress_data_processor import WordPressDataProcessor
 from components.wordpress_client import WordPressClient
 from components.data_processor import DataProcessor
 from components.song_processor import SongProcessor
+from components.audio_manager import AudioManager
+from components.synology_client import SynologyClient
 from utils.logger import logger
 
 
@@ -56,6 +58,23 @@ def main():
         
         # 5. Inicializar procesador principal (orquestador)
         data_processor = DataProcessor(rss_processor, wordpress_processor)
+        
+        # 6. Inicializar cliente de Synology y gestor de audio
+        logger.info("Inicializando cliente de Synology...")
+        synology_credentials = config_manager.get_synology_credentials()
+        synology_client = SynologyClient(
+            host=synology_credentials["ip"],
+            port=synology_credentials["port"],
+            username=synology_credentials["user"],
+            password=synology_credentials["password"]
+        )
+
+        # Hacer login al Synology
+        if not synology_client.login():
+            raise Exception("No se pudo conectar al NAS Synology")
+
+        logger.info("Inicializando gestor de audio...")
+        audio_manager = AudioManager(db_manager, synology_client)
         
         logger.info("✅ Todos los componentes inicializados correctamente")
         
@@ -148,6 +167,10 @@ def main():
                     rss_playlist=episode_data.get('rss_playlist')
                 )
                 
+                # Iniciar el proceso de archivado de audio
+                logger.info(f"Iniciando el proceso de archivado de audio para el podcast ID: {new_podcast_id}")
+                audio_manager.archive_podcast_audio(podcast_id=new_podcast_id)
+                
                 logger.info(f"✅ Episodio guardado exitosamente: {episode_title} ({stored_songs_count} canciones)")
                 processed_episodes += 1
                 
@@ -183,5 +206,5 @@ if __name__ == "__main__":
 
 
 # source .venv/bin/activate
-# python src/main.py
+# python sincronizador_rss/src/main.py
 
