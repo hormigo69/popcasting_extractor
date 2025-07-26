@@ -140,13 +140,16 @@ class DatabaseManager:
             self.logger.error(f"Error al verificar existencia del podcast con GUID '{guid}': {e}")
             return False
     
-    def insert_full_podcast(self, podcast_data: dict):
+    def insert_full_podcast(self, podcast_data: dict) -> int:
         """
         Inserta un podcast completo con sus canciones en la base de datos.
         Operación transaccional que inserta en las tablas 'podcasts' y 'songs'.
         
         Args:
             podcast_data: Diccionario con los datos del podcast y sus canciones
+            
+        Returns:
+            int: ID del podcast insertado
         """
         try:
             # Extraer la lista de canciones y eliminarla del diccionario principal
@@ -259,6 +262,9 @@ class DatabaseManager:
             
             # Restaurar la lista de canciones en el diccionario original
             podcast_data['web_playlist'] = songs
+            
+            # Devolver el ID del podcast insertado
+            return podcast_id
             
         except Exception as e:
             self.logger.error(f"Error al insertar podcast completo: {e}")

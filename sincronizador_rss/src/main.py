@@ -19,6 +19,7 @@ from components.rss_data_processor import RSSDataProcessor
 from components.wordpress_data_processor import WordPressDataProcessor
 from components.wordpress_client import WordPressClient
 from components.data_processor import DataProcessor
+from components.song_processor import SongProcessor
 from utils.logger import logger
 
 
@@ -135,9 +136,19 @@ def main():
                 
                 # Insertar en la base de datos
                 logger.info(f"💾 Guardando episodio en la BD: {episode_title}")
-                db_manager.insert_full_podcast(episode_data)
+                new_podcast_id = db_manager.insert_full_podcast(episode_data)
                 
-                logger.info(f"✅ Episodio guardado exitosamente: {episode_title}")
+                # Procesar y almacenar canciones con SongProcessor
+                logger.info(f"🎵 Procesando canciones para: {episode_title}")
+                song_processor = SongProcessor(db_manager)
+                
+                stored_songs_count = song_processor.process_and_store_songs(
+                    podcast_id=new_podcast_id,
+                    web_playlist=episode_data.get('web_playlist'),
+                    rss_playlist=episode_data.get('rss_playlist')
+                )
+                
+                logger.info(f"✅ Episodio guardado exitosamente: {episode_title} ({stored_songs_count} canciones)")
                 processed_episodes += 1
                 
             except Exception as e:
