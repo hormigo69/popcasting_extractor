@@ -1,113 +1,112 @@
-# Popcasting Extractor
+# Sincronizador RSS
 
-Extractor de podcasts de Popcasting con funcionalidad de archivado automático de audio.
+Sincronizador independiente para extraer y procesar feeds RSS de podcasts, con integración a Supabase y WordPress.
 
-## Características
+## 🎯 Propósito
 
-- **Extracción de RSS**: Descarga automática de episodios desde feeds RSS
-- **Procesamiento de canciones**: Extracción y almacenamiento de playlists
-- **Base de datos**: Soporte para SQLite y Supabase
-- **Archivado de audio**: Descarga automática y subida al NAS Synology
-- **Extracción de duración**: Análisis automático de duración de episodios
-- **Control de cambios**: Solo actualiza contenido modificado
+Este sincronizador está diseñado para:
+- Leer feeds RSS de podcasts
+- Extraer información de episodios y canciones
+- Sincronizar datos con Supabase
+- Integrar con APIs de WordPress
+- Procesar y normalizar datos de forma automática
 
-## Configuración
+## 📁 Estructura del Proyecto
 
-### Variables de Entorno
-
-Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
-
-```bash
-# Base de datos
-DATABASE_TYPE=supabase
-supabase_project_url=tu_url_de_supabase
-supabase_api_key=tu_api_key_de_supabase
-
-# Synology NAS (para archivado de audio)
-SYNOLOGY_IP=192.168.1.100
-SYNOLOGY_PORT=5000
-SYNOLOGY_USER=tu_usuario
-SYNOLOGY_PASS=tu_contraseña
+```
+sincronizador_rss/
+├── README.md                     # Este archivo
+├── config.ini                    # Configuración del sincronizador
+├── requirements.txt              # Dependencias Python
+├── docs/                         # Documentación técnica
+├── logs/                         # Archivos de log
+└── src/
+    ├── components/               # Componentes principales
+    │   ├── config_manager.py     # Gestor de configuración
+    │   ├── database_manager.py   # Gestor de base de datos
+    │   ├── data_processor.py     # Procesador de datos
+    │   ├── rss_reader.py         # Lector de RSS
+    │   └── wordpress_client.py   # Cliente de WordPress
+    ├── utils/                    # Utilidades
+    │   └── logger.py             # Sistema de logging
+    └── main.py                   # Punto de entrada principal
 ```
 
-### Instalación
+## 🚀 Instalación
 
-1. Clona el repositorio
-2. Instala las dependencias:
+1. **Clonar o copiar el proyecto**
+2. **Instalar dependencias:**
    ```bash
+   cd sincronizador_rss
    pip install -r requirements.txt
    ```
-3. Configura las variables de entorno
-4. Ejecuta el extractor:
-   ```bash
-   python main.py
+
+3. **Configurar variables de entorno:**
+   - Crear archivo `.env` en el directorio padre con las credenciales de Supabase:
+   ```env
+   supabase_project_url=https://tu-proyecto.supabase.co
+   supabase_api_key=tu-api-key
    ```
 
-## Funcionalidades
+4. **Configurar config.ini:**
+   - Editar `config.ini` con las URLs de RSS y WordPress
 
-### Extracción de Episodios
+## 🧪 Prueba de Conexión
 
-El sistema extrae automáticamente:
-- Información del episodio (título, fecha, URL)
-- Playlist de canciones
-- Enlaces de descarga
-- Duración del audio
-
-### Archivado de Audio
-
-Para cada episodio procesado:
-1. Descarga el archivo MP3 desde iVoox
-2. Lo renombra al formato estándar (`popcasting_XXXX.mp3`)
-3. Lo sube al NAS Synology en `/popcasting_marilyn/mp3/`
-4. Limpia los archivos temporales
-
-### Base de Datos
-
-Soporte para dos tipos de base de datos:
-- **Supabase** (recomendado): Base de datos en la nube
-- **SQLite**: Base de datos local
-
-## Estructura del Proyecto
-
-```
-popcasting_extractor/
-├── main.py                 # Punto de entrada principal
-├── services/              # Servicios principales
-│   ├── popcasting_extractor.py
-│   ├── config.py
-│   ├── config_manager.py
-│   └── ...
-├── src/components/        # Componentes reutilizables
-│   ├── audio_manager.py   # Gestor de audio
-│   └── ...
-├── synology/             # Cliente para Synology NAS
-│   └── synology_client.py
-├── tests/                # Pruebas
-└── docs/                 # Documentación
-```
-
-## Pruebas
-
-Ejecuta las pruebas de integración:
+Para verificar que todo funciona correctamente:
 
 ```bash
-python tests/test_audio_integration.py
+python test_connection.py
 ```
 
-## Logs
+Este script probará:
+- ✅ Carga de configuración
+- ✅ Conexión a Supabase
+- ✅ Lectura de credenciales
 
-El sistema genera logs detallados:
-- `logs/extraction_stats.log`: Estadísticas de extracción
-- `logs/parsing_errors.log`: Errores de parsing
+## 📖 Documentación
 
-## Contribuir
+- **`docs/`**: Documentación técnica detallada
+- **`logs/`**: Archivos de log para debugging
+- **`config.ini`**: Configuración del sistema
 
-1. Fork el proyecto
-2. Crea una rama para tu feature
-3. Commit tus cambios
-4. Push a la rama
-5. Abre un Pull Request
+## 🔧 Configuración
 
-## Licencia
+### Variables de Entorno Requeridas (.env)
+- `supabase_project_url`: URL del proyecto Supabase
+- `supabase_api_key`: API key de Supabase
 
-Este proyecto está bajo la Licencia MIT. 
+### Configuración RSS (config.ini)
+- `[rss].url`: URL del feed RSS a procesar
+
+### Configuración WordPress (config.ini)
+- `[wordpress].url`: URL base del sitio WordPress
+
+## 📝 Uso
+
+```python
+from src.components.config_manager import ConfigManager
+from src.components.database_manager import DatabaseManager
+
+# Cargar configuración
+config = ConfigManager()
+
+# Conectar a Supabase
+db = DatabaseManager(
+    supabase_url=config.get_supabase_credentials()["url"],
+    supabase_key=config.get_supabase_credentials()["key"]
+)
+```
+
+## 🛠️ Desarrollo
+
+El proyecto está diseñado para ser modular y extensible:
+
+- **Componentes**: Cada funcionalidad está en su propio módulo
+- **Configuración**: Centralizada en `config.ini` y variables de entorno
+- **Logging**: Sistema de logs integrado para debugging
+- **Base de datos**: Integración con Supabase para persistencia
+
+## 📄 Licencia
+
+Este proyecto es parte del sistema de extracción de Popcasting. 

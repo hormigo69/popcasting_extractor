@@ -206,5 +206,5 @@ if __name__ == "__main__":
 
 
 # source .venv/bin/activate
-# python sincronizador_rss/src/main.py
+# python src/main.py
 

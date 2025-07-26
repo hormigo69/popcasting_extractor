@@ -19,17 +19,13 @@ class ConfigManager:
             current_dir = Path(__file__).parent.parent.parent
             config_path = current_dir / "config.ini"
         
-        if env_path is None:
-            # Buscar .env en el raíz del proyecto (un nivel arriba)
-            current_dir = Path(__file__).parent.parent.parent
-            env_path = current_dir.parent / ".env"
-        
         self.config = configparser.ConfigParser()
         if not self.config.read(config_path):
             raise FileNotFoundError(f"El archivo de configuración '{config_path}' no se encontró.")
         
-        if os.path.exists(env_path):
-            load_dotenv(dotenv_path=env_path)
+        # Cargar variables de entorno desde .env
+        # load_dotenv() buscará automáticamente el archivo .env en el directorio de trabajo actual
+        load_dotenv()
 
     def get_supabase_credentials(self):
         """
