@@ -344,6 +344,34 @@ class DatabaseManager:
             self.logger.error(f"❌ Error al actualizar podcast {podcast_id}: {e}")
             return False
     
+    def update_podcast_mp3_duration(self, podcast_id: int, duration_in_seconds: float) -> bool:
+        """
+        Actualiza el campo mp3_duration de un podcast específico.
+        
+        Args:
+            podcast_id: ID del podcast a actualizar
+            duration_in_seconds: Duración del archivo MP3 en segundos
+            
+        Returns:
+            bool: True si se actualizó correctamente, False en caso contrario
+        """
+        try:
+            # Convertir a entero para compatibilidad con la BD
+            duration_int = int(round(duration_in_seconds))
+            
+            result = self.client.table('podcasts').update({'mp3_duration': duration_int}).eq('id', podcast_id).execute()
+            
+            if result.data:
+                self.logger.info(f"✅ Podcast {podcast_id} actualizado con mp3_duration: {duration_int}s")
+                return True
+            else:
+                self.logger.warning(f"⚠️ No se pudo actualizar mp3_duration del podcast {podcast_id}")
+                return False
+                
+        except Exception as e:
+            self.logger.error(f"❌ Error al actualizar mp3_duration del podcast {podcast_id}: {e}")
+            return False
+    
     def get_podcast_by_program_number(self, program_number: int) -> dict | None:
         """
         Obtiene un podcast específico por su número de programa.

@@ -6,6 +6,8 @@ import os
 import requests
 import shutil
 import logging
+import json
+import subprocess
 from pathlib import Path
 from typing import Optional
 
@@ -91,9 +93,36 @@ class AudioManager:
             
             self.logger.info(f"✅ Archivo descargado: {local_file_path}")
             
+            # 4. Extraer duración exacta del archivo MP3
+            mp3_duration = self._get_duration_from_mp3(str(local_file_path))
+            
+            # Aplicar lógica de prioridad para la duración
+            final_duration = None
+            if mp3_duration:
+                final_duration = mp3_duration
+                self.logger.info(f"⏱️ Usando duración extraída del MP3: {final_duration:.2f}s")
+            else:
+                # Usar duración del RSS como respaldo
+                rss_duration = podcast.get('duration')
+                if rss_duration:
+                    final_duration = rss_duration
+                    self.logger.info(f"⏱️ Usando duración del RSS como respaldo: {final_duration}s")
+                else:
+                    self.logger.warning(f"⚠️ No se pudo obtener duración del podcast {podcast_id}")
+            
+            # Guardar duración en la base de datos si se obtuvo
+            if final_duration:
+                # Redondear a segundos enteros para compatibilidad con BD
+                duration_seconds = int(round(final_duration))
+                duration_saved = self.db_manager.update_podcast_mp3_duration(podcast_id, duration_seconds)
+                if duration_saved:
+                    self.logger.info(f"💾 Duración guardada en BD: {duration_seconds}s (original: {final_duration:.2f}s)")
+                else:
+                    self.logger.warning(f"⚠️ No se pudo guardar la duración en la BD")
+            
             self.logger.info(f"📁 Subiendo como: {nas_filename}")
             
-            # 4. Renombrar archivo local al formato correcto antes de subir
+            # 5. Renombrar archivo local al formato correcto antes de subir
             renamed_file_path = local_file_path.parent / nas_filename
             try:
                 local_file_path.rename(renamed_file_path)
@@ -103,7 +132,7 @@ class AudioManager:
                 self._cleanup_temp_file(local_file_path)
                 return False
             
-            # 5. Subir archivo al NAS con el nombre correcto
+            # 6. Subir archivo al NAS con el nombre correcto
             upload_success = self.synology_client.upload_file(renamed_file_path, nas_folder)
             
             if not upload_success:
@@ -114,7 +143,7 @@ class AudioManager:
             
             self.logger.info(f"✅ Archivo subido al NAS: {nas_path}")
             
-            # 6. Limpiar archivo temporal
+            # 7. Limpiar archivo temporal
             self._cleanup_temp_file(renamed_file_path)
             
             self.logger.info(f"🎉 Proceso completado exitosamente para podcast {podcast_id}")
@@ -189,6 +218,68 @@ class AudioManager:
         except Exception as e:
             self.logger.warning(f"⚠️ Error al verificar existencia de archivo en NAS: {e}")
             return False
+    
+    def _get_duration_from_mp3(self, file_path: str) -> float | None:
+        """
+        Extrae la duración exacta de un archivo MP3 usando ffprobe.
+        
+        Args:
+            file_path: Ruta al archivo MP3 local
+            
+        Returns:
+            float: Duración en segundos o None si hay error
+        """
+        try:
+            self.logger.debug(f"🔍 Extrayendo duración de: {file_path}")
+            
+            # Usar ffprobe para obtener información del archivo
+            cmd = [
+                'ffprobe',
+                '-v', 'quiet',
+                '-print_format', 'json',
+                '-show_format',
+                '-show_streams',
+                file_path
+            ]
+            
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+            
+            if result.returncode != 0:
+                self.logger.error(f"❌ Error ejecutando ffprobe: {result.stderr}")
+                return None
+            
+            # Parsear la salida JSON
+            probe_data = json.loads(result.stdout)
+            
+            # Buscar la duración en el formato o en el primer stream de audio
+            duration = None
+            
+            # Primero intentar obtener la duración del formato
+            if 'format' in probe_data and 'duration' in probe_data['format']:
+                duration = float(probe_data['format']['duration'])
+            # Si no está en el formato, buscar en los streams de audio
+            elif 'streams' in probe_data:
+                for stream in probe_data['streams']:
+                    if stream.get('codec_type') == 'audio' and 'duration' in stream:
+                        duration = float(stream['duration'])
+                        break
+            
+            if duration:
+                self.logger.info(f"✅ Duración extraída: {duration:.2f} segundos")
+                return duration
+            else:
+                self.logger.warning(f"⚠️ No se pudo obtener la duración de: {file_path}")
+                return None
+                
+        except subprocess.TimeoutExpired:
+            self.logger.error(f"❌ Timeout al ejecutar ffprobe en: {file_path}")
+            return None
+        except json.JSONDecodeError as e:
+            self.logger.error(f"❌ Error parseando salida JSON de ffprobe: {e}")
+            return None
+        except Exception as e:
+            self.logger.error(f"❌ Error al extraer duración de {file_path}: {e}")
+            return None
     
     def _cleanup_temp_file(self, file_path: Path) -> None:
         """
