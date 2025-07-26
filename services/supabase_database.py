@@ -464,6 +464,8 @@ class SupabaseDatabase:
             raise
 
 
+
+
 # Instancia global para mantener la misma interfaz que el código existente
 _supabase_db = None
 
@@ -593,3 +595,6 @@ def get_podcast_web_info(*args, **kwargs):
     """Wrapper para mantener compatibilidad con el código existente."""
     db = get_supabase_connection()
     return db.get_podcast_web_info(*args, **kwargs)
+
+
+

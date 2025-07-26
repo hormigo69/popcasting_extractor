@@ -169,7 +169,7 @@ class SynologyClient:
             'method': 'list',
             '_sid': self.sid,
             'folder_path': remote_folder,
-            'limit': 100,
+            'limit': 1000,  # Aumentar el límite para obtener más archivos
             'additional': 'size,time,owner,perm,type'
         }
         

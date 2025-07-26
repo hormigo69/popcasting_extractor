@@ -14,6 +14,8 @@ Extractor completo de episodios del podcast Popcasting con base de datos Supabas
 - ✅ **11 episodios faltantes** extraídos y actualizados
 - ✅ **Migración a Supabase** como única base de datos
 - ✅ **Proyecto reorganizado** y optimizado
+- ✅ **AudioManager implementado** para descarga y subida al NAS
+- ✅ **475 episodios descargados** en el NAS Synology (0-485)
 
 ## 🚀 **Uso Rápido**
 
@@ -48,6 +50,9 @@ popcasting_extractor/
 │   ├── popcasting_extractor.py
 │   ├── supabase_database.py
 │   └── config.py
+├── src/components/          # Componentes reutilizables
+│   ├── audio_manager.py     # Gestor de audio para NAS
+│   └── example_audio_manager.py
 ├── scripts/                 # Scripts organizados
 │   ├── extraction/          # Scripts de extracción
 │   ├── reports/             # Generadores de informes
@@ -85,6 +90,10 @@ popcasting_extractor/
 #### 🔧 **Utilidades**
 - `scripts/utils/web_extractor.py` - Extractor web
 - `scripts/utils/web_report.py` - Generador de reportes web
+
+#### 🎵 **Audio y NAS**
+- `src/components/audio_manager.py` - Gestor de audio para NAS
+- `synology/synology_client.py` - Cliente para NAS Synology
 
 ## 📈 **Estadísticas**
 

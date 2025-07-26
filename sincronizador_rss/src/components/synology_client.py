@@ -1,280 +1,318 @@
+#!/usr/bin/env python3
+"""
+Cliente reutilizable para Synology NAS.
+"""
+
 import requests
 import os
-import logging
+from dotenv import load_dotenv
 
-logger = logging.getLogger(__name__)
+# Deshabilitar warnings de SSL
+requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
+
 
 class SynologyClient:
-    """Cliente simplificado para la API File Station de Synology NAS."""
+    """Cliente para interactuar con Synology NAS."""
     
-    def __init__(self, ip, port, username, password):
-        self.base_url = f"http://{ip}:{port}/webapi"
-        self.username = username
-        self.password = password
+    def __init__(self, host=None, port=None, username=None, password=None):
+        """
+        Inicializa el cliente.
+        
+        Args:
+            host: IP del NAS (por defecto desde .env)
+            port: Puerto del NAS (por defecto desde .env)
+            username: Usuario (por defecto desde .env)
+            password: Contraseña (por defecto desde .env)
+        """
+        load_dotenv()
+        
+        self.host = host or os.getenv("SYNOLOGY_IP")
+        self.port = port or int(os.getenv("SYNOLOGY_PORT", "5000"))
+        self.username = username or os.getenv("SYNOLOGY_USER")
+        self.password = password or os.getenv("SYNOLOGY_PASS")
         self.sid = None
-        logger.info(f"Cliente Synology inicializado para {ip}:{port}")
+        
+        if not all([self.host, self.username, self.password]):
+            raise ValueError("Faltan datos de conexión. Configura SYNOLOGY_IP, SYNOLOGY_USER y SYNOLOGY_PASS en .env")
+        
+        protocol = 'https' if self.port == 5001 else 'http'
+        self.base_url = f"{protocol}://{self.host}:{self.port}/webapi"
     
     def login(self):
-        """Autentica con el NAS y obtiene el token de sesión."""
+        """
+        Autentica con el NAS y obtiene SID.
+        
+        Returns:
+            bool: True si la autenticación fue exitosa
+        """
+        auth_url = f"{self.base_url}/auth.cgi"
+        params = {
+            'api': 'SYNO.API.Auth',
+            'version': '7',
+            'method': 'login',
+            'account': self.username,
+            'passwd': self.password,
+            'session': 'FileStation',
+            'format': 'sid'
+        }
+        
         try:
-            params = {
-                "api": "SYNO.API.Auth",
-                "version": "3",
-                "method": "login",
-                "account": self.username,
-                "passwd": self.password,
-                "session": "FileStation",
-                "format": "sid"
-            }
-            
-            response = requests.get(f"{self.base_url}/auth.cgi", params=params, timeout=30)
+            response = requests.get(auth_url, params=params, verify=False, timeout=30)
             response.raise_for_status()
-            
             data = response.json()
-            if data.get("success"):
-                self.sid = data["data"]["sid"]
-                logger.info("Login exitoso en Synology NAS")
+            
+            if data.get('success'):
+                self.sid = data['data']['sid']
+                print(f"✅ Autenticación exitosa con {self.host}")
                 return True
             else:
-                logger.error(f"Error en login: {data.get('error', {}).get('code')}")
+                error_code = data.get('error', {}).get('code')
+                print(f"❌ Error de autenticación (código {error_code})")
                 return False
-                
-        except Exception as e:
-            logger.error(f"Error de conexión durante login: {e}")
+        except requests.exceptions.RequestException as e:
+            print(f"❌ Error de conexión: {e}")
             return False
     
     def logout(self):
-        """Cierra la sesión en el NAS."""
+        """Cierra la sesión."""
         if not self.sid:
-            return True
-            
+            return
+        
+        logout_url = f"{self.base_url}/auth.cgi"
+        params = {
+            'api': 'SYNO.API.Auth',
+            'version': '1',
+            'method': 'logout',
+            'session': 'FileStation',
+            '_sid': self.sid
+        }
+        
         try:
-            params = {
-                "api": "SYNO.API.Auth",
-                "version": "3",
-                "method": "logout",
-                "session": "FileStation",
-                "_sid": self.sid
-            }
-            
-            response = requests.get(f"{self.base_url}/auth.cgi", params=params, timeout=30)
-            response.raise_for_status()
-            
-            if response.json().get("success"):
-                logger.info("Logout exitoso de Synology NAS")
-                self.sid = None
-                return True
-            return False
-                
-        except Exception as e:
-            logger.error(f"Error durante logout: {e}")
-            return False
+            requests.get(logout_url, params=params, verify=False, timeout=10)
+            print("✅ Sesión cerrada")
+        except requests.exceptions.RequestException:
+            pass
+        finally:
+            self.sid = None
     
-    def upload_file(self, local_path: str, remote_folder_path: str) -> bool:
-        """Sube un archivo local a una carpeta específica en el NAS."""
+    def upload_file(self, local_file_path, remote_folder="/mp3"):
+        """
+        Sube un archivo al NAS.
+        
+        Args:
+            local_file_path: Ruta del archivo local
+            remote_folder: Carpeta de destino en el NAS (por defecto /mp3)
+            
+        Returns:
+            bool: True si la subida fue exitosa
+        """
         if not self.sid:
-            logger.error("No se ha iniciado sesión.")
+            print("❌ No hay sesión activa. Ejecuta login() primero.")
             return False
-
-        if not os.path.exists(local_path):
-            logger.error(f"El archivo local '{local_path}' no existe.")
+        
+        if not os.path.exists(local_file_path):
+            print(f"❌ El archivo local no existe: {local_file_path}")
             return False
-
-        url_params = {
+        
+        upload_url = f"{self.base_url}/entry.cgi"
+        params = {
             'api': 'SYNO.FileStation.Upload',
-            'version': 2,
+            'version': '2',
             'method': 'upload',
             '_sid': self.sid
         }
-
-        multipart_data = {
-            'path': (None, remote_folder_path),
-            'create_parents': (None, 'true'),
-            'overwrite': (None, 'true'),
-            'file': (os.path.basename(local_path), open(local_path, 'rb'), 'application/octet-stream')
+        data = {
+            'path': remote_folder,
+            'create_parents': 'true'
         }
         
         try:
-            response = requests.post(f"{self.base_url}/entry.cgi", params=url_params, files=multipart_data, timeout=300)
+            files = {'file': (os.path.basename(local_file_path), open(local_file_path, 'rb'))}
+            print(f"📤 Subiendo {os.path.basename(local_file_path)} a {remote_folder}...")
+            
+            response = requests.post(upload_url, params=params, data=data, files=files, verify=False, timeout=120)
             response.raise_for_status()
-
-            data = response.json()
-            if data.get('success'):
-                logger.info(f"✅ Archivo '{local_path}' subido con éxito.")
+            result = response.json()
+            
+            if result.get('success'):
+                print(f"✅ Archivo subido exitosamente a {remote_folder}")
                 return True
             else:
-                logger.error(f"❌ Fallo en la subida. Código: {data.get('error', {}).get('code')}")
+                error_code = result.get('error', {}).get('code')
+                print(f"❌ Error al subir archivo (código {error_code})")
                 return False
-
-        except Exception as e:
-            logger.error(f"❌ Error durante la subida: {e}")
+        except requests.exceptions.RequestException as e:
+            print(f"❌ Error en la subida: {e}")
             return False
         finally:
-            multipart_data['file'][1].close()
+            if 'files' in locals():
+                files['file'][1].close()
     
-    def list_files(self, folder_path="/"):
-        """Lista archivos y carpetas en una ruta específica del NAS."""
+    def file_exists(self, remote_file_path: str) -> bool:
+        """
+        Comprueba si un archivo existe en el NAS usando el método getinfo de la API.
+        Args:
+            remote_file_path: Ruta completa del archivo en el NAS (ej: /popcasting_marilyn/mp3/popcasting_0485.mp3)
+        Returns:
+            bool: True si el archivo existe, False si no existe o hay error
+        """
         if not self.sid:
-            logger.error("No se ha iniciado sesión.")
-            return None
-            
+            print("❌ No hay sesión activa. Ejecuta login() primero.")
+            return False
+        getinfo_url = f"{self.base_url}/entry.cgi"
+        params = {
+            'api': 'SYNO.FileStation.List',
+            'version': '2',
+            'method': 'getinfo',
+            '_sid': self.sid,
+            'path': f'["{remote_file_path}"]',
+            'additional': 'size,time,owner,perm,type'
+        }
         try:
-            params = {
-                "api": "SYNO.FileStation.List",
-                "version": "2",
-                "method": "list",
-                "folder_path": folder_path,
-                "_sid": self.sid
-            }
-            
-            response = requests.get(f"{self.base_url}/entry.cgi", params=params, timeout=30)
+            response = requests.get(getinfo_url, params=params, verify=False, timeout=10)
             response.raise_for_status()
-            
             data = response.json()
-            if data.get("success"):
-                files = data.get("data", {}).get("files", [])
-                logger.info(f"Encontrados {len(files)} elementos en {folder_path}")
-                return files
-            else:
-                logger.error(f"Error al listar archivos: {data.get('error', {}).get('code')}")
-                return None
-                
-        except Exception as e:
-            logger.error(f"Error al listar archivos: {e}")
-            return None
+            
+            # Verificar si la respuesta es exitosa y no hay errores
+            if data.get('success') and data.get('data', {}).get('files'):
+                files = data['data']['files']
+                # Si hay archivos y ninguno tiene código de error, el archivo existe
+                for file_info in files:
+                    if file_info.get('code') == 408:  # File not found
+                        return False
+                return True
+            return False
+        except requests.exceptions.RequestException as e:
+            print(f"❌ Error comprobando existencia de archivo: {e}")
+            return False
 
-    def read_file(self, file_path):
-        """Lee el contenido de un archivo del NAS."""
+    def list_files(self, remote_folder="/mp3"):
+        """
+        Lista archivos en una carpeta.
+        Args:
+            remote_folder: Carpeta a listar (por defecto /mp3)
+        Returns:
+            list: Lista de archivos o None si hay error
+        """
         if not self.sid:
-            logger.error("No se ha iniciado sesión.")
+            print("❌ No hay sesión activa. Ejecuta login() primero.")
             return None
-            
+        list_url = f"{self.base_url}/entry.cgi"
+        params = {
+            'api': 'SYNO.FileStation.List',
+            'version': '2',
+            'method': 'list',
+            '_sid': self.sid,
+            'folder_path': remote_folder,
+            'limit': 1000,  # Aumentar el límite para obtener más archivos
+            'additional': 'size,time,owner,perm,type'
+        }
         try:
-            params = {
-                "api": "SYNO.FileStation.Download",
-                "version": "2",
-                "method": "download",
-                "path": file_path,
-                "_sid": self.sid
-            }
-            
-            response = requests.get(f"{self.base_url}/entry.cgi", params=params, timeout=30)
+            response = requests.get(list_url, params=params, verify=False, timeout=30)
             response.raise_for_status()
-            
-            content_type = response.headers.get('content-type', '')
-            if 'application/json' in content_type:
-                data = response.json()
-                logger.error(f"Error al leer archivo: {data.get('error', {}).get('code')}")
-                return None
-            else:
-                content = response.text
-                logger.info(f"Archivo leído exitosamente, {len(content)} caracteres")
-                return content
-                
-        except Exception as e:
-            logger.error(f"Error al leer archivo: {e}")
-            return None
-
-    def list_shared_folders(self) -> list:
-        """Devuelve una lista de carpetas compartidas accesibles."""
-        if not self.sid:
-            logger.error("No se ha iniciado sesión.")
-            return []
-
-        try:
-            params = {
-                'api': 'SYNO.FileStation.List',
-                'version': 1,
-                'method': 'list_share',
-                '_sid': self.sid
-            }
-            
-            response = requests.get(f"{self.base_url}/entry.cgi", params=params)
-            response.raise_for_status()
-            
             data = response.json()
             if data.get('success'):
-                return data.get('data', {}).get('shares', [])
+                files = data['data']['files']
+                # Eliminado el print masivo para evitar logs innecesarios
+                return files
             else:
-                logger.error(f"Error al listar carpetas compartidas: {data}")
-                return []
-        except Exception as e:
-            logger.error(f"Error al listar carpetas compartidas: {e}")
-            return []
+                error_code = data.get('error', {}).get('code')
+                print(f"❌ Error al listar archivos (código {error_code})")
+                return None
+        except requests.exceptions.RequestException as e:
+            print(f"❌ Error al listar archivos: {e}")
+            return None
+    
+    def create_folder(self, folder_path):
+        """
+        Crea una carpeta en el NAS.
+        
+        Args:
+            folder_path: Ruta de la carpeta a crear
+            
+        Returns:
+            bool: True si la carpeta se creó exitosamente
+        """
+        if not self.sid:
+            print("❌ No hay sesión activa. Ejecuta login() primero.")
+            return False
+        
+        create_url = f"{self.base_url}/entry.cgi"
+        params = {
+            'api': 'SYNO.FileStation.CreateFolder',
+            'version': '2',
+            'method': 'create',
+            '_sid': self.sid,
+            'folder_path': os.path.dirname(folder_path),
+            'name': os.path.basename(folder_path)
+        }
+        
+        try:
+            print(f"📁 Creando carpeta {folder_path}...")
+            response = requests.get(create_url, params=params, verify=False, timeout=30)
+            response.raise_for_status()
+            data = response.json()
+            
+            if data.get('success'):
+                print(f"✅ Carpeta {folder_path} creada exitosamente")
+                return True
+            else:
+                error_code = data.get('error', {}).get('code')
+                print(f"❌ Error al crear carpeta (código {error_code})")
+                return False
+        except requests.exceptions.RequestException as e:
+            print(f"❌ Error al crear carpeta: {e}")
+            return False
 
+    def download_file(self, remote_file_path, local_folder="downloads"):
+        """
+        Descarga un archivo del NAS.
+        
+        Args:
+            remote_file_path: Ruta del archivo en el NAS
+            local_folder: Carpeta local de destino
+            
+        Returns:
+            bool: True si la descarga fue exitosa
+        """
+        if not self.sid:
+            print("❌ No hay sesión activa. Ejecuta login() primero.")
+            return False
+        
+        # Crear carpeta local si no existe
+        os.makedirs(local_folder, exist_ok=True)
+        
+        download_url = f"{self.base_url}/entry.cgi"
+        params = {
+            'api': 'SYNO.FileStation.Download',
+            'version': '2',
+            'method': 'download',
+            '_sid': self.sid,
+            'path': remote_file_path
+        }
+        
+        try:
+            print(f"📥 Descargando {os.path.basename(remote_file_path)}...")
+            response = requests.get(download_url, params=params, verify=False, timeout=60, stream=True)
+            response.raise_for_status()
+            
+            local_file_path = os.path.join(local_folder, os.path.basename(remote_file_path))
+            with open(local_file_path, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
+            
+            print(f"✅ Archivo descargado a {local_file_path}")
+            return True
+        except requests.exceptions.RequestException as e:
+            print(f"❌ Error en la descarga: {e}")
+            return False
+    
     def __enter__(self):
-        """Context manager entry point."""
+        """Context manager entry."""
         if not self.login():
-            raise Exception("No se pudo autenticar con Synology NAS")
+            raise Exception("No se pudo autenticar con el NAS")
         return self
     
     def __exit__(self, exc_type, exc_val, exc_tb):
-        """Context manager exit point."""
-        self.logout()
-
-
-if __name__ == '__main__':
-    import os, sys
-    from pathlib import Path
-    sys.path.append(str(Path(__file__).parent.parent.parent))
-    from src.components.config_manager import ConfigManager
-    from src.utils.logger import logger
-    
-    logger.info("=== PRUEBA SIMPLIFICADA DE SYNOLOGY CLIENT ===")
-    try:
-        cfg = ConfigManager()
-        credentials = cfg.get_synology_credentials()
-        
-        # Crear archivo de prueba
-        test_filename = "test_simple.txt"
-        test_content = "Prueba simplificada del cliente Synology\nFecha: 2025-01-27"
-        
-        with open(test_filename, 'w', encoding='utf-8') as f:
-            f.write(test_content)
-        
-        logger.info(f"Archivo de prueba creado: {test_filename}")
-        
-        with SynologyClient(
-            ip=credentials["ip"],
-            port=credentials["port"],
-            username=credentials["user"],
-            password=credentials["password"]
-        ) as client:
-            # Listar carpetas compartidas
-            shared_folders = client.list_shared_folders()
-            logger.info("Carpetas compartidas disponibles:")
-            for folder in shared_folders:
-                logger.info(f"  -> {folder.get('name')}: {folder.get('path')}")
-            
-            # Buscar popcasting_marilyn
-            popcasting_folder = next((f for f in shared_folders if f.get('name') == 'popcasting_marilyn'), None)
-            
-            if popcasting_folder:
-                # Subir archivo
-                success = client.upload_file(test_filename, popcasting_folder.get('path'))
-                
-                if success:
-                    # Verificar subida
-                    files = client.list_files(popcasting_folder.get('path'))
-                    if files:
-                        logger.info("Contenido de la carpeta:")
-                        for file_info in files:
-                            name = file_info.get("name", "Sin nombre")
-                            is_dir = file_info.get("isdir", False)
-                            logger.info(f"  {'📁' if is_dir else '📄'} {name}")
-                            
-                            # Leer archivo subido
-                            if name == test_filename:
-                                content = client.read_file(f"{popcasting_folder.get('path')}/{name}")
-                                if content:
-                                    logger.info(f"✅ Contenido verificado: {content.strip()}")
-            else:
-                logger.error("No se encontró la carpeta popcasting_marilyn")
-        
-        # Limpiar
-        if os.path.exists(test_filename):
-            os.remove(test_filename)
-            logger.info(f"Archivo de prueba eliminado: {test_filename}")
-            
-    except Exception as e:
-        logger.error(f"❌ ERROR: {e}") 
+        """Context manager exit."""
+        self.logout() 
