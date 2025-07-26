@@ -425,6 +425,161 @@ class DatabaseManager:
             self.logger.error(f"Error al insertar canciones en lote: {e}")
             return 0
 
+    def export_table_with_pagination(self, table_name: str, page_size: int = 1000) -> list:
+        """
+        Exporta una tabla completa usando paginación para manejar tablas grandes.
+        
+        Args:
+            table_name: Nombre de la tabla a exportar
+            page_size: Tamaño de cada página (default: 1000)
+            
+        Returns:
+            Lista con todos los datos de la tabla
+        """
+        try:
+            self.logger.info(f"Exportando tabla {table_name} con paginación...")
+            
+            all_data = []
+            offset = 0
+            
+            while True:
+                response = (
+                    self.client.table(table_name)
+                    .select("*")
+                    .range(offset, offset + page_size - 1)
+                    .execute()
+                )
+                page_data = response.data
+                
+                if not page_data:
+                    break
+                    
+                all_data.extend(page_data)
+                offset += page_size
+                
+                self.logger.info(f"  📄 Página {offset//page_size}: {len(page_data)} registros")
+            
+            self.logger.info(f"✅ Tabla {table_name} exportada: {len(all_data)} registros totales")
+            return all_data
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error al exportar tabla {table_name}: {e}")
+            raise
+
+    def get_table_count(self, table_name: str) -> int:
+        """
+        Obtiene el número total de registros en una tabla.
+        
+        Args:
+            table_name: Nombre de la tabla
+            
+        Returns:
+            Número total de registros
+        """
+        try:
+            response = self.client.table(table_name).select("id").execute()
+            return len(response.data)
+        except Exception as e:
+            self.logger.error(f"❌ Error al contar registros en {table_name}: {e}")
+            return 0
+
+    def create_backup(self, output_dir: str = "backups", tables: list = None) -> dict:
+        """
+        Crea un backup completo de las tablas especificadas.
+        
+        Args:
+            output_dir: Directorio donde guardar el backup
+            tables: Lista de tablas a hacer backup (default: ["podcasts", "songs"])
+            
+        Returns:
+            Diccionario con información del backup
+        """
+        import json
+        import csv
+        from datetime import datetime
+        from pathlib import Path
+        
+        if tables is None:
+            tables = ["podcasts", "songs"]
+        
+        # Crear directorio de backup
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        backup_dir = Path(output_dir) / f"backup_{timestamp}"
+        backup_dir.mkdir(parents=True, exist_ok=True)
+        
+        self.logger.info(f"🚀 Iniciando backup en {backup_dir}")
+        
+        backup_info = {
+            "timestamp": timestamp,
+            "backup_dir": str(backup_dir),
+            "tables": {},
+            "success": True,
+            "errors": []
+        }
+        
+        try:
+            # Exportar cada tabla
+            for table in tables:
+                try:
+                    self.logger.info(f"📊 Exportando tabla: {table}")
+                    
+                    # Obtener datos con paginación
+                    data = self.export_table_with_pagination(table)
+                    
+                    # Guardar como JSON
+                    json_file = backup_dir / f"{table}.json"
+                    with open(json_file, "w", encoding="utf-8") as f:
+                        json.dump(data, f, indent=2, ensure_ascii=False, default=str)
+                    
+                    # Guardar como CSV si hay datos
+                    csv_file = None
+                    if data:
+                        csv_file = backup_dir / f"{table}.csv"
+                        with open(csv_file, "w", newline="", encoding="utf-8") as f:
+                            writer = csv.DictWriter(f, fieldnames=data[0].keys())
+                            writer.writeheader()
+                            writer.writerows(data)
+                    
+                    backup_info["tables"][table] = {
+                        "json_file": str(json_file),
+                        "csv_file": str(csv_file) if csv_file else None,
+                        "record_count": len(data)
+                    }
+                    
+                    self.logger.info(f"✅ {table}: {len(data)} registros exportados")
+                    
+                except Exception as e:
+                    error_msg = f"Error en tabla {table}: {e}"
+                    self.logger.error(error_msg)
+                    backup_info["errors"].append(error_msg)
+                    backup_info["success"] = False
+            
+            # Crear archivo de resumen
+            summary_file = backup_dir / "resumen.txt"
+            with open(summary_file, "w", encoding="utf-8") as f:
+                f.write(f"Backup Supabase - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                f.write(f"Directorio: {backup_dir}\n\n")
+                
+                for table in tables:
+                    count = backup_info["tables"].get(table, {}).get("record_count", 0)
+                    f.write(f"{table}: {count} registros\n")
+            
+            backup_info["summary_file"] = str(summary_file)
+            
+            if backup_info["success"]:
+                self.logger.info(f"✅ Backup completado exitosamente en {backup_dir}")
+            else:
+                self.logger.warning("⚠️ Backup completado con errores")
+            
+            return backup_info
+            
+        except Exception as e:
+            error_msg = f"Error fatal durante el backup: {e}"
+            self.logger.error(error_msg)
+            backup_info["success"] = False
+            backup_info["errors"].append(error_msg)
+            return backup_info
+
 
 def test_database_connection():
     """
