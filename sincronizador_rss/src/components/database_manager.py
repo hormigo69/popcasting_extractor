@@ -338,6 +338,31 @@ class DatabaseManager:
             self.logger.error(f"❌ Error al actualizar podcast {podcast_id}: {e}")
             return False
     
+    def get_podcast_by_program_number(self, program_number: int) -> dict | None:
+        """
+        Obtiene un podcast específico por su número de programa.
+        
+        Args:
+            program_number: Número del programa a buscar
+            
+        Returns:
+            dict: Datos del podcast o None si no se encuentra
+        """
+        try:
+            result = self.client.table('podcasts').select('*').eq('program_number', program_number).limit(1).execute()
+            
+            if result.data:
+                podcast = result.data[0]
+                self.logger.debug(f"Podcast encontrado: #{program_number} - {podcast.get('title', 'Sin título')}")
+                return podcast
+            else:
+                self.logger.debug(f"Podcast no encontrado: #{program_number}")
+                return None
+                
+        except Exception as e:
+            self.logger.error(f"Error al buscar podcast #{program_number}: {e}")
+            return None
+    
     def get_podcasts_by_batch(self, batch_size: int = 50, offset: int = 0) -> list:
         """
         Obtiene podcasts en lotes para procesamiento eficiente.
@@ -357,6 +382,48 @@ class DatabaseManager:
         except Exception as e:
             self.logger.error(f"Error al obtener lote de podcasts: {e}")
             return []
+    
+    def insert_songs_batch(self, songs_data: list) -> int:
+        """
+        Inserta múltiples canciones en la tabla songs en una sola operación.
+        
+        Args:
+            songs_data: Lista de diccionarios con datos de canciones.
+                       Cada diccionario debe contener: podcast_id, title, artist, position
+        
+        Returns:
+            int: Número de canciones insertadas exitosamente
+        """
+        try:
+            if not songs_data:
+                self.logger.warning("No hay canciones para insertar")
+                return 0
+            
+            # Validar que todas las canciones tengan los campos requeridos
+            required_fields = ['podcast_id', 'title', 'artist', 'position']
+            valid_songs = []
+            
+            for song in songs_data:
+                if all(field in song for field in required_fields):
+                    valid_songs.append(song)
+                else:
+                    self.logger.warning(f"Canción omitida por campos faltantes: {song}")
+            
+            if not valid_songs:
+                self.logger.error("No hay canciones válidas para insertar")
+                return 0
+            
+            # Insertar todas las canciones de una vez
+            result = self.client.table('songs').insert(valid_songs).execute()
+            
+            inserted_count = len(result.data) if result.data else 0
+            self.logger.info(f"Insertadas {inserted_count} canciones en la tabla songs")
+            
+            return inserted_count
+            
+        except Exception as e:
+            self.logger.error(f"Error al insertar canciones en lote: {e}")
+            return 0
 
 
 def test_database_connection():
