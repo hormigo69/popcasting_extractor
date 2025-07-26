@@ -48,7 +48,7 @@ ________________________________________________________________________________
 **26/07/2025**
 
 
-7:45
+7:45 - 9:15
 
 [x] ✅ **COMPLETADO**: Sistema completo de procesamiento y almacenamiento de canciones
     ✅ **COMPLETADO**: Refactorización de la lógica de procesamiento de canciones en componente SongProcessor
@@ -85,6 +85,49 @@ ________________________________________________________________________________
     - 🎵 **7,733 canciones** almacenadas en total
     - ✅ **0 errores** en el procesamiento final
     - 🛠️ **Scripts reutilizables** para mantenimiento futuro
+
+11:15
+
+[x] ✅ **COMPLETADO**: Cliente para Synology NAS
+    ✅ **COMPLETADO**: Cliente simplificado y funcional en src/components/synology_client.py
+    ✅ **COMPLETADO**: Autenticación con API File Station de Synology
+    ✅ **COMPLETADO**: Subida de archivos con manejo correcto de multipart/form-data
+    ✅ **COMPLETADO**: Listado de carpetas compartidas y contenido
+    ✅ **COMPLETADO**: Lectura de archivos de texto
+    ✅ **COMPLETADO**: Context manager para gestión automática de sesiones
+    ✅ **COMPLETADO**: Configuración desde variables de entorno (.env)
+    ✅ **COMPLETADO**: Manejo robusto de errores y timeouts
+    ✅ **COMPLETADO**: Pruebas exhaustivas con carpeta popcasting_marilyn
+    ✅ **COMPLETADO**: Documentación completa del cliente
+
+    **Funcionalidades implementadas:**
+    - **Autenticación**: Login/logout automático con token de sesión
+    - **Upload**: Subida de archivos a carpetas compartidas específicas
+    - **List**: Listado de contenido de carpetas y carpetas compartidas
+    - **Read**: Lectura de archivos de texto del NAS
+    - **Context Manager**: Uso seguro con `with SynologyClient() as client:`
+
+    **Configuración requerida en .env:**
+    ```
+    SYNOLOGY_IP=192.168.1.143
+    SYNOLOGY_PORT=5000
+    SYNOLOGY_USER=usuario
+    SYNOLOGY_PASS=contraseña
+    SYNOLOGY_SHARED_FOLDER=/popcasting_marilyn
+    ```
+
+    **Pruebas realizadas:**
+    - ✅ Conexión y autenticación exitosa
+    - ✅ Descubrimiento de carpetas compartidas (home, popcasting_marilyn)
+    - ✅ Subida de archivos de prueba exitosa
+    - ✅ Verificación de contenido y lectura de archivos
+    - ✅ Limpieza automática de archivos temporales
+
+[ ] Almacenar los mp3 en el NAS, haciendo un log detallado de los archivos que se han subido y los que no se han podido subir. 
+
+[ ] Añadir la duración de los mp3 a la tabla podcasts en supabase en un campo nuevo mp3_duration.
+
+
 
 
 

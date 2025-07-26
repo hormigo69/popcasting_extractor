@@ -43,6 +43,27 @@ class ConfigManager:
             
         return {"url": url, "key": key}
 
+    def get_synology_credentials(self):
+        """
+        Obtiene las credenciales para Synology NAS desde las variables de entorno.
+        """
+        ip = os.getenv("SYNOLOGY_IP")
+        port = os.getenv("SYNOLOGY_PORT")
+        user = os.getenv("SYNOLOGY_USER")
+        password = os.getenv("SYNOLOGY_PASS")
+        shared_folder = os.getenv("SYNOLOGY_SHARED_FOLDER")
+        
+        if not all([ip, port, user, password, shared_folder]):
+            raise ValueError("Faltan las variables de entorno SYNOLOGY_IP, SYNOLOGY_PORT, SYNOLOGY_USER, SYNOLOGY_PASS o SYNOLOGY_SHARED_FOLDER.")
+            
+        return {
+            "ip": ip,
+            "port": port,
+            "user": user,
+            "password": password,
+            "shared_folder": shared_folder
+        }
+
     def get_rss_url(self):
         """Devuelve la URL del feed RSS."""
         return self.config['rss']['url']
