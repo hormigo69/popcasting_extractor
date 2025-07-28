@@ -2,6 +2,18 @@
 
 Sincronizador independiente para extraer y procesar feeds RSS de podcasts, con integración a Supabase y WordPress.
 
+## 🎙️ RSS Feed Generado
+
+Este proyecto también incluye un **feed RSS generado automáticamente** desde Supabase:
+
+- **URL**: `https://ndhmlymnbrewflharfmr.supabase.co/functions/v1/rss`
+- **Episodios**: 475 (todos los episodios)
+- **Formato**: RSS 2.0 + iTunes completo
+- **Plataformas**: iTunes, Spotify, Google Podcasts
+
+📖 **Documentación RSS**: [`docs/RSS_FEED_SETUP.md`](docs/RSS_FEED_SETUP.md)  
+⚡ **Quick Start RSS**: [`README_RSS.md`](README_RSS.md)
+
 ## 🎯 Propósito
 
 Este sincronizador está diseñado para:

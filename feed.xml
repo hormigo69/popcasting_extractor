@@ -1,0 +1,3625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:podcast="https://podcastindex.org/namespace/1.0">
+  <channel>
+    <title>Popcasting</title>
+    <link>https://popcastingpop.com/</link>
+    <language>es-es</language>
+    <description>Pódcast de música en español, desde 2005.</description>
+
+    <image>
+      <url>https://cdn.popcastingpop.com/series/logo-1400.jpg</url>
+      <title>Popcasting</title>
+      <link>https://popcastingpop.com/</link>
+    </image>
+
+    <itunes:author>Popcasting</itunes:author>
+    <itunes:image href="https://cdn.popcastingpop.com/series/logo-3000.jpg"/>
+    <itunes:category text="Music"/>
+    <itunes:explicit>false</itunes:explicit>
+    
+
+    
+      <item>
+        <title>Popcasting485</title>
+        <link>https://popcastingpop.com/episodios/552</link>
+        <pubDate>Thu, 24 Jul 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/07/24/popcasting-485/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting485_mf_153710543_feed_1.mp3" length="106766837" type="audio/mpeg"/>
+        <itunes:episode>485</itunes:episode>
+        <itunes:duration>01:51:12</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting485]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 484</title>
+        <link>https://popcastingpop.com/episodios/553</link>
+        <pubDate>Fri, 18 Jul 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/07/18/popcasting-484/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-484_mf_153249942_feed_1.mp3" length="109292565" type="audio/mpeg"/>
+        <itunes:episode>484</itunes:episode>
+        <itunes:duration>01:53:50</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 484]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting483</title>
+        <link>https://popcastingpop.com/episodios/518</link>
+        <pubDate>Sat, 12 Jul 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/07/12/popcasting-483/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting483_mf_152795387_feed_1.mp3?d=1752393173" length="112488280" type="audio/mpeg"/>
+        <itunes:episode>483</itunes:episode>
+        <itunes:duration>01:57:10</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting483]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting482</title>
+        <link>https://popcastingpop.com/episodios/4</link>
+        <pubDate>Sun, 06 Jul 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/07/06/popcasting-482/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting482_mf_151858068_feed_1.mp3" length="108098037" type="audio/mpeg"/>
+        <itunes:episode>482</itunes:episode>
+        <itunes:duration>01:52:36</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting482]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting481</title>
+        <link>https://popcastingpop.com/episodios/5</link>
+        <pubDate>Mon, 30 Jun 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/06/30/popcasting-481/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting481_mf_151385789_feed_1.mp3?d=1751267435" length="89604179" type="audio/mpeg"/>
+        <itunes:episode>481</itunes:episode>
+        <itunes:duration>01:33:20</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting481]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting480</title>
+        <link>https://popcastingpop.com/episodios/6</link>
+        <pubDate>Fri, 20 Jun 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/06/20/popcasting-475-2/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting480_mf_150646498_feed_1.mp3?d=1750398493" length="100179382" type="audio/mpeg"/>
+        <itunes:episode>480</itunes:episode>
+        <itunes:duration>01:44:21</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting480]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting479</title>
+        <link>https://popcastingpop.com/episodios/7</link>
+        <pubDate>Sat, 31 May 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/05/31/popcasting-479/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting479_mf_148905799_feed_1.mp3" length="98672640" type="audio/mpeg"/>
+        <itunes:episode>479</itunes:episode>
+        <itunes:duration>01:42:46</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting479]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting478</title>
+        <link>https://popcastingpop.com/episodios/8</link>
+        <pubDate>Thu, 15 May 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/05/15/popcasting-478/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting478_mf_146746077_feed_1.mp3" length="154558380" type="audio/mpeg"/>
+        <itunes:episode>478</itunes:episode>
+        <itunes:duration>02:40:59</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting478]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting477</title>
+        <link>https://popcastingpop.com/episodios/9</link>
+        <pubDate>Fri, 02 May 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/05/02/popcasting-477/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting477_mf_146013288_feed_1.mp3" length="92492695" type="audio/mpeg"/>
+        <itunes:episode>477</itunes:episode>
+        <itunes:duration>01:36:20</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting477]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting476</title>
+        <link>https://popcastingpop.com/episodios/10</link>
+        <pubDate>Mon, 14 Apr 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/04/14/popcasting-476/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting476_mf_144958265_feed_1.mp3" length="102874801" type="audio/mpeg"/>
+        <itunes:episode>476</itunes:episode>
+        <itunes:duration>01:47:10</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting476]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting475</title>
+        <link>https://popcastingpop.com/episodios/11</link>
+        <pubDate>Tue, 01 Apr 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/04/01/popcasting-475/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting475_mf_144153474_feed_1.mp3" length="117880790" type="audio/mpeg"/>
+        <itunes:episode>475</itunes:episode>
+        <itunes:duration>02:02:47</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting475]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting474</title>
+        <link>https://popcastingpop.com/episodios/12</link>
+        <pubDate>Fri, 14 Mar 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/03/14/popcasting-474/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting474_mf_141646919_feed_1.mp3" length="108797277" type="audio/mpeg"/>
+        <itunes:episode>474</itunes:episode>
+        <itunes:duration>01:53:19</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting474]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting473</title>
+        <link>https://popcastingpop.com/episodios/13</link>
+        <pubDate>Sat, 01 Mar 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/03/01/popcasting-473/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting473_mf_140812497_feed_1.mp3" length="128739781" type="audio/mpeg"/>
+        <itunes:episode>473</itunes:episode>
+        <itunes:duration>02:14:06</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting473]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting472</title>
+        <link>https://popcastingpop.com/episodios/14</link>
+        <pubDate>Fri, 14 Feb 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-472/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting472_mf_139878141_feed_1.mp3" length="121433069" type="audio/mpeg"/>
+        <itunes:episode>472</itunes:episode>
+        <itunes:duration>02:06:29</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting472]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting471</title>
+        <link>https://popcastingpop.com/episodios/15</link>
+        <pubDate>Sat, 01 Feb 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/02/01/popcasting-471/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting471_mf_139089298_feed_1.mp3" length="133556393" type="audio/mpeg"/>
+        <itunes:episode>471</itunes:episode>
+        <itunes:duration>02:19:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting471]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting470</title>
+        <link>https://popcastingpop.com/episodios/16</link>
+        <pubDate>Tue, 14 Jan 2025 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/01/15/popcasting-469/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting470_mf_137765544_feed_1.mp3?d=1736894970" length="111061412" type="audio/mpeg"/>
+        <itunes:episode>470</itunes:episode>
+        <itunes:duration>01:55:41</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting470]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting469</title>
+        <link>https://popcastingpop.com/episodios/17</link>
+        <pubDate>Tue, 31 Dec 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2025/01/01/popcasting/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting469_mf_137367570_feed_1.mp3" length="128405464" type="audio/mpeg"/>
+        <itunes:episode>469</itunes:episode>
+        <itunes:duration>02:13:45</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting469]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting468</title>
+        <link>https://popcastingpop.com/episodios/18</link>
+        <pubDate>Fri, 20 Dec 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/12/20/popcasting-468/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting468_mf_137088368_feed_1.mp3" length="118637340" type="audio/mpeg"/>
+        <itunes:episode>468</itunes:episode>
+        <itunes:duration>02:03:34</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting468]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting467</title>
+        <link>https://popcastingpop.com/episodios/19</link>
+        <pubDate>Sat, 30 Nov 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/11/30/popcasting-467/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting467_mf_136440919_feed_1.mp3" length="129868739" type="audio/mpeg"/>
+        <itunes:episode>467</itunes:episode>
+        <itunes:duration>02:15:17</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting467]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting466</title>
+        <link>https://popcastingpop.com/episodios/20</link>
+        <pubDate>Fri, 15 Nov 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/11/15/popcasting-466/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting466_mf_135950093_feed_1.mp3" length="106842532" type="audio/mpeg"/>
+        <itunes:episode>466</itunes:episode>
+        <itunes:duration>01:51:17</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting466]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting465</title>
+        <link>https://popcastingpop.com/episodios/21</link>
+        <pubDate>Thu, 31 Oct 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-465/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting465_mf_135442016_feed_1.mp3" length="89628047" type="audio/mpeg"/>
+        <itunes:episode>465</itunes:episode>
+        <itunes:duration>01:33:22</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting465]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting464</title>
+        <link>https://popcastingpop.com/episodios/22</link>
+        <pubDate>Sat, 19 Oct 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/10/19/popcasting-464/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting464_mf_135002771_feed_1.mp3?d=1729465055" length="123063110" type="audio/mpeg"/>
+        <itunes:episode>464</itunes:episode>
+        <itunes:duration>02:08:11</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting464]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting463</title>
+        <link>https://popcastingpop.com/episodios/23</link>
+        <pubDate>Mon, 30 Sep 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/09/30/popcasting-463/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting463_mf_134348190_feed_1.mp3" length="137230672" type="audio/mpeg"/>
+        <itunes:episode>463</itunes:episode>
+        <itunes:duration>02:22:56</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting463]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting462</title>
+        <link>https://popcastingpop.com/episodios/24</link>
+        <pubDate>Sun, 15 Sep 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/09/15/popcasting-462/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting462_mf_133818136_feed_1.mp3" length="183416834" type="audio/mpeg"/>
+        <itunes:episode>462</itunes:episode>
+        <itunes:duration>03:11:04</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting462]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting461</title>
+        <link>https://popcastingpop.com/episodios/25</link>
+        <pubDate>Sat, 31 Aug 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-461/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting461_mf_133338174_feed_1.mp3" length="207954799" type="audio/mpeg"/>
+        <itunes:episode>461</itunes:episode>
+        <itunes:duration>03:36:37</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting461]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting460</title>
+        <link>https://popcastingpop.com/episodios/26</link>
+        <pubDate>Thu, 15 Aug 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/08/15/popcasting-460/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting460_mf_132830848_feed_1.mp3" length="116982639" type="audio/mpeg"/>
+        <itunes:episode>460</itunes:episode>
+        <itunes:duration>02:01:51</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting460]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting459</title>
+        <link>https://popcastingpop.com/episodios/27</link>
+        <pubDate>Wed, 31 Jul 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/07/31/popcasting-459/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting459_mf_132264928_feed_1.mp3" length="141161160" type="audio/mpeg"/>
+        <itunes:episode>459</itunes:episode>
+        <itunes:duration>02:27:03</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting459]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting458</title>
+        <link>https://popcastingpop.com/episodios/28</link>
+        <pubDate>Sun, 14 Jul 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/07/14/popcasting-458/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting458_mf_131616592_feed_1.mp3?d=1720994753" length="114377918" type="audio/mpeg"/>
+        <itunes:episode>458</itunes:episode>
+        <itunes:duration>01:59:08</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting458]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting457</title>
+        <link>https://popcastingpop.com/episodios/29</link>
+        <pubDate>Mon, 01 Jul 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/07/01/popcasting-457/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting457_mf_131025752_feed_1.mp3" length="154944618" type="audio/mpeg"/>
+        <itunes:episode>457</itunes:episode>
+        <itunes:duration>02:41:24</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting457]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting456</title>
+        <link>https://popcastingpop.com/episodios/30</link>
+        <pubDate>Sat, 15 Jun 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-456/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting456_mf_130354088_feed_1.mp3" length="111863057" type="audio/mpeg"/>
+        <itunes:episode>456</itunes:episode>
+        <itunes:duration>01:56:31</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting456]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting455</title>
+        <link>https://popcastingpop.com/episodios/31</link>
+        <pubDate>Fri, 31 May 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-455/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting455_mf_129699631_feed_1.mp3?d=1717208887" length="105729924" type="audio/mpeg"/>
+        <itunes:episode>455</itunes:episode>
+        <itunes:duration>01:50:08</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting455]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting454</title>
+        <link>https://popcastingpop.com/episodios/32</link>
+        <pubDate>Wed, 15 May 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/05/15/popcasting-454/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting454_mf_128916357_feed_1.mp3" length="105616657" type="audio/mpeg"/>
+        <itunes:episode>454</itunes:episode>
+        <itunes:duration>01:50:01</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting454]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting453</title>
+        <link>https://popcastingpop.com/episodios/33</link>
+        <pubDate>Wed, 01 May 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/05/01/popcasting-453/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting453_mf_128287919_feed_1.mp3?d=1714552316" length="126974790" type="audio/mpeg"/>
+        <itunes:episode>453</itunes:episode>
+        <itunes:duration>02:12:15</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting453]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting452</title>
+        <link>https://popcastingpop.com/episodios/34</link>
+        <pubDate>Sun, 14 Apr 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/04/14/popcasting-452/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting452_mf_127495420_feed_1.mp3" length="115007364" type="audio/mpeg"/>
+        <itunes:episode>452</itunes:episode>
+        <itunes:duration>01:59:47</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting452]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting451</title>
+        <link>https://popcastingpop.com/episodios/35</link>
+        <pubDate>Mon, 01 Apr 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-451/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting451_mf_126770171_feed_1.mp3" length="103919743" type="audio/mpeg"/>
+        <itunes:episode>451</itunes:episode>
+        <itunes:duration>01:48:14</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting451]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting450</title>
+        <link>https://popcastingpop.com/episodios/36</link>
+        <pubDate>Fri, 15 Mar 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/03/15/popcasting-450/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting450_mf_125932770_feed_1.mp3" length="115199626" type="audio/mpeg"/>
+        <itunes:episode>450</itunes:episode>
+        <itunes:duration>02:00:00</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting450]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting449</title>
+        <link>https://popcastingpop.com/episodios/37</link>
+        <pubDate>Thu, 29 Feb 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/02/29/popcasting-449/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting449_mf_125128841_feed_1.mp3?d=1710367252" length="107525477" type="audio/mpeg"/>
+        <itunes:episode>449</itunes:episode>
+        <itunes:duration>01:52:00</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting449]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting448</title>
+        <link>https://popcastingpop.com/episodios/38</link>
+        <pubDate>Fri, 16 Feb 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/02/16/popcasting-448/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting448_mf_124391571_feed_1.mp3" length="82238111" type="audio/mpeg"/>
+        <itunes:episode>448</itunes:episode>
+        <itunes:duration>01:25:40</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting448]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting447</title>
+        <link>https://popcastingpop.com/episodios/39</link>
+        <pubDate>Thu, 01 Feb 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2024/02/01/popcasting-447/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting447_mf_123546193_feed_1.mp3" length="148946068" type="audio/mpeg"/>
+        <itunes:episode>447</itunes:episode>
+        <itunes:duration>02:35:09</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting447]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting446</title>
+        <link>https://popcastingpop.com/episodios/40</link>
+        <pubDate>Sun, 14 Jan 2024 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-446/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting446_mf_122579083_feed_1.mp3" length="138218684" type="audio/mpeg"/>
+        <itunes:episode>446</itunes:episode>
+        <itunes:duration>02:23:59</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting446]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting445</title>
+        <link>https://popcastingpop.com/episodios/41</link>
+        <pubDate>Sun, 31 Dec 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-445/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting445_mf_121887704_feed_1.mp3" length="138523794" type="audio/mpeg"/>
+        <itunes:episode>445</itunes:episode>
+        <itunes:duration>02:24:18</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting445]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting444</title>
+        <link>https://popcastingpop.com/episodios/42</link>
+        <pubDate>Tue, 19 Dec 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/12/19/popcasting-444/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting444_mf_121388162_feed_1.mp3" length="103684014" type="audio/mpeg"/>
+        <itunes:episode>444</itunes:episode>
+        <itunes:duration>01:48:00</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting444]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting443</title>
+        <link>https://popcastingpop.com/episodios/43</link>
+        <pubDate>Fri, 01 Dec 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/12/01/popcasting-443/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting443_mf_120397814_feed_1.mp3?d=1702983446" length="107891148" type="audio/mpeg"/>
+        <itunes:episode>443</itunes:episode>
+        <itunes:duration>01:52:23</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting443]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting442</title>
+        <link>https://popcastingpop.com/episodios/44</link>
+        <pubDate>Wed, 15 Nov 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/11/15/popcasting-442/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting442_mf_119529583_feed_1.mp3" length="128973888" type="audio/mpeg"/>
+        <itunes:episode>442</itunes:episode>
+        <itunes:duration>02:14:21</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting442]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting441</title>
+        <link>https://popcastingpop.com/episodios/45</link>
+        <pubDate>Wed, 01 Nov 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/11/01/popcasting-441/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting441_mf_118748752_feed_1.mp3?d=1698833796" length="130840912" type="audio/mpeg"/>
+        <itunes:episode>441</itunes:episode>
+        <itunes:duration>02:16:18</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting441]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting440</title>
+        <link>https://popcastingpop.com/episodios/46</link>
+        <pubDate>Sat, 14 Oct 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/10/14/popcasting-440/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting440_mf_117778047_feed_1.mp3?d=1697393173" length="109455613" type="audio/mpeg"/>
+        <itunes:episode>440</itunes:episode>
+        <itunes:duration>01:54:01</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting440]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting439</title>
+        <link>https://popcastingpop.com/episodios/47</link>
+        <pubDate>Sat, 30 Sep 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/09/30/popcasting-439/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting439_mf_116919439_feed_1.mp3" length="95600640" type="audio/mpeg"/>
+        <itunes:episode>439</itunes:episode>
+        <itunes:duration>01:39:35</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting439]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting438</title>
+        <link>https://popcastingpop.com/episodios/48</link>
+        <pubDate>Fri, 15 Sep 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/09/15/popcasting-438/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting438_mf_116068727_feed_1.mp3" length="146202958" type="audio/mpeg"/>
+        <itunes:episode>438</itunes:episode>
+        <itunes:duration>02:32:18</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting438]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting437</title>
+        <link>https://popcastingpop.com/episodios/49</link>
+        <pubDate>Fri, 01 Sep 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/09/01/popcasting-437/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting437_mf_115251619_feed_1.mp3?d=1693575069" length="196848370" type="audio/mpeg"/>
+        <itunes:episode>437</itunes:episode>
+        <itunes:duration>03:25:03</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting437]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting436</title>
+        <link>https://popcastingpop.com/episodios/50</link>
+        <pubDate>Mon, 14 Aug 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/08/14/popcasting-436/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting436_mf_114180155_feed_1.mp3?d=1692082065" length="110203716" type="audio/mpeg"/>
+        <itunes:episode>436</itunes:episode>
+        <itunes:duration>01:54:48</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting436]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting435</title>
+        <link>https://popcastingpop.com/episodios/51</link>
+        <pubDate>Tue, 01 Aug 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/08/01/popcasting-435/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting435_mf_113477740_feed_1.mp3" length="93366648" type="audio/mpeg"/>
+        <itunes:episode>435</itunes:episode>
+        <itunes:duration>01:37:15</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting435]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting434</title>
+        <link>https://popcastingpop.com/episodios/52</link>
+        <pubDate>Fri, 14 Jul 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/07/14/popcasting-434/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting434_mf_112422438_feed_1.mp3" length="62830550" type="audio/mpeg"/>
+        <itunes:episode>434</itunes:episode>
+        <itunes:duration>01:05:27</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting434]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting433</title>
+        <link>https://popcastingpop.com/episodios/53</link>
+        <pubDate>Fri, 30 Jun 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/06/30/popcasting-433/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting433_mf_111507069_feed_1.mp3?d=1688195983" length="115319954" type="audio/mpeg"/>
+        <itunes:episode>433</itunes:episode>
+        <itunes:duration>02:00:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting433]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting432</title>
+        <link>https://popcastingpop.com/episodios/54</link>
+        <pubDate>Thu, 15 Jun 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-432/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting432_mf_110446833_feed_1.mp3?d=1686862874" length="83041010" type="audio/mpeg"/>
+        <itunes:episode>432</itunes:episode>
+        <itunes:duration>01:26:30</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting432]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting431</title>
+        <link>https://popcastingpop.com/episodios/55</link>
+        <pubDate>Thu, 01 Jun 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-431/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting431_mf_109415239_feed_1.mp3?d=1685573984" length="114451061" type="audio/mpeg"/>
+        <itunes:episode>431</itunes:episode>
+        <itunes:duration>01:59:13</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting431]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting430</title>
+        <link>https://popcastingpop.com/episodios/56</link>
+        <pubDate>Sun, 14 May 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/05/14/popcasting-430/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting430_mf_108187604_feed_1.mp3" length="126272618" type="audio/mpeg"/>
+        <itunes:episode>430</itunes:episode>
+        <itunes:duration>02:11:32</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting430]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting429</title>
+        <link>https://popcastingpop.com/episodios/57</link>
+        <pubDate>Sun, 30 Apr 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/04/30/popcasting-429/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting429_mf_107211472_feed_1.mp3" length="94404066" type="audio/mpeg"/>
+        <itunes:episode>429</itunes:episode>
+        <itunes:duration>01:38:20</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting429]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting428</title>
+        <link>https://popcastingpop.com/episodios/58</link>
+        <pubDate>Fri, 14 Apr 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/04/14/popcasting-428/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting428_mf_106376278_feed_1.mp3" length="98666832" type="audio/mpeg"/>
+        <itunes:episode>428</itunes:episode>
+        <itunes:duration>01:42:46</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting428]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting427</title>
+        <link>https://popcastingpop.com/episodios/59</link>
+        <pubDate>Fri, 31 Mar 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/03/31/popcasting-427/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting427_mf_105522947_feed_1.mp3" length="94516036" type="audio/mpeg"/>
+        <itunes:episode>427</itunes:episode>
+        <itunes:duration>01:38:27</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting427]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting426</title>
+        <link>https://popcastingpop.com/episodios/60</link>
+        <pubDate>Wed, 15 Mar 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/03/15/popcasting-426/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting426_mf_104601286_feed_1.mp3" length="97446766" type="audio/mpeg"/>
+        <itunes:episode>426</itunes:episode>
+        <itunes:duration>01:41:30</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting426]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting425</title>
+        <link>https://popcastingpop.com/episodios/61</link>
+        <pubDate>Tue, 28 Feb 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/02/28/popcasting-425/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting425_mf_103839919_feed_1.mp3" length="110597433" type="audio/mpeg"/>
+        <itunes:episode>425</itunes:episode>
+        <itunes:duration>01:55:12</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting425]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting424</title>
+        <link>https://popcastingpop.com/episodios/62</link>
+        <pubDate>Wed, 15 Feb 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/02/15/popcasting-424/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting424_mf_103105048_feed_1.mp3" length="99727151" type="audio/mpeg"/>
+        <itunes:episode>424</itunes:episode>
+        <itunes:duration>01:43:53</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting424]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting423</title>
+        <link>https://popcastingpop.com/episodios/63</link>
+        <pubDate>Tue, 31 Jan 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/01/31/popcasting-423/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting423_mf_102355631_feed_1.mp3?d=1675229261" length="116161724" type="audio/mpeg"/>
+        <itunes:episode>423</itunes:episode>
+        <itunes:duration>02:01:00</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting423]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting422</title>
+        <link>https://popcastingpop.com/episodios/64</link>
+        <pubDate>Sun, 15 Jan 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/01/15/popcasting-422/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting422_mf_101473403_feed_1.mp3?d=1673794408" length="107828872" type="audio/mpeg"/>
+        <itunes:episode>422</itunes:episode>
+        <itunes:duration>01:52:19</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting422]]></description>
+      </item>
+    
+      <item>
+        <title>popcasting421</title>
+        <link>https://popcastingpop.com/episodios/65</link>
+        <pubDate>Sun, 01 Jan 2023 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2023/01/01/popcasting-421/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting421_mf_100308331_feed_1.mp3" length="59865966" type="audio/mpeg"/>
+        <itunes:episode>421</itunes:episode>
+        <itunes:duration>01:02:22</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[popcasting421]]></description>
+      </item>
+    
+      <item>
+        <title>popcasting420</title>
+        <link>https://popcastingpop.com/episodios/66</link>
+        <pubDate>Mon, 19 Dec 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/12/19/popcasting-420/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting420_mf_100096316_feed_1.mp3" length="108051644" type="audio/mpeg"/>
+        <itunes:episode>420</itunes:episode>
+        <itunes:duration>01:52:33</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[popcasting420]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting419</title>
+        <link>https://popcastingpop.com/episodios/67</link>
+        <pubDate>Fri, 02 Dec 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/12/02/popcasting-419/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting419_mf_97466910_feed_1.mp3" length="93921280" type="audio/mpeg"/>
+        <itunes:episode>419</itunes:episode>
+        <itunes:duration>01:37:50</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting419]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting418</title>
+        <link>https://popcastingpop.com/episodios/68</link>
+        <pubDate>Tue, 15 Nov 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/11/15/popcasting-418/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting418_mf_96426932_feed_1.mp3" length="71709675" type="audio/mpeg"/>
+        <itunes:episode>418</itunes:episode>
+        <itunes:duration>01:14:42</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting418]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting417</title>
+        <link>https://popcastingpop.com/episodios/69</link>
+        <pubDate>Mon, 31 Oct 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/10/31/popcasting-417/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting417_mf_95190354_feed_1.mp3" length="96039915" type="audio/mpeg"/>
+        <itunes:episode>417</itunes:episode>
+        <itunes:duration>01:40:02</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting417]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting416</title>
+        <link>https://popcastingpop.com/episodios/70</link>
+        <pubDate>Fri, 14 Oct 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-416/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting416_mf_94016955_feed_1.mp3" length="77694433" type="audio/mpeg"/>
+        <itunes:episode>416</itunes:episode>
+        <itunes:duration>01:20:56</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting416]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting415</title>
+        <link>https://popcastingpop.com/episodios/71</link>
+        <pubDate>Fri, 30 Sep 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/09/30/popcasting-415/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting415_mf_93185911_feed_1.mp3" length="78243631" type="audio/mpeg"/>
+        <itunes:episode>415</itunes:episode>
+        <itunes:duration>01:21:30</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting415]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting414</title>
+        <link>https://popcastingpop.com/episodios/72</link>
+        <pubDate>Thu, 15 Sep 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/09/15/popcasting-414/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting414_mf_92463351_feed_1.mp3" length="128420467" type="audio/mpeg"/>
+        <itunes:episode>414</itunes:episode>
+        <itunes:duration>02:13:46</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting414]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting413</title>
+        <link>https://popcastingpop.com/episodios/73</link>
+        <pubDate>Wed, 31 Aug 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-413/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting413_mf_91821350_feed_1.mp3?d=1661978207" length="167312823" type="audio/mpeg"/>
+        <itunes:episode>413</itunes:episode>
+        <itunes:duration>02:54:17</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting413]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting412</title>
+        <link>https://popcastingpop.com/episodios/74</link>
+        <pubDate>Mon, 15 Aug 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/08/15/popcasting-412/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting412_mf_91080554_feed_1.mp3" length="45161744" type="audio/mpeg"/>
+        <itunes:episode>412</itunes:episode>
+        <itunes:duration>00:47:03</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting412]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting411</title>
+        <link>https://popcastingpop.com/episodios/75</link>
+        <pubDate>Sun, 31 Jul 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/07/31/popcasting-411/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting411_mf_90473269_feed_1.mp3" length="78577162" type="audio/mpeg"/>
+        <itunes:episode>411</itunes:episode>
+        <itunes:duration>01:21:51</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting411]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting410</title>
+        <link>https://popcastingpop.com/episodios/76</link>
+        <pubDate>Fri, 15 Jul 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/07/15/popcasting-410/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting410_mf_89844906_feed_1.mp3" length="99935713" type="audio/mpeg"/>
+        <itunes:episode>410</itunes:episode>
+        <itunes:duration>01:44:06</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting410]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting409</title>
+        <link>https://popcastingpop.com/episodios/77</link>
+        <pubDate>Thu, 30 Jun 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/06/30/popcasting-409/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting409_mf_89176569_feed_1.mp3" length="73915246" type="audio/mpeg"/>
+        <itunes:episode>409</itunes:episode>
+        <itunes:duration>01:16:59</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting409]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting408</title>
+        <link>https://popcastingpop.com/episodios/78</link>
+        <pubDate>Wed, 15 Jun 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/06/15/popcasting-408/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting408_mf_88540627_feed_1.mp3?d=1655318922" length="104800758" type="audio/mpeg"/>
+        <itunes:episode>408</itunes:episode>
+        <itunes:duration>01:49:10</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting408]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting407</title>
+        <link>https://popcastingpop.com/episodios/79</link>
+        <pubDate>Wed, 01 Jun 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/06/01/popcasting-407/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting407_mf_87934984_feed_1.mp3" length="96974890" type="audio/mpeg"/>
+        <itunes:episode>407</itunes:episode>
+        <itunes:duration>01:41:00</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting407]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting406</title>
+        <link>https://popcastingpop.com/episodios/80</link>
+        <pubDate>Sat, 14 May 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/05/14/popcasting-406/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting406_mf_87042059_feed_1.mp3" length="67987749" type="audio/mpeg"/>
+        <itunes:episode>406</itunes:episode>
+        <itunes:duration>01:10:49</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting406]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting405</title>
+        <link>https://popcastingpop.com/episodios/81</link>
+        <pubDate>Sat, 30 Apr 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/04/30/popcasting-405/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting405_mf_86454597_feed_1.mp3?d=1651350132" length="84863269" type="audio/mpeg"/>
+        <itunes:episode>405</itunes:episode>
+        <itunes:duration>01:28:24</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting405]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting404</title>
+        <link>https://popcastingpop.com/episodios/82</link>
+        <pubDate>Thu, 14 Apr 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/04/14/popcasting-404/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting404_mf_85749059_feed_1.mp3" length="71833391" type="audio/mpeg"/>
+        <itunes:episode>404</itunes:episode>
+        <itunes:duration>01:14:50</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting404]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting403</title>
+        <link>https://popcastingpop.com/episodios/83</link>
+        <pubDate>Fri, 01 Apr 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/04/01/popcasting-403/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting403_mf_85002827_feed_1.mp3" length="77877081" type="audio/mpeg"/>
+        <itunes:episode>403</itunes:episode>
+        <itunes:duration>01:21:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting403]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting402</title>
+        <link>https://popcastingpop.com/episodios/84</link>
+        <pubDate>Tue, 15 Mar 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/03/15/popcasting-402/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting402_mf_83532624_feed_1.mp3" length="82645577" type="audio/mpeg"/>
+        <itunes:episode>402</itunes:episode>
+        <itunes:duration>01:26:05</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting402]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting401</title>
+        <link>https://popcastingpop.com/episodios/85</link>
+        <pubDate>Tue, 01 Mar 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/03/01/popcasting-401/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting401_mf_82875398_feed_1.mp3" length="94011141" type="audio/mpeg"/>
+        <itunes:episode>401</itunes:episode>
+        <itunes:duration>01:37:56</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting401]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting400</title>
+        <link>https://popcastingpop.com/episodios/86</link>
+        <pubDate>Mon, 14 Feb 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/02/14/popcasting-400/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting400_mf_82202222_feed_1.mp3" length="73592999" type="audio/mpeg"/>
+        <itunes:episode>400</itunes:episode>
+        <itunes:duration>01:16:40</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting400]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting399</title>
+        <link>https://popcastingpop.com/episodios/87</link>
+        <pubDate>Tue, 01 Feb 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/02/01/popcasting-399/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting399_mf_81646950_feed_1.mp3" length="78852180" type="audio/mpeg"/>
+        <itunes:episode>399</itunes:episode>
+        <itunes:duration>01:22:08</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting399]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting398</title>
+        <link>https://popcastingpop.com/episodios/88</link>
+        <pubDate>Sat, 15 Jan 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/01/15/popcasting-398/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting398_mf_80885096_feed_1.mp3" length="73141603" type="audio/mpeg"/>
+        <itunes:episode>398</itunes:episode>
+        <itunes:duration>01:16:11</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting398]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting397</title>
+        <link>https://popcastingpop.com/episodios/89</link>
+        <pubDate>Sun, 02 Jan 2022 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2022/01/02/popcasting-397/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting397_mf_80352927_feed_1.mp3" length="102017149" type="audio/mpeg"/>
+        <itunes:episode>397</itunes:episode>
+        <itunes:duration>01:46:16</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting397]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting396</title>
+        <link>https://popcastingpop.com/episodios/90</link>
+        <pubDate>Tue, 21 Dec 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/12/21/popcasting-396/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting396_mf_79880517_feed_1.mp3" length="109025907" type="audio/mpeg"/>
+        <itunes:episode>396</itunes:episode>
+        <itunes:duration>01:53:34</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting396]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting395</title>
+        <link>https://popcastingpop.com/episodios/91</link>
+        <pubDate>Wed, 01 Dec 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/12/01/popcasting-395/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting395_mf_79051674_feed_1.mp3" length="66673737" type="audio/mpeg"/>
+        <itunes:episode>395</itunes:episode>
+        <itunes:duration>01:19:22</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting395]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting394</title>
+        <link>https://popcastingpop.com/episodios/92</link>
+        <pubDate>Tue, 16 Nov 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/11/16/popcasting-394/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting394_mf_78346113_feed_1.mp3" length="81802971" type="audio/mpeg"/>
+        <itunes:episode>394</itunes:episode>
+        <itunes:duration>01:25:13</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting394]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting393</title>
+        <link>https://popcastingpop.com/episodios/93</link>
+        <pubDate>Sun, 31 Oct 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-393/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting393_mf_77563683_feed_1.mp3" length="80750968" type="audio/mpeg"/>
+        <itunes:episode>393</itunes:episode>
+        <itunes:duration>01:24:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting393]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting392</title>
+        <link>https://popcastingpop.com/episodios/94</link>
+        <pubDate>Fri, 15 Oct 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/10/15/popcasting-392/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting392_mf_76816689_feed_1.mp3" length="80532793" type="audio/mpeg"/>
+        <itunes:episode>392</itunes:episode>
+        <itunes:duration>01:23:53</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting392]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting391</title>
+        <link>https://popcastingpop.com/episodios/95</link>
+        <pubDate>Fri, 01 Oct 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/10/01/popcasting-391/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting391_mf_76185922_feed_1.mp3" length="79115494" type="audio/mpeg"/>
+        <itunes:episode>391</itunes:episode>
+        <itunes:duration>01:22:24</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting391]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting390</title>
+        <link>https://popcastingpop.com/episodios/96</link>
+        <pubDate>Tue, 21 Sep 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/09/21/popcasting-390/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting390_mf_75735438_feed_1.mp3" length="161866397" type="audio/mpeg"/>
+        <itunes:episode>390</itunes:episode>
+        <itunes:duration>02:48:37</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting390]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting389</title>
+        <link>https://popcastingpop.com/episodios/97</link>
+        <pubDate>Wed, 01 Sep 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/09/01/popcasting-389/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting389_mf_74887529_feed_1.mp3" length="149132016" type="audio/mpeg"/>
+        <itunes:episode>389</itunes:episode>
+        <itunes:duration>02:35:21</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting389]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting388</title>
+        <link>https://popcastingpop.com/episodios/98</link>
+        <pubDate>Wed, 18 Aug 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/08/18/popcasting-388/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting388_mf_74273764_feed_1.mp3" length="63585802" type="audio/mpeg"/>
+        <itunes:episode>388</itunes:episode>
+        <itunes:duration>01:06:14</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting388]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting387</title>
+        <link>https://popcastingpop.com/episodios/99</link>
+        <pubDate>Sat, 31 Jul 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/07/31/popcasting-387/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting387_mf_73498189_feed_1.mp3" length="96133538" type="audio/mpeg"/>
+        <itunes:episode>387</itunes:episode>
+        <itunes:duration>01:40:08</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting387]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting386</title>
+        <link>https://popcastingpop.com/episodios/100</link>
+        <pubDate>Thu, 15 Jul 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/07/15/popcasting-386/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting386_mf_72851466_feed_1.mp3" length="81773714" type="audio/mpeg"/>
+        <itunes:episode>386</itunes:episode>
+        <itunes:duration>01:25:11</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting386]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting385</title>
+        <link>https://popcastingpop.com/episodios/101</link>
+        <pubDate>Thu, 01 Jul 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/07/01/popcasting-385/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting385_mf_71926480_feed_1.mp3" length="57968849" type="audio/mpeg"/>
+        <itunes:episode>385</itunes:episode>
+        <itunes:duration>01:00:23</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting385]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting384</title>
+        <link>https://popcastingpop.com/episodios/102</link>
+        <pubDate>Fri, 18 Jun 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-384/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting384_mf_71594722_feed_1.mp3" length="72401816" type="audio/mpeg"/>
+        <itunes:episode>384</itunes:episode>
+        <itunes:duration>01:15:25</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting384]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting383</title>
+        <link>https://popcastingpop.com/episodios/103</link>
+        <pubDate>Tue, 01 Jun 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/06/01/popcasting-383/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting383_mf_70757129_feed_1.mp3" length="84755435" type="audio/mpeg"/>
+        <itunes:episode>383</itunes:episode>
+        <itunes:duration>01:28:17</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting383]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting382</title>
+        <link>https://popcastingpop.com/episodios/104</link>
+        <pubDate>Fri, 14 May 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/05/14/popcasting-382/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting382_mf_70038947_feed_1.mp3" length="77866632" type="audio/mpeg"/>
+        <itunes:episode>382</itunes:episode>
+        <itunes:duration>01:21:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting382]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting381</title>
+        <link>https://popcastingpop.com/episodios/105</link>
+        <pubDate>Sat, 01 May 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/05/01/popcasting-381/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting381_mf_69399483_feed_1.mp3" length="74011794" type="audio/mpeg"/>
+        <itunes:episode>381</itunes:episode>
+        <itunes:duration>01:17:06</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting381]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting380</title>
+        <link>https://popcastingpop.com/episodios/106</link>
+        <pubDate>Thu, 15 Apr 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/04/15/popcasting-380/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting380_mf_68610637_feed_1.mp3" length="80991713" type="audio/mpeg"/>
+        <itunes:episode>380</itunes:episode>
+        <itunes:duration>01:24:22</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting380]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting379</title>
+        <link>https://popcastingpop.com/episodios/107</link>
+        <pubDate>Thu, 01 Apr 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/04/01/popcasting-379/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting379_mf_67893912_feed_1.mp3" length="86556421" type="audio/mpeg"/>
+        <itunes:episode>379</itunes:episode>
+        <itunes:duration>01:30:10</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting379]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting378</title>
+        <link>https://popcastingpop.com/episodios/108</link>
+        <pubDate>Mon, 15 Mar 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/03/15/popcasting-378/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting378_mf_66798455_feed_1.mp3" length="63704921" type="audio/mpeg"/>
+        <itunes:episode>378</itunes:episode>
+        <itunes:duration>01:06:22</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting378]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting377</title>
+        <link>https://popcastingpop.com/episodios/109</link>
+        <pubDate>Thu, 04 Mar 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/03/04/popcasting-377/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting377_mf_66360641_feed_1.mp3" length="84321176" type="audio/mpeg"/>
+        <itunes:episode>377</itunes:episode>
+        <itunes:duration>01:27:50</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting377]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting376</title>
+        <link>https://popcastingpop.com/episodios/110</link>
+        <pubDate>Mon, 15 Feb 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/02/15/popcasting-376/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting376_mf_65459576_feed_1.mp3" length="106503523" type="audio/mpeg"/>
+        <itunes:episode>376</itunes:episode>
+        <itunes:duration>01:50:56</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting376]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting375</title>
+        <link>https://popcastingpop.com/episodios/111</link>
+        <pubDate>Sun, 31 Jan 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/01/31/popcasting-375/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting375_mf_64675523_feed_1.mp3" length="67691459" type="audio/mpeg"/>
+        <itunes:episode>375</itunes:episode>
+        <itunes:duration>01:10:30</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting375]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting374</title>
+        <link>https://popcastingpop.com/episodios/112</link>
+        <pubDate>Fri, 15 Jan 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/01/15/popcasting-374/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting374_mf_63935614_feed_1.mp3" length="73720059" type="audio/mpeg"/>
+        <itunes:episode>374</itunes:episode>
+        <itunes:duration>01:16:47</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting374]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting373</title>
+        <link>https://popcastingpop.com/episodios/113</link>
+        <pubDate>Fri, 01 Jan 2021 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2021/01/01/popcasting-373/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting373_mf_63271009_feed_1.mp3" length="59956245" type="audio/mpeg"/>
+        <itunes:episode>373</itunes:episode>
+        <itunes:duration>01:02:27</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting373]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting372</title>
+        <link>https://popcastingpop.com/episodios/114</link>
+        <pubDate>Sat, 19 Dec 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-372/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting372_mf_62678450_feed_1.mp3" length="108105143" type="audio/mpeg"/>
+        <itunes:episode>372</itunes:episode>
+        <itunes:duration>01:52:36</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting372]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting371</title>
+        <link>https://popcastingpop.com/episodios/115</link>
+        <pubDate>Mon, 30 Nov 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/11/30/popcasting-371/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting371_mf_61130524_feed_1.mp3" length="62496601" type="audio/mpeg"/>
+        <itunes:episode>371</itunes:episode>
+        <itunes:duration>01:05:06</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting371]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting370</title>
+        <link>https://popcastingpop.com/episodios/116</link>
+        <pubDate>Sun, 15 Nov 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/11/15/popcasting-370/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting370_mf_60412774_feed_1.mp3" length="74217012" type="audio/mpeg"/>
+        <itunes:episode>370</itunes:episode>
+        <itunes:duration>01:17:18</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting370]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting369</title>
+        <link>https://popcastingpop.com/episodios/117</link>
+        <pubDate>Sat, 31 Oct 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/10/31/popcasting-369/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting369_mf_58971532_feed_1.mp3" length="64875624" type="audio/mpeg"/>
+        <itunes:episode>369</itunes:episode>
+        <itunes:duration>01:07:34</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting369]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting368</title>
+        <link>https://popcastingpop.com/episodios/118</link>
+        <pubDate>Wed, 14 Oct 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-368/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting368_mf_57963143_feed_1.mp3" length="79204519" type="audio/mpeg"/>
+        <itunes:episode>368</itunes:episode>
+        <itunes:duration>01:22:30</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting368]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting367</title>
+        <link>https://popcastingpop.com/episodios/119</link>
+        <pubDate>Fri, 02 Oct 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/10/02/popcasting-367/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting367_mf_57364360_feed_1.mp3" length="100009691" type="audio/mpeg"/>
+        <itunes:episode>367</itunes:episode>
+        <itunes:duration>01:44:11</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting367]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting366</title>
+        <link>https://popcastingpop.com/episodios/120</link>
+        <pubDate>Sat, 19 Sep 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/09/19/popcasting-366/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting366_mf_56727520_feed_1.mp3" length="106375210" type="audio/mpeg"/>
+        <itunes:episode>366</itunes:episode>
+        <itunes:duration>01:50:48</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting366]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting365</title>
+        <link>https://popcastingpop.com/episodios/121</link>
+        <pubDate>Sat, 05 Sep 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/09/05/popcasting-365/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting365_mf_56119378_feed_1.mp3" length="122920542" type="audio/mpeg"/>
+        <itunes:episode>365</itunes:episode>
+        <itunes:duration>02:08:03</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting365]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting364</title>
+        <link>https://popcastingpop.com/episodios/122</link>
+        <pubDate>Fri, 14 Aug 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/08/14/popcasting-364/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting364_mf_55198405_feed_1.mp3" length="70997473" type="audio/mpeg"/>
+        <itunes:episode>364</itunes:episode>
+        <itunes:duration>01:13:57</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting364]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting363</title>
+        <link>https://popcastingpop.com/episodios/123</link>
+        <pubDate>Fri, 31 Jul 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/07/31/popcasting-363/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting363_mf_54640980_feed_1.mp3" length="114884859" type="audio/mpeg"/>
+        <itunes:episode>363</itunes:episode>
+        <itunes:duration>01:59:40</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting363]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting362</title>
+        <link>https://popcastingpop.com/episodios/124</link>
+        <pubDate>Sat, 18 Jul 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/07/18/popcasting-362/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting362_mf_54069730_feed_1.mp3" length="75269433" type="audio/mpeg"/>
+        <itunes:episode>362</itunes:episode>
+        <itunes:duration>01:18:24</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting362]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting361</title>
+        <link>https://popcastingpop.com/episodios/125</link>
+        <pubDate>Wed, 01 Jul 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/07/01/popcasting-361/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting361_mf_53021434_feed_1.mp3" length="73380676" type="audio/mpeg"/>
+        <itunes:episode>361</itunes:episode>
+        <itunes:duration>01:16:26</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting361]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting360</title>
+        <link>https://popcastingpop.com/episodios/126</link>
+        <pubDate>Mon, 15 Jun 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/06/15/popcasting-360/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting360_mf_52081062_feed_1.mp3" length="78526589" type="audio/mpeg"/>
+        <itunes:episode>360</itunes:episode>
+        <itunes:duration>01:21:47</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting360]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting359</title>
+        <link>https://popcastingpop.com/episodios/127</link>
+        <pubDate>Sun, 31 May 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/05/31/popcasting-359/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting359_mf_51611309_feed_1.mp3" length="91308199" type="audio/mpeg"/>
+        <itunes:episode>359</itunes:episode>
+        <itunes:duration>01:35:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting359]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting358</title>
+        <link>https://popcastingpop.com/episodios/128</link>
+        <pubDate>Fri, 15 May 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/05/15/popcasting-358/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting358_mf_51077187_feed_1.mp3" length="112631223" type="audio/mpeg"/>
+        <itunes:episode>358</itunes:episode>
+        <itunes:duration>01:57:19</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting358]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting357</title>
+        <link>https://popcastingpop.com/episodios/129</link>
+        <pubDate>Fri, 01 May 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/05/01/popcasting-357/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting357_mf_50609593_feed_1.mp3" length="76731873" type="audio/mpeg"/>
+        <itunes:episode>357</itunes:episode>
+        <itunes:duration>01:19:55</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting357]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting356</title>
+        <link>https://popcastingpop.com/episodios/130</link>
+        <pubDate>Wed, 15 Apr 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/04/15/popcasting-356/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting356_mf_50050320_feed_1.mp3" length="83443043" type="audio/mpeg"/>
+        <itunes:episode>356</itunes:episode>
+        <itunes:duration>01:26:55</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting356]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting355</title>
+        <link>https://popcastingpop.com/episodios/131</link>
+        <pubDate>Wed, 01 Apr 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/04/01/popcasting-355/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting355_mf_49518781_feed_1.mp3" length="79296515" type="audio/mpeg"/>
+        <itunes:episode>355</itunes:episode>
+        <itunes:duration>01:22:36</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting355]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting354</title>
+        <link>https://popcastingpop.com/episodios/132</link>
+        <pubDate>Sat, 14 Mar 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/03/14/popcasting-354/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting354_mf_48901719_feed_1.mp3" length="55786684" type="audio/mpeg"/>
+        <itunes:episode>354</itunes:episode>
+        <itunes:duration>00:58:06</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting354]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting353</title>
+        <link>https://popcastingpop.com/episodios/133</link>
+        <pubDate>Wed, 04 Mar 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/03/04/popcasting-353/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting353_mf_48490794_feed_1.mp3" length="72721554" type="audio/mpeg"/>
+        <itunes:episode>353</itunes:episode>
+        <itunes:duration>01:15:45</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting353]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting352</title>
+        <link>https://popcastingpop.com/episodios/134</link>
+        <pubDate>Sat, 15 Feb 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/02/15/popcasting-352/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting352_mf_47765469_feed_1.mp3" length="64724323" type="audio/mpeg"/>
+        <itunes:episode>352</itunes:episode>
+        <itunes:duration>01:07:25</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting352]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting351</title>
+        <link>https://popcastingpop.com/episodios/135</link>
+        <pubDate>Fri, 31 Jan 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/01/31/popcasting-351/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting351_mf_47206654_feed_1.mp3" length="68982491" type="audio/mpeg"/>
+        <itunes:episode>351</itunes:episode>
+        <itunes:duration>01:11:51</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting351]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting350</title>
+        <link>https://popcastingpop.com/episodios/136</link>
+        <pubDate>Wed, 15 Jan 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/01/15/popcasting-350/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting350_mf_46572934_feed_1.mp3" length="58862028" type="audio/mpeg"/>
+        <itunes:episode>350</itunes:episode>
+        <itunes:duration>01:01:19</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting350]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting349</title>
+        <link>https://popcastingpop.com/episodios/137</link>
+        <pubDate>Thu, 02 Jan 2020 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2020/01/02/popcasting-349/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting349_mf_46080572_feed_1.mp3" length="56589166" type="audio/mpeg"/>
+        <itunes:episode>349</itunes:episode>
+        <itunes:duration>00:58:56</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting349]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting348</title>
+        <link>https://popcastingpop.com/episodios/138</link>
+        <pubDate>Fri, 20 Dec 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/12/20/popcasting-348/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting348_mf_45700169_feed_1.mp3" length="103204989" type="audio/mpeg"/>
+        <itunes:episode>348</itunes:episode>
+        <itunes:duration>01:47:30</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting348]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting347</title>
+        <link>https://popcastingpop.com/episodios/139</link>
+        <pubDate>Sun, 01 Dec 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/12/01/popcasting-347/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting347_mf_44932688_feed_1.mp3" length="74690978" type="audio/mpeg"/>
+        <itunes:episode>347</itunes:episode>
+        <itunes:duration>01:17:48</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting347]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting346</title>
+        <link>https://popcastingpop.com/episodios/140</link>
+        <pubDate>Sun, 17 Nov 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/11/17/popcasting-346/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting346_mf_44388814_feed_1.mp3" length="67982733" type="audio/mpeg"/>
+        <itunes:episode>346</itunes:episode>
+        <itunes:duration>01:10:48</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting346]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting345</title>
+        <link>https://popcastingpop.com/episodios/141</link>
+        <pubDate>Thu, 31 Oct 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/10/31/popcasting-345/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting345_mf_43776381_feed_1.mp3" length="58640091" type="audio/mpeg"/>
+        <itunes:episode>345</itunes:episode>
+        <itunes:duration>01:01:05</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting345]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting344</title>
+        <link>https://popcastingpop.com/episodios/142</link>
+        <pubDate>Wed, 16 Oct 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/10/16/popcasting-344/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting344_mf_43201444_feed_1.mp3" length="65294420" type="audio/mpeg"/>
+        <itunes:episode>344</itunes:episode>
+        <itunes:duration>01:08:00</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting344]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting343</title>
+        <link>https://popcastingpop.com/episodios/143</link>
+        <pubDate>Wed, 02 Oct 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/10/02/popcasting-343/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting343_mf_42529118_feed_1.mp3" length="66846302" type="audio/mpeg"/>
+        <itunes:episode>343</itunes:episode>
+        <itunes:duration>01:09:37</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting343]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting342</title>
+        <link>https://popcastingpop.com/episodios/144</link>
+        <pubDate>Fri, 20 Sep 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/09/20/popcasting-342/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting342_mf_41718634_feed_1.mp3" length="77567791" type="audio/mpeg"/>
+        <itunes:episode>342</itunes:episode>
+        <itunes:duration>01:20:47</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting342]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting341</title>
+        <link>https://popcastingpop.com/episodios/145</link>
+        <pubDate>Tue, 03 Sep 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/09/03/popcasting-341/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting341_mf_40801267_feed_1.mp3" length="103143131" type="audio/mpeg"/>
+        <itunes:episode>341</itunes:episode>
+        <itunes:duration>01:47:26</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting341]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting340</title>
+        <link>https://popcastingpop.com/episodios/146</link>
+        <pubDate>Sat, 17 Aug 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/08/17/popcasting-340/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting340_mf_40039578_feed_1.mp3" length="95147154" type="audio/mpeg"/>
+        <itunes:episode>340</itunes:episode>
+        <itunes:duration>01:39:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting340]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting339</title>
+        <link>https://popcastingpop.com/episodios/147</link>
+        <pubDate>Thu, 01 Aug 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/08/01/popcasting-339/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting339_mf_39318388_feed_1.mp3" length="66361051" type="audio/mpeg"/>
+        <itunes:episode>339</itunes:episode>
+        <itunes:duration>01:09:08</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting339]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting338</title>
+        <link>https://popcastingpop.com/episodios/148</link>
+        <pubDate>Sun, 14 Jul 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/07/14/popcasting-338/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting338_mf_38417509_feed_1.mp3" length="86039406" type="audio/mpeg"/>
+        <itunes:episode>338</itunes:episode>
+        <itunes:duration>01:29:37</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting338]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 337</title>
+        <link>https://popcastingpop.com/episodios/149</link>
+        <pubDate>Sun, 30 Jun 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/06/30/popcasting-337/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-337_mf_37783821_feed_1.mp3" length="85551647" type="audio/mpeg"/>
+        <itunes:episode>337</itunes:episode>
+        <itunes:duration>01:29:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 337]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting336</title>
+        <link>https://popcastingpop.com/episodios/150</link>
+        <pubDate>Fri, 14 Jun 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/06/14/popcasting-336/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting336_mf_37111925_feed_1.mp3" length="47244434" type="audio/mpeg"/>
+        <itunes:episode>336</itunes:episode>
+        <itunes:duration>00:49:12</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting336]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting335</title>
+        <link>https://popcastingpop.com/episodios/151</link>
+        <pubDate>Fri, 31 May 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/05/31/popcasting-335/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting335_mf_36536931_feed_1.mp3" length="60690599" type="audio/mpeg"/>
+        <itunes:episode>335</itunes:episode>
+        <itunes:duration>01:03:13</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting335]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting334</title>
+        <link>https://popcastingpop.com/episodios/152</link>
+        <pubDate>Tue, 14 May 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-334/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting334_mf_35812518_feed_1.mp3" length="48631223" type="audio/mpeg"/>
+        <itunes:episode>334</itunes:episode>
+        <itunes:duration>00:50:39</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting334]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting333</title>
+        <link>https://popcastingpop.com/episodios/153</link>
+        <pubDate>Thu, 02 May 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/05/02/popcasting-333/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting333_mf_35273621_feed_1.mp3" length="81212813" type="audio/mpeg"/>
+        <itunes:episode>333</itunes:episode>
+        <itunes:duration>01:24:35</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting333]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting332</title>
+        <link>https://popcastingpop.com/episodios/154</link>
+        <pubDate>Mon, 15 Apr 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/04/15/popcasting-332/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting332_mf_34494871_feed_1.mp3" length="73284545" type="audio/mpeg"/>
+        <itunes:episode>332</itunes:episode>
+        <itunes:duration>01:16:20</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting332]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting331</title>
+        <link>https://popcastingpop.com/episodios/155</link>
+        <pubDate>Wed, 03 Apr 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/04/03/popcasting-331/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting331_mf_34038215_feed_1.mp3" length="72451971" type="audio/mpeg"/>
+        <itunes:episode>331</itunes:episode>
+        <itunes:duration>01:15:28</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting331]]></description>
+      </item>
+    
+      <item>
+        <title>popcasting330</title>
+        <link>https://popcastingpop.com/episodios/156</link>
+        <pubDate>Fri, 15 Mar 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/03/15/popcasting-330/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting330_mf_33404087_feed_1.mp3" length="79089162" type="audio/mpeg"/>
+        <itunes:episode>330</itunes:episode>
+        <itunes:duration>01:22:23</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[popcasting330]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting329</title>
+        <link>https://popcastingpop.com/episodios/157</link>
+        <pubDate>Fri, 01 Mar 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/03/01/popcasting-329/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting329_mf_32952241_feed_1.mp3" length="66576300" type="audio/mpeg"/>
+        <itunes:episode>329</itunes:episode>
+        <itunes:duration>01:09:21</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting329]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting328</title>
+        <link>https://popcastingpop.com/episodios/158</link>
+        <pubDate>Fri, 15 Feb 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/02/15/popcasting-328/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting328_mf_32574431_feed_1.mp3" length="67708552" type="audio/mpeg"/>
+        <itunes:episode>328</itunes:episode>
+        <itunes:duration>01:10:32</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting328]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting327</title>
+        <link>https://popcastingpop.com/episodios/159</link>
+        <pubDate>Fri, 01 Feb 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/02/01/popcasting-327/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting327_mf_32100717_feed_1.mp3" length="67078687" type="audio/mpeg"/>
+        <itunes:episode>327</itunes:episode>
+        <itunes:duration>01:09:52</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting327]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting326</title>
+        <link>https://popcastingpop.com/episodios/160</link>
+        <pubDate>Tue, 15 Jan 2019 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2019/01/15/popcasting-326/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting326_mf_31486633_feed_1.mp3" length="86138462" type="audio/mpeg"/>
+        <itunes:episode>326</itunes:episode>
+        <itunes:duration>01:29:44</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting326]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting325</title>
+        <link>https://popcastingpop.com/episodios/161</link>
+        <pubDate>Mon, 31 Dec 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-325/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting325_mf_31117829_feed_1.mp3" length="51824013" type="audio/mpeg"/>
+        <itunes:episode>325</itunes:episode>
+        <itunes:duration>00:53:59</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting325]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting324</title>
+        <link>https://popcastingpop.com/episodios/162</link>
+        <pubDate>Thu, 20 Dec 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/12/20/popcasting-324/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting324_mf_30920684_feed_1.mp3" length="109722227" type="audio/mpeg"/>
+        <itunes:episode>324</itunes:episode>
+        <itunes:duration>01:54:18</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting324]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting323</title>
+        <link>https://popcastingpop.com/episodios/163</link>
+        <pubDate>Fri, 30 Nov 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/11/30/popcasting-323/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting323_mf_30456712_feed_1.mp3" length="68118152" type="audio/mpeg"/>
+        <itunes:episode>323</itunes:episode>
+        <itunes:duration>01:10:57</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting323]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting322</title>
+        <link>https://popcastingpop.com/episodios/164</link>
+        <pubDate>Fri, 16 Nov 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/11/16/popcasting-322/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting322_mf_30111634_feed_1.mp3" length="69997296" type="audio/mpeg"/>
+        <itunes:episode>322</itunes:episode>
+        <itunes:duration>01:12:54</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting322]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting321</title>
+        <link>https://popcastingpop.com/episodios/165</link>
+        <pubDate>Tue, 30 Oct 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-321/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting321_mf_29719031_feed_1.mp3" length="58090057" type="audio/mpeg"/>
+        <itunes:episode>321</itunes:episode>
+        <itunes:duration>01:00:31</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting321]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting320</title>
+        <link>https://popcastingpop.com/episodios/166</link>
+        <pubDate>Tue, 16 Oct 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/10/16/popcasting-320/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting320_mf_29342187_feed_1.mp3" length="52201430" type="audio/mpeg"/>
+        <itunes:episode>320</itunes:episode>
+        <itunes:duration>00:54:23</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting320]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting319</title>
+        <link>https://popcastingpop.com/episodios/167</link>
+        <pubDate>Sun, 30 Sep 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/09/30/popcasting-319/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting319_mf_28974190_feed_1.mp3" length="69410482" type="audio/mpeg"/>
+        <itunes:episode>319</itunes:episode>
+        <itunes:duration>01:12:18</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting319]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting318</title>
+        <link>https://popcastingpop.com/episodios/168</link>
+        <pubDate>Sun, 16 Sep 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/09/16/popcasting-318/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting318_mf_28603764_feed_1.mp3" length="107638700" type="audio/mpeg"/>
+        <itunes:episode>318</itunes:episode>
+        <itunes:duration>01:52:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting318]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting317</title>
+        <link>https://popcastingpop.com/episodios/169</link>
+        <pubDate>Sat, 01 Sep 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/09/01/popcasting-317/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting317_mf_28249050_feed_1.mp3" length="140102844" type="audio/mpeg"/>
+        <itunes:episode>317</itunes:episode>
+        <itunes:duration>02:25:56</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting317]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting316</title>
+        <link>https://popcastingpop.com/episodios/170</link>
+        <pubDate>Wed, 15 Aug 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/08/15/popcasting-316/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting316_mf_27856580_feed_1.mp3" length="47148304" type="audio/mpeg"/>
+        <itunes:episode>316</itunes:episode>
+        <itunes:duration>00:49:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting316]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting315</title>
+        <link>https://popcastingpop.com/episodios/171</link>
+        <pubDate>Wed, 01 Aug 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/08/01/popcasting-315/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting315_mf_27426583_feed_1.mp3" length="54592993" type="audio/mpeg"/>
+        <itunes:episode>315</itunes:episode>
+        <itunes:duration>00:56:52</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting315]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting314</title>
+        <link>https://popcastingpop.com/episodios/172</link>
+        <pubDate>Tue, 17 Jul 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/07/17/popcasting-314/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting314_mf_27091733_feed_1.mp3" length="69094922" type="audio/mpeg"/>
+        <itunes:episode>314</itunes:episode>
+        <itunes:duration>01:11:58</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting314]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting313</title>
+        <link>https://popcastingpop.com/episodios/173</link>
+        <pubDate>Sun, 01 Jul 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-313/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting313_mf_26829032_feed_1.mp3" length="72178207" type="audio/mpeg"/>
+        <itunes:episode>313</itunes:episode>
+        <itunes:duration>01:15:11</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting313]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting312</title>
+        <link>https://popcastingpop.com/episodios/174</link>
+        <pubDate>Sat, 16 Jun 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/06/16/popcasting-312/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting312_mf_26561690_feed_1.mp3" length="71629845" type="audio/mpeg"/>
+        <itunes:episode>312</itunes:episode>
+        <itunes:duration>01:14:37</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting312]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting311</title>
+        <link>https://popcastingpop.com/episodios/175</link>
+        <pubDate>Fri, 01 Jun 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/06/01/popcasting-311/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting311_mf_26304436_feed_1.mp3" length="77774681" type="audio/mpeg"/>
+        <itunes:episode>311</itunes:episode>
+        <itunes:duration>01:21:01</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting311]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting310</title>
+        <link>https://popcastingpop.com/episodios/176</link>
+        <pubDate>Wed, 16 May 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/05/16/popcasting-310/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting310_mf_26012276_feed_1.mp3" length="91622504" type="audio/mpeg"/>
+        <itunes:episode>310</itunes:episode>
+        <itunes:duration>01:35:26</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting310]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting309</title>
+        <link>https://popcastingpop.com/episodios/177</link>
+        <pubDate>Mon, 30 Apr 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/04/30/popcasting-309/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting309_mf_25707005_feed_1.mp3" length="61164147" type="audio/mpeg"/>
+        <itunes:episode>309</itunes:episode>
+        <itunes:duration>01:03:43</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting309]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting308</title>
+        <link>https://popcastingpop.com/episodios/178</link>
+        <pubDate>Fri, 20 Apr 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/04/20/popcasting-308/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting308_mf_25521386_feed_1.mp3" length="83479406" type="audio/mpeg"/>
+        <itunes:episode>308</itunes:episode>
+        <itunes:duration>01:26:57</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting308]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting307</title>
+        <link>https://popcastingpop.com/episodios/179</link>
+        <pubDate>Sat, 31 Mar 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/03/31/popcasting-307/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting307_mf_24968315_feed_1.mp3" length="71505293" type="audio/mpeg"/>
+        <itunes:episode>307</itunes:episode>
+        <itunes:duration>01:14:29</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting307]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting306</title>
+        <link>https://popcastingpop.com/episodios/180</link>
+        <pubDate>Fri, 16 Mar 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/03/16/popcasting-306/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting306_mf_24566551_feed_1.mp3" length="59065156" type="audio/mpeg"/>
+        <itunes:episode>306</itunes:episode>
+        <itunes:duration>01:01:32</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting306]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting305</title>
+        <link>https://popcastingpop.com/episodios/181</link>
+        <pubDate>Thu, 01 Mar 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/03/01/popcasting-305/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting305_mf_24146365_feed_1.mp3" length="72460330" type="audio/mpeg"/>
+        <itunes:episode>305</itunes:episode>
+        <itunes:duration>01:15:28</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting305]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting304</title>
+        <link>https://popcastingpop.com/episodios/541</link>
+        <pubDate>Thu, 15 Feb 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/02/15/popcasting-304/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting304_mf_23799662_feed_1.mp3" length="51120588" type="audio/mpeg"/>
+        <itunes:episode>304</itunes:episode>
+        <itunes:duration>00:53:15</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting304]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting303</title>
+        <link>https://popcastingpop.com/episodios/183</link>
+        <pubDate>Thu, 01 Feb 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2018/02/01/popcasting-303/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting303_mf_23489872_feed_1.mp3" length="70942720" type="audio/mpeg"/>
+        <itunes:episode>303</itunes:episode>
+        <itunes:duration>01:13:54</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting303]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting302</title>
+        <link>https://popcastingpop.com/episodios/184</link>
+        <pubDate>Sun, 14 Jan 2018 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-302/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting302_mf_23142327_feed_1.mp3" length="70634684" type="audio/mpeg"/>
+        <itunes:episode>302</itunes:episode>
+        <itunes:duration>01:13:34</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting302]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting301</title>
+        <link>https://popcastingpop.com/episodios/185</link>
+        <pubDate>Sun, 31 Dec 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-301/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting301_mf_22905834_feed_1.mp3" length="66559164" type="audio/mpeg"/>
+        <itunes:episode>301</itunes:episode>
+        <itunes:duration>01:09:19</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting301]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting300</title>
+        <link>https://popcastingpop.com/episodios/186</link>
+        <pubDate>Wed, 20 Dec 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-300/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting300_mf_22767536_feed_1.mp3" length="117939304" type="audio/mpeg"/>
+        <itunes:episode>300</itunes:episode>
+        <itunes:duration>02:02:51</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting300]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting299</title>
+        <link>https://popcastingpop.com/episodios/187</link>
+        <pubDate>Sun, 03 Dec 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/12/03/popcasting-299/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting299_mf_22415971_feed_1.mp3" length="57503242" type="audio/mpeg"/>
+        <itunes:episode>299</itunes:episode>
+        <itunes:duration>00:59:53</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting299]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting298</title>
+        <link>https://popcastingpop.com/episodios/188</link>
+        <pubDate>Wed, 15 Nov 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/11/15/popcasting-298/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting298_mf_22100477_feed_1.mp3" length="82291566" type="audio/mpeg"/>
+        <itunes:episode>298</itunes:episode>
+        <itunes:duration>01:25:43</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting298]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting297</title>
+        <link>https://popcastingpop.com/episodios/189</link>
+        <pubDate>Tue, 31 Oct 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-297/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting297_mf_21794760_feed_1.mp3" length="82539416" type="audio/mpeg"/>
+        <itunes:episode>297</itunes:episode>
+        <itunes:duration>01:25:59</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting297]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting296</title>
+        <link>https://popcastingpop.com/episodios/190</link>
+        <pubDate>Sat, 14 Oct 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/10/14/popcasting-296/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting296_mf_21457519_feed_1.mp3" length="63118106" type="audio/mpeg"/>
+        <itunes:episode>296</itunes:episode>
+        <itunes:duration>01:05:44</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting296]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting295</title>
+        <link>https://popcastingpop.com/episodios/540</link>
+        <pubDate>Sun, 01 Oct 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/10/01/popcasting-295/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting295_mf_21195429_feed_1.mp3" length="57714312" type="audio/mpeg"/>
+        <itunes:episode>295</itunes:episode>
+        <itunes:duration>01:00:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting295]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting294</title>
+        <link>https://popcastingpop.com/episodios/192</link>
+        <pubDate>Sat, 16 Sep 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/09/16/popcasting-294/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting294_mf_20911118_feed_1.mp3" length="108024059" type="audio/mpeg"/>
+        <itunes:episode>294</itunes:episode>
+        <itunes:duration>01:52:31</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting294]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting293</title>
+        <link>https://popcastingpop.com/episodios/539</link>
+        <pubDate>Fri, 01 Sep 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/09/01/popcasting-293/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting293_mf_20640679_feed_1.mp3" length="107540898" type="audio/mpeg"/>
+        <itunes:episode>293</itunes:episode>
+        <itunes:duration>01:52:01</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting293]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting292</title>
+        <link>https://popcastingpop.com/episodios/194</link>
+        <pubDate>Tue, 15 Aug 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/08/15/popcasting-292/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting292_mf_20330240_feed_1.mp3" length="66427507" type="audio/mpeg"/>
+        <itunes:episode>292</itunes:episode>
+        <itunes:duration>01:09:11</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting292]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting291</title>
+        <link>https://popcastingpop.com/episodios/195</link>
+        <pubDate>Mon, 31 Jul 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/07/31/popcasting-291/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting291_mf_20086692_feed_1.mp3" length="77872483" type="audio/mpeg"/>
+        <itunes:episode>291</itunes:episode>
+        <itunes:duration>01:21:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting291]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 290</title>
+        <link>https://popcastingpop.com/episodios/538</link>
+        <pubDate>Fri, 14 Jul 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/07/15/popcasting-290/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-290_mf_19806989_feed_1.mp3" length="96824424" type="audio/mpeg"/>
+        <itunes:episode>290</itunes:episode>
+        <itunes:duration>01:40:51</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 290]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 289</title>
+        <link>https://popcastingpop.com/episodios/197</link>
+        <pubDate>Sat, 01 Jul 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-289/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-289_mf_19567029_feed_1.mp3" length="66614335" type="audio/mpeg"/>
+        <itunes:episode>289</itunes:episode>
+        <itunes:duration>01:09:23</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 289]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 288</title>
+        <link>https://popcastingpop.com/episodios/537</link>
+        <pubDate>Fri, 16 Jun 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/06/16/popcasting-288/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-288_mf_19301908_feed_1.mp3" length="58193711" type="audio/mpeg"/>
+        <itunes:episode>288</itunes:episode>
+        <itunes:duration>01:00:31</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 288]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 287</title>
+        <link>https://popcastingpop.com/episodios/199</link>
+        <pubDate>Thu, 01 Jun 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/06/01/popcasting-287/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-287_mf_19017839_feed_1.mp3" length="65336633" type="audio/mpeg"/>
+        <itunes:episode>287</itunes:episode>
+        <itunes:duration>01:08:04</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 287]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 286</title>
+        <link>https://popcastingpop.com/episodios/200</link>
+        <pubDate>Sun, 14 May 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/05/15/p286/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-286_mf_18676863_feed_1.mp3" length="62125871" type="audio/mpeg"/>
+        <itunes:episode>286</itunes:episode>
+        <itunes:duration>01:04:42</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 286]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 285</title>
+        <link>https://popcastingpop.com/episodios/201</link>
+        <pubDate>Mon, 01 May 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/05/01/p285/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-285_mf_18421818_feed_1.mp3" length="72408085" type="audio/mpeg"/>
+        <itunes:episode>285</itunes:episode>
+        <itunes:duration>01:15:25</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 285]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 284</title>
+        <link>https://popcastingpop.com/episodios/202</link>
+        <pubDate>Fri, 14 Apr 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/04/14/popcasting-284/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-284_mf_18136918_feed_1.mp3" length="62887811" type="audio/mpeg"/>
+        <itunes:episode>284</itunes:episode>
+        <itunes:duration>01:05:30</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 284]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 283</title>
+        <link>https://popcastingpop.com/episodios/203</link>
+        <pubDate>Mon, 03 Apr 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/04/03/popcasting-283/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-283_mf_17920655_feed_1.mp3" length="53943066" type="audio/mpeg"/>
+        <itunes:episode>283</itunes:episode>
+        <itunes:duration>00:56:11</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 283]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 282</title>
+        <link>https://popcastingpop.com/episodios/536</link>
+        <pubDate>Wed, 15 Mar 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/03/15/popcasting-282/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-282_mf_17556104_feed_1.mp3" length="59574648" type="audio/mpeg"/>
+        <itunes:episode>282</itunes:episode>
+        <itunes:duration>01:02:03</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 282]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 281</title>
+        <link>https://popcastingpop.com/episodios/205</link>
+        <pubDate>Wed, 01 Mar 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/03/01/popcasting-281/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-281_mf_17289074_feed_1.mp3" length="77199987" type="audio/mpeg"/>
+        <itunes:episode>281</itunes:episode>
+        <itunes:duration>01:20:25</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 281]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting #280</title>
+        <link>https://popcastingpop.com/episodios/206</link>
+        <pubDate>Thu, 16 Feb 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/02/16/popcasting-280/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-280_mf_17057706_feed_1.mp3" length="59896895" type="audio/mpeg"/>
+        <itunes:episode>280</itunes:episode>
+        <itunes:duration>01:02:24</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting #280]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 279</title>
+        <link>https://popcastingpop.com/episodios/207</link>
+        <pubDate>Tue, 31 Jan 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/01/31/popcasting-279/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-279_mf_16751330_feed_1.mp3" length="66117799" type="audio/mpeg"/>
+        <itunes:episode>279</itunes:episode>
+        <itunes:duration>01:08:52</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 279]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 278</title>
+        <link>https://popcastingpop.com/episodios/208</link>
+        <pubDate>Sat, 14 Jan 2017 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/01/15/2299/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-278_mf_16285406_feed_1.mp3" length="72158145" type="audio/mpeg"/>
+        <itunes:episode>278</itunes:episode>
+        <itunes:duration>01:15:10</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 278]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 277</title>
+        <link>https://popcastingpop.com/episodios/535</link>
+        <pubDate>Sat, 31 Dec 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2017/01/01/popcasting-277/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-277_mf_15633792_feed_1.mp3" length="88587703" type="audio/mpeg"/>
+        <itunes:episode>277</itunes:episode>
+        <itunes:duration>01:32:16</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 277]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 276</title>
+        <link>https://popcastingpop.com/episodios/210</link>
+        <pubDate>Tue, 20 Dec 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/12/20/popcasting-276/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-276_mf_15202098_feed_1.mp3" length="102531657" type="audio/mpeg"/>
+        <itunes:episode>276</itunes:episode>
+        <itunes:duration>01:46:48</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 276]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting275</title>
+        <link>https://popcastingpop.com/episodios/211</link>
+        <pubDate>Thu, 01 Dec 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/12/01/popcasting-275/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting275_mf_14396949_feed_1.mp3" length="68766407" type="audio/mpeg"/>
+        <itunes:episode>275</itunes:episode>
+        <itunes:duration>01:11:37</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting275]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 274</title>
+        <link>https://popcastingpop.com/episodios/534</link>
+        <pubDate>Tue, 15 Nov 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/11/15/popcasting-274/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-274_mf_13767822_feed_1.mp3" length="90838831" type="audio/mpeg"/>
+        <itunes:episode>274</itunes:episode>
+        <itunes:duration>01:34:37</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 274]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting273</title>
+        <link>https://popcastingpop.com/episodios/213</link>
+        <pubDate>Mon, 31 Oct 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-273/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting273_mf_13556566_feed_1.mp3" length="75854158" type="audio/mpeg"/>
+        <itunes:episode>273</itunes:episode>
+        <itunes:duration>01:19:01</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting273]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting272</title>
+        <link>https://popcastingpop.com/episodios/214</link>
+        <pubDate>Sat, 15 Oct 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/10/15/popcasting-272/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting272_mf_13328222_feed_1.mp3" length="62357420" type="audio/mpeg"/>
+        <itunes:episode>272</itunes:episode>
+        <itunes:duration>01:04:57</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting272]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting271 (ok)</title>
+        <link>https://popcastingpop.com/episodios/215</link>
+        <pubDate>Tue, 04 Oct 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/10/03/2236/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting271-ok_mf_13175470_feed_1.mp3" length="78679144" type="audio/mpeg"/>
+        <itunes:episode>271</itunes:episode>
+        <itunes:duration>01:21:57</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting271 (ok)]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting270</title>
+        <link>https://popcastingpop.com/episodios/216</link>
+        <pubDate>Wed, 14 Sep 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-270/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting270_mf_12906414_feed_1.mp3" length="64876460" type="audio/mpeg"/>
+        <itunes:episode>270</itunes:episode>
+        <itunes:duration>01:07:34</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting270]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting269</title>
+        <link>https://popcastingpop.com/episodios/217</link>
+        <pubDate>Thu, 01 Sep 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/09/01/popcasting-269/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting269_mf_12744289_feed_1.mp3" length="102603546" type="audio/mpeg"/>
+        <itunes:episode>269</itunes:episode>
+        <itunes:duration>01:46:52</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting269]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting268</title>
+        <link>https://popcastingpop.com/episodios/218</link>
+        <pubDate>Mon, 22 Aug 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/08/22/popcasting-268/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting268_mf_12626045_feed_1.mp3" length="81294733" type="audio/mpeg"/>
+        <itunes:episode>268</itunes:episode>
+        <itunes:duration>01:24:40</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting268]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting267</title>
+        <link>https://popcastingpop.com/episodios/533</link>
+        <pubDate>Fri, 05 Aug 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/08/05/popcasting-267/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting267_mf_12444258_feed_1.mp3" length="107038511" type="audio/mpeg"/>
+        <itunes:episode>267</itunes:episode>
+        <itunes:duration>01:51:29</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting267]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting266 (B)</title>
+        <link>https://popcastingpop.com/episodios/220</link>
+        <pubDate>Mon, 18 Jul 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/07/18/popcasting-266/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting266-a_mf_12252116_feed_1.mp3" length="96992026" type="audio/mpeg"/>
+        <itunes:episode>266</itunes:episode>
+        <itunes:duration>01:41:02</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting266 (B)]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting265</title>
+        <link>https://popcastingpop.com/episodios/221</link>
+        <pubDate>Fri, 01 Jul 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/07/01/popcasting-265/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting265_mf_12086469_feed_1.mp3" length="78201417" type="audio/mpeg"/>
+        <itunes:episode>265</itunes:episode>
+        <itunes:duration>01:21:27</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting265]]></description>
+      </item>
+    
+      <item>
+        <title>popcasting264</title>
+        <link>https://popcastingpop.com/episodios/222</link>
+        <pubDate>Thu, 16 Jun 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/06/16/popcasting-264/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting264_mf_11926674_feed_1.mp3" length="62117512" type="audio/mpeg"/>
+        <itunes:episode>264</itunes:episode>
+        <itunes:duration>01:04:42</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[popcasting264]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting263</title>
+        <link>https://popcastingpop.com/episodios/223</link>
+        <pubDate>Wed, 01 Jun 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/06/01/pop263/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting263_mf_11745426_feed_1.mp3" length="82854139" type="audio/mpeg"/>
+        <itunes:episode>263</itunes:episode>
+        <itunes:duration>01:26:18</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting263]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting262</title>
+        <link>https://popcastingpop.com/episodios/224</link>
+        <pubDate>Sat, 14 May 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/05/14/popcasting-262/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting262_mf_11530879_feed_1.mp3" length="74767464" type="audio/mpeg"/>
+        <itunes:episode>262</itunes:episode>
+        <itunes:duration>01:17:53</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting262]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting261</title>
+        <link>https://popcastingpop.com/episodios/532</link>
+        <pubDate>Sun, 01 May 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/05/01/popcasting-261/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting261_mf_11365568_feed_1.mp3" length="87734230" type="audio/mpeg"/>
+        <itunes:episode>261</itunes:episode>
+        <itunes:duration>01:31:24</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting261]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting260</title>
+        <link>https://popcastingpop.com/episodios/531</link>
+        <pubDate>Fri, 15 Apr 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/04/15/popcasting-260/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting260_mf_11173463_feed_1.mp3" length="75887177" type="audio/mpeg"/>
+        <itunes:episode>260</itunes:episode>
+        <itunes:duration>01:19:03</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting260]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting259</title>
+        <link>https://popcastingpop.com/episodios/227</link>
+        <pubDate>Fri, 01 Apr 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/04/01/popcasting-259/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting259_mf_11012108_feed_1.mp3" length="73721313" type="audio/mpeg"/>
+        <itunes:episode>259</itunes:episode>
+        <itunes:duration>01:16:48</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting259]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting258</title>
+        <link>https://popcastingpop.com/episodios/228</link>
+        <pubDate>Mon, 14 Mar 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-258/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting258_mf_10798253_feed_1.mp3" length="44603350" type="audio/mpeg"/>
+        <itunes:episode>258</itunes:episode>
+        <itunes:duration>00:46:28</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting258]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting 257</title>
+        <link>https://popcastingpop.com/episodios/229</link>
+        <pubDate>Tue, 01 Mar 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/03/01/popcasting-257/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting-257_mf_10623577_feed_1.mp3" length="75836186" type="audio/mpeg"/>
+        <itunes:episode>257</itunes:episode>
+        <itunes:duration>01:19:00</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting 257]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting256</title>
+        <link>https://popcastingpop.com/episodios/230</link>
+        <pubDate>Mon, 15 Feb 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-256/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting256_mf_10443952_feed_1.mp3" length="78356898" type="audio/mpeg"/>
+        <itunes:episode>256</itunes:episode>
+        <itunes:duration>01:21:37</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting256]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting255</title>
+        <link>https://popcastingpop.com/episodios/231</link>
+        <pubDate>Mon, 01 Feb 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/02/01/p255/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting255_mf_10277794_feed_1.mp3" length="78651559" type="audio/mpeg"/>
+        <itunes:episode>255</itunes:episode>
+        <itunes:duration>01:21:55</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting255]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting254</title>
+        <link>https://popcastingpop.com/episodios/232</link>
+        <pubDate>Sat, 16 Jan 2016 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/01/16/popcasting-254/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting254_mf_10090308_feed_1.mp3" length="96019853" type="audio/mpeg"/>
+        <itunes:episode>254</itunes:episode>
+        <itunes:duration>01:40:01</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting254]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting253</title>
+        <link>https://popcastingpop.com/episodios/233</link>
+        <pubDate>Thu, 31 Dec 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2016/01/01/2059/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting253_mf_9934350_feed_1.mp3" length="69291363" type="audio/mpeg"/>
+        <itunes:episode>253</itunes:episode>
+        <itunes:duration>01:12:10</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting253]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting252</title>
+        <link>https://popcastingpop.com/episodios/234</link>
+        <pubDate>Tue, 15 Dec 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/12/15/popcasting-252/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting252_mf_9734801_feed_1.mp3" length="124068878" type="audio/mpeg"/>
+        <itunes:episode>252</itunes:episode>
+        <itunes:duration>02:09:14</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting252]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting251</title>
+        <link>https://popcastingpop.com/episodios/235</link>
+        <pubDate>Tue, 01 Dec 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/12/01/popcasting-251/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting251_mf_9556268_feed_1.mp3" length="74720686" type="audio/mpeg"/>
+        <itunes:episode>251</itunes:episode>
+        <itunes:duration>01:17:44</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting251]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting250</title>
+        <link>https://popcastingpop.com/episodios/236</link>
+        <pubDate>Mon, 16 Nov 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/11/16/popcasting-250/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting250_mf_9398834_feed_1.mp3" length="57096278" type="audio/mpeg"/>
+        <itunes:episode>250</itunes:episode>
+        <itunes:duration>00:59:12</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting250]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting249</title>
+        <link>https://popcastingpop.com/episodios/237</link>
+        <pubDate>Fri, 30 Oct 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-249/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting249_mf_9215825_feed_1.mp3" length="66933601" type="audio/mpeg"/>
+        <itunes:episode>249</itunes:episode>
+        <itunes:duration>01:09:38</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting249]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting248</title>
+        <link>https://popcastingpop.com/episodios/238</link>
+        <pubDate>Fri, 16 Oct 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/10/16/popcasting-248/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting248_mf_9013307_feed_1.mp3" length="63793946" type="audio/mpeg"/>
+        <itunes:episode>248</itunes:episode>
+        <itunes:duration>01:06:27</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting248]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting247</title>
+        <link>https://popcastingpop.com/episodios/239</link>
+        <pubDate>Wed, 30 Sep 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-247/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting247_mf_8695967_feed_1.mp3" length="55478358" type="audio/mpeg"/>
+        <itunes:episode>247</itunes:episode>
+        <itunes:duration>00:57:31</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting247]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting246</title>
+        <link>https://popcastingpop.com/episodios/240</link>
+        <pubDate>Fri, 18 Sep 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/09/18/popcasting-246/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting246_mf_8459075_feed_1.mp3" length="129460383" type="audio/mpeg"/>
+        <itunes:episode>246</itunes:episode>
+        <itunes:duration>02:14:45</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting246]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting245</title>
+        <link>https://popcastingpop.com/episodios/241</link>
+        <pubDate>Tue, 01 Sep 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/09/01/popcasting-245/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting245_mf_7745319_feed_1.mp3" length="147241620" type="audio/mpeg"/>
+        <itunes:episode>245</itunes:episode>
+        <itunes:duration>02:33:16</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting245]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting244</title>
+        <link>https://popcastingpop.com/episodios/242</link>
+        <pubDate>Fri, 14 Aug 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-244/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting244_mf_6736071_feed_1.mp3" length="70200553" type="audio/mpeg"/>
+        <itunes:episode>244</itunes:episode>
+        <itunes:duration>01:12:52</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting244]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting243</title>
+        <link>https://popcastingpop.com/episodios/243</link>
+        <pubDate>Fri, 31 Jul 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-243/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting243_mf_5615314_feed_1.mp3" length="101239778" type="audio/mpeg"/>
+        <itunes:episode>243</itunes:episode>
+        <itunes:duration>01:45:21</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting243]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting242</title>
+        <link>https://popcastingpop.com/episodios/244</link>
+        <pubDate>Wed, 15 Jul 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/07/15/popcasting-242/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting242_mf_4833841_feed_1.mp3" length="56287538" type="audio/mpeg"/>
+        <itunes:episode>242</itunes:episode>
+        <itunes:duration>00:58:31</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting242]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting241</title>
+        <link>https://popcastingpop.com/episodios/245</link>
+        <pubDate>Tue, 30 Jun 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-241/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting241_mf_4706843_feed_1.mp3" length="72882862" type="audio/mpeg"/>
+        <itunes:episode>241</itunes:episode>
+        <itunes:duration>01:15:42</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting241]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting240</title>
+        <link>https://popcastingpop.com/episodios/246</link>
+        <pubDate>Mon, 15 Jun 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/06/15/popcasting-240/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting240_mf_4640208_feed_1.mp3" length="65209576" type="audio/mpeg"/>
+        <itunes:episode>240</itunes:episode>
+        <itunes:duration>01:07:51</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting240]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting239</title>
+        <link>https://popcastingpop.com/episodios/247</link>
+        <pubDate>Mon, 01 Jun 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/06/01/popcasting-239/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting239_mf_4576836_feed_1.mp3" length="87407911" type="audio/mpeg"/>
+        <itunes:episode>239</itunes:episode>
+        <itunes:duration>01:30:45</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting239]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting238</title>
+        <link>https://popcastingpop.com/episodios/248</link>
+        <pubDate>Fri, 15 May 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/05/15/popcasting-238/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting238_mf_4498760_feed_1.mp3" length="90780909" type="audio/mpeg"/>
+        <itunes:episode>238</itunes:episode>
+        <itunes:duration>01:34:27</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting238]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting237</title>
+        <link>https://popcastingpop.com/episodios/249</link>
+        <pubDate>Fri, 01 May 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/05/01/popcasting-237/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting237_mf_4433394_feed_1.mp3" length="89907460" type="audio/mpeg"/>
+        <itunes:episode>237</itunes:episode>
+        <itunes:duration>01:33:38</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting237]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting236</title>
+        <link>https://popcastingpop.com/episodios/250</link>
+        <pubDate>Wed, 15 Apr 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/04/15/popcasting-236/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting236_mf_4354330_feed_1.mp3" length="59807294" type="audio/mpeg"/>
+        <itunes:episode>236</itunes:episode>
+        <itunes:duration>01:02:17</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting236]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting235</title>
+        <link>https://popcastingpop.com/episodios/251</link>
+        <pubDate>Tue, 31 Mar 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-235/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting235_mf_4287920_feed_1.mp3" length="76686091" type="audio/mpeg"/>
+        <itunes:episode>235</itunes:episode>
+        <itunes:duration>01:19:51</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting235]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting234</title>
+        <link>https://popcastingpop.com/episodios/252</link>
+        <pubDate>Mon, 16 Mar 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/03/16/popcasting-234/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting234_mf_4221234_feed_1.mp3" length="84064809" type="audio/mpeg"/>
+        <itunes:episode>234</itunes:episode>
+        <itunes:duration>01:27:33</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting234]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting233</title>
+        <link>https://popcastingpop.com/episodios/530</link>
+        <pubDate>Sat, 28 Feb 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/03/01/popcasting-233/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting233_mf_4147787_feed_1.mp3" length="64181871" type="audio/mpeg"/>
+        <itunes:episode>233</itunes:episode>
+        <itunes:duration>01:06:51</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting233]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting232</title>
+        <link>https://popcastingpop.com/episodios/254</link>
+        <pubDate>Mon, 16 Feb 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/02/16/popcasting-232/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting232_mf_4088033_feed_1.mp3" length="72744601" type="audio/mpeg"/>
+        <itunes:episode>232</itunes:episode>
+        <itunes:duration>01:15:45</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting232]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting231</title>
+        <link>https://popcastingpop.com/episodios/255</link>
+        <pubDate>Sun, 01 Feb 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/02/01/popcasting-231/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting231_mf_4023624_feed_1.mp3" length="55809096" type="audio/mpeg"/>
+        <itunes:episode>231</itunes:episode>
+        <itunes:duration>00:58:07</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting231]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting230</title>
+        <link>https://popcastingpop.com/episodios/256</link>
+        <pubDate>Thu, 15 Jan 2015 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2015/01/15/popcasting-230/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting230_mf_3952970_feed_1.mp3" length="73496293" type="audio/mpeg"/>
+        <itunes:episode>230</itunes:episode>
+        <itunes:duration>01:16:33</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting230]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting229</title>
+        <link>https://popcastingpop.com/episodios/257</link>
+        <pubDate>Wed, 31 Dec 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-229/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting229_mf_3908954_feed_1.mp3" length="60790858" type="audio/mpeg"/>
+        <itunes:episode>229</itunes:episode>
+        <itunes:duration>01:03:19</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting229]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting228</title>
+        <link>https://popcastingpop.com/episodios/258</link>
+        <pubDate>Mon, 15 Dec 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/12/15/popcasting-228/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting228_mf_3856248_feed_1.mp3" length="104452858" type="audio/mpeg"/>
+        <itunes:episode>228</itunes:episode>
+        <itunes:duration>01:48:47</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting228]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting227</title>
+        <link>https://popcastingpop.com/episodios/259</link>
+        <pubDate>Tue, 02 Dec 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/12/02/popcasting-227/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting227_mf_3805766_feed_1.mp3" length="76877906" type="audio/mpeg"/>
+        <itunes:episode>227</itunes:episode>
+        <itunes:duration>01:20:03</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting227]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting226</title>
+        <link>https://popcastingpop.com/episodios/260</link>
+        <pubDate>Mon, 17 Nov 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/11/17/popcasting-226/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting226_mf_3744941_feed_1.mp3" length="75364787" type="audio/mpeg"/>
+        <itunes:episode>226</itunes:episode>
+        <itunes:duration>01:18:28</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting226]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting225</title>
+        <link>https://popcastingpop.com/episodios/261</link>
+        <pubDate>Sat, 01 Nov 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/11/01/popcasting-225/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting225_mf_3682742_feed_1.mp3" length="66390271" type="audio/mpeg"/>
+        <itunes:episode>225</itunes:episode>
+        <itunes:duration>01:09:05</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting225]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting224</title>
+        <link>https://popcastingpop.com/episodios/263</link>
+        <pubDate>Wed, 15 Oct 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/10/15/popcasting-224/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting224_mf_3608743_feed_1.mp3" length="54490123" type="audio/mpeg"/>
+        <itunes:episode>224</itunes:episode>
+        <itunes:duration>00:56:45</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting224]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting223</title>
+        <link>https://popcastingpop.com/episodios/264</link>
+        <pubDate>Fri, 03 Oct 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/10/03/popcasting-223/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting223_mf_3564287_feed_1.mp3" length="69712090" type="audio/mpeg"/>
+        <itunes:episode>223</itunes:episode>
+        <itunes:duration>01:12:36</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting223]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting222</title>
+        <link>https://popcastingpop.com/episodios/265</link>
+        <pubDate>Mon, 15 Sep 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/09/15/popcasting-222/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting222_mf_3494819_feed_1.mp3" length="113027290" type="audio/mpeg"/>
+        <itunes:episode>222</itunes:episode>
+        <itunes:duration>01:57:43</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting222]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting221</title>
+        <link>https://popcastingpop.com/episodios/266</link>
+        <pubDate>Mon, 01 Sep 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/09/01/popcasting-221/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting221_mf_3446092_feed_1.mp3" length="117127740" type="audio/mpeg"/>
+        <itunes:episode>221</itunes:episode>
+        <itunes:duration>02:01:58</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting221]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting220</title>
+        <link>https://popcastingpop.com/episodios/267</link>
+        <pubDate>Thu, 14 Aug 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/08/14/popcasting-220/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting220_mf_3402674_feed_1.mp3" length="68847021" type="audio/mpeg"/>
+        <itunes:episode>220</itunes:episode>
+        <itunes:duration>01:11:42</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting220]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting219</title>
+        <link>https://popcastingpop.com/episodios/268</link>
+        <pubDate>Thu, 31 Jul 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/07/31/popcasting-219/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting219_mf_3366623_feed_1.mp3" length="67862588" type="audio/mpeg"/>
+        <itunes:episode>219</itunes:episode>
+        <itunes:duration>01:10:38</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting219]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting218</title>
+        <link>https://popcastingpop.com/episodios/269</link>
+        <pubDate>Tue, 15 Jul 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/07/15/popcasting-218/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting218_mf_3316371_feed_1.mp3" length="66340153" type="audio/mpeg"/>
+        <itunes:episode>218</itunes:episode>
+        <itunes:duration>01:09:06</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting218]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting217</title>
+        <link>https://popcastingpop.com/episodios/270</link>
+        <pubDate>Tue, 01 Jul 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/07/01/popcasting-217/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting217_mf_3272491_feed_1.mp3" length="66305104" type="audio/mpeg"/>
+        <itunes:episode>217</itunes:episode>
+        <itunes:duration>01:09:03</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting217]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting216</title>
+        <link>https://popcastingpop.com/episodios/529</link>
+        <pubDate>Mon, 16 Jun 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/06/16/popcasting-216/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting216_mf_3228066_feed_1.mp3" length="48951607" type="audio/mpeg"/>
+        <itunes:episode>216</itunes:episode>
+        <itunes:duration>00:50:59</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting216]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting215</title>
+        <link>https://popcastingpop.com/episodios/272</link>
+        <pubDate>Sat, 31 May 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/05/31/popcasting-215/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting215_mf_3174907_feed_1.mp3" length="54823933" type="audio/mpeg"/>
+        <itunes:episode>215</itunes:episode>
+        <itunes:duration>00:57:04</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting215]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting214</title>
+        <link>https://popcastingpop.com/episodios/273</link>
+        <pubDate>Fri, 16 May 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/05/16/popcasting-214/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting214_mf_3122825_feed_1.mp3" length="51479842" type="audio/mpeg"/>
+        <itunes:episode>214</itunes:episode>
+        <itunes:duration>00:53:35</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting214]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting213</title>
+        <link>https://popcastingpop.com/episodios/274</link>
+        <pubDate>Fri, 02 May 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/05/02/popcasting-213/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting213_mf_3077698_feed_1.mp3" length="54067083" type="audio/mpeg"/>
+        <itunes:episode>213</itunes:episode>
+        <itunes:duration>00:56:18</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting213]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting212</title>
+        <link>https://popcastingpop.com/episodios/275</link>
+        <pubDate>Fri, 18 Apr 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-212/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting212_mf_3036760_feed_1.mp3" length="82076126" type="audio/mpeg"/>
+        <itunes:episode>212</itunes:episode>
+        <itunes:duration>01:25:27</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting212]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting211</title>
+        <link>https://popcastingpop.com/episodios/276</link>
+        <pubDate>Tue, 01 Apr 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/04/01/popcasting-211/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting211_mf_2979730_feed_1.mp3" length="53762985" type="audio/mpeg"/>
+        <itunes:episode>211</itunes:episode>
+        <itunes:duration>00:55:59</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting211]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting210</title>
+        <link>https://popcastingpop.com/episodios/528</link>
+        <pubDate>Sat, 15 Mar 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/03/15/popcasting-210/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting210_mf_2924564_feed_1.mp3" length="56483649" type="audio/mpeg"/>
+        <itunes:episode>210</itunes:episode>
+        <itunes:duration>00:58:50</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting210]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting209</title>
+        <link>https://popcastingpop.com/episodios/527</link>
+        <pubDate>Tue, 04 Mar 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/03/04/popcasting-209/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting209_mf_2887318_feed_1.mp3" length="47740611" type="audio/mpeg"/>
+        <itunes:episode>209</itunes:episode>
+        <itunes:duration>00:49:43</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting209]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting208</title>
+        <link>https://popcastingpop.com/episodios/279</link>
+        <pubDate>Mon, 17 Feb 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/02/17/popcasting-208/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting208_mf_2839537_feed_1.mp3" length="54808961" type="audio/mpeg"/>
+        <itunes:episode>208</itunes:episode>
+        <itunes:duration>00:57:04</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting208]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting207</title>
+        <link>https://popcastingpop.com/episodios/526</link>
+        <pubDate>Fri, 31 Jan 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/02/01/popcasting-207/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting207_mf_2788116_feed_1.mp3" length="78697762" type="audio/mpeg"/>
+        <itunes:episode>207</itunes:episode>
+        <itunes:duration>01:21:58</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting207]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting206</title>
+        <link>https://popcastingpop.com/episodios/525</link>
+        <pubDate>Thu, 16 Jan 2014 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2014/01/16/popcasting-206/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting206_mf_2718847_feed_1.mp3" length="79235507" type="audio/mpeg"/>
+        <itunes:episode>206</itunes:episode>
+        <itunes:duration>01:22:32</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting206]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting205</title>
+        <link>https://popcastingpop.com/episodios/282</link>
+        <pubDate>Tue, 31 Dec 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/12/31/popcasting-205/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting205_mf_2680923_feed_1.mp3" length="70531257" type="audio/mpeg"/>
+        <itunes:episode>205</itunes:episode>
+        <itunes:duration>01:13:26</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting205]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting204</title>
+        <link>https://popcastingpop.com/episodios/283</link>
+        <pubDate>Fri, 20 Dec 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/12/20/popcasting-204/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting204_mf_2661185_feed_1.mp3" length="45515557" type="audio/mpeg"/>
+        <itunes:episode>204</itunes:episode>
+        <itunes:duration>01:34:43</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting204]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting203b</title>
+        <link>https://popcastingpop.com/episodios/284</link>
+        <pubDate>Wed, 04 Dec 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-203/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting203b_mf_2613836_feed_1.mp3" length="28868640" type="audio/mpeg"/>
+        <itunes:episode>203</itunes:episode>
+        <itunes:duration>01:00:02</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting203b]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting202</title>
+        <link>https://popcastingpop.com/episodios/285</link>
+        <pubDate>Fri, 15 Nov 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/11/15/popcasting-202/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting202_mf_2555811_feed_1.mp3" length="41337846" type="audio/mpeg"/>
+        <itunes:episode>202</itunes:episode>
+        <itunes:duration>01:26:01</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting202]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting201</title>
+        <link>https://popcastingpop.com/episodios/286</link>
+        <pubDate>Tue, 05 Nov 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/11/05/popcasting-201/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting201_mf_2519514_feed_1.mp3" length="34365430" type="audio/mpeg"/>
+        <itunes:episode>201</itunes:episode>
+        <itunes:duration>01:11:30</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting201]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting200</title>
+        <link>https://popcastingpop.com/episodios/287</link>
+        <pubDate>Tue, 15 Oct 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/10/15/popcasting-200/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting200_mf_2450277_feed_1.mp3" length="30863977" type="audio/mpeg"/>
+        <itunes:episode>200</itunes:episode>
+        <itunes:duration>01:04:11</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting200]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting199</title>
+        <link>https://popcastingpop.com/episodios/288</link>
+        <pubDate>Tue, 01 Oct 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/10/01/popcasting-199/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting199_mf_2407430_feed_1.mp3" length="57971159" type="audio/mpeg"/>
+        <itunes:episode>199</itunes:episode>
+        <itunes:duration>02:00:40</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting199]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting198b (corregido)</title>
+        <link>https://popcastingpop.com/episodios/289</link>
+        <pubDate>Sun, 22 Sep 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/popcasting-198/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting198b-corregido_mf_2379666_feed_1.mp3" length="117907958" type="audio/mpeg"/>
+        <itunes:episode>198</itunes:episode>
+        <itunes:duration>02:02:49</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting198b (corregido)]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting197</title>
+        <link>https://popcastingpop.com/episodios/524</link>
+        <pubDate>Tue, 03 Sep 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/09/03/popcasting-197/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting197_mf_2327067_feed_1.mp3" length="59153741" type="audio/mpeg"/>
+        <itunes:episode>197</itunes:episode>
+        <itunes:duration>01:36:53</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting197]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting196</title>
+        <link>https://popcastingpop.com/episodios/292</link>
+        <pubDate>Thu, 15 Aug 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/08/15/popcasting-196/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting196_mf_2285127_feed_1.mp3" length="36493529" type="audio/mpeg"/>
+        <itunes:episode>196</itunes:episode>
+        <itunes:duration>01:15:52</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting196]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting195 (especial Smash Hits 1984)</title>
+        <link>https://popcastingpop.com/episodios/293</link>
+        <pubDate>Fri, 02 Aug 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/08/02/popcasting-195/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting195-especial-smash-hits-1984_mf_2258260_feed_1.mp3" length="66795538" type="audio/mpeg"/>
+        <itunes:episode>195</itunes:episode>
+        <itunes:duration>01:09:32</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting195 (especial Smash Hits 1984)]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting194</title>
+        <link>https://popcastingpop.com/episodios/294</link>
+        <pubDate>Mon, 15 Jul 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/07/15/popcasting-194/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting194_mf_2212343_feed_1.mp3" length="34182632" type="audio/mpeg"/>
+        <itunes:episode>194</itunes:episode>
+        <itunes:duration>01:11:04</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting194]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting193</title>
+        <link>https://popcastingpop.com/episodios/295</link>
+        <pubDate>Mon, 01 Jul 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/07/01/popcasting-193/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting193_mf_2175744_feed_1.mp3" length="61158105" type="audio/mpeg"/>
+        <itunes:episode>193</itunes:episode>
+        <itunes:duration>01:03:40</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting193]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting192</title>
+        <link>https://popcastingpop.com/episodios/296</link>
+        <pubDate>Sat, 15 Jun 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/06/15/popcasting-192/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting192_mf_2134529_feed_1.mp3" length="77165773" type="audio/mpeg"/>
+        <itunes:episode>192</itunes:episode>
+        <itunes:duration>01:20:21</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting192]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting191</title>
+        <link>https://popcastingpop.com/episodios/297</link>
+        <pubDate>Fri, 31 May 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/05/31/popcasting-191/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting191_mf_2090748_feed_1.mp3" length="74606777" type="audio/mpeg"/>
+        <itunes:episode>191</itunes:episode>
+        <itunes:duration>01:17:40</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting191]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting190</title>
+        <link>https://popcastingpop.com/episodios/298</link>
+        <pubDate>Wed, 15 May 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/05/15/popcasting-190/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting190_mf_2044068_feed_1.mp3" length="70588483" type="audio/mpeg"/>
+        <itunes:episode>190</itunes:episode>
+        <itunes:duration>01:13:30</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting190]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting189 (especial Josetxo Ezponda)</title>
+        <link>https://popcastingpop.com/episodios/299</link>
+        <pubDate>Wed, 01 May 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/05/01/popcasting-189/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting189-especial-josetxo-ezponda_mf_1999355_feed_1.mp3" length="129221637" type="audio/mpeg"/>
+        <itunes:episode>189</itunes:episode>
+        <itunes:duration>02:14:33</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting189 (especial Josetxo Ezponda)]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting188</title>
+        <link>https://popcastingpop.com/episodios/300</link>
+        <pubDate>Mon, 15 Apr 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/04/15/popcasting-188/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting188_mf_1951916_feed_1.mp3" length="77127036" type="audio/mpeg"/>
+        <itunes:episode>188</itunes:episode>
+        <itunes:duration>01:20:19</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting188]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting187</title>
+        <link>https://popcastingpop.com/episodios/301</link>
+        <pubDate>Mon, 01 Apr 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/04/01/popcasting-187/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting187_mf_1910759_feed_1.mp3" length="67782891" type="audio/mpeg"/>
+        <itunes:episode>187</itunes:episode>
+        <itunes:duration>01:10:34</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting187]]></description>
+      </item>
+    
+      <item>
+        <title>Popcasting186</title>
+        <link>https://popcastingpop.com/episodios/302</link>
+        <pubDate>Fri, 15 Mar 2013 18:00:00 +0000</pubDate>
+        <guid isPermaLink="false">https://popcastingpop.com/2013/03/15/popcasting-186/</guid>
+        <enclosure url="https://www.ivoox.com/popcasting186_mf_1871446_feed_1.mp3" length="80062531" type="audio/mpeg"/>
+        <itunes:episode>186</itunes:episode>
+        <itunes:duration>01:23:21</itunes:duration>
+        <itunes:explicit>false</itunes:explicit>
+        <description><![CDATA[Popcasting186]]></description>
+      </item>
+    
+  </channel>
+</rss>
