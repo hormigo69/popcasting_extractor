@@ -228,6 +228,234 @@ def extract_cover_image_url(content: str) -> str:
     return None
 
 
+def extract_web_extra_links(content: str) -> list[dict]:
+    """
+    Extrae enlaces adicionales del contenido HTML.
+    Busca spans con color específico y párrafos centrados con enlaces.
+    
+    Args:
+        content: Contenido HTML del post
+        
+    Returns:
+        list[dict]: Lista de enlaces adicionales con formato {"text": str, "url": str}
+    """
+    import re
+    import html
+    
+    extra_links = []
+    
+    # Buscar spans con el color específico de Popcasting (#ff99cc)
+    colored_span_pattern = r'<span[^>]*style="[^"]*#ff99cc[^"]*"[^>]*>(.*?)</span>'
+    colored_span_matches = re.findall(colored_span_pattern, content, re.IGNORECASE | re.DOTALL)
+    
+    for span_content in colored_span_matches:
+        # Buscar enlaces dentro del span
+        link_pattern = r'<a[^>]*href="([^"]*)"[^>]*>(.*?)</a>'
+        link_matches = re.findall(link_pattern, span_content, re.IGNORECASE)
+        
+        for url, text in link_matches:
+            clean_text = re.sub(r'<[^>]+>', '', text).strip()
+            clean_text = html.unescape(clean_text)
+            
+            # Filtrar enlaces de Ko-fi
+            if clean_text and url and 'ko-fi.com/popcasting' not in url:
+                extra_links.append({"text": clean_text, "url": url})
+    
+    # También buscar en párrafos centrados que pueden contener enlaces
+    centered_link_pattern = r'<p[^>]*class="[^"]*has-text-align-center[^"]*"[^>]*>(.*?)</p>'
+    centered_link_matches = re.findall(centered_link_pattern, content, re.IGNORECASE | re.DOTALL)
+    
+    for p_content in centered_link_matches:
+        # Buscar enlaces dentro del párrafo
+        link_pattern = r'<a[^>]*href="([^"]*)"[^>]*>(.*?)</a>'
+        link_matches = re.findall(link_pattern, p_content, re.IGNORECASE)
+        
+        for url, text in link_matches:
+            clean_text = re.sub(r'<[^>]+>', '', text).strip()
+            clean_text = html.unescape(clean_text)
+            
+            # Filtrar enlaces de Ko-fi y duplicados
+            if (clean_text and url and 
+                'ko-fi.com/popcasting' not in url and 
+                not any(existing['url'] == url for existing in extra_links)):
+                extra_links.append({"text": clean_text, "url": url})
+    
+    return extra_links
+
+
+def extract_web_playlist(content: str) -> list[dict]:
+    """
+    Extrae la playlist del contenido HTML.
+    Busca canciones en párrafos centrados con formato "Artista · Título".
+    
+    Args:
+        content: Contenido HTML del post
+        
+    Returns:
+        list[dict]: Lista de canciones con formato {"position": int, "artist": str, "title": str}
+    """
+    import re
+    import html
+    
+    playlist = []
+    
+    # Buscar párrafos centrados (formato moderno de playlist)
+    centered_pattern = r'<p[^>]*style="[^"]*text-align:\s*center[^"]*"[^>]*>(.*?)</p>'
+    centered_matches = re.findall(centered_pattern, content, re.IGNORECASE | re.DOTALL)
+    
+    for p_content in centered_matches:
+        # Limpiar HTML tags y entidades
+        clean_text = re.sub(r'<[^>]+>', '', p_content)
+        clean_text = html.unescape(clean_text)
+        clean_text = re.sub(r'\s+', ' ', clean_text).strip()
+        
+        # Buscar canciones en el texto del párrafo
+        songs = _parse_popcasting_playlist_text(clean_text)
+        if songs:
+            for i, song in enumerate(songs, len(playlist) + 1):
+                if _is_valid_song(song):
+                    playlist.append({
+                        "position": i,
+                        "artist": song["artist"],
+                        "title": song["title"]
+                    })
+    
+    return playlist
+
+
+def _parse_popcasting_playlist_text(text: str) -> list[dict]:
+    """
+    Parsea texto específico de Popcasting con múltiples canciones separadas por ::
+    
+    Args:
+        text: Texto con canciones separadas por ::
+        
+    Returns:
+        list[dict]: Lista de canciones con formato {"artist": str, "title": str}
+    """
+    songs = []
+    
+    if "::" in text:
+        parts = text.split("::")
+        for part in parts:
+            part = part.strip()
+            if part:
+                song_info = _parse_song_text(part)
+                if song_info:
+                    songs.append(song_info)
+    
+    return songs
+
+
+def _parse_song_text(text: str) -> dict | None:
+    """
+    Parsea texto para extraer artista y título de una canción.
+    
+    Args:
+        text: Texto de la canción
+        
+    Returns:
+        dict | None: Diccionario con {"artist": str, "title": str} o None si no es válido
+    """
+    import re
+    import html
+    
+    # Limpiar caracteres Unicode antes de procesar
+    cleaned_text = _clean_unicode_text(text)
+    
+    patterns = [
+        r"^(.+?)\s*[-–—]\s*(.+)$",  # Artista - Título
+        r"^(.+?)\s*:\s*(.+)$",      # Artista: Título
+        r'^(.+?)\s*"\s*(.+?)\s*"$', # Artista "Título"
+        r"^(.+?)\s*·\s*(.+)$",      # Artista · Título (formato Popcasting)
+    ]
+    
+    for pattern in patterns:
+        match = re.match(pattern, cleaned_text.strip())
+        if match:
+            artist = _clean_unicode_text(match.group(1).strip())
+            title = _clean_unicode_text(match.group(2).strip())
+            
+            # Filtrar texto que no parece ser una canción
+            if (len(artist) > 1 and len(title) > 1 and
+                not any(word in artist.lower() for word in ['comentarios', 'compartir', 'twitter', 'facebook', 'popcasting'])):
+                return {"artist": artist, "title": title}
+    
+    return None
+
+
+def _is_valid_song(song: dict) -> bool:
+    """
+    Verifica si una canción extraída es válida (no es una URL o texto no musical).
+    
+    Args:
+        song: Diccionario con {"artist": str, "title": str}
+        
+    Returns:
+        bool: True si la canción es válida, False en caso contrario
+    """
+    artist = song.get("artist", "").lower()
+    title = song.get("title", "").lower()
+    
+    # Filtrar URLs
+    if artist.startswith("http") or title.startswith("http"):
+        return False
+    
+    # Filtrar texto que no parece ser una canción
+    invalid_words = [
+        "comentarios", "compartir", "twitter", "facebook", "popcasting",
+        "https", "www", ".com", ".org", ".net", ".mp3", ".wav",
+        "ko-fi", "bandcamp", "spotify", "youtube", "soundcloud"
+    ]
+    
+    for word in invalid_words:
+        if word in artist or word in title:
+            return False
+    
+    # Verificar que artista y título tienen longitud mínima
+    if len(artist) < 2 or len(title) < 2:
+        return False
+    
+    return True
+
+
+def _clean_unicode_text(text: str) -> str:
+    """
+    Limpia caracteres Unicode escapados y entidades HTML.
+    
+    Args:
+        text: Texto a limpiar
+        
+    Returns:
+        str: Texto limpio
+    """
+    import html
+    
+    if not text:
+        return text
+    
+    try:
+        # Si detectamos patrones típicos de mala codificación, intentamos decodificar
+        if 'Ã' in text or 'Â' in text:
+            try:
+                text = text.encode('latin-1').decode('utf-8')
+            except Exception:
+                pass
+        
+        # Limpiar caracteres Unicode problemáticos específicos
+        text = text.replace('┬Ę', '·')  # Punto medio Unicode
+        text = text.replace('┬Ā', ' ')  # Espacio no separador Unicode
+        text = text.replace('┬', '')    # Otros caracteres Unicode problemáticos
+        text = text.replace('•', '·')   # Punto medio Unicode alternativo
+        text = text.replace('–', '-')   # Guión medio Unicode
+        text = text.replace('—', '-')   # Guión largo Unicode
+        
+        text = html.unescape(text)
+        return text.strip()
+    except Exception:
+        return text.strip()
+
+
 def get_posts(page: int, per_page: int) -> list[dict]:
     """Obtiene posts de WordPress y los transforma a formato limpio."""
     response = fetch_posts(page, per_page)

@@ -152,8 +152,8 @@ class DatabaseManager:
             int: ID del podcast insertado
         """
         try:
-            # Extraer la lista de canciones y eliminarla del diccionario principal
-            songs = podcast_data.pop('web_playlist', [])
+            # Extraer la lista de canciones pero mantener una copia para la tabla podcasts
+            songs = podcast_data.get('web_playlist', [])
             self.logger.info(f"Insertando podcast: {podcast_data.get('title', 'Sin título')}")
             
             # Filtrar solo los campos válidos para la tabla podcasts
@@ -177,7 +177,7 @@ class DatabaseManager:
                 'wordpress_link': 'wordpress_url',
                 'featured_image_url': 'cover_image_url',
                 'web_extra_links': 'web_extra_links',
-                'wordpress_playlist_data': 'web_playlist',
+                'web_playlist': 'web_playlist',  # Playlist de canciones extraída del contenido
                 'comments': 'comments',
                 'duration': 'duration',
                 'rss_playlist': 'rss_playlist'
@@ -260,17 +260,11 @@ class DatabaseManager:
             else:
                 self.logger.info("No hay canciones para insertar")
             
-            # Restaurar la lista de canciones en el diccionario original
-            podcast_data['web_playlist'] = songs
-            
             # Devolver el ID del podcast insertado
             return podcast_id
             
         except Exception as e:
             self.logger.error(f"Error al insertar podcast completo: {e}")
-            # Restaurar la lista de canciones en caso de error
-            if 'web_playlist' not in podcast_data:
-                podcast_data['web_playlist'] = songs
             raise
     
     def close(self):

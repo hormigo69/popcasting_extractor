@@ -22,7 +22,7 @@ from components.database_manager import DatabaseManager
 from components.song_processor import SongProcessor
 from components.audio_manager import AudioManager
 from components.synology_client import SynologyClient
-from api.wpcom_api import get_posts, extract_best_mp3_url, extract_ivoox_page_url, get_file_size, extract_cover_image_url
+from api.wpcom_api import get_posts, extract_best_mp3_url, extract_ivoox_page_url, get_file_size, extract_cover_image_url, extract_web_extra_links, extract_web_playlist
 from utils.logger import logger
 
 
@@ -355,6 +355,26 @@ def main(dry_run: bool = False):
                     logger.warning(f"⚠️ No se encontró imagen de portada")
                     cover_image_url = None
                 
+                # Extraer enlaces adicionales
+                web_extra_links = extract_web_extra_links(content)
+                if web_extra_links:
+                    logger.info(f"🔗 Encontrados {len(web_extra_links)} enlaces adicionales")
+                    for link in web_extra_links:
+                        logger.info(f"   📎 {link['text']} -> {link['url']}")
+                else:
+                    logger.info(f"🔗 No se encontraron enlaces adicionales")
+                
+                # Extraer playlist
+                web_playlist = extract_web_playlist(content)
+                if web_playlist:
+                    logger.info(f"🎵 Encontradas {len(web_playlist)} canciones en la playlist")
+                    for song in web_playlist[:3]:  # Mostrar solo las primeras 3
+                        logger.info(f"   🎶 {song['position']}. {song['artist']} · {song['title']}")
+                    if len(web_playlist) > 3:
+                        logger.info(f"   ... y {len(web_playlist) - 3} canciones más")
+                else:
+                    logger.warning(f"⚠️ No se encontró playlist")
+                
                 # Procesar attachments para convertirlos a formato compatible
                 attachments = wp_episode.get('attachments', {})
                 processed_attachments = []
@@ -377,12 +397,13 @@ def main(dry_run: bool = False):
                     'wordpress_link': wp_episode.get('url', ''),  # URL de WordPress
                     'content': wp_episode.get('content', ''),
                     'program_number': episode_program_number,
-                    'wordpress_playlist_data': processed_attachments,
                     'rss_playlist': '',  # Ya no usamos RSS
                     'wordpress_id': wp_episode.get('id'),
                     'download_url': download_url,  # URL directa del MP3 para descarga
                     'file_size': file_size,  # Tamaño del archivo en bytes
-                    'featured_image_url': cover_image_url  # URL de la imagen de portada
+                    'featured_image_url': cover_image_url,  # URL de la imagen de portada
+                    'web_extra_links': web_extra_links,  # Enlaces adicionales
+                    'web_playlist': web_playlist  # Playlist de canciones extraída del contenido
                 }
                 
                 if not episode_data:
