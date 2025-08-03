@@ -101,6 +101,133 @@ def extract_best_mp3_url(content: str) -> str:
     return unique_urls[0]
 
 
+def extract_ivoox_page_url(content: str) -> str:
+    """
+    Extrae la URL de la página de iVoox (no la URL directa del MP3).
+    Busca enlaces a páginas de iVoox que contengan 'audios-mp3' o similar.
+    """
+    import re
+    
+    # Buscar URLs de páginas de iVoox
+    ivoox_page_patterns = [
+        r'href=["\'](https?://[^"\']*ivoox\.com[^"\']*audios-mp3[^"\']*)["\']',
+        r'href=["\'](https?://[^"\']*ivoox\.com[^"\']*\.html[^"\']*)["\']',
+        r'https?://[^\s<>"\']*ivoox\.com[^\s<>"\']*audios-mp3[^\s<>"\']*',
+        r'https?://[^\s<>"\']*ivoox\.com[^\s<>"\']*\.html[^\s<>"\']*',
+    ]
+    
+    all_urls = []
+    for pattern in ivoox_page_patterns:
+        matches = re.findall(pattern, content, re.IGNORECASE)
+        all_urls.extend(matches)
+    
+    # Eliminar duplicados y limpiar
+    unique_urls = list(set(all_urls))
+    unique_urls = [url.strip() for url in unique_urls if url.strip()]
+    
+    # Filtrar solo URLs de páginas (no archivos MP3 directos)
+    page_urls = [url for url in unique_urls if '.html' in url and not url.endswith('.mp3')]
+    
+    if page_urls:
+        # Priorizar URLs que contengan 'audios-mp3'
+        audios_mp3_urls = [url for url in page_urls if 'audios-mp3' in url]
+        if audios_mp3_urls:
+            return audios_mp3_urls[0]
+        
+        # Si no hay URLs con 'audios-mp3', devolver la primera página
+        return page_urls[0]
+    
+    # Si no encontramos URLs de páginas, intentar construir la URL a partir del MP3
+    mp3_url = extract_best_mp3_url(content)
+    if mp3_url and 'ivoox.com' in mp3_url:
+        # Extraer el ID del episodio de la URL del MP3
+        # Ejemplo: https://www.ivoox.com/popcasting486_md_154272934_wp_1.mp3
+        # Queremos: https://www.ivoox.com/en/popcasting486-audios-mp3_rf_154272934_1.html
+        
+        # Buscar el patrón del ID en la URL del MP3
+        id_match = re.search(r'_md_(\d+)_', mp3_url)
+        if id_match:
+            episode_id = id_match.group(1)
+            
+            # Buscar el número del episodio en el contenido
+            episode_number_match = re.search(r'Popcasting\s+(\d+)', content, re.IGNORECASE)
+            if episode_number_match:
+                episode_number = episode_number_match.group(1)
+                
+                # Construir la URL de la página
+                page_url = f"https://www.ivoox.com/en/popcasting{episode_number}-audios-mp3_rf_{episode_id}_1.html"
+                return page_url
+    
+    return None
+
+
+def get_file_size(url: str) -> int:
+    """
+    Obtiene el tamaño del archivo con una petición HEAD.
+    
+    Args:
+        url: URL del archivo MP3
+        
+    Returns:
+        int: Tamaño del archivo en bytes, 0 si no se puede obtener
+    """
+    try:
+        import requests
+        response = requests.head(url, timeout=10, allow_redirects=True)
+        response.raise_for_status()
+        
+        content_length = response.headers.get('Content-Length')
+        if content_length:
+            return int(content_length)
+        
+        return 0
+    except Exception as e:
+        print(f"⚠️ No se pudo obtener el tamaño del archivo {url}: {e}")
+        return 0
+
+
+def extract_cover_image_url(content: str) -> str:
+    """
+    Extrae la URL de la imagen de portada del contenido HTML.
+    Busca imágenes con data-orig-file que contengan wp-content/uploads.
+    
+    Args:
+        content: Contenido HTML del post
+        
+    Returns:
+        str: URL de la imagen de portada, None si no se encuentra
+    """
+    import re
+    
+    # Buscar imágenes con data-orig-file (criterio principal)
+    data_orig_pattern = r'data-orig-file=["\']([^"\']+wp-content/uploads[^"\']+)["\']'
+    data_orig_matches = re.findall(data_orig_pattern, content, re.IGNORECASE)
+    
+    if data_orig_matches:
+        # Filtrar para encontrar la imagen del número del episodio (ej: 486.png)
+        for img_url in data_orig_matches:
+            if re.search(r'\d+\.png$', img_url):
+                return img_url
+        
+        # Si no encontramos la imagen del número, devolver la primera
+        return data_orig_matches[0]
+    
+    # Fallback: buscar cualquier imagen con wp-content/uploads
+    wp_images_pattern = r'https?://[^\s<>"\']*wp-content/uploads[^\s<>"\']*\.(png|jpg|jpeg|gif)'
+    wp_images_matches = re.findall(wp_images_pattern, content, re.IGNORECASE)
+    
+    if wp_images_matches:
+        # Filtrar para encontrar la imagen del número del episodio
+        for img_url in wp_images_matches:
+            if re.search(r'\d+\.png$', img_url):
+                return img_url
+        
+        # Si no encontramos la imagen del número, devolver la primera
+        return wp_images_matches[0]
+    
+    return None
+
+
 def get_posts(page: int, per_page: int) -> list[dict]:
     """Obtiene posts de WordPress y los transforma a formato limpio."""
     response = fetch_posts(page, per_page)

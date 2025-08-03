@@ -22,7 +22,7 @@ from components.database_manager import DatabaseManager
 from components.song_processor import SongProcessor
 from components.audio_manager import AudioManager
 from components.synology_client import SynologyClient
-from api.wpcom_api import get_posts, extract_best_mp3_url
+from api.wpcom_api import get_posts, extract_best_mp3_url, extract_ivoox_page_url, get_file_size, extract_cover_image_url
 from utils.logger import logger
 
 
@@ -321,12 +321,39 @@ def main(dry_run: bool = False):
                 
                 # Buscar URLs de MP3 en el contenido del post usando la función mejorada
                 content = wp_episode.get('content', '')
-                download_url = extract_best_mp3_url(content)
+                download_url = extract_best_mp3_url(content)  # URL directa del MP3
+                ivoox_page_url = extract_ivoox_page_url(content)  # URL de la página de iVoox
                 
-                if download_url:
-                    logger.info(f"🎵 Encontrada URL de MP3: {download_url}")
+                if not download_url:
+                    logger.warning(f"⚠️ No se encontró URL de MP3 para: {episode_title}")
+                    error_episodes += 1
+                    continue
+                
+                if not ivoox_page_url:
+                    logger.warning(f"⚠️ No se encontró URL de página de iVoox para: {episode_title}")
+                    # Usar la URL de descarga como fallback
+                    ivoox_page_url = download_url
+                
+                logger.info(f"🎵 Encontrada URL de MP3: {download_url}")
+                logger.info(f"🔗 Encontrada URL de página iVoox: {ivoox_page_url}")
+                
+                # Obtener el tamaño del archivo MP3
+                file_size = get_file_size(download_url)
+                if file_size > 0:
+                    # Convertir a MB para mostrar en el log
+                    file_size_mb = file_size / (1024 * 1024)
+                    logger.info(f"📏 Tamaño del archivo: {file_size_mb:.2f} MB ({file_size:,} bytes)")
                 else:
-                    logger.warning(f"⚠️ No se encontraron archivos MP3 en los attachments")
+                    logger.warning(f"⚠️ No se pudo obtener el tamaño del archivo")
+                    file_size = 0
+                
+                # Extraer la imagen de portada
+                cover_image_url = extract_cover_image_url(content)
+                if cover_image_url:
+                    logger.info(f"🖼️ Encontrada imagen de portada: {cover_image_url}")
+                else:
+                    logger.warning(f"⚠️ No se encontró imagen de portada")
+                    cover_image_url = None
                 
                 # Procesar attachments para convertirlos a formato compatible
                 attachments = wp_episode.get('attachments', {})
@@ -346,13 +373,16 @@ def main(dry_run: bool = False):
                 episode_data = {
                     'title': episode_title,
                     'date': episode_date,
-                    'url': wp_episode.get('url', ''),
+                    'url': ivoox_page_url,  # URL de la página de iVoox
+                    'wordpress_link': wp_episode.get('url', ''),  # URL de WordPress
                     'content': wp_episode.get('content', ''),
                     'program_number': episode_program_number,
                     'wordpress_playlist_data': processed_attachments,
                     'rss_playlist': '',  # Ya no usamos RSS
                     'wordpress_id': wp_episode.get('id'),
-                    'download_url': download_url  # Añadir URL de descarga
+                    'download_url': download_url,  # URL directa del MP3 para descarga
+                    'file_size': file_size,  # Tamaño del archivo en bytes
+                    'featured_image_url': cover_image_url  # URL de la imagen de portada
                 }
                 
                 if not episode_data:
