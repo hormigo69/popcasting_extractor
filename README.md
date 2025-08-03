@@ -11,8 +11,16 @@ Este proyecto también incluye un **feed RSS generado automáticamente** desde S
 - **Formato**: RSS 2.0 + iTunes completo
 - **Plataformas**: iTunes, Spotify, Google Podcasts
 
-📖 **Documentación RSS**: [`docs/RSS_FEED_SETUP.md`](docs/RSS_FEED_SETUP.md)  
-⚡ **Quick Start RSS**: [`README_RSS.md`](README_RSS.md)
+📖 **Documentación RSS**: [`docs/05-RSS_FEED_SETUP.md`](docs/05-RSS_FEED_SETUP.md)
+
+### ⚡ Quick Start RSS
+```bash
+# Desplegar RSS
+./deploy_rss.sh
+
+# Probar Feed
+curl https://ndhmlymnbrewflharfmr.supabase.co/functions/v1/rss
+```
 
 ## 🎯 Propósito
 
@@ -36,12 +44,17 @@ popcasting_extractor/
 ├── docs/                         # Documentación técnica
 ├── logs/                         # Archivos de log
 ├── tests/                        # Scripts de prueba
+├── scripts/                      # Scripts de utilidad
+│   └── backup_supabase.py        # Script de backup
+├── supabase/                     # Edge Functions
+│   └── functions/
+│       └── rss/                  # Función RSS
 └── src/
     ├── components/               # Componentes principales
     │   ├── config_manager.py     # Gestor de configuración
     │   ├── database_manager.py   # Gestor de base de datos
     │   ├── song_processor.py     # Procesador de canciones
-    │   ├── audio_manager.py      # Gestor de audio (descarga + duración)
+    │   ├── mp3_manager.py        # Gestor de archivos MP3 (descarga + duración)
     │   ├── synology_client.py    # Cliente para NAS Synology
     │   └── synology_uploader.py  # Subidor de archivos al NAS
     ├── api/                      # APIs externas
@@ -95,80 +108,57 @@ popcasting_extractor/
 Para verificar que todo funciona correctamente:
 
 ```bash
-# Prueba básica de conexión
-python test_connection.py
+# Activar entorno virtual
+source .venv/bin/activate
 
-# Prueba de extracción de duración de audio
-python tests/test_audio_duration.py
-
-# Prueba completa del AudioManager
-python tests/test_audio_manager_complete.py
-```
-
-Estos scripts probarán:
-- ✅ Carga de configuración
-- ✅ Conexión a Supabase
-- ✅ Lectura de credenciales
-- ✅ Extracción de duración de archivos MP3
-- ✅ Funcionalidad completa del AudioManager
-
-## 📖 Documentación
-
-- **`docs/`**: Documentación técnica detallada
-  - `ARQUITECTURA.md`: Diseño del sistema
-  - `INSTALACION.md`: Guía de instalación
-  - `README_AUDIO_MANAGER.md`: Gestor de audio
-  - `README_SYNOLOGY_CLIENT.md`: Cliente Synology
-- **`logs/`**: Archivos de log para debugging
-- **`config.ini`**: Configuración del sistema
-
-## 🔧 Configuración
-
-### Variables de Entorno Requeridas (.env)
-- `supabase_project_url`: URL del proyecto Supabase
-- `supabase_service_role`: Service role key de Supabase (para operaciones CRUD)
-- `SYNOLOGY_IP`: IP del NAS Synology
-- `SYNOLOGY_PORT`: Puerto del NAS (típicamente 5000)
-- `SYNOLOGY_USER`: Usuario del NAS
-- `SYNOLOGY_PASS`: Contraseña del NAS
-- `SYNOLOGY_SHARED_FOLDER`: Carpeta compartida en el NAS
-
-### Configuración WordPress (config.ini)
-- `[wordpress].url`: URL base del sitio WordPress.com
-
-## 📝 Uso
-
-```bash
-# Ejecutar el extractor principal
-python src/main.py
-
-# Ejecutar en modo dry-run (solo mostrar datos sin guardar)
+# Ejecutar en modo dry-run
 python src/main.py --dry-run
 ```
 
-El extractor:
-1. **Lee episodios** desde la API de WordPress.com
-2. **Extrae playlists** de canciones del contenido HTML
-3. **Descarga MP3** y extrae duración exacta
-4. **Sube archivos** al NAS Synology
-5. **Guarda datos** en Supabase (podcasts + canciones)
+## 📚 Documentación
 
-## 🛠️ Desarrollo
+### 📖 Guías Principales
+- **📋 Índice**: [`docs/00-README.md`](docs/00-README.md)
+- **🚀 Instalación**: [`docs/01-INSTALACION.md`](docs/01-INSTALACION.md)
+- **🏗️ Arquitectura**: [`docs/02-ARQUITECTURA.md`](docs/02-ARQUITECTURA.md)
+- **📝 TODOs**: [`docs/03-TODOs.md`](docs/03-TODOs.md)
 
-El proyecto está diseñado para ser modular y extensible:
+### 🔄 Migración y Evolución
+- **🔄 Migración**: [`docs/04-MIGRACION_RSS_A_WORDPRESS.md`](docs/04-MIGRACION_RSS_A_WORDPRESS.md)
 
-- **Componentes**: Cada funcionalidad está en su propio módulo
-- **Configuración**: Centralizada en `config.ini` y variables de entorno
-- **Logging**: Sistema de logs integrado para debugging
-- **Base de datos**: Integración con Supabase para persistencia
-- **RLS**: Row Level Security configurado para operaciones seguras
+### 🚀 Funcionalidades
+- **📡 RSS Setup**: [`docs/05-RSS_FEED_SETUP.md`](docs/05-RSS_FEED_SETUP.md)
+
+### 🎵 Componentes de Audio
+- **🎵 MP3Manager**: [`docs/06-MP3_MANAGER.md`](docs/06-MP3_MANAGER.md) *(Documentación completa con mejoras y guías)*
+
+### 🗄️ Synology NAS
+- **🗄️ SynologyClient**: [`docs/07-SYNOLOGY_CLIENT.md`](docs/07-SYNOLOGY_CLIENT.md) *(Documentación completa)*
+
+## 🔧 Configuración Post-Despliegue RSS
+
+**IMPORTANTE**: Después de cada `./deploy_rss.sh`:
+
+1. Ve a: https://supabase.com/dashboard/project/ndhmlymnbrewflharfmr/functions
+2. Haz clic en `rss`
+3. Settings → Desactiva "Verify JWT with legacy secret"
+4. Save
+
+## 📊 Estado Actual
+
+- ✅ **Episodios procesados**: 486
+- ✅ **Canciones extraídas**: 12,000+
+- ✅ **Archivos MP3**: Descargados y subidos al NAS
+- ✅ **Feed RSS**: Generado automáticamente
+- ✅ **RLS**: Configurado en Supabase
 
 ## 🔒 Seguridad
 
-- **Row Level Security (RLS)**: Configurado en Supabase para ambas tablas
-- **Service Role Key**: Usada para operaciones CRUD desde el backend
-- **Credenciales**: Almacenadas en variables de entorno seguras
+- **Row Level Security (RLS)** configurado en Supabase
+- **Service Role Key** para operaciones privilegiadas
+- **Variables de entorno** para credenciales sensibles
+- **Validación de datos** antes de inserción
 
-## 📄 Licencia
+---
 
-Este proyecto es parte del sistema de extracción de Popcasting. 
+**Última actualización**: Enero 2025 

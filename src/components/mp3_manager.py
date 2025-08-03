@@ -12,9 +12,9 @@ from pathlib import Path
 from typing import Optional
 
 
-class AudioManager:
+class MP3Manager:
     """
-    Gestor de audio para descargar archivos MP3 de podcasts y subirlos al NAS.
+    Gestor de archivos MP3 para descargar archivos de podcasts y subirlos al NAS.
     
     Responsabilidades:
     - Descargar archivos MP3 desde URLs de podcasts
@@ -25,7 +25,7 @@ class AudioManager:
     
     def __init__(self, database_manager, synology_client):
         """
-        Inicializa el gestor de audio.
+        Inicializa el gestor de MP3.
         
         Args:
             database_manager: Instancia de DatabaseManager para operaciones de BD
@@ -41,7 +41,7 @@ class AudioManager:
         # Crear carpeta temporal si no existe
         self.temp_downloads.mkdir(exist_ok=True)
         
-        self.logger.info(f"AudioManager inicializado. Carpeta temporal: {self.temp_downloads}")
+        self.logger.info(f"MP3Manager inicializado. Carpeta temporal: {self.temp_downloads}")
     
     def archive_podcast_audio(self, podcast_id: int) -> bool:
         """

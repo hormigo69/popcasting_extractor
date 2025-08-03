@@ -20,7 +20,7 @@ from components.database_manager import DatabaseManager
 # from components.wordpress_client import WordPressClient  # Ya no necesario
 # from components.data_processor import DataProcessor  # Ya no necesario
 from components.song_processor import SongProcessor
-from components.audio_manager import AudioManager
+from components.mp3_manager import MP3Manager
 from components.synology_client import SynologyClient
 from api.wpcom_api import get_posts, extract_best_mp3_url, extract_ivoox_page_url, get_file_size, extract_cover_image_url, extract_web_extra_links, extract_web_playlist, extract_comments, parse_duration, get_duration_from_mp3
 from utils.logger import logger
@@ -112,7 +112,7 @@ def main(dry_run: bool = False):
             raise Exception("No se pudo conectar al NAS Synology")
 
         logger.info("Inicializando gestor de audio...")
-        audio_manager = AudioManager(db_manager, synology_client)
+        audio_manager = MP3Manager(db_manager, synology_client)
         
         logger.info("✅ Todos los componentes inicializados correctamente")
         
