@@ -464,27 +464,33 @@ def main(dry_run: bool = False):
                 new_podcast_id = db_manager.insert_full_podcast(episode_data)
                 
                 # Procesar y almacenar canciones con SongProcessor
-                logger.info(f"🎵 Procesando canciones para: {episode_title}")
-                song_processor = SongProcessor(db_manager)
-                
-                # Extraer canciones de wordpress_playlist_data si existe
-                web_playlist = None
-                if episode_data.get('wordpress_playlist_data'):
-                    playlist_data = episode_data['wordpress_playlist_data']
-                    if isinstance(playlist_data, dict) and 'songs' in playlist_data:
-                        web_playlist = playlist_data['songs']
-                    elif isinstance(playlist_data, list):
-                        web_playlist = playlist_data
-                
-                stored_songs_count = song_processor.process_and_store_songs(
-                    podcast_id=new_podcast_id,
-                    web_playlist=web_playlist,
-                    rss_playlist=episode_data.get('rss_playlist')
-                )
+                stored_songs_count = 0
+                try:
+                    logger.info(f"🎵 Procesando canciones para: {episode_title}")
+                    song_processor = SongProcessor(db_manager)
+                    
+                    # Extraer canciones de web_playlist
+                    web_playlist = episode_data.get('web_playlist')
+                    
+                    stored_songs_count = song_processor.process_and_store_songs(
+                        podcast_id=new_podcast_id,
+                        web_playlist=web_playlist,
+                        rss_playlist=episode_data.get('rss_playlist')
+                    )
+                except Exception as e:
+                    logger.warning(f"⚠️ Error al procesar canciones para {episode_title}: {e}")
+                    logger.warning(f"⚠️ Continuando con el proceso de audio...")
                 
                 # Iniciar el proceso de archivado de audio
-                logger.info(f"Iniciando el proceso de archivado de audio para el podcast ID: {new_podcast_id}")
-                audio_manager.archive_podcast_audio(podcast_id=new_podcast_id)
+                logger.info(f"🎵 Iniciando el proceso de archivado de audio para el podcast ID: {new_podcast_id}")
+                try:
+                    audio_success = audio_manager.archive_podcast_audio(podcast_id=new_podcast_id)
+                    if audio_success:
+                        logger.info(f"✅ Audio archivado exitosamente para: {episode_title}")
+                    else:
+                        logger.warning(f"⚠️ Error al archivar audio para: {episode_title}")
+                except Exception as e:
+                    logger.error(f"❌ Error crítico al archivar audio para {episode_title}: {e}")
                 
                 logger.info(f"✅ Episodio guardado exitosamente: {episode_title} ({stored_songs_count} canciones)")
                 processed_episodes += 1

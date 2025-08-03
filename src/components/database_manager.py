@@ -254,9 +254,10 @@ class DatabaseManager:
                     song_copy['podcast_id'] = podcast_id
                     songs_with_podcast_id.append(song_copy)
                 
-                # Insertar todas las canciones de una vez
-                songs_result = self.client.table('songs').insert(songs_with_podcast_id).execute()
-                self.logger.info(f"Insertadas {len(songs_with_podcast_id)} canciones para el podcast {podcast_id}")
+                # TEMPORALMENTE DESHABILITADO: Insertar todas las canciones de una vez
+                # songs_result = self.client.table('songs').insert(songs_with_podcast_id).execute()
+                # self.logger.info(f"Insertadas {len(songs_with_podcast_id)} canciones para el podcast {podcast_id}")
+                self.logger.info(f"⚠️ Inserción en tabla 'songs' temporalmente deshabilitada. {len(songs_with_podcast_id)} canciones pendientes.")
             else:
                 self.logger.info("No hay canciones para insertar")
             
