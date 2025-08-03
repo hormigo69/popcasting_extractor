@@ -32,10 +32,10 @@ class ConfigManager:
         Obtiene las credenciales para la API de Supabase desde las variables de entorno.
         """
         url = os.getenv("supabase_project_url")
-        key = os.getenv("supabase_api_key")
+        key = os.getenv("supabase_service_role") or os.getenv("supabase_api_key")
         
         if not all([url, key]):
-            raise ValueError("Faltan las variables de entorno supabase_project_url o supabase_api_key.")
+            raise ValueError("Faltan las variables de entorno supabase_project_url o supabase_service_role.")
             
         return {"url": url, "key": key}
 

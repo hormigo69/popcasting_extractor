@@ -167,9 +167,28 @@ class SongProcessor:
             # Decidir qué playlist usar (priorizando web_playlist si existe)
             songs_to_store = []
             
-            if web_playlist and isinstance(web_playlist, list):
-                self.logger.info(f"Usando playlist web para podcast {podcast_id}")
-                songs_to_store = web_playlist
+            if web_playlist:
+                # Manejar tanto listas como strings JSON
+                if isinstance(web_playlist, list):
+                    self.logger.info(f"Usando playlist web (lista) para podcast {podcast_id}")
+                    songs_to_store = web_playlist
+                elif isinstance(web_playlist, str):
+                    # Intentar parsear como JSON
+                    try:
+                        import json
+                        parsed_playlist = json.loads(web_playlist)
+                        if isinstance(parsed_playlist, list):
+                            self.logger.info(f"Usando playlist web (JSON parseado) para podcast {podcast_id}")
+                            songs_to_store = parsed_playlist
+                        else:
+                            self.logger.warning(f"Playlist web parseada no es una lista: {type(parsed_playlist)}")
+                            songs_to_store = []
+                    except json.JSONDecodeError:
+                        self.logger.warning(f"No se pudo parsear playlist web como JSON: {web_playlist[:100]}...")
+                        songs_to_store = []
+                else:
+                    self.logger.warning(f"Formato de playlist web no reconocido: {type(web_playlist)}")
+                    songs_to_store = []
             elif rss_playlist and isinstance(rss_playlist, str):
                 self.logger.info(f"Usando playlist RSS para podcast {podcast_id}")
                 songs_to_store = self._parse_rss_playlist_string(rss_playlist)
@@ -187,6 +206,10 @@ class SongProcessor:
                 song_copy = song.copy()
                 song_copy['podcast_id'] = podcast_id
                 songs_with_podcast_id.append(song_copy)
+            
+            # Eliminar canciones existentes para este podcast antes de insertar nuevas
+            self.logger.info(f"Limpiando canciones existentes para podcast {podcast_id}")
+            self.db_manager.delete_songs_by_podcast_id(podcast_id)
             
             # Almacenar en la base de datos
             stored_count = self.db_manager.insert_songs_batch(songs_with_podcast_id)

@@ -1,6 +1,6 @@
-# Documentación del Sincronizador RSS
+# Documentación del Extractor de WordPress
 
-Bienvenido a la documentación técnica del Sincronizador RSS. Esta carpeta contiene toda la información necesaria para entender, instalar, configurar y mantener el sistema.
+Bienvenido a la documentación técnica del Extractor de WordPress para Popcasting. Esta carpeta contiene toda la información necesaria para entender, instalar, configurar y mantener el sistema.
 
 ## 📚 Índice de Documentación
 
@@ -83,4 +83,4 @@ Si necesitas ayuda adicional:
 
 ---
 
-*Última actualización: Julio 2025* 
+*Última actualización: Enero 2025* 

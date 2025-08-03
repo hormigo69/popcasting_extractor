@@ -1,13 +1,13 @@
-# Sincronizador RSS
+# Extractor de WordPress para Popcasting
 
-Sincronizador independiente para extraer y procesar feeds RSS de podcasts, con integración a Supabase y WordPress.
+Extractor independiente para procesar episodios de Popcasting desde la API de WordPress.com, con integración a Supabase y almacenamiento en NAS Synology.
 
 ## 🎙️ RSS Feed Generado
 
 Este proyecto también incluye un **feed RSS generado automáticamente** desde Supabase:
 
 - **URL**: `https://ndhmlymnbrewflharfmr.supabase.co/functions/v1/rss`
-- **Episodios**: 475 (todos los episodios)
+- **Episodios**: 486 (todos los episodios)
 - **Formato**: RSS 2.0 + iTunes completo
 - **Plataformas**: iTunes, Spotify, Google Podcasts
 
@@ -16,11 +16,11 @@ Este proyecto también incluye un **feed RSS generado automáticamente** desde S
 
 ## 🎯 Propósito
 
-Este sincronizador está diseñado para:
-- Leer feeds RSS de podcasts
-- Extraer información de episodios y canciones
+Este extractor está diseñado para:
+- **Leer episodios desde la API de WordPress.com**
+- Extraer información completa de episodios y canciones
 - Sincronizar datos con Supabase
-- Integrar con APIs de WordPress
+- **Procesar playlists de canciones desde el contenido HTML**
 - Procesar y normalizar datos de forma automática
 - **Descargar archivos MP3 y extraer duración exacta**
 - **Subir archivos al NAS Synology**
@@ -29,9 +29,9 @@ Este sincronizador está diseñado para:
 ## 📁 Estructura del Proyecto
 
 ```
-sincronizador_rss/
+popcasting_extractor/
 ├── README.md                     # Este archivo
-├── config.ini                    # Configuración del sincronizador
+├── config.ini                    # Configuración del extractor
 ├── requirements.txt              # Dependencias Python
 ├── docs/                         # Documentación técnica
 ├── logs/                         # Archivos de log
@@ -40,11 +40,12 @@ sincronizador_rss/
     ├── components/               # Componentes principales
     │   ├── config_manager.py     # Gestor de configuración
     │   ├── database_manager.py   # Gestor de base de datos
-    │   ├── data_processor.py     # Procesador de datos
-    │   ├── rss_reader.py         # Lector de RSS
+    │   ├── song_processor.py     # Procesador de canciones
     │   ├── audio_manager.py      # Gestor de audio (descarga + duración)
     │   ├── synology_client.py    # Cliente para NAS Synology
-    │   └── wordpress_client.py   # Cliente de WordPress
+    │   └── synology_uploader.py  # Subidor de archivos al NAS
+    ├── api/                      # APIs externas
+    │   └── wpcom_api.py          # API de WordPress.com
     ├── utils/                    # Utilidades
     │   └── logger.py             # Sistema de logging
     └── main.py                   # Punto de entrada principal
@@ -55,7 +56,7 @@ sincronizador_rss/
 1. **Clonar o copiar el proyecto**
 2. **Instalar dependencias:**
    ```bash
-   cd sincronizador_rss
+   cd popcasting_extractor
    pip install -r requirements.txt
    ```
 
@@ -72,14 +73,22 @@ sincronizador_rss/
    ```
 
 4. **Configurar variables de entorno:**
-   - Crear archivo `.env` en el directorio padre con las credenciales de Supabase:
+   - Crear archivo `.env` en el directorio raíz con las credenciales:
    ```env
+   # Supabase
    supabase_project_url=https://tu-proyecto.supabase.co
-   supabase_api_key=tu-api-key
+   supabase_service_role=tu-service-role-key
+   
+   # Synology NAS
+   SYNOLOGY_IP=192.168.1.143
+   SYNOLOGY_PORT=5000
+   SYNOLOGY_USER=usuario
+   SYNOLOGY_PASS=contraseña
+   SYNOLOGY_SHARED_FOLDER=/popcasting_marilyn
    ```
 
 5. **Configurar config.ini:**
-   - Editar `config.ini` con las URLs de RSS y WordPress
+   - Editar `config.ini` con las URLs de WordPress
 
 ## 🧪 Prueba de Conexión
 
@@ -106,7 +115,10 @@ Estos scripts probarán:
 ## 📖 Documentación
 
 - **`docs/`**: Documentación técnica detallada
-  - `AUDIO_MANAGER_IMPROVEMENTS.md`: Mejoras en AudioManager
+  - `ARQUITECTURA.md`: Diseño del sistema
+  - `INSTALACION.md`: Guía de instalación
+  - `README_AUDIO_MANAGER.md`: Gestor de audio
+  - `README_SYNOLOGY_CLIENT.md`: Cliente Synology
 - **`logs/`**: Archivos de log para debugging
 - **`config.ini`**: Configuración del sistema
 
@@ -114,29 +126,32 @@ Estos scripts probarán:
 
 ### Variables de Entorno Requeridas (.env)
 - `supabase_project_url`: URL del proyecto Supabase
-- `supabase_api_key`: API key de Supabase
-
-### Configuración RSS (config.ini)
-- `[rss].url`: URL del feed RSS a procesar
+- `supabase_service_role`: Service role key de Supabase (para operaciones CRUD)
+- `SYNOLOGY_IP`: IP del NAS Synology
+- `SYNOLOGY_PORT`: Puerto del NAS (típicamente 5000)
+- `SYNOLOGY_USER`: Usuario del NAS
+- `SYNOLOGY_PASS`: Contraseña del NAS
+- `SYNOLOGY_SHARED_FOLDER`: Carpeta compartida en el NAS
 
 ### Configuración WordPress (config.ini)
-- `[wordpress].url`: URL base del sitio WordPress
+- `[wordpress].url`: URL base del sitio WordPress.com
 
 ## 📝 Uso
 
-```python
-from src.components.config_manager import ConfigManager
-from src.components.database_manager import DatabaseManager
+```bash
+# Ejecutar el extractor principal
+python src/main.py
 
-# Cargar configuración
-config = ConfigManager()
-
-# Conectar a Supabase
-db = DatabaseManager(
-    supabase_url=config.get_supabase_credentials()["url"],
-    supabase_key=config.get_supabase_credentials()["key"]
-)
+# Ejecutar en modo dry-run (solo mostrar datos sin guardar)
+python src/main.py --dry-run
 ```
+
+El extractor:
+1. **Lee episodios** desde la API de WordPress.com
+2. **Extrae playlists** de canciones del contenido HTML
+3. **Descarga MP3** y extrae duración exacta
+4. **Sube archivos** al NAS Synology
+5. **Guarda datos** en Supabase (podcasts + canciones)
 
 ## 🛠️ Desarrollo
 
@@ -146,6 +161,13 @@ El proyecto está diseñado para ser modular y extensible:
 - **Configuración**: Centralizada en `config.ini` y variables de entorno
 - **Logging**: Sistema de logs integrado para debugging
 - **Base de datos**: Integración con Supabase para persistencia
+- **RLS**: Row Level Security configurado para operaciones seguras
+
+## 🔒 Seguridad
+
+- **Row Level Security (RLS)**: Configurado en Supabase para ambas tablas
+- **Service Role Key**: Usada para operaciones CRUD desde el backend
+- **Credenciales**: Almacenadas en variables de entorno seguras
 
 ## 📄 Licencia
 

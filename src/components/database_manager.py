@@ -437,6 +437,37 @@ class DatabaseManager:
             self.logger.error(f"Error al obtener lote de podcasts: {e}")
             return []
     
+    def delete_songs_by_podcast_id(self, podcast_id: int) -> bool:
+        """
+        Elimina todas las canciones de un podcast específico.
+        
+        Args:
+            podcast_id: ID del podcast
+            
+        Returns:
+            bool: True si se eliminaron canciones, False en caso contrario
+        """
+        try:
+            # Obtener canciones existentes para este podcast
+            result = self.client.table('songs').select('id').eq('podcast_id', podcast_id).execute()
+            existing_songs = result.data if result.data else []
+            
+            if not existing_songs:
+                self.logger.info(f"No hay canciones existentes para eliminar en podcast {podcast_id}")
+                return True
+            
+            # Eliminar todas las canciones del podcast
+            delete_result = self.client.table('songs').delete().eq('podcast_id', podcast_id).execute()
+            
+            deleted_count = len(existing_songs)
+            self.logger.info(f"Eliminadas {deleted_count} canciones existentes del podcast {podcast_id}")
+            
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Error al eliminar canciones del podcast {podcast_id}: {e}")
+            return False
+
     def insert_songs_batch(self, songs_data: list) -> int:
         """
         Inserta múltiples canciones en la tabla songs en una sola operación.
