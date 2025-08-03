@@ -22,7 +22,7 @@ from components.database_manager import DatabaseManager
 from components.song_processor import SongProcessor
 from components.audio_manager import AudioManager
 from components.synology_client import SynologyClient
-from api.wpcom_api import get_posts, extract_best_mp3_url, extract_ivoox_page_url, get_file_size, extract_cover_image_url, extract_web_extra_links, extract_web_playlist
+from api.wpcom_api import get_posts, extract_best_mp3_url, extract_ivoox_page_url, get_file_size, extract_cover_image_url, extract_web_extra_links, extract_web_playlist, extract_comments, parse_duration, get_duration_from_mp3
 from utils.logger import logger
 
 
@@ -375,6 +375,52 @@ def main(dry_run: bool = False):
                 else:
                     logger.warning(f"⚠️ No se encontró playlist")
                 
+                # Extraer comentarios del título
+                comments = extract_comments(episode_title)
+                if comments:
+                    logger.info(f"💬 Comentarios extraídos: {comments}")
+                else:
+                    logger.info(f"💬 No se encontraron comentarios en el título")
+                
+                # Extraer duración
+                duration = None
+                
+                # Primero intentar obtener duración del MP3
+                if download_url:
+                    logger.info(f"⏱️ Extrayendo duración del archivo MP3...")
+                    duration = get_duration_from_mp3(download_url)
+                    if duration:
+                        duration_minutes = duration // 60
+                        duration_seconds = duration % 60
+                        logger.info(f"⏱️ Duración extraída del MP3: {duration_minutes}:{duration_seconds:02d} ({duration} segundos)")
+                    else:
+                        logger.warning(f"⚠️ No se pudo extraer duración del MP3")
+                
+                # Si no se pudo extraer del MP3, intentar desde el contenido (si hay)
+                if not duration:
+                    # Buscar duración en el contenido HTML (si existe)
+                    duration_pattern = r'(\d{1,2}):(\d{2})(?::(\d{2}))?'
+                    duration_matches = re.findall(duration_pattern, content)
+                    if duration_matches:
+                        # Tomar la primera coincidencia que parezca una duración válida
+                        for match in duration_matches:
+                            if len(match) == 3 and match[2]:  # HH:MM:SS
+                                hours, minutes, seconds = int(match[0]), int(match[1]), int(match[2])
+                                duration = hours * 3600 + minutes * 60 + seconds
+                                break
+                            elif len(match) == 3 and not match[2]:  # MM:SS
+                                minutes, seconds = int(match[0]), int(match[1])
+                                duration = minutes * 60 + seconds
+                                break
+                        
+                        if duration:
+                            duration_minutes = duration // 60
+                            duration_seconds = duration % 60
+                            logger.info(f"⏱️ Duración extraída del contenido: {duration_minutes}:{duration_seconds:02d} ({duration} segundos)")
+                
+                if not duration:
+                    logger.warning(f"⚠️ No se pudo extraer duración del episodio")
+                
                 # Procesar attachments para convertirlos a formato compatible
                 attachments = wp_episode.get('attachments', {})
                 processed_attachments = []
@@ -403,7 +449,9 @@ def main(dry_run: bool = False):
                     'file_size': file_size,  # Tamaño del archivo en bytes
                     'featured_image_url': cover_image_url,  # URL de la imagen de portada
                     'web_extra_links': web_extra_links,  # Enlaces adicionales
-                    'web_playlist': web_playlist  # Playlist de canciones extraída del contenido
+                    'web_playlist': web_playlist,  # Playlist de canciones extraída del contenido
+                    'comments': comments,  # Comentarios extraídos del título
+                    'duration': duration  # Duración en segundos
                 }
                 
                 if not episode_data:

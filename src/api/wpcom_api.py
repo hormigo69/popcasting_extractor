@@ -456,6 +456,155 @@ def _clean_unicode_text(text: str) -> str:
         return text.strip()
 
 
+def extract_comments(title: str) -> str | None:
+    """
+    Extrae los comentarios desde el título (texto después del número).
+    
+    Args:
+        title: Título del episodio
+        
+    Returns:
+        str: Comentarios extraídos o None si no hay comentarios
+    """
+    import re
+    
+    if not title:
+        return None
+    
+    # Patrones para extraer comentarios
+    patterns = [
+        r'popcasting\s*\d+\s*\(([^)]+)\)',  # Popcasting195 (especial Smash Hits 1984)
+        r'popcasting\s*\d+\s+(.+)$',        # Popcasting195 especial Smash Hits 1984
+    ]
+    
+    for pattern in patterns:
+        match = re.search(pattern, title, re.IGNORECASE)
+        if match:
+            comments = match.group(1).strip()
+            if comments:
+                return comments
+    
+    return None
+
+
+def parse_duration(duration_str: str) -> int | None:
+    """
+    Convierte la duración de formato HH:MM:SS a segundos.
+    
+    Args:
+        duration_str: Duración en formato "HH:MM:SS" o "MM:SS"
+        
+    Returns:
+        int: Duración en segundos o None si no se puede parsear
+    """
+    if not duration_str:
+        return None
+    
+    try:
+        # Formato: "01:51:12" o "MM:SS"
+        parts = duration_str.split(':')
+        if len(parts) == 3:
+            hours = int(parts[0])
+            minutes = int(parts[1])
+            seconds = int(parts[2])
+            return hours * 3600 + minutes * 60 + seconds
+        elif len(parts) == 2:
+            # Formato: "MM:SS"
+            minutes = int(parts[0])
+            seconds = int(parts[1])
+            return minutes * 60 + seconds
+    except:
+        print(f"⚠️ No se pudo parsear la duración: {duration_str}")
+    
+    return None
+
+
+def get_duration_from_mp3(url: str) -> int | None:
+    """
+    Extrae la duración exacta de un archivo MP3 desde una URL usando ffprobe.
+    
+    Args:
+        url: URL del archivo MP3
+        
+    Returns:
+        int: Duración en segundos o None si hay error
+    """
+    import subprocess
+    import json
+    import tempfile
+    import os
+    import requests
+    
+    try:
+        # Descargar temporalmente el archivo
+        print(f"🔍 Descargando archivo para extraer duración: {url}")
+        response = requests.get(url, stream=True, timeout=30)
+        response.raise_for_status()
+        
+        # Crear archivo temporal
+        with tempfile.NamedTemporaryFile(suffix='.mp3', delete=False) as temp_file:
+            for chunk in response.iter_content(chunk_size=8192):
+                temp_file.write(chunk)
+            temp_file_path = temp_file.name
+        
+        try:
+            # Usar ffprobe para obtener información del archivo
+            cmd = [
+                'ffprobe',
+                '-v', 'quiet',
+                '-print_format', 'json',
+                '-show_format',
+                '-show_streams',
+                temp_file_path
+            ]
+            
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+            
+            if result.returncode != 0:
+                print(f"❌ Error ejecutando ffprobe: {result.stderr}")
+                return None
+            
+            # Parsear la salida JSON
+            probe_data = json.loads(result.stdout)
+            
+            # Buscar la duración en el formato o en el primer stream de audio
+            duration = None
+            
+            # Primero intentar obtener la duración del formato
+            if 'format' in probe_data and 'duration' in probe_data['format']:
+                duration = float(probe_data['format']['duration'])
+            # Si no está en el formato, buscar en los streams de audio
+            elif 'streams' in probe_data:
+                for stream in probe_data['streams']:
+                    if stream.get('codec_type') == 'audio' and 'duration' in stream:
+                        duration = float(stream['duration'])
+                        break
+            
+            if duration:
+                print(f"✅ Duración extraída: {duration:.2f} segundos")
+                return int(duration)  # Convertir a entero para compatibilidad con BD
+            else:
+                print(f"⚠️ No se pudo obtener la duración de: {url}")
+                return None
+                
+        finally:
+            # Limpiar archivo temporal
+            try:
+                os.unlink(temp_file_path)
+            except:
+                pass
+                
+    except subprocess.TimeoutExpired:
+        print(f"❌ Timeout al ejecutar ffprobe en: {url}")
+        return None
+    except json.JSONDecodeError as e:
+        print(f"❌ Error parseando salida JSON de ffprobe: {e}")
+        return None
+    except Exception as e:
+        print(f"❌ Error al extraer duración de {url}: {e}")
+        return None
+
+
 def get_posts(page: int, per_page: int) -> list[dict]:
     """Obtiene posts de WordPress y los transforma a formato limpio."""
     response = fetch_posts(page, per_page)
