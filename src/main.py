@@ -131,14 +131,16 @@ def main(dry_run: bool = False):
             logger.info("📅 No hay episodios en la base de datos, se procesarán todos")
             latest_program_number = 0
         
-        # 2. Obtener episodios desde la API de WordPress.com
+        # 2. Obtener episodios desde la API de WordPress.com (optimizado)
         logger.info("📻 Obteniendo episodios desde la API de WordPress.com...")
         
         PAGE_SIZE = 20  # Número de posts por página
         all_episodes = []
         page = 1
+        found_old_episodes = False
+        max_pages_to_check = 10  # Límite de seguridad para evitar bucles infinitos
         
-        while True:
+        while True and page <= max_pages_to_check:
             logger.info(f"📄 Obteniendo página {page} de posts...")
             posts = get_posts(page, PAGE_SIZE)
             
@@ -148,22 +150,48 @@ def main(dry_run: bool = False):
                 
             logger.info(f"📄 Encontrados {len(posts)} posts en la página {page}")
             
+            # Verificar si encontramos episodios viejos (ya en BD)
+            page_has_new_episodes = False
+            for post in posts:
+                episode_title = post.get('title', 'Sin título')
+                episode_program_number = _extract_program_number(episode_title)
+                
+                if episode_program_number and episode_program_number > latest_program_number:
+                    page_has_new_episodes = True
+                    break
+            
+            if not page_has_new_episodes and latest_program_number > 0:
+                logger.info(f"📄 Página {page} solo contiene episodios viejos, parando búsqueda...")
+                found_old_episodes = True
+                break
+            
             if dry_run:
                 # En modo dry-run, mostrar detalles de cada post
                 for i, post in enumerate(posts, 1):
+                    episode_title = post.get('title', 'Sin título')
+                    episode_program_number = _extract_program_number(episode_title)
+                    is_new = episode_program_number and episode_program_number > latest_program_number
+                    
                     logger.info(f"📝 Post {i} de la página {page}:")
                     logger.info(f"   ID: {post.get('id')}")
-                    logger.info(f"   Título: {post.get('title')}")
+                    logger.info(f"   Título: {episode_title}")
+                    logger.info(f"   Número: {episode_program_number}")
+                    logger.info(f"   Es nuevo: {'✅' if is_new else '❌'}")
                     logger.info(f"   Fecha: {post.get('published_at')}")
                     logger.info(f"   URL: {post.get('url')}")
-                    logger.info(f"   Contenido (primeros 100 chars): {post.get('content', '')[:100]}...")
-                    logger.info(f"   Adjuntos: {len(post.get('attachments', []))} elementos")
                     logger.info("   " + "="*50)
             
             all_episodes.extend(posts)
             page += 1
         
+        if page > max_pages_to_check:
+            logger.warning(f"⚠️ Se alcanzó el límite de {max_pages_to_check} páginas, puede haber más episodios nuevos")
+        
         logger.info(f"📻 Total de episodios obtenidos desde WordPress.com: {len(all_episodes)}")
+        logger.info(f"📄 Páginas revisadas: {page - 1}")
+        
+        if found_old_episodes:
+            logger.info(f"✅ Optimización: Se detuvo la búsqueda al encontrar episodios viejos")
         
         # 3. Filtrar solo episodios nuevos (con número mayor al último en BD)
         new_episodes = []
