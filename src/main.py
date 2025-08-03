@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Script principal del sincronizador RSS.
-Orquesta todos los componentes para leer el RSS, enriquecer los datos con WordPress
-y guardarlos en Supabase.
+Script principal del sincronizador de WordPress.com.
+Orquesta todos los componentes para leer la API de WordPress.com
+y guardar los episodios en Supabase.
 """
 
 import sys
@@ -15,21 +15,59 @@ sys.path.insert(0, str(current_dir))
 
 from components.config_manager import ConfigManager
 from components.database_manager import DatabaseManager
-from components.rss_data_processor import RSSDataProcessor
-from components.wordpress_data_processor import WordPressDataProcessor
-from components.wordpress_client import WordPressClient
-from components.data_processor import DataProcessor
+# from components.rss_data_processor import RSSDataProcessor  # Ya no necesario
+# from components.wordpress_data_processor import WordPressDataProcessor  # Ya no necesario
+# from components.wordpress_client import WordPressClient  # Ya no necesario
+# from components.data_processor import DataProcessor  # Ya no necesario
 from components.song_processor import SongProcessor
 from components.audio_manager import AudioManager
 from components.synology_client import SynologyClient
+from api.wpcom_api import get_posts, extract_best_mp3_url
 from utils.logger import logger
 
 
-def main():
+def _extract_program_number(title: str) -> int | None:
     """
-    Función principal que orquesta todo el proceso de sincronización.
+    Extrae el número de programa del título del episodio.
+    
+    Args:
+        title: Título del episodio
+        
+    Returns:
+        int: Número del programa si se encuentra, None si no se encuentra
     """
-    logger.info("🚀 Iniciando sincronizador RSS")
+    import re
+    
+    # Patrón para buscar números de episodio en el título
+    patterns = [
+        r'Popcasting\s*#?(\d+)',  # Popcasting #123
+        r'Episodio\s*#?(\d+)',    # Episodio #123
+        r'#(\d+)',                # #123
+        r'(\d+)',                 # Solo número
+    ]
+    
+    for pattern in patterns:
+        match = re.search(pattern, title, re.IGNORECASE)
+        if match:
+            try:
+                return int(match.group(1))
+            except (ValueError, IndexError):
+                continue
+    
+    return None
+
+
+def main(dry_run: bool = False):
+    """
+    Función principal que orquesta todo el proceso de sincronización desde WordPress.com.
+    
+    Args:
+        dry_run: Si es True, solo muestra los datos sin procesarlos ni guardarlos
+    """
+    if dry_run:
+        logger.info("🧪 Iniciando sincronizador de WordPress.com en MODO DRY-RUN")
+    else:
+        logger.info("🚀 Iniciando sincronizador de WordPress.com")
     
     try:
         # Inicialización de componentes
@@ -49,15 +87,15 @@ def main():
             supabase_key=supabase_credentials["key"]
         )
         
-        # 3. Inicializar cliente de WordPress
-        wordpress_client = WordPressClient(wordpress_config['api_url'])
+        # 3. Inicializar cliente de WordPress (ya no necesario, usamos wpcom_api)
+        # wordpress_client = WordPressClient(wordpress_config['api_url'])
         
-        # 4. Inicializar procesadores de datos
-        rss_processor = RSSDataProcessor(rss_url)
-        wordpress_processor = WordPressDataProcessor()
+        # 4. Inicializar procesadores de datos (ya no necesario, usamos wpcom_api)
+        # rss_processor = RSSDataProcessor(rss_url)
+        # wordpress_processor = WordPressDataProcessor()
         
-        # 5. Inicializar procesador principal (orquestador)
-        data_processor = DataProcessor(rss_processor, wordpress_processor)
+        # 5. Inicializar procesador principal (orquestador) - ya no necesario
+        # data_processor = DataProcessor(rss_processor, wordpress_processor)
         
         # 6. Inicializar cliente de Synology y gestor de audio
         logger.info("Inicializando cliente de Synology...")
@@ -93,23 +131,57 @@ def main():
             logger.info("📅 No hay episodios en la base de datos, se procesarán todos")
             latest_program_number = 0
         
-        # 2. Obtener episodios del RSS
-        rss_episodes = rss_processor.fetch_and_process_entries()
-        logger.info(f"📻 Encontrados {len(rss_episodes)} episodios en el RSS")
+        # 2. Obtener episodios desde la API de WordPress.com
+        logger.info("📻 Obteniendo episodios desde la API de WordPress.com...")
+        
+        PAGE_SIZE = 20  # Número de posts por página
+        all_episodes = []
+        page = 1
+        
+        while True:
+            logger.info(f"📄 Obteniendo página {page} de posts...")
+            posts = get_posts(page, PAGE_SIZE)
+            
+            if not posts:
+                logger.info(f"📄 No hay más posts en la página {page}")
+                break
+                
+            logger.info(f"📄 Encontrados {len(posts)} posts en la página {page}")
+            
+            if dry_run:
+                # En modo dry-run, mostrar detalles de cada post
+                for i, post in enumerate(posts, 1):
+                    logger.info(f"📝 Post {i} de la página {page}:")
+                    logger.info(f"   ID: {post.get('id')}")
+                    logger.info(f"   Título: {post.get('title')}")
+                    logger.info(f"   Fecha: {post.get('published_at')}")
+                    logger.info(f"   URL: {post.get('url')}")
+                    logger.info(f"   Contenido (primeros 100 chars): {post.get('content', '')[:100]}...")
+                    logger.info(f"   Adjuntos: {len(post.get('attachments', []))} elementos")
+                    logger.info("   " + "="*50)
+            
+            all_episodes.extend(posts)
+            page += 1
+        
+        logger.info(f"📻 Total de episodios obtenidos desde WordPress.com: {len(all_episodes)}")
         
         # 3. Filtrar solo episodios nuevos (con número mayor al último en BD)
         new_episodes = []
         if latest_program_number > 0:
             logger.info(f"📊 Comparando por número de episodio: último en BD = {latest_program_number}")
             
-            for episode in rss_episodes:
-                episode_program_number = episode.get('program_number', 0)
+            for episode in all_episodes:
+                # Extraer número de episodio del título
                 episode_title = episode.get('title', 'Sin título')
+                episode_program_number = _extract_program_number(episode_title)
                 
-                if episode_program_number > latest_program_number:
+                if dry_run:
+                    logger.info(f"🔍 Analizando episodio: '{episode_title}' -> Número extraído: {episode_program_number}")
+                
+                if episode_program_number and episode_program_number > latest_program_number:
                     new_episodes.append(episode)
                     logger.debug(f"🆕 Episodio nuevo encontrado: {episode_title} (Número: {episode_program_number})")
-                else:
+                elif episode_program_number and episode_program_number <= latest_program_number:
                     # Los episodios están ordenados por número, podemos parar aquí
                     logger.debug(f"⏭️ Episodio ya existe: {episode_title} (Número: {episode_program_number})")
                     break
@@ -117,7 +189,7 @@ def main():
             logger.info(f"🆕 Encontrados {len(new_episodes)} episodios nuevos para procesar")
         else:
             # Si no hay episodios en BD, procesar todos
-            new_episodes = rss_episodes
+            new_episodes = all_episodes
             logger.info(f"🆕 Procesando todos los {len(new_episodes)} episodios (BD vacía)")
         
         # 4. Si no hay episodios nuevos, terminar
@@ -128,28 +200,135 @@ def main():
         # 5. Procesar solo los episodios nuevos
         logger.info(f"🚀 Procesando {len(new_episodes)} episodios nuevos...")
         
+        if dry_run:
+            logger.info("🧪 MODO DRY-RUN: Solo mostrando datos, sin procesar ni guardar")
+            for i, wp_episode in enumerate(new_episodes, 1):
+                episode_title = wp_episode.get('title', 'Sin título')
+                episode_date = wp_episode.get('published_at', 'Sin fecha')
+                
+                logger.info(f"📝 Episodio {i}/{len(new_episodes)}: {episode_title} ({episode_date})")
+                
+                # Buscar URLs de MP3 en el contenido del post (modo dry-run)
+                import re
+                content = wp_episode.get('content', '')
+                mp3_urls = []
+                
+                # Buscar URLs de MP3 en el contenido HTML
+                mp3_patterns = [
+                    r'href=["\']([^"\']*\.mp3[^"\']*)["\']',  # href="...mp3..."
+                    r'src=["\']([^"\']*\.mp3[^"\']*)["\']',   # src="...mp3..."
+                    r'https?://[^\s<>"\']*\.mp3[^\s<>"\']*',  # URLs directas de MP3
+                ]
+                
+                for pattern in mp3_patterns:
+                    matches = re.findall(pattern, content, re.IGNORECASE)
+                    mp3_urls.extend(matches)
+                
+                # Eliminar duplicados y limpiar URLs
+                mp3_urls = list(set(mp3_urls))
+                mp3_urls = [url.strip() for url in mp3_urls if url.strip()]
+                
+                download_url = mp3_urls[0] if mp3_urls else None
+                
+                # Procesar attachments para convertirlos a formato compatible (modo dry-run)
+                attachments = wp_episode.get('attachments', {})
+                processed_attachments = []
+                
+                # Si attachments es un diccionario, convertirlo a lista
+                if isinstance(attachments, dict):
+                    for attachment_id, attachment_data in attachments.items():
+                        if isinstance(attachment_data, dict):
+                            processed_attachments.append(attachment_data)
+                        else:
+                            processed_attachments.append(attachment_data)
+                elif isinstance(attachments, list):
+                    processed_attachments = attachments
+                
+                # Mostrar estructura de datos que se crearía
+                episode_program_number = _extract_program_number(episode_title)
+                episode_data = {
+                    'title': episode_title,
+                    'date': episode_date,
+                    'url': wp_episode.get('url', ''),
+                    'content': wp_episode.get('content', ''),
+                    'program_number': episode_program_number,
+                    'wordpress_playlist_data': processed_attachments,
+                    'rss_playlist': '',  # Ya no usamos RSS
+                    'wordpress_id': wp_episode.get('id'),
+                    'download_url': download_url
+                }
+                
+                logger.info(f"   📊 Datos estructurados:")
+                logger.info(f"      - Título: {episode_data['title']}")
+                logger.info(f"      - Fecha: {episode_data['date']}")
+                logger.info(f"      - URL: {episode_data['url']}")
+                logger.info(f"      - Número de programa: {episode_data['program_number']}")
+                logger.info(f"      - WordPress ID: {episode_data['wordpress_id']}")
+                logger.info(f"      - URL de descarga MP3: {episode_data['download_url'] or 'No encontrada'}")
+                logger.info(f"      - Contenido (primeros 150 chars): {episode_data['content'][:150]}...")
+                logger.info(f"      - Adjuntos: {len(episode_data['wordpress_playlist_data'])} elementos")
+                logger.info("   " + "="*60)
+            
+            logger.info("🧪 MODO DRY-RUN completado. No se procesaron ni guardaron datos.")
+            return
+        
         # Contadores para el reporte
         total_new_episodes = len(new_episodes)
         processed_episodes = 0
         error_episodes = 0
         
         # Procesar cada episodio nuevo
-        for i, rss_episode in enumerate(new_episodes, 1):
-            episode_title = rss_episode.get('title', 'Sin título')
-            episode_date = rss_episode.get('date', 'Sin fecha')
+        for i, wp_episode in enumerate(new_episodes, 1):
+            episode_title = wp_episode.get('title', 'Sin título')
+            episode_date = wp_episode.get('published_at', 'Sin fecha')
             
             logger.info(f"📝 Procesando episodio nuevo {i}/{total_new_episodes}: {episode_title} ({episode_date})")
             
             try:
-                # Enriquecer y unificar datos con WordPress
-                logger.info(f"🔗 Enriqueciendo datos con WordPress para: {episode_title}")
-                episode_data = data_processor.process_single_episode(
-                    rss_episode=rss_episode,
-                    wordpress_client=wordpress_client
-                )
+                # Los datos ya vienen de WordPress.com, solo necesitamos adaptarlos al formato esperado
+                logger.info(f"🔗 Adaptando datos de WordPress.com para: {episode_title}")
+                
+                # Extraer número de episodio del título
+                episode_program_number = _extract_program_number(episode_title)
+                
+                # Buscar URLs de MP3 en el contenido del post usando la función mejorada
+                content = wp_episode.get('content', '')
+                download_url = extract_best_mp3_url(content)
+                
+                if download_url:
+                    logger.info(f"🎵 Encontrada URL de MP3: {download_url}")
+                else:
+                    logger.warning(f"⚠️ No se encontraron archivos MP3 en los attachments")
+                
+                # Procesar attachments para convertirlos a formato compatible
+                attachments = wp_episode.get('attachments', {})
+                processed_attachments = []
+                
+                # Si attachments es un diccionario, convertirlo a lista
+                if isinstance(attachments, dict):
+                    for attachment_id, attachment_data in attachments.items():
+                        if isinstance(attachment_data, dict):
+                            processed_attachments.append(attachment_data)
+                        else:
+                            processed_attachments.append(attachment_data)
+                elif isinstance(attachments, list):
+                    processed_attachments = attachments
+                
+                # Crear estructura de datos compatible con la BD
+                episode_data = {
+                    'title': episode_title,
+                    'date': episode_date,
+                    'url': wp_episode.get('url', ''),
+                    'content': wp_episode.get('content', ''),
+                    'program_number': episode_program_number,
+                    'wordpress_playlist_data': processed_attachments,
+                    'rss_playlist': '',  # Ya no usamos RSS
+                    'wordpress_id': wp_episode.get('id'),
+                    'download_url': download_url  # Añadir URL de descarga
+                }
                 
                 if not episode_data:
-                    logger.warning(f"⚠️ No se pudieron obtener datos unificados para: {episode_title}")
+                    logger.warning(f"⚠️ No se pudieron obtener datos para: {episode_title}")
                     error_episodes += 1
                     continue
                 
@@ -190,7 +369,7 @@ def main():
         
         # Reporte final
         logger.info("📊 === REPORTE FINAL DE SINCRONIZACIÓN ===")
-        logger.info(f"📻 Total de episodios en RSS: {len(rss_episodes)}")
+        logger.info(f"📻 Total de episodios en WordPress.com: {len(all_episodes)}")
         logger.info(f"🆕 Episodios nuevos encontrados: {total_new_episodes}")
         logger.info(f"✅ Episodios procesados exitosamente: {processed_episodes}")
         logger.info(f"❌ Episodios con errores: {error_episodes}")
@@ -209,9 +388,19 @@ def main():
 
 if __name__ == "__main__":
     """
-    Punto de entrada principal del sincronizador RSS.
+    Punto de entrada principal del sincronizador de WordPress.com.
     """
-    main() 
+    import sys
+    
+    # Verificar si se pasa el argumento --dry-run
+    dry_run = "--dry-run" in sys.argv
+    
+    if dry_run:
+        print("🧪 Ejecutando en MODO DRY-RUN")
+        print("   Para ejecutar normalmente, quita el argumento --dry-run")
+        print("="*60)
+    
+    main(dry_run=dry_run)
 
 
 # source .venv/bin/activate
